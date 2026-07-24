@@ -1,0 +1,4 @@
+.env
+.local-node/
+ga4-service-account.json
+.claude/

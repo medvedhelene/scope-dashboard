@@ -1,0 +1,884 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scope360 — аналитика продукта и продаж</title>
+<style>
+:root {
+  color-scheme: light;
+  --plane: #f9f9f7; --surface: #fcfcfb;
+  --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --border: rgba(11,11,11,0.10);
+  --s1: #2a78d6; --s2: #008300; --s3: #e87ba4; --s4: #eda100; --s5: #1baf7a;
+  --good: #0ca30c; --warning: #fab219; --serious: #ec835a; --critical: #d03b3b;
+  --ord1: #86b6ef; --ord2: #5598e7; --ord3: #2a78d6; --ord4: #1c5cab;
+  --up: #006300;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --plane: #0d0d0d; --surface: #1a1a19;
+    --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10);
+    --s1: #3987e5; --s2: #008300; --s3: #d55181; --s4: #c98500; --s5: #199e70;
+    --ord1: #6da7ec; --ord2: #3987e5; --ord3: #256abf; --ord4: #184f95;
+    --up: #0ca30c;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --plane: #0d0d0d; --surface: #1a1a19;
+  --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --border: rgba(255,255,255,0.10);
+  --s1: #3987e5; --s2: #008300; --s3: #d55181; --s4: #c98500; --s5: #199e70;
+  --ord1: #6da7ec; --ord2: #3987e5; --ord3: #256abf; --ord4: #184f95;
+  --up: #0ca30c;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--plane); color: var(--ink);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.wrap { max-width: 1180px; margin: 0 auto; padding: 32px 24px 64px; }
+header h1 { font-size: 26px; font-weight: 650; margin: 0 0 6px; text-wrap: balance; }
+header p { margin: 0; color: var(--ink-2); font-size: 14px; }
+h2 {
+  font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted); margin: 40px 0 14px;
+}
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 12px; }
+.tile {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 14px 16px 12px;
+}
+.tile .lbl { font-size: 13px; color: var(--ink-2); }
+.tile .val { font-size: 27px; font-weight: 650; margin-top: 2px; }
+.tile .sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.tile .sub b { color: var(--up); font-weight: 600; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid .wide { grid-column: 1 / -1; }
+@media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 16px 18px 12px; min-width: 0;
+}
+.card h3 { margin: 0 0 2px; font-size: 15px; font-weight: 600; }
+.card .note { font-size: 12.5px; color: var(--muted); margin: 0 0 10px; }
+.cardHead { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px 16px; flex-wrap: wrap; margin-bottom: 4px; }
+.cardHead .note { margin-bottom: 0; }
+.ctrls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: flex-end; margin: 0 0 8px auto; }
+.seg { display: inline-flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.seg button {
+  appearance: none; border: 0; background: transparent; color: var(--ink-2);
+  font: inherit; font-size: 13px; padding: 5px 12px; cursor: pointer;
+}
+.seg button + button { border-left: 1px solid var(--border); }
+.seg button[aria-pressed="true"] { background: var(--s1); color: #fff; }
+.seg button:focus-visible, .ctrls select:focus-visible, .ctrls input:focus-visible { outline: 2px solid var(--s1); outline-offset: 1px; }
+.ctrls select, .ctrls input[type="date"] {
+  font: inherit; font-size: 13px; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--border); border-radius: 8px; padding: 4px 8px;
+}
+.ctrls .dates { display: none; gap: 6px; align-items: center; color: var(--muted); font-size: 13px; }
+.ctrls.custom .dates { display: inline-flex; }
+.chart { position: relative; }
+.chart svg { display: block; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 8px 0 2px; font-size: 12.5px; color: var(--ink-2); }
+.legend .it { display: inline-flex; align-items: center; gap: 6px; }
+.legend .sw { width: 11px; height: 11px; border-radius: 3px; }
+.legend .ln { width: 14px; height: 3px; border-radius: 2px; }
+details.tbl { margin: 6px 0 2px; font-size: 13px; }
+details.tbl summary { color: var(--muted); cursor: pointer; font-size: 12.5px; }
+details.tbl table { border-collapse: collapse; margin-top: 8px; width: 100%; }
+details.tbl th { text-align: left; color: var(--ink-2); font-weight: 600; }
+details.tbl th, details.tbl td { padding: 4px 10px 4px 0; border-bottom: 1px solid var(--grid); }
+details.tbl td.n, details.tbl th.n { text-align: right; font-variant-numeric: tabular-nums; }
+#cohorts { overflow-x: auto; }
+#cohorts table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+#cohorts th, #cohorts td { padding: 7px 12px; border-bottom: 1px solid var(--grid); text-align: right; font-variant-numeric: tabular-nums; }
+#cohorts th { color: var(--ink-2); font-weight: 600; }
+#cohorts th:first-child, #cohorts td:first-child { text-align: left; }
+#cohorts td.dim { color: var(--muted); }
+.callout {
+  border-left: 3px solid var(--serious); background: var(--surface);
+  border-radius: 0 10px 10px 0; padding: 10px 16px; font-size: 14px; color: var(--ink-2);
+  margin-top: 12px;
+}
+.callout b { color: var(--ink); }
+ul.insights { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+ul.insights li {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 16px; font-size: 14px; color: var(--ink-2);
+}
+ul.insights li b { color: var(--ink); }
+#tip {
+  position: fixed; z-index: 10; pointer-events: none; display: none;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  padding: 8px 12px; font-size: 13px; box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+  max-width: 260px;
+}
+#tip .t { color: var(--muted); font-size: 12px; margin-bottom: 4px; }
+#tip .r { display: flex; align-items: center; gap: 7px; }
+#tip .r .k { width: 12px; height: 3px; border-radius: 2px; flex: none; }
+#tip .r .v { font-weight: 600; font-variant-numeric: tabular-nums; }
+#tip .r .l { color: var(--ink-2); }
+footer { margin-top: 44px; font-size: 12.5px; color: var(--muted); }
+svg text { font: 12px system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--muted); font-variant-numeric: tabular-nums; }
+svg text.dl { fill: var(--ink-2); font-weight: 600; }
+@media (prefers-reduced-motion: no-preference) {
+  .bar, .col { transition: opacity 0.12s; }
+}
+</style>
+
+
+
+
+
+
+
+
+
+<div class="wrap">
+<header>
+  <h1>Scope360 — аналитика продукта и продаж</h1>
+  <p>Источник: Metabase / PSQL-PROD-SCOPE, схема analytics · выгружено 22 июля 2026.
+     Выручка и продажи считаются только по успешным платежам (98 из 218 попыток).</p>
+</header>
+
+<h2>Ключевые показатели</h2>
+<div class="tiles" id="kpis"><div class="tile"><div class="lbl">Пользователи</div><div class="val">12&nbsp;938</div><div class="sub">регистрации с марта 2024</div></div><div class="tile"><div class="lbl">Платящие</div><div class="val">92</div><div class="sub">конверсия <b>0,71%</b></div></div><div class="tile"><div class="lbl">Выручка</div><div class="val">$3&nbsp;288</div><div class="sub">98 успешных оплат</div></div><div class="tile"><div class="lbl">Средний чек</div><div class="val">$33,55</div><div class="sub">на успешную оплату</div></div><div class="tile"><div class="lbl">ARPPU</div><div class="val">$39,54</div><div class="sub">на платящего за всё время</div></div><div class="tile"><div class="lbl">Применений промокодов</div><div class="val">2&nbsp;255</div><div class="sub">за всю историю</div></div><div class="tile"><div class="lbl">MRR сейчас</div><div class="val">$228</div><div class="sub">6 месячных + 9 годовых подписок</div></div><div class="tile"><div class="lbl">Продлеваемость месячных</div><div class="val">9%</div><div class="sub">7 продлений из 80 истёкших</div></div></div>
+
+<h2>Деньги</h2>
+<div class="grid">
+  <div class="card wide">
+    <div class="cardHead">
+      <div>
+        <h3>Выручка, $</h3>
+        <p class="note">Успешные платежи. Крайний период может быть неполным.</p>
+      </div>
+      <div class="ctrls" id="revCtrls">
+        <div class="seg" id="revGran" role="group" aria-label="Гранулярность">
+          <button type="button" data-g="week" aria-pressed="false">Недели</button>
+          <button type="button" data-g="month" aria-pressed="true">Месяцы</button>
+          <button type="button" data-g="quarter" aria-pressed="false">Кварталы</button>
+        </div>
+        <select id="revPreset" aria-label="Период">
+          <option value="all" selected="">Всё время</option>
+          <option value="90">Последние 90 дней</option>
+          <option value="30">Последние 30 дней</option>
+          <option value="custom">Свой период…</option>
+        </select>
+        <span class="dates"><input type="date" id="revFrom" aria-label="С даты" min="2025-12-10" max="2026-07-17"> — <input type="date" id="revTo" aria-label="По дату" min="2025-12-10" max="2026-07-17"></span>
+      </div>
+    </div>
+    <div class="chart" id="revMonthly" data-w="1096"><svg viewBox="0 0 1096 230" width="1096" height="230"><line x1="58" x2="1082" y1="204" y2="204" stroke="var(--axis)" stroke-width="1"></line><line x1="58" x2="1082" y1="156.12359570946785" y2="156.12359570946785" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="160.12359570946785" text-anchor="end">$200</text><line x1="58" x2="1082" y1="108.24719141893567" y2="108.24719141893567" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="112.24719141893567" text-anchor="end">$400</text><line x1="58" x2="1082" y1="60.37078712840352" y2="60.37078712840352" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="64.37078712840352" text-anchor="end">$600</text><path d="M110,204 v-47.007521131132954 q0,-4 4,-4 h16 q4,0 4,4 v47.007521131132954 z" fill="var(--s1)" class="col"></path><text x="122" y="221" text-anchor="middle">дек 25</text><rect x="58" y="14" width="128" height="190" fill="transparent"></rect><path d="M238,204 v-138.67168478578586 q0,-4 4,-4 h16 q4,0 4,4 v138.67168478578586 z" fill="var(--s1)" class="col"></path><text x="250" y="221" text-anchor="middle">янв 26</text><rect x="186" y="14" width="128" height="190" fill="transparent"></rect><path d="M366,204 v-165.64285714285714 q0,-4 4,-4 h16 q4,0 4,4 v165.64285714285714 z" fill="var(--s1)" class="col"></path><text x="378" y="28.35714285714286" text-anchor="middle" class="dl">$709</text><text x="378" y="221" text-anchor="middle">фев 26</text><rect x="314" y="14" width="128" height="190" fill="transparent"></rect><path d="M494,204 v-80.38216256206293 q0,-4 4,-4 h16 q4,0 4,4 v80.38216256206293 z" fill="var(--s1)" class="col"></path><text x="506" y="221" text-anchor="middle">мар 26</text><rect x="442" y="14" width="128" height="190" fill="transparent"></rect><path d="M622,204 v-100.25087034263377 q0,-4 4,-4 h16 q4,0 4,4 v100.25087034263377 z" fill="var(--s1)" class="col"></path><text x="634" y="221" text-anchor="middle">апр 26</text><rect x="570" y="14" width="128" height="190" fill="transparent"></rect><path d="M750,204 v-116.21046971288267 q0,-4 4,-4 h16 q4,0 4,4 v116.21046971288267 z" fill="var(--s1)" class="col"></path><text x="762" y="221" text-anchor="middle">май 26</text><rect x="698" y="14" width="128" height="190" fill="transparent"></rect><path d="M878,204 v-82.17752772295789 q0,-4 4,-4 h16 q4,0 4,4 v82.17752772295789 z" fill="var(--s1)" class="col"></path><text x="890" y="221" text-anchor="middle">июн 26</text><rect x="826" y="14" width="128" height="190" fill="transparent"></rect><path d="M1006,204 v-24.725842574319294 q0,-4 4,-4 h16 q4,0 4,4 v24.725842574319294 z" fill="var(--s1)" class="col"></path><text x="1018" y="169.2741574256807" text-anchor="middle" class="dl">$120</text><text x="1018" y="221" text-anchor="middle">июл 26</text><rect x="954" y="14" width="128" height="190" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Месяц</th><th class="n">Выручка</th><th class="n">Оплат</th><th class="n">Ср. чек</th></tr><tr><td>дек 25</td><td class="n">$213</td><td class="n">4</td><td class="n">$53.27</td></tr><tr><td>янв 26</td><td class="n">$596</td><td class="n">22</td><td class="n">$27.09</td></tr><tr><td>фев 26</td><td class="n">$709</td><td class="n">23</td><td class="n">$30.81</td></tr><tr><td>мар 26</td><td class="n">$353</td><td class="n">14</td><td class="n">$25.18</td></tr><tr><td>апр 26</td><td class="n">$436</td><td class="n">12</td><td class="n">$36.29</td></tr><tr><td>май 26</td><td class="n">$502</td><td class="n">12</td><td class="n">$41.85</td></tr><tr><td>июн 26</td><td class="n">$360</td><td class="n">5</td><td class="n">$72.00</td></tr><tr><td>июл 26</td><td class="n">$120</td><td class="n">6</td><td class="n">$20.00</td></tr></table></details></div>
+  <div class="card">
+    <h3>Платежи и покупатели по месяцам</h3>
+    <p class="note">Число успешных оплат; уникальные покупатели — в подсказке.</p>
+    <div class="chart" id="salesMonthly" data-w="523"><svg viewBox="0 0 523 230" width="523" height="230"><line x1="58" x2="509" y1="204" y2="204" stroke="var(--axis)" stroke-width="1"></line><line x1="58" x2="509" y1="130.24223602484471" y2="130.24223602484471" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="134.24223602484471" text-anchor="end">10</text><line x1="58" x2="509" y1="56.48447204968946" y2="56.48447204968946" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="60.48447204968946" text-anchor="end">20</text><path d="M74.1875,204 v-25.50310559006211 q0,-4 4,-4 h16 q4,0 4,4 v25.50310559006211 z" fill="var(--s1)" class="col"></path><text x="86.1875" y="221" text-anchor="middle">дек 25</text><rect x="58" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M130.5625,204 v-158.26708074534162 q0,-4 4,-4 h16 q4,0 4,4 v158.26708074534162 z" fill="var(--s1)" class="col"></path><text x="142.5625" y="221" text-anchor="middle">янв 26</text><rect x="114.375" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M186.9375,204 v-165.64285714285714 q0,-4 4,-4 h16 q4,0 4,4 v165.64285714285714 z" fill="var(--s1)" class="col"></path><text x="198.9375" y="28.35714285714286" text-anchor="middle" class="dl">23</text><text x="198.9375" y="221" text-anchor="middle">фев 26</text><rect x="170.75" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M243.3125,204 v-99.26086956521739 q0,-4 4,-4 h16 q4,0 4,4 v99.26086956521739 z" fill="var(--s1)" class="col"></path><text x="255.3125" y="221" text-anchor="middle">мар 26</text><rect x="227.125" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M299.6875,204 v-84.50931677018633 q0,-4 4,-4 h16 q4,0 4,4 v84.50931677018633 z" fill="var(--s1)" class="col"></path><text x="311.6875" y="221" text-anchor="middle">апр 26</text><rect x="283.5" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M356.0625,204 v-84.50931677018633 q0,-4 4,-4 h16 q4,0 4,4 v84.50931677018633 z" fill="var(--s1)" class="col"></path><text x="368.0625" y="221" text-anchor="middle">май 26</text><rect x="339.875" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M412.4375,204 v-32.878881987577635 q0,-4 4,-4 h16 q4,0 4,4 v32.878881987577635 z" fill="var(--s1)" class="col"></path><text x="424.4375" y="221" text-anchor="middle">июн 26</text><rect x="396.25" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M468.8125,204 v-40.254658385093165 q0,-4 4,-4 h16 q4,0 4,4 v40.254658385093165 z" fill="var(--s1)" class="col"></path><text x="480.8125" y="153.74534161490683" text-anchor="middle" class="dl">6</text><text x="480.8125" y="221" text-anchor="middle">июл 26</text><rect x="452.625" y="14" width="56.375" height="190" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Месяц</th><th class="n">Оплат</th><th class="n">Покупателей</th></tr><tr><td>дек 25</td><td class="n">4</td><td class="n">4</td></tr><tr><td>янв 26</td><td class="n">22</td><td class="n">22</td></tr><tr><td>фев 26</td><td class="n">23</td><td class="n">23</td></tr><tr><td>мар 26</td><td class="n">14</td><td class="n">14</td></tr><tr><td>апр 26</td><td class="n">12</td><td class="n">12</td></tr><tr><td>май 26</td><td class="n">12</td><td class="n">12</td></tr><tr><td>июн 26</td><td class="n">5</td><td class="n">5</td></tr><tr><td>июл 26</td><td class="n">6</td><td class="n">6</td></tr></table></details></div>
+  <div class="card">
+    <h3>Платёжные методы: исходы попыток</h3>
+    <p class="note">Все 218 попыток оплаты по статусам.</p>
+    <div class="chart" id="methods" data-w="523"><svg viewBox="0 0 523 128" width="523" height="128"><text x="82" y="22" text-anchor="end" fill="var(--ink-2)">mono</text><rect x="92" y="6" width="200.43362831858406" height="24" rx="3" fill="var(--good)" class="bar"></rect><text x="192.21681415929203" y="22" text-anchor="middle" fill="#fff" font-weight="600">61</text><rect x="294.43362831858406" y="6" width="117.46902654867256" height="24" rx="3" fill="var(--warning)" class="bar"></rect><text x="353.16814159292034" y="22" text-anchor="middle" fill="#4a3500" font-weight="600">36</text><rect x="413.9026548672566" y="6" width="47.77876106194691" height="24" rx="3" fill="var(--critical)" class="bar"></rect><text x="437.79203539823004" y="22" text-anchor="middle" fill="#fff" font-weight="600">15</text><text x="471.6814159292035" y="22" class="dl">113</text><text x="82" y="62" text-anchor="end" fill="var(--ink-2)">overpay</text><rect x="92" y="46" width="97.55752212389382" height="24" rx="3" fill="var(--good)" class="bar"></rect><text x="140.7787610619469" y="62" text-anchor="middle" fill="#fff" font-weight="600">30</text><rect x="191.55752212389382" y="46" width="4.6371681415929205" height="24" rx="3" fill="var(--warning)" class="bar"></rect><rect x="198.19469026548674" y="46" width="180.52212389380531" height="24" rx="3" fill="var(--critical)" class="bar"></rect><text x="288.45575221238937" y="62" text-anchor="middle" fill="#fff" font-weight="600">55</text><text x="388.7168141592921" y="62" class="dl">87</text><text x="82" y="102" text-anchor="end" fill="var(--ink-2)">whitepay</text><rect x="92" y="86" width="21.23008849557522" height="24" rx="3" fill="var(--good)" class="bar"></rect><rect x="115.23008849557522" y="86" width="31.1858407079646" height="24" rx="3" fill="var(--warning)" class="bar"></rect><text x="156.4159292035398" y="102" class="dl">18</text></svg></div><div class="legend"><span class="it"><span class="sw" style="background: var(--good);"></span><span>успех</span></span><span class="it"><span class="sw" style="background: var(--warning);"></span><span>в ожидании</span></span><span class="it"><span class="sw" style="background: var(--critical);"></span><span>отказ</span></span></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Метод</th><th class="n">Попыток</th><th class="n">Успех</th><th class="n">В ожидании</th><th class="n">Отказ</th><th class="n">Выручка</th></tr><tr><td>mono</td><td class="n">113</td><td class="n">61</td><td class="n">36</td><td class="n">15</td><td class="n">$1&nbsp;463</td></tr><tr><td>overpay</td><td class="n">87</td><td class="n">30</td><td class="n">2</td><td class="n">55</td><td class="n">$1&nbsp;240</td></tr><tr><td>whitepay</td><td class="n">18</td><td class="n">7</td><td class="n">10</td><td class="n">0</td><td class="n">$586</td></tr></table></details></div>
+  <div class="card wide">
+    <h3>Выручка по тарифам</h3>
+    <p class="note">Успешные платежи, план × период подписки.</p>
+    <div class="chart" id="plans" data-w="1096"><svg viewBox="0 0 1096 150" width="1096" height="150"><text x="140" y="23" text-anchor="end" fill="var(--ink-2)">Base · месячный</text><path d="M150,8 h882 q4,0 4,4 v14 q0,4 -4,4 h-882 z" fill="var(--s1)" class="bar"></path><text x="1044" y="23" class="dl">$1&nbsp;810</text><rect x="0" y="8" width="1096" height="34" fill="transparent"></rect><text x="140" y="57" text-anchor="end" fill="var(--ink-2)">Base · годовой</text><path d="M150,42 h528.3342541436465 q4,0 4,4 v14 q0,4 -4,4 h-528.3342541436465 z" fill="var(--s1)" class="bar"></path><text x="690.3342541436465" y="57" class="dl">$1&nbsp;088</text><rect x="0" y="42" width="1096" height="34" fill="transparent"></rect><text x="140" y="91" text-anchor="end" fill="var(--ink-2)">Pro · годовой</text><path d="M150,76 h96.67603314917126 q4,0 4,4 v14 q0,4 -4,4 h-96.67603314917126 z" fill="var(--s1)" class="bar"></path><text x="258.67603314917125" y="91" class="dl">$206</text><rect x="0" y="76" width="1096" height="34" fill="transparent"></rect><text x="140" y="125" text-anchor="end" fill="var(--ink-2)">Pro · месячный</text><path d="M150,110 h86.43563535911602 q4,0 4,4 v14 q0,4 -4,4 h-86.43563535911602 z" fill="var(--s1)" class="bar"></path><text x="248.43563535911602" y="125" class="dl">$185</text><rect x="0" y="110" width="1096" height="34" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Тариф</th><th class="n">Выручка</th><th class="n">Оплат</th></tr><tr><td>Base · месячный</td><td class="n">$1&nbsp;810</td><td class="n">83</td></tr><tr><td>Base · годовой</td><td class="n">$1&nbsp;088</td><td class="n">8</td></tr><tr><td>Pro · годовой</td><td class="n">$206</td><td class="n">1</td></tr><tr><td>Pro · месячный</td><td class="n">$185</td><td class="n">6</td></tr></table></details></div>
+  <div class="card">
+    <h3>Зависшие платежи (pending)</h3>
+    <p class="note">Застряли между попыткой оплаты и подтверждением — кандидаты на ручное восстановление.</p>
+    <div class="chart" id="stuck" data-w="523"><svg viewBox="0 0 523 116" width="523" height="116"><text x="140" y="23" text-anchor="end" fill="var(--ink-2)">mono</text><path d="M150,8 h247 q4,0 4,4 v14 q0,4 -4,4 h-247 z" fill="var(--warning)" class="bar"></path><text x="409" y="23" class="dl">$973  ·  36 шт.</text><rect x="0" y="8" width="523" height="34" fill="transparent"></rect><text x="140" y="57" text-anchor="end" fill="var(--ink-2)">whitepay</text><path d="M150,42 h202.2830021984344 q4,0 4,4 v14 q0,4 -4,4 h-202.2830021984344 z" fill="var(--warning)" class="bar"></path><text x="364.28300219843436" y="57" class="dl">$800  ·  10 шт.</text><rect x="0" y="42" width="523" height="34" fill="transparent"></rect><text x="140" y="91" text-anchor="end" fill="var(--ink-2)">overpay</text><path d="M150,76 h6.314150109921719 q4,0 4,4 v14 q0,4 -4,4 h-6.314150109921719 z" fill="var(--warning)" class="bar"></path><text x="168.3141501099217" y="91" class="dl">$40  ·  2 шт.</text><rect x="0" y="76" width="523" height="34" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Метод</th><th class="n">Сумма</th><th class="n">Платежей</th><th class="n">Старейший</th></tr><tr><td>mono</td><td class="n">$973</td><td class="n">36</td><td class="n">24.02.2026</td></tr><tr><td>whitepay</td><td class="n">$800</td><td class="n">10</td><td class="n">11.05.2026</td></tr><tr><td>overpay</td><td class="n">$40</td><td class="n">2</td><td class="n">18.04.2026</td></tr></table></details></div>
+</div>
+<div class="callout" id="payCallout"><b>Отказы платежей.</b> У overpay из 87 попыток провалились 55 (63%) — это до $1&nbsp;845 потенциально потерянной выручки в среднем чеке. У mono 36 платежей висят в pending.</div>
+
+<h2>Подписочная экономика</h2>
+<div class="grid">
+  <div class="card">
+    <h3>MRR по месяцам, $</h3>
+    <p class="note">Активные подписки на конец месяца; годовые — как цена/12. Текущий месяц — на сегодня.</p>
+    <div class="chart" id="mrr" data-w="523"><svg viewBox="0 0 523 230" width="523" height="230"><line x1="58" x2="509" y1="204" y2="204" stroke="var(--axis)" stroke-width="1"></line><line x1="58" x2="509" y1="157.75499689428295" y2="157.75499689428295" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="161.75499689428295" text-anchor="end">$200</text><line x1="58" x2="509" y1="111.50999378856591" y2="111.50999378856591" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="115.50999378856591" text-anchor="end">$400</text><line x1="58" x2="509" y1="65.26499068284886" y2="65.26499068284886" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="69.26499068284886" text-anchor="end">$600</text><path d="M74.1875,204 v-13.475986673650471 q0,-4 4,-4 h16 q4,0 4,4 v13.475986673650471 z" fill="var(--s1)" class="col"></path><text x="86.1875" y="221" text-anchor="middle">дек 25</text><rect x="58" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M130.5625,204 v-104.90698231396365 q0,-4 4,-4 h16 q4,0 4,4 v104.90698231396365 z" fill="var(--s1)" class="col"></path><text x="142.5625" y="221" text-anchor="middle">янв 26</text><rect x="114.375" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M186.9375,204 v-165.64285714285714 q0,-4 4,-4 h16 q4,0 4,4 v165.64285714285714 z" fill="var(--s1)" class="col"></path><text x="198.9375" y="28.35714285714286" text-anchor="middle" class="dl">$734</text><text x="198.9375" y="221" text-anchor="middle">фев 26</text><rect x="170.75" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M243.3125,204 v-59.44351976073322 q0,-4 4,-4 h16 q4,0 4,4 v59.44351976073322 z" fill="var(--s1)" class="col"></path><text x="255.3125" y="221" text-anchor="middle">мар 26</text><rect x="227.125" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M299.6875,204 v-49.008334809928165 q0,-4 4,-4 h16 q4,0 4,4 v49.008334809928165 z" fill="var(--s1)" class="col"></path><text x="311.6875" y="221" text-anchor="middle">апр 26</text><rect x="283.5" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M356.0625,204 v-57.6815851424054 q0,-4 4,-4 h16 q4,0 4,4 v57.6815851424054 z" fill="var(--s1)" class="col"></path><text x="368.0625" y="221" text-anchor="middle">май 26</text><rect x="339.875" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M412.4375,204 v-34.79030860507546 q0,-4 4,-4 h16 q4,0 4,4 v34.79030860507546 z" fill="var(--s1)" class="col"></path><text x="424.4375" y="221" text-anchor="middle">июн 26</text><rect x="396.25" y="14" width="56.375" height="190" fill="transparent"></rect><path d="M468.8125,204 v-48.66380953679057 q0,-4 4,-4 h16 q4,0 4,4 v48.66380953679057 z" fill="var(--s1)" class="col"></path><text x="480.8125" y="145.33619046320942" text-anchor="middle" class="dl">$228</text><text x="480.8125" y="221" text-anchor="middle">июл 26</text><rect x="452.625" y="14" width="56.375" height="190" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Месяц</th><th class="n">MRR</th><th class="n">Месячных</th><th class="n">Годовых</th></tr><tr><td>дек 25</td><td class="n">$76</td><td class="n">3</td><td class="n">1</td></tr><tr><td>янв 26</td><td class="n">$471</td><td class="n">21</td><td class="n">2</td></tr><tr><td>фев 26</td><td class="n">$734</td><td class="n">23</td><td class="n">2</td></tr><tr><td>мар 26</td><td class="n">$274</td><td class="n">13</td><td class="n">3</td></tr><tr><td>апр 26</td><td class="n">$229</td><td class="n">10</td><td class="n">5</td></tr><tr><td>май 26</td><td class="n">$267</td><td class="n">10</td><td class="n">7</td></tr><tr><td>июн 26</td><td class="n">$168</td><td class="n">3</td><td class="n">9</td></tr><tr><td>июл 26</td><td class="n">$228</td><td class="n">6</td><td class="n">9</td></tr></table></details></div>
+  <div class="card">
+    <h3>Продлеваемость месячных подписок</h3>
+    <p class="note">Продление = повторная успешная оплата в течение 45 дней. Последний месяц предварительный: окно ещё открыто.</p>
+    <div class="chart" id="renewals" data-w="523"><svg viewBox="0 0 523 230" width="523" height="230"><line x1="58" x2="509" y1="204" y2="204" stroke="var(--axis)" stroke-width="1"></line><line x1="58" x2="509" y1="153.10714285714283" y2="153.10714285714283" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="157.10714285714283" text-anchor="end">10%</text><line x1="58" x2="509" y1="102.2142857142857" y2="102.2142857142857" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="106.2142857142857" text-anchor="end">20%</text><line x1="58" x2="509" y1="51.321428571428555" y2="51.321428571428555" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="55.321428571428555" text-anchor="end">30%</text><path d="M78.21428571428572,204 v-165.64285714285714 q0,-4 4,-4 h16 q4,0 4,4 v165.64285714285714 z" fill="var(--s1)" class="col"></path><text x="90.21428571428572" y="28.35714285714286" text-anchor="middle" class="dl">33%</text><text x="90.21428571428572" y="221" text-anchor="middle">янв 26</text><rect x="58" y="14" width="64.42857142857143" height="190" fill="transparent"></rect><path d="M142.64285714285714,204 v-68.70408163265307 q0,-4 4,-4 h16 q4,0 4,4 v68.70408163265307 z" fill="var(--s1)" class="col"></path><text x="154.64285714285714" y="221" text-anchor="middle">фев 26</text><rect x="122.42857142857143" y="14" width="64.42857142857143" height="190" fill="transparent"></rect><path d="M207.07142857142858,204 v0 q0,0 0,0 h24 q0,0 0,0 v0 z" fill="var(--s1)" class="col"></path><text x="219.07142857142858" y="221" text-anchor="middle">мар 26</text><rect x="186.85714285714286" y="14" width="64.42857142857143" height="190" fill="transparent"></rect><path d="M271.5,204 v-74.29670329670331 q0,-4 4,-4 h16 q4,0 4,4 v74.29670329670331 z" fill="var(--s1)" class="col"></path><text x="283.5" y="221" text-anchor="middle">апр 26</text><rect x="251.28571428571428" y="14" width="64.42857142857143" height="190" fill="transparent"></rect><path d="M335.92857142857144,204 v-46.89285714285715 q0,-4 4,-4 h16 q4,0 4,4 v46.89285714285715 z" fill="var(--s1)" class="col"></path><text x="347.92857142857144" y="221" text-anchor="middle">май 26</text><rect x="315.7142857142857" y="14" width="64.42857142857143" height="190" fill="transparent"></rect><path d="M400.3571428571429,204 v0 q0,0 0,0 h24 q0,0 0,0 v0 z" fill="var(--s1)" class="col"></path><text x="412.3571428571429" y="221" text-anchor="middle">июн 26</text><rect x="380.14285714285717" y="14" width="64.42857142857143" height="190" fill="transparent"></rect><path d="M464.7857142857143,204 v-165.64285714285714 q0,-4 4,-4 h16 q4,0 4,4 v165.64285714285714 z" fill="var(--s1)" class="col"></path><text x="476.7857142857143" y="28.35714285714286" text-anchor="middle" class="dl">33%</text><text x="476.7857142857143" y="221" text-anchor="middle">июл 26</text><rect x="444.57142857142856" y="14" width="64.42857142857143" height="190" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Месяц истечения</th><th class="n">Истекло</th><th class="n">Продлено</th><th class="n">Продлеваемость</th></tr><tr><td>янв 26</td><td class="n">3</td><td class="n">1</td><td class="n">33%</td></tr><tr><td>фев 26</td><td class="n">21</td><td class="n">3</td><td class="n">14%</td></tr><tr><td>мар 26</td><td class="n">23</td><td class="n">0</td><td class="n">0%</td></tr><tr><td>апр 26</td><td class="n">13</td><td class="n">2</td><td class="n">15%</td></tr><tr><td>май 26</td><td class="n">10</td><td class="n">1</td><td class="n">10%</td></tr><tr><td>июн 26</td><td class="n">10</td><td class="n">0</td><td class="n">0%</td></tr><tr><td>июл 26</td><td class="n">3</td><td class="n">1</td><td class="n">33%</td></tr></table></details></div>
+  <div class="card wide">
+    <h3>Когорты: регистрация → первая оплата</h3>
+    <p class="note">Доля когорты, оплатившей за N дней с регистрации. Продажи трекаются с конца ноября 2025 — старые когорты не показаны; «—» — окно ещё не закрылось.</p>
+    <div id="cohorts"><table><tr><th>Когорта</th><th>Юзеров</th><th>≤7 дней</th><th>≤30 дней</th><th>≤90 дней</th><th>Оплатили всего</th></tr><tr><td>ноя 25</td><td>554</td><td title="0 чел.">0,00%</td><td title="0 чел.">0,00%</td><td title="3 чел." style="background: rgba(57, 135, 229, 0.2);">0,54%</td><td>5 · 0,90%</td></tr><tr><td>дек 25</td><td>393</td><td title="0 чел.">0,00%</td><td title="0 чел.">0,00%</td><td title="1 чел." style="background: rgba(57, 135, 229, 0.12);">0,25%</td><td>4 · 1,02%</td></tr><tr><td>янв 26</td><td>704</td><td title="2 чел." style="background: rgba(57, 135, 229, 0.13);">0,28%</td><td title="2 чел." style="background: rgba(57, 135, 229, 0.13);">0,28%</td><td title="3 чел." style="background: rgba(57, 135, 229, 0.17);">0,43%</td><td>4 · 0,57%</td></tr><tr><td>фев 26</td><td>567</td><td title="3 чел." style="background: rgba(57, 135, 229, 0.2);">0,53%</td><td title="3 чел." style="background: rgba(57, 135, 229, 0.2);">0,53%</td><td title="8 чел." style="background: rgba(57, 135, 229, 0.42);">1,41%</td><td>9 · 1,59%</td></tr><tr><td>мар 26</td><td>363</td><td title="1 чел." style="background: rgba(57, 135, 229, 0.13);">0,28%</td><td title="1 чел." style="background: rgba(57, 135, 229, 0.13);">0,28%</td><td title="2 чел." style="background: rgba(57, 135, 229, 0.2);">0,55%</td><td>2 · 0,55%</td></tr><tr><td>апр 26</td><td>706</td><td title="1 чел." style="background: rgba(57, 135, 229, 0.1);">0,14%</td><td title="1 чел." style="background: rgba(57, 135, 229, 0.1);">0,14%</td><td class="dim">—</td><td>2 · 0,28%</td></tr><tr><td>май 26</td><td>608</td><td title="1 чел." style="background: rgba(57, 135, 229, 0.1);">0,16%</td><td title="1 чел." style="background: rgba(57, 135, 229, 0.1);">0,16%</td><td class="dim">—</td><td>1 · 0,16%</td></tr><tr><td>июн 26</td><td>1&nbsp;113</td><td title="0 чел.">0,00%</td><td class="dim">—</td><td class="dim">—</td><td>1 · 0,09%</td></tr><tr><td>июл 26</td><td>752</td><td class="dim">—</td><td class="dim">—</td><td class="dim">—</td><td>0 · 0,00%</td></tr></table></div>
+  </div>
+</div>
+
+<h2>Воронка</h2>
+<div class="grid">
+  <div class="card wide">
+    <h3>От регистрации до оплаты</h3>
+    <p class="note">Уникальные пользователи за всю историю. Синк журнала не включён — событие трекается только с середины июня 2026.</p>
+    <div class="chart" id="funnel" data-w="1096"><svg viewBox="0 0 1096 150" width="1096" height="150"><text x="205" y="23" text-anchor="end" fill="var(--ink-2)">Зарегистрировался</text><path d="M215,8 h817 q4,0 4,4 v14 q0,4 -4,4 h-817 z" fill="var(--ord1)" class="bar"></path><text x="1044" y="23" class="dl">12&nbsp;938</text><rect x="0" y="8" width="1096" height="34" fill="transparent"></rect><text x="205" y="57" text-anchor="end" fill="var(--ink-2)">Создал торговый аккаунт</text><path d="M215,42 h541.7257690524037 q4,0 4,4 v14 q0,4 -4,4 h-541.7257690524037 z" fill="var(--ord2)" class="bar"></path><text x="768.7257690524037" y="57" class="dl">8&nbsp;600  ·  66,5% от предыдущего</text><rect x="0" y="42" width="1096" height="34" fill="transparent"></rect><text x="205" y="91" text-anchor="end" fill="var(--ink-2)">Подключил аккаунт</text><path d="M215,76 h180.4680012366672 q4,0 4,4 v14 q0,4 -4,4 h-180.4680012366672 z" fill="var(--ord3)" class="bar"></path><text x="407.4680012366672" y="91" class="dl">2&nbsp;907  ·  33,8% от предыдущего</text><rect x="0" y="76" width="1096" height="34" fill="transparent"></rect><text x="205" y="125" text-anchor="end" fill="var(--ink-2)">Оплатил</text><path d="M215,110 h2.538259390941413 q2.538259390941413,0 2.538259390941413,2.538259390941413 v16.923481218117175 q0,2.538259390941413 -2.538259390941413,2.538259390941413 h-2.538259390941413 z" fill="var(--ord4)" class="bar"></path><text x="228.07651878188284" y="125" class="dl">80  ·  2,8% от предыдущего</text><rect x="0" y="110" width="1096" height="34" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Шаг</th><th class="n">Пользователей</th><th class="n">% от регистраций</th></tr><tr><td>Зарегистрировался</td><td class="n">12&nbsp;938</td><td class="n">100.00%</td></tr><tr><td>Создал торговый аккаунт</td><td class="n">8&nbsp;600</td><td class="n">66.47%</td></tr><tr><td>Подключил аккаунт</td><td class="n">2&nbsp;907</td><td class="n">22.47%</td></tr><tr><td>Оплатил</td><td class="n">80</td><td class="n">0.62%</td></tr></table></details></div>
+  <div class="card wide">
+    <h3>Скорость пути к ценности</h3>
+    <p class="note">Медианное время от регистрации до шага — по пользователям, зарегистрированным при живом трекинге шага
+       (создание/подключение аккаунта — с января 2026, первый синк — с 15 июня 2026, оплата — с ноября 2025).</p>
+    <div class="tiles" id="ttv"><div class="tile"><div class="lbl">До создания аккаунта</div><div class="val">сразу</div><div class="sub">медиана</div></div><div class="tile"><div class="lbl">До подключения аккаунта</div><div class="val">≈14 мин</div><div class="sub">медиана</div></div><div class="tile"><div class="lbl">До первого синка журнала</div><div class="val">≈29 мин</div><div class="sub">медиана</div></div><div class="tile"><div class="lbl">До первой оплаты</div><div class="val">44,5 дн.</div><div class="sub">медиана по платящим</div></div><div class="tile"><div class="lbl">Активация за 7 дней</div><div class="val">21,4%</div><div class="sub">подключили аккаунт, регистрации за 90 дней</div></div></div>
+  </div>
+</div>
+
+<h2>Пользователи</h2>
+<div class="grid">
+  <div class="card wide">
+    <h3>Регистрации по неделям</h3>
+    <p class="note">С марта 2024. Последняя неделя неполная.</p>
+    <div class="chart" id="regs" data-w="1096"><svg viewBox="0 0 1096 240" width="1096" height="240"><line x1="58" x2="1082" y1="214" y2="214" stroke="var(--axis)" stroke-width="1"></line><line x1="58" x2="1082" y1="147.61656930430166" y2="147.61656930430166" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="151.61656930430166" text-anchor="end">200</text><line x1="58" x2="1082" y1="81.23313860860333" y2="81.23313860860333" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="85.23313860860333" text-anchor="end">400</text><path d="M58,210.3489113117366L66.46280991735537,188.44237918215615L74.92561983471074,200.05947955390334L83.38842975206612,206.0339883165162L91.85123966942149,204.04248539564526L100.31404958677686,210.0169941582581L108.77685950413223,210.3489113117366L117.2396694214876,205.3701540095592L125.70247933884298,205.03823685608072L134.16528925619835,114.42485395645248L142.62809917355372,173.8380244291025L151.0909090909091,200.72331386086034L159.55371900826447,195.41263940520446L168.01652892561984,190.76579925650557L176.4793388429752,202.7148167817313L184.94214876033058,205.3701540095592L193.40495867768595,177.15719596388743L201.86776859504133,193.753053637812L210.3305785123967,182.79978757302177L218.79338842975207,195.41263940520446L227.25619834710744,208.02549123738714L235.71900826446281,205.03823685608072L244.1818181818182,208.35740839086563L252.64462809917356,207.36165693043017L261.10743801652893,194.0849707912905L269.5702479338843,205.70207116303771L278.0330578512397,170.51885289431758L286.4958677685951,206.3659054699947L294.9586776859504,202.7148167817313L303.42148760330576,207.0297397769517L311.88429752066116,204.37440254912374L320.3471074380165,205.3701540095592L328.8099173553719,195.74455655868294L337.27272727272725,195.74455655868294L345.73553719008265,182.4678704195433L354.198347107438,177.48911311736592L362.6611570247934,199.72756240042486L371.12396694214874,138.98672331386086L379.58677685950414,148.28040361125863L388.0495867768595,182.4678704195433L396.5123966942149,181.4721189591078L404.97520661157023,156.91024960169943L413.43801652892563,35.428571428571445L421.900826446281,164.8762612851832L430.3636363636364,155.91449814126395L438.8264462809917,126.70578863515668L447.2892561983471,187.11471056824217L455.75206611570246,181.8040361125863L464.21487603305786,175.82952734997346L472.6776859504132,176.16144450345195L481.1404958677686,178.1529474243229L489.60330578512395,152.92724375995752L498.06611570247935,181.14020180562932L506.5289256198347,195.41263940520446L514.9917355371902,162.8847583643123L523.4545454545455,168.52734997344663L531.9173553719008,184.12745618693575L540.3801652892562,158.5698353690919L548.8429752066115,172.84227296866703L557.3057851239669,161.5570897503983L565.7685950413223,201.38714816781732L574.2314049586777,198.0679766330324L582.694214876033,202.7148167817313L591.1570247933885,201.7190653212958L599.6198347107438,201.7190653212958L608.0826446280992,202.7148167817313L616.5454545454545,196.74030801911843L625.00826446281,176.49336165693043L633.4710743801653,183.46362187997875L641.9338842975206,190.76579925650557L650.396694214876,200.72331386086034L658.8595041322315,200.72331386086034L667.3223140495868,188.11046202867763L675.7851239669421,202.0509824747743L684.2479338842975,201.7190653212958L692.7107438016529,194.0849707912905L701.1735537190083,201.7190653212958L709.6363636363636,188.11046202867763L718.099173553719,189.4381306425916L726.5619834710744,174.5018587360595L735.0247933884298,192.42538502389803L743.4876033057851,160.89325544344132L751.9504132231405,180.47636749867235L760.4132231404959,173.8380244291025L768.8760330578513,168.52734997344663L777.3388429752066,163.54859267126926L785.801652892562,189.10621348911312L794.2644628099174,163.54859267126926L802.7272727272727,171.51460435475306L811.1900826446281,186.7827934147637L819.6528925619834,178.8167817312799L828.1157024793389,192.09346787041954L836.5785123966942,196.40839086563994L845.0413223140496,191.42963356346257L853.5041322314049,128.36537440254915L861.9669421487604,176.16144450345195L870.4297520661157,125.04620286776421L878.8925619834711,142.30589484864578L887.3553719008264,184.12745618693575L895.8181818181819,174.83377588953797L904.2809917355372,178.8167817312799L912.7438016528926,194.0849707912905L921.2066115702479,196.07647371216143L929.6694214876034,191.76155071694106L938.1322314049587,170.1869357408391L946.595041322314,164.21242697822623L955.0578512396694,158.23791821561338L963.5206611570248,134.339883165162L971.9834710743802,169.52310143388212L980.4462809917355,185.45512480084972L988.9090909090909,148.9442379182156L997.3719008264463,185.1232076473712L1005.8347107438017,186.7827934147637L1014.297520661157,143.63356346255975L1022.7603305785124,90.1949017525226L1031.223140495868,141.9739776951673L1039.685950413223,100.81625066383431L1048.1487603305786,159.89750398300583L1056.6115702479337,139.65055762081784L1065.0743801652893,102.1439192777483L1073.5371900826447,165.8720127456187L1082,192.42538502389803L1082,214L58,214Z" fill="var(--s1)" opacity="0.1"></path><path d="M58,210.3489113117366L66.46280991735537,188.44237918215615L74.92561983471074,200.05947955390334L83.38842975206612,206.0339883165162L91.85123966942149,204.04248539564526L100.31404958677686,210.0169941582581L108.77685950413223,210.3489113117366L117.2396694214876,205.3701540095592L125.70247933884298,205.03823685608072L134.16528925619835,114.42485395645248L142.62809917355372,173.8380244291025L151.0909090909091,200.72331386086034L159.55371900826447,195.41263940520446L168.01652892561984,190.76579925650557L176.4793388429752,202.7148167817313L184.94214876033058,205.3701540095592L193.40495867768595,177.15719596388743L201.86776859504133,193.753053637812L210.3305785123967,182.79978757302177L218.79338842975207,195.41263940520446L227.25619834710744,208.02549123738714L235.71900826446281,205.03823685608072L244.1818181818182,208.35740839086563L252.64462809917356,207.36165693043017L261.10743801652893,194.0849707912905L269.5702479338843,205.70207116303771L278.0330578512397,170.51885289431758L286.4958677685951,206.3659054699947L294.9586776859504,202.7148167817313L303.42148760330576,207.0297397769517L311.88429752066116,204.37440254912374L320.3471074380165,205.3701540095592L328.8099173553719,195.74455655868294L337.27272727272725,195.74455655868294L345.73553719008265,182.4678704195433L354.198347107438,177.48911311736592L362.6611570247934,199.72756240042486L371.12396694214874,138.98672331386086L379.58677685950414,148.28040361125863L388.0495867768595,182.4678704195433L396.5123966942149,181.4721189591078L404.97520661157023,156.91024960169943L413.43801652892563,35.428571428571445L421.900826446281,164.8762612851832L430.3636363636364,155.91449814126395L438.8264462809917,126.70578863515668L447.2892561983471,187.11471056824217L455.75206611570246,181.8040361125863L464.21487603305786,175.82952734997346L472.6776859504132,176.16144450345195L481.1404958677686,178.1529474243229L489.60330578512395,152.92724375995752L498.06611570247935,181.14020180562932L506.5289256198347,195.41263940520446L514.9917355371902,162.8847583643123L523.4545454545455,168.52734997344663L531.9173553719008,184.12745618693575L540.3801652892562,158.5698353690919L548.8429752066115,172.84227296866703L557.3057851239669,161.5570897503983L565.7685950413223,201.38714816781732L574.2314049586777,198.0679766330324L582.694214876033,202.7148167817313L591.1570247933885,201.7190653212958L599.6198347107438,201.7190653212958L608.0826446280992,202.7148167817313L616.5454545454545,196.74030801911843L625.00826446281,176.49336165693043L633.4710743801653,183.46362187997875L641.9338842975206,190.76579925650557L650.396694214876,200.72331386086034L658.8595041322315,200.72331386086034L667.3223140495868,188.11046202867763L675.7851239669421,202.0509824747743L684.2479338842975,201.7190653212958L692.7107438016529,194.0849707912905L701.1735537190083,201.7190653212958L709.6363636363636,188.11046202867763L718.099173553719,189.4381306425916L726.5619834710744,174.5018587360595L735.0247933884298,192.42538502389803L743.4876033057851,160.89325544344132L751.9504132231405,180.47636749867235L760.4132231404959,173.8380244291025L768.8760330578513,168.52734997344663L777.3388429752066,163.54859267126926L785.801652892562,189.10621348911312L794.2644628099174,163.54859267126926L802.7272727272727,171.51460435475306L811.1900826446281,186.7827934147637L819.6528925619834,178.8167817312799L828.1157024793389,192.09346787041954L836.5785123966942,196.40839086563994L845.0413223140496,191.42963356346257L853.5041322314049,128.36537440254915L861.9669421487604,176.16144450345195L870.4297520661157,125.04620286776421L878.8925619834711,142.30589484864578L887.3553719008264,184.12745618693575L895.8181818181819,174.83377588953797L904.2809917355372,178.8167817312799L912.7438016528926,194.0849707912905L921.2066115702479,196.07647371216143L929.6694214876034,191.76155071694106L938.1322314049587,170.1869357408391L946.595041322314,164.21242697822623L955.0578512396694,158.23791821561338L963.5206611570248,134.339883165162L971.9834710743802,169.52310143388212L980.4462809917355,185.45512480084972L988.9090909090909,148.9442379182156L997.3719008264463,185.1232076473712L1005.8347107438017,186.7827934147637L1014.297520661157,143.63356346255975L1022.7603305785124,90.1949017525226L1031.223140495868,141.9739776951673L1039.685950413223,100.81625066383431L1048.1487603305786,159.89750398300583L1056.6115702479337,139.65055762081784L1065.0743801652893,102.1439192777483L1073.5371900826447,165.8720127456187L1082,192.42538502389803" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path><text x="58" y="231" text-anchor="middle">нед. 25 мар 24</text><text x="227.25619834710744" y="231" text-anchor="middle">нед. 12 авг 24</text><text x="396.5123966942149" y="231" text-anchor="middle">нед. 30 дек 24</text><text x="565.7685950413223" y="231" text-anchor="middle">нед. 19 май 25</text><text x="735.0247933884298" y="231" text-anchor="middle">нед. 6 окт 25</text><text x="904.2809917355372" y="231" text-anchor="middle">нед. 23 фев 26</text><text x="1082" y="231" text-anchor="end">нед. 20 июл 26</text><circle cx="413.43801652892563" cy="35.428571428571445" r="4.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"></circle><text x="413.43801652892563" y="26.428571428571445" text-anchor="middle" class="dl">538</text><line y1="14" y2="214" stroke="var(--axis)" stroke-width="1" visibility="hidden"></line><circle r="4.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2" visibility="hidden"></circle><rect x="58" y="14" width="1024" height="200" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Неделя</th><th class="n">Регистраций</th></tr><tr><td>6 апр 26</td><td class="n">168</td></tr><tr><td>13 апр 26</td><td class="n">240</td></tr><tr><td>20 апр 26</td><td class="n">134</td></tr><tr><td>27 апр 26</td><td class="n">86</td></tr><tr><td>4 май 26</td><td class="n">196</td></tr><tr><td>11 май 26</td><td class="n">87</td></tr><tr><td>18 май 26</td><td class="n">82</td></tr><tr><td>25 май 26</td><td class="n">212</td></tr><tr><td>1 июн 26</td><td class="n">373</td></tr><tr><td>8 июн 26</td><td class="n">217</td></tr><tr><td>15 июн 26</td><td class="n">341</td></tr><tr><td>22 июн 26</td><td class="n">163</td></tr><tr><td>29 июн 26</td><td class="n">224</td></tr><tr><td>6 июл 26</td><td class="n">337</td></tr><tr><td>13 июл 26</td><td class="n">145</td></tr><tr><td>20 июл 26</td><td class="n">65</td></tr></table></details></div>
+  <div class="card">
+    <h3>Текущие тарифы</h3>
+    <p class="note">12 905 пользователей сейчас.</p>
+    <div class="chart" id="plansNow" data-w="523"><svg viewBox="0 0 523 150" width="523" height="150"><text x="140" y="23" text-anchor="end" fill="var(--ink-2)">Free</text><path d="M150,8 h309 q4,0 4,4 v14 q0,4 -4,4 h-309 z" fill="var(--s1)" class="bar"></path><text x="471" y="23" class="dl">11&nbsp;606</text><rect x="0" y="8" width="523" height="34" fill="transparent"></rect><text x="140" y="57" text-anchor="end" fill="var(--ink-2)">Base</text><path d="M150,42 h23.535154230570395 q4,0 4,4 v14 q0,4 -4,4 h-23.535154230570395 z" fill="var(--s1)" class="bar"></path><text x="185.53515423057038" y="57" class="dl">1&nbsp;021</text><rect x="0" y="42" width="523" height="34" fill="transparent"></rect><text x="140" y="91" text-anchor="end" fill="var(--ink-2)">Pro</text><path d="M150,76 h2.548552472858866 q2.548552472858866,0 2.548552472858866,2.548552472858866 v16.90289505428227 q0,2.548552472858866 -2.548552472858866,2.548552472858866 h-2.548552472858866 z" fill="var(--s1)" class="bar"></path><text x="163.09710494571775" y="91" class="dl">189</text><rect x="0" y="76" width="523" height="34" fill="transparent"></rect><text x="140" y="125" text-anchor="end" fill="var(--ink-2)">нет плана</text><path d="M150,110 h1.6450973634327073 q1.6450973634327073,0 1.6450973634327073,1.6450973634327073 v18.709805273134585 q0,1.6450973634327073 -1.6450973634327073,1.6450973634327073 h-1.6450973634327073 z" fill="var(--s1)" class="bar"></path><text x="161.29019472686542" y="125" class="dl">122</text><rect x="0" y="110" width="523" height="34" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Тариф</th><th class="n">Пользователей</th></tr><tr><td>Free</td><td class="n">11&nbsp;606</td></tr><tr><td>Base</td><td class="n">1&nbsp;021</td></tr><tr><td>Pro</td><td class="n">189</td></tr><tr><td>нет плана</td><td class="n">122</td></tr></table></details></div>
+  <div class="card">
+    <h3>Сколько потратил платящий, $</h3>
+    <p class="note">91 платящий по сумме всех покупок.</p>
+    <div class="chart" id="spent" data-w="523"><svg viewBox="0 0 523 210" width="523" height="210"><line x1="58" x2="509" y1="184" y2="184" stroke="var(--axis)" stroke-width="1"></line><line x1="58" x2="509" y1="135.036866359447" y2="135.036866359447" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="139.036866359447" text-anchor="end">20</text><line x1="58" x2="509" y1="86.07373271889402" y2="86.07373271889402" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="90.07373271889402" text-anchor="end">40</text><line x1="58" x2="509" y1="37.11059907834104" y2="37.11059907834104" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="41.11059907834104" text-anchor="end">60</text><path d="M91.1,184 v-147.78571428571425 q0,-4 4,-4 h16 q4,0 4,4 v147.78571428571425 z" fill="var(--s1)" class="col"></path><text x="103.1" y="26.21428571428575" text-anchor="middle" class="dl">62</text><text x="103.1" y="201" text-anchor="middle">$1-24</text><rect x="58" y="14" width="90.2" height="170" fill="transparent"></rect><path d="M181.29999999999998,184 v-32.72235023041474 q0,-4 4,-4 h16 q4,0 4,4 v32.72235023041474 z" fill="var(--s1)" class="col"></path><text x="193.29999999999998" y="201" text-anchor="middle">$25-49</text><rect x="148.2" y="14" width="90.2" height="170" fill="transparent"></rect><path d="M271.5,184 v-3.672235023041474 q0,-3.672235023041474 3.672235023041474,-3.672235023041474 h16.655529953917053 q3.672235023041474,0 3.672235023041474,3.672235023041474 v3.672235023041474 z" fill="var(--s1)" class="col"></path><text x="283.5" y="201" text-anchor="middle">$50-99</text><rect x="238.4" y="14" width="90.2" height="170" fill="transparent"></rect><path d="M361.70000000000005,184 v-22.929723502304142 q0,-4 4,-4 h16 q4,0 4,4 v22.929723502304142 z" fill="var(--s1)" class="col"></path><text x="373.70000000000005" y="201" text-anchor="middle">$100-199</text><rect x="328.6" y="14" width="90.2" height="170" fill="transparent"></rect><path d="M451.90000000000003,184 v-1.2240783410138247 q0,-1.2240783410138247 1.2240783410138247,-1.2240783410138247 h21.55184331797235 q1.2240783410138247,0 1.2240783410138247,1.2240783410138247 v1.2240783410138247 z" fill="var(--s1)" class="col"></path><text x="463.90000000000003" y="175.55184331797236" text-anchor="middle" class="dl">1</text><text x="463.90000000000003" y="201" text-anchor="middle">$200+</text><rect x="418.8" y="14" width="90.2" height="170" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Потрачено</th><th class="n">Платящих</th></tr><tr><td>$1-24</td><td class="n">62</td></tr><tr><td>$25-49</td><td class="n">15</td></tr><tr><td>$50-99</td><td class="n">3</td></tr><tr><td>$100-199</td><td class="n">11</td></tr><tr><td>$200+</td><td class="n">1</td></tr></table></details></div>
+</div>
+
+<h2>Продукт</h2>
+<div class="grid">
+  <div class="card wide">
+    <h3>Подключения торговых аккаунтов по неделям</h3>
+    <p class="note">События подключения, с мая 2024. Последняя неделя неполная.</p>
+    <div class="chart" id="conns" data-w="1096"><svg viewBox="0 0 1096 240" width="1096" height="240"><line x1="58" x2="1082" y1="214" y2="214" stroke="var(--axis)" stroke-width="1"></line><line x1="58" x2="1082" y1="167.7379718726869" y2="167.7379718726869" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="171.7379718726869" text-anchor="end">50</text><line x1="58" x2="1082" y1="121.4759437453738" y2="121.4759437453738" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="125.4759437453738" text-anchor="end">100</text><line x1="58" x2="1082" y1="75.2139156180607" y2="75.2139156180607" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="79.2139156180607" text-anchor="end">150</text><path d="M58,211.2242783123612L67.06194690265487,161.26128793486308L76.12389380530973,191.7942264988897L85.1858407079646,212.14951887490747L94.24778761061947,207.52331606217618L103.30973451327434,203.82235381199112L112.3716814159292,210.29903774981494L121.43362831858407,209.37379718726868L130.49557522123894,192.71946706143598L139.55752212389382,201.04663212435233L148.61946902654867,209.37379718726868L157.68141592920352,193.64470762398224L166.7433628318584,209.37379718726868L175.8053097345133,205.67283493708365L184.86725663716814,210.29903774981494L193.92920353982302,207.52331606217618L202.99115044247787,199.1961509992598L212.05309734513276,208.4485566247224L221.1150442477876,177.91561806069578L230.1769911504425,207.52331606217618L239.23893805309734,198.27091043671354L248.30088495575222,187.1680236861584L257.36283185840705,201.04663212435233L266.42477876106193,210.29903774981494L275.4867256637168,201.9718726868986L284.5486725663717,194.5699481865285L293.6106194690266,148.3079200592154L302.67256637168146,158.48556624722428L311.7345132743363,191.7942264988897L320.79646017699116,156.63508512213178L329.85840707964604,180.69133974833457L338.92035398230087,188.09326424870466L347.98230088495575,178.84085862324204L357.04424778761063,164.9622501850481L366.1061946902655,102.0458919319023L375.16814159292034,139.05551443375276L384.2300884955752,152.00888230940046L393.2920353982301,164.9622501850481L402.353982300885,189.01850481125092L411.4159292035398,190.86898593634345L420.4778761061947,161.26128793486308L429.53982300884957,169.58845299777943L438.60176991150445,176.06513693560328L447.6637168141593,131.6535899333827L456.72566371681415,164.9622501850481L465.78761061946904,160.3360473723168L474.8495575221239,149.23316062176167L483.91150442477874,164.9622501850481L492.9734513274336,172.36417468541822L502.0353982300885,179.7660991857883L511.0973451327434,176.99037749814954L520.1592920353983,172.36417468541822L529.2212389380531,193.64470762398224L538.283185840708,189.01850481125092L547.3451327433629,183.46706143597336L556.4070796460177,185.3175425610659L565.4690265486726,196.42042931162104L574.5309734513274,202.89711324944486L583.5929203539823,193.64470762398224L592.6548672566372,177.91561806069578L601.7168141592921,176.06513693560328L610.7787610619469,196.42042931162104L619.8407079646017,199.1961509992598L628.9026548672566,204.74759437453739L637.9646017699115,195.49518874907477L647.0265486725664,198.27091043671354L656.0884955752213,201.04663212435233L665.1504424778761,188.09326424870466L674.212389380531,184.39230199851963L683.2743362831858,190.86898593634345L692.3362831858407,177.91561806069578L701.3982300884956,146.45743893412288L710.4601769911504,187.1680236861584L719.5221238938053,113.14877868245746L728.5840707964602,167.7379718726869L737.6460176991151,168.66321243523316L746.70796460177,168.66321243523316L755.7699115044247,156.63508512213178L764.8318584070796,177.91561806069578L773.8938053097345,162.18652849740934L782.9557522123894,156.63508512213178L792.0176991150443,176.06513693560328L801.0796460176991,180.69133974833457L810.141592920354,188.09326424870466L819.2035398230089,184.39230199851963L828.2654867256637,179.7660991857883L837.3274336283185,102.0458919319023L846.3893805309734,173.28941524796448L855.4513274336283,140.9059955588453L864.5132743362832,157.56032568467802L873.5752212389381,164.9622501850481L882.637168141593,161.26128793486308L891.6991150442478,163.11176905995558L900.7610619469026,185.3175425610659L909.8230088495575,189.01850481125092L918.8849557522124,188.09326424870466L927.9469026548672,94.64396743153222L937.0088495575221,146.45743893412288L946.070796460177,167.7379718726869L955.1327433628319,150.15840118430793L964.1946902654868,161.26128793486308L973.2566371681415,173.28941524796448L982.3185840707964,133.50407105847523L991.3805309734513,171.43893412287196L1000.4424778761062,193.64470762398224L1009.5044247787611,155.7098445595855L1018.566371681416,35.428571428571445L1027.6283185840707,161.26128793486308L1036.6902654867258,166.81273131014063L1045.7522123893805,169.58845299777943L1054.8141592920354,142.75647668393782L1063.8761061946902,67.81199111769061L1072.9380530973451,152.00888230940046L1082,188.09326424870466L1082,214L58,214Z" fill="var(--s1)" opacity="0.1"></path><path d="M58,211.2242783123612L67.06194690265487,161.26128793486308L76.12389380530973,191.7942264988897L85.1858407079646,212.14951887490747L94.24778761061947,207.52331606217618L103.30973451327434,203.82235381199112L112.3716814159292,210.29903774981494L121.43362831858407,209.37379718726868L130.49557522123894,192.71946706143598L139.55752212389382,201.04663212435233L148.61946902654867,209.37379718726868L157.68141592920352,193.64470762398224L166.7433628318584,209.37379718726868L175.8053097345133,205.67283493708365L184.86725663716814,210.29903774981494L193.92920353982302,207.52331606217618L202.99115044247787,199.1961509992598L212.05309734513276,208.4485566247224L221.1150442477876,177.91561806069578L230.1769911504425,207.52331606217618L239.23893805309734,198.27091043671354L248.30088495575222,187.1680236861584L257.36283185840705,201.04663212435233L266.42477876106193,210.29903774981494L275.4867256637168,201.9718726868986L284.5486725663717,194.5699481865285L293.6106194690266,148.3079200592154L302.67256637168146,158.48556624722428L311.7345132743363,191.7942264988897L320.79646017699116,156.63508512213178L329.85840707964604,180.69133974833457L338.92035398230087,188.09326424870466L347.98230088495575,178.84085862324204L357.04424778761063,164.9622501850481L366.1061946902655,102.0458919319023L375.16814159292034,139.05551443375276L384.2300884955752,152.00888230940046L393.2920353982301,164.9622501850481L402.353982300885,189.01850481125092L411.4159292035398,190.86898593634345L420.4778761061947,161.26128793486308L429.53982300884957,169.58845299777943L438.60176991150445,176.06513693560328L447.6637168141593,131.6535899333827L456.72566371681415,164.9622501850481L465.78761061946904,160.3360473723168L474.8495575221239,149.23316062176167L483.91150442477874,164.9622501850481L492.9734513274336,172.36417468541822L502.0353982300885,179.7660991857883L511.0973451327434,176.99037749814954L520.1592920353983,172.36417468541822L529.2212389380531,193.64470762398224L538.283185840708,189.01850481125092L547.3451327433629,183.46706143597336L556.4070796460177,185.3175425610659L565.4690265486726,196.42042931162104L574.5309734513274,202.89711324944486L583.5929203539823,193.64470762398224L592.6548672566372,177.91561806069578L601.7168141592921,176.06513693560328L610.7787610619469,196.42042931162104L619.8407079646017,199.1961509992598L628.9026548672566,204.74759437453739L637.9646017699115,195.49518874907477L647.0265486725664,198.27091043671354L656.0884955752213,201.04663212435233L665.1504424778761,188.09326424870466L674.212389380531,184.39230199851963L683.2743362831858,190.86898593634345L692.3362831858407,177.91561806069578L701.3982300884956,146.45743893412288L710.4601769911504,187.1680236861584L719.5221238938053,113.14877868245746L728.5840707964602,167.7379718726869L737.6460176991151,168.66321243523316L746.70796460177,168.66321243523316L755.7699115044247,156.63508512213178L764.8318584070796,177.91561806069578L773.8938053097345,162.18652849740934L782.9557522123894,156.63508512213178L792.0176991150443,176.06513693560328L801.0796460176991,180.69133974833457L810.141592920354,188.09326424870466L819.2035398230089,184.39230199851963L828.2654867256637,179.7660991857883L837.3274336283185,102.0458919319023L846.3893805309734,173.28941524796448L855.4513274336283,140.9059955588453L864.5132743362832,157.56032568467802L873.5752212389381,164.9622501850481L882.637168141593,161.26128793486308L891.6991150442478,163.11176905995558L900.7610619469026,185.3175425610659L909.8230088495575,189.01850481125092L918.8849557522124,188.09326424870466L927.9469026548672,94.64396743153222L937.0088495575221,146.45743893412288L946.070796460177,167.7379718726869L955.1327433628319,150.15840118430793L964.1946902654868,161.26128793486308L973.2566371681415,173.28941524796448L982.3185840707964,133.50407105847523L991.3805309734513,171.43893412287196L1000.4424778761062,193.64470762398224L1009.5044247787611,155.7098445595855L1018.566371681416,35.428571428571445L1027.6283185840707,161.26128793486308L1036.6902654867258,166.81273131014063L1045.7522123893805,169.58845299777943L1054.8141592920354,142.75647668393782L1063.8761061946902,67.81199111769061L1072.9380530973451,152.00888230940046L1082,188.09326424870466" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path><text x="58" y="231" text-anchor="middle">нед. 20 май 24</text><text x="230.1769911504425" y="231" text-anchor="middle">нед. 30 сен 24</text><text x="402.353982300885" y="231" text-anchor="middle">нед. 10 фев 25</text><text x="574.5309734513274" y="231" text-anchor="middle">нед. 23 июн 25</text><text x="746.70796460177" y="231" text-anchor="middle">нед. 3 ноя 25</text><text x="918.8849557522124" y="231" text-anchor="middle">нед. 16 мар 26</text><text x="1082" y="231" text-anchor="end">нед. 20 июл 26</text><circle cx="1018.566371681416" cy="35.428571428571445" r="4.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2"></circle><text x="1018.566371681416" y="26.428571428571445" text-anchor="middle" class="dl">193</text><line y1="14" y2="214" stroke="var(--axis)" stroke-width="1" visibility="hidden"></line><circle r="4.5" fill="var(--s1)" stroke="var(--surface)" stroke-width="2" visibility="hidden"></circle><rect x="58" y="14" width="1024" height="200" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Неделя</th><th class="n">Подключений</th></tr><tr><td>6 апр 26</td><td class="n">50</td></tr><tr><td>13 апр 26</td><td class="n">69</td></tr><tr><td>20 апр 26</td><td class="n">57</td></tr><tr><td>27 апр 26</td><td class="n">44</td></tr><tr><td>4 май 26</td><td class="n">87</td></tr><tr><td>11 май 26</td><td class="n">46</td></tr><tr><td>18 май 26</td><td class="n">22</td></tr><tr><td>25 май 26</td><td class="n">63</td></tr><tr><td>1 июн 26</td><td class="n">193</td></tr><tr><td>8 июн 26</td><td class="n">57</td></tr><tr><td>15 июн 26</td><td class="n">51</td></tr><tr><td>22 июн 26</td><td class="n">48</td></tr><tr><td>29 июн 26</td><td class="n">77</td></tr><tr><td>6 июл 26</td><td class="n">158</td></tr><tr><td>13 июл 26</td><td class="n">67</td></tr><tr><td>20 июл 26</td><td class="n">28</td></tr></table></details></div>
+  <div class="card">
+    <h3>Провайдеры: уникальные пользователи</h3>
+    <p class="note">Кто к чему подключается.</p>
+    <div class="chart" id="providers" data-w="523"><svg viewBox="0 0 523 252" width="523" height="252"><text x="140" y="23" text-anchor="end" fill="var(--ink-2)">metatrader5</text><path d="M150,8 h309 q4,0 4,4 v14 q0,4 -4,4 h-309 z" fill="var(--s1)" class="bar"></path><text x="471" y="23" class="dl">1&nbsp;696</text><rect x="0" y="8" width="523" height="34" fill="transparent"></rect><text x="140" y="57" text-anchor="end" fill="var(--ink-2)">binance</text><path d="M150,42 h184.6120283018868 q4,0 4,4 v14 q0,4 -4,4 h-184.6120283018868 z" fill="var(--s1)" class="bar"></path><text x="346.61202830188677" y="57" class="dl">1&nbsp;022</text><rect x="0" y="42" width="523" height="34" fill="transparent"></rect><text x="140" y="91" text-anchor="end" fill="var(--ink-2)">bybit</text><path d="M150,76 h52.84198113207547 q4,0 4,4 v14 q0,4 -4,4 h-52.84198113207547 z" fill="var(--s1)" class="bar"></path><text x="214.84198113207546" y="91" class="dl">308</text><rect x="0" y="76" width="523" height="34" fill="transparent"></rect><text x="140" y="125" text-anchor="end" fill="var(--ink-2)">okx</text><path d="M150,110 h19.43808962264151 q4,0 4,4 v14 q0,4 -4,4 h-19.43808962264151 z" fill="var(--s1)" class="bar"></path><text x="181.4380896226415" y="125" class="dl">127</text><rect x="0" y="110" width="523" height="34" fill="transparent"></rect><text x="140" y="159" text-anchor="end" fill="var(--ink-2)">(не указан)</text><path d="M150,144 h3.414209905660377 q3.414209905660377,0 3.414209905660377,3.414209905660377 v15.171580188679247 q0,3.414209905660377 -3.414209905660377,3.414209905660377 h-3.414209905660377 z" fill="var(--s1)" class="bar"></path><text x="164.82841981132074" y="159" class="dl">37</text><rect x="0" y="144" width="523" height="34" fill="transparent"></rect><text x="140" y="193" text-anchor="end" fill="var(--ink-2)">metatrader4</text><path d="M150,178 h2.214622641509434 q2.214622641509434,0 2.214622641509434,2.214622641509434 v17.57075471698113 q0,2.214622641509434 -2.214622641509434,2.214622641509434 h-2.214622641509434 z" fill="var(--s1)" class="bar"></path><text x="162.42924528301887" y="193" class="dl">24</text><rect x="0" y="178" width="523" height="34" fill="transparent"></rect><text x="140" y="227" text-anchor="end" fill="var(--ink-2)">прочие (5)</text><path d="M150,212 h4.304834905660378 q4,0 4,4 v14 q0,4 -4,4 h-4.304834905660378 z" fill="var(--s1)" class="bar"></path><text x="166.30483490566039" y="227" class="dl">45</text><rect x="0" y="212" width="523" height="34" fill="transparent"></rect></svg></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Провайдер</th><th class="n">Пользователей</th><th class="n">Подключений</th></tr><tr><td>metatrader5</td><td class="n">1696</td><td class="n">2854</td></tr><tr><td>binance</td><td class="n">1022</td><td class="n">1375</td></tr><tr><td>bybit</td><td class="n">308</td><td class="n">356</td></tr><tr><td>okx</td><td class="n">127</td><td class="n">148</td></tr><tr><td>(не указан)</td><td class="n">37</td><td class="n">45</td></tr><tr><td>metatrader4</td><td class="n">24</td><td class="n">26</td></tr><tr><td>ctrader</td><td class="n">14</td><td class="n">20</td></tr><tr><td>mexc</td><td class="n">13</td><td class="n">17</td></tr><tr><td>hyperliquid</td><td class="n">12</td><td class="n">17</td></tr><tr><td>orderly_perptools</td><td class="n">3</td><td class="n">4</td></tr><tr><td>kraken</td><td class="n">3</td><td class="n">3</td></tr></table></details></div>
+  <div class="card">
+    <h3>Активность в продукте, последние недели</h3>
+    <p class="note">Новые события трекаются с 15 июня 2026. Неделя 20.07 неполная.</p>
+    <div class="chart" id="events" data-w="523"><svg viewBox="0 0 523 230" width="523" height="230"><line x1="58" x2="509" y1="204" y2="204" stroke="var(--axis)" stroke-width="1"></line><line x1="58" x2="509" y1="159.9369202226345" y2="159.9369202226345" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="163.9369202226345" text-anchor="end">100</text><line x1="58" x2="509" y1="115.87384044526902" y2="115.87384044526902" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="119.87384044526902" text-anchor="end">200</text><line x1="58" x2="509" y1="71.81076066790354" y2="71.81076066790354" stroke="var(--grid)" stroke-width="1"></line><text x="50" y="75.81076066790354" text-anchor="end">300</text><rect x="63.083333333333336" y="128.65213358070503" width="11" height="75.34786641929497" rx="2" fill="var(--s1)" class="col"></rect><rect x="76.08333333333334" y="181.5278293135436" width="11" height="22.4721706864564" rx="2" fill="var(--s2)" class="col"></rect><rect x="89.08333333333334" y="195.1873840445269" width="11" height="8.812615955473097" rx="2" fill="var(--s3)" class="col"></rect><rect x="102.08333333333334" y="204" width="11" height="0" rx="2" fill="var(--s4)" class="col"></rect><rect x="115.08333333333334" y="204" width="11" height="0" rx="2" fill="var(--s5)" class="col"></rect><text x="95.58333333333334" y="221" text-anchor="middle">15 июн</text><rect x="138.25000000000003" y="145.3961038961039" width="11" height="58.6038961038961" rx="2" fill="var(--s1)" class="col"></rect><rect x="151.25000000000003" y="182.84972170686456" width="11" height="21.150278293135433" rx="2" fill="var(--s2)" class="col"></rect><rect x="164.25000000000003" y="186.37476808905382" width="11" height="17.625231910946194" rx="2" fill="var(--s3)" class="col"></rect><rect x="177.25000000000003" y="204" width="11" height="0" rx="2" fill="var(--s4)" class="col"></rect><rect x="190.25000000000003" y="204" width="11" height="0" rx="2" fill="var(--s5)" class="col"></rect><text x="170.75000000000003" y="221" text-anchor="middle">22 июн</text><rect x="213.41666666666669" y="140.98979591836735" width="11" height="63.01020408163265" rx="2" fill="var(--s1)" class="col"></rect><rect x="226.41666666666669" y="170.07142857142858" width="11" height="33.92857142857142" rx="2" fill="var(--s2)" class="col"></rect><rect x="239.41666666666669" y="175.35899814471244" width="11" height="28.641001855287566" rx="2" fill="var(--s3)" class="col"></rect><rect x="252.41666666666669" y="195.62801484230056" width="11" height="8.371985157699443" rx="2" fill="var(--s4)" class="col"></rect><rect x="265.4166666666667" y="199.1530612244898" width="11" height="4.846938775510203" rx="2" fill="var(--s5)" class="col"></rect><text x="245.91666666666669" y="221" text-anchor="middle">29 июн</text><rect x="288.5833333333333" y="34.35714285714286" width="11" height="169.64285714285714" rx="2" fill="var(--s1)" class="col"></rect><rect x="301.5833333333333" y="134.38033395176254" width="11" height="69.61966604823746" rx="2" fill="var(--s2)" class="col"></rect><rect x="314.5833333333333" y="170.95269016697588" width="11" height="33.047309833024116" rx="2" fill="var(--s3)" class="col"></rect><rect x="327.5833333333333" y="177.12152133580705" width="11" height="26.87847866419295" rx="2" fill="var(--s4)" class="col"></rect><rect x="340.5833333333333" y="182.84972170686456" width="11" height="21.150278293135433" rx="2" fill="var(--s5)" class="col"></rect><text x="321.0833333333333" y="221" text-anchor="middle">6 июл</text><rect x="363.75" y="117.19573283858999" width="11" height="86.80426716141001" rx="2" fill="var(--s1)" class="col"></rect><rect x="376.75" y="174.47773654916512" width="11" height="29.522263450834878" rx="2" fill="var(--s2)" class="col"></rect><rect x="389.75" y="177.12152133580705" width="11" height="26.87847866419295" rx="2" fill="var(--s3)" class="col"></rect><rect x="402.75" y="185.4935064935065" width="11" height="18.506493506493506" rx="2" fill="var(--s4)" class="col"></rect><rect x="415.75" y="184.17161410018554" width="11" height="19.828385899814467" rx="2" fill="var(--s5)" class="col"></rect><text x="396.25" y="221" text-anchor="middle">13 июл</text><rect x="438.9166666666667" y="174.03710575139146" width="11" height="29.962894248608528" rx="2" fill="var(--s1)" class="col"></rect><rect x="451.9166666666667" y="191.66233766233768" width="11" height="12.337662337662337" rx="2" fill="var(--s2)" class="col"></rect><rect x="464.9166666666667" y="197.3905380333952" width="11" height="6.609461966604823" rx="2" fill="var(--s3)" class="col"></rect><rect x="477.9166666666667" y="198.2717996289425" width="11" height="5.728200371057514" rx="2" fill="var(--s4)" class="col"></rect><rect x="490.9166666666667" y="200.91558441558442" width="11" height="3.0844155844155843" rx="2" fill="var(--s5)" class="col"></rect><text x="471.4166666666667" y="221" text-anchor="middle">20 июл</text></svg></div><div class="legend"><span class="it"><span class="sw" style="background: var(--s1);"></span><span>Синк журнала</span></span><span class="it"><span class="sw" style="background: var(--s2);"></span><span>Подключение аккаунта</span></span><span class="it"><span class="sw" style="background: var(--s3);"></span><span>Ручные позиции</span></span><span class="it"><span class="sw" style="background: var(--s4);"></span><span>AI-запросы</span></span><span class="it"><span class="sw" style="background: var(--s5);"></span><span>Экспорт XLSX</span></span></div>
+  <details class="tbl"><summary>Показать таблицей</summary><table><tr><th>Неделя</th><th class="n">Синк журнала</th><th class="n">Подключение аккаунта</th><th class="n">Ручные позиции</th><th class="n">AI-запросы</th><th class="n">Экспорт XLSX</th></tr><tr><td>15 июн 26</td><td class="n">171</td><td class="n">51</td><td class="n">20</td><td class="n">0</td><td class="n">0</td></tr><tr><td>22 июн 26</td><td class="n">133</td><td class="n">48</td><td class="n">40</td><td class="n">0</td><td class="n">0</td></tr><tr><td>29 июн 26</td><td class="n">143</td><td class="n">77</td><td class="n">65</td><td class="n">19</td><td class="n">11</td></tr><tr><td>6 июл 26</td><td class="n">385</td><td class="n">158</td><td class="n">75</td><td class="n">61</td><td class="n">48</td></tr><tr><td>13 июл 26</td><td class="n">197</td><td class="n">67</td><td class="n">61</td><td class="n">42</td><td class="n">45</td></tr><tr><td>20 июл 26</td><td class="n">68</td><td class="n">28</td><td class="n">15</td><td class="n">13</td><td class="n">7</td></tr></table></details></div>
+</div>
+
+<h2>Маркетинг</h2>
+<div class="tiles" id="mkt"><div class="tile"><div class="lbl">Реферальных ссылок</div><div class="val">13&nbsp;104</div><div class="sub">все активны</div></div><div class="tile"><div class="lbl">Кликов по ссылкам</div><div class="val">274</div><div class="sub">за всю историю</div></div><div class="tile"><div class="lbl">Регистраций по рефам</div><div class="val">525</div></div><div class="tile"><div class="lbl">Оплат по рефам</div><div class="val">7</div><div class="sub">на $199</div></div><div class="tile"><div class="lbl">Юзеров с UTM-метками</div><div class="val">712</div><div class="sub">из 12&nbsp;938 — 5,5%</div></div></div>
+<div class="callout" id="mktCallout"><b>Атрибуция.</b> UTM-метки есть только у 5,5% пользователей. Крупнейший источник ovva-meta привёл 699 регистраций и <b>0 оплат</b>. Пока трекинг не чинится, оценить окупаемость каналов нельзя.</div>
+
+<h2>Выводы</h2>
+<ul class="insights">
+  <li><b>Платёжка теряет деньги: у overpay 63% попыток заканчиваются отказом</b> (55 из 87). У mono отказов 13%, но 36 платежей зависли в pending. Починка overpay — самый быстрый способ поднять выручку без роста трафика.</li>
+  <li><b>Рост регистраций не конвертируется в деньги.</b> Регистрации на исторических максимумах (200–370 в неделю с июня), а успешных оплат в июне–июле меньше, чем зимой: пик выручки был в феврале ($709), июль идёт на ~$120. Конверсия в оплату — 0,7% за всю историю.</li>
+  <li><b>Деньги приносит Base-тариф: $2 898 из $3 288 (88%).</b> Pro покупают единицы (7 успешных оплат). Либо Pro недопродан в продукте, либо его ценность не видна.</li>
+  <li><b>Разрыв воронки — между «создал аккаунт» и «подключил»:</b> 8 596 → 2 904, теряем две трети. Дальше до оплаты доходит 2,8% подключивших.</li>
+  <li><b>Атрибуция почти слепая:</b> UTM записан только у 708 из 12 905 пользователей (5,5%), у ovva-meta 695 регистраций и ноль конверсий в оплату. Реферальная программа: 13 092 ссылки, но всего 274 клика и 7 оплат на $198,5.</li>
+  <li><b>Ядро продукта — форекс на MetaTrader 5:</b> 1 694 пользователя подключали MT5 против 1 021 у Binance; синков журнала по fx в 4 раза больше, чем по crypto (875 против 213).</li>
+</ul>
+
+<footer>
+  Обновление данных: <code>python3 fetch_data.py</code> в папке scope-metabase, затем пересборка страницы.
+  Все цифры — агрегаты, без персональных данных.
+</footer>
+</div>
+
+<div id="tip"></div>
+
+<script>
+const DATA = {"sales_daily":[{"d":"2025-12-10","sales":1,"revenue":23.08},{"d":"2025-12-15","sales":1,"revenue":20},{"d":"2025-12-16","sales":1,"revenue":20},{"d":"2025-12-20","sales":1,"revenue":150},{"d":"2026-01-01","sales":1,"revenue":20},{"d":"2026-01-08","sales":1,"revenue":20},{"d":"2026-01-09","sales":1,"revenue":20},{"d":"2026-01-15","sales":2,"revenue":65},{"d":"2026-01-18","sales":1,"revenue":45},{"d":"2026-01-20","sales":2,"revenue":21},{"d":"2026-01-21","sales":3,"revenue":60},{"d":"2026-01-24","sales":2,"revenue":40},{"d":"2026-01-26","sales":1,"revenue":20},{"d":"2026-01-27","sales":2,"revenue":170},{"d":"2026-01-28","sales":2,"revenue":35},{"d":"2026-01-29","sales":3,"revenue":60},{"d":"2026-01-30","sales":1,"revenue":20},{"d":"2026-02-02","sales":1,"revenue":150},{"d":"2026-02-03","sales":2,"revenue":40},{"d":"2026-02-04","sales":2,"revenue":160},{"d":"2026-02-06","sales":2,"revenue":35},{"d":"2026-02-07","sales":1,"revenue":20},{"d":"2026-02-10","sales":1,"revenue":20},{"d":"2026-02-11","sales":1,"revenue":20},{"d":"2026-02-12","sales":1,"revenue":14},{"d":"2026-02-14","sales":1,"revenue":20},{"d":"2026-02-15","sales":1,"revenue":15},{"d":"2026-02-17","sales":1,"revenue":45},{"d":"2026-02-19","sales":1,"revenue":20},{"d":"2026-02-20","sales":1,"revenue":25.67},{"d":"2026-02-21","sales":2,"revenue":40},{"d":"2026-02-24","sales":4,"revenue":64},{"d":"2026-02-28","sales":1,"revenue":20},{"d":"2026-03-01","sales":1,"revenue":20},{"d":"2026-03-03","sales":1,"revenue":20},{"d":"2026-03-04","sales":1,"revenue":20},{"d":"2026-03-10","sales":1,"revenue":20},{"d":"2026-03-11","sales":1,"revenue":20},{"d":"2026-03-15","sales":3,"revenue":60},{"d":"2026-03-16","sales":1,"revenue":10},{"d":"2026-03-17","sales":1,"revenue":20},{"d":"2026-03-19","sales":1,"revenue":20},{"d":"2026-03-27","sales":1,"revenue":15},{"d":"2026-03-29","sales":1,"revenue":15},{"d":"2026-03-30","sales":1,"revenue":112.5},{"d":"2026-04-02","sales":1,"revenue":15},{"d":"2026-04-06","sales":1,"revenue":20},{"d":"2026-04-13","sales":1,"revenue":10},{"d":"2026-04-14","sales":2,"revenue":34},{"d":"2026-04-22","sales":1,"revenue":150},{"d":"2026-04-23","sales":1,"revenue":20},{"d":"2026-04-24","sales":1,"revenue":112.5},{"d":"2026-04-25","sales":2,"revenue":40},{"d":"2026-04-27","sales":2,"revenue":34},{"d":"2026-05-03","sales":1,"revenue":20},{"d":"2026-05-05","sales":1,"revenue":20},{"d":"2026-05-13","sales":1,"revenue":205.67},{"d":"2026-05-17","sales":1,"revenue":14},{"d":"2026-05-19","sales":1,"revenue":15},{"d":"2026-05-20","sales":2,"revenue":40},{"d":"2026-05-21","sales":1,"revenue":20},{"d":"2026-05-25","sales":1,"revenue":15},{"d":"2026-05-27","sales":1,"revenue":112.5},{"d":"2026-05-28","sales":1,"revenue":20},{"d":"2026-05-29","sales":1,"revenue":20},{"d":"2026-06-05","sales":1,"revenue":150},{"d":"2026-06-08","sales":1,"revenue":150},{"d":"2026-06-13","sales":1,"revenue":20},{"d":"2026-06-14","sales":1,"revenue":20},{"d":"2026-06-22","sales":1,"revenue":20},{"d":"2026-07-05","sales":3,"revenue":60},{"d":"2026-07-09","sales":1,"revenue":20},{"d":"2026-07-10","sales":1,"revenue":20},{"d":"2026-07-17","sales":1,"revenue":20}],"sales_monthly":[{"m":"2025-12","sales":4,"revenue":213.08,"buyers":4,"avg_check":53.27},{"m":"2026-01","sales":22,"revenue":596,"buyers":22,"avg_check":27.09},{"m":"2026-02","sales":23,"revenue":708.67,"buyers":23,"avg_check":30.81},{"m":"2026-03","sales":14,"revenue":352.5,"buyers":14,"avg_check":25.18},{"m":"2026-04","sales":12,"revenue":435.5,"buyers":12,"avg_check":36.29},{"m":"2026-05","sales":12,"revenue":502.17,"buyers":12,"avg_check":41.85},{"m":"2026-06","sales":5,"revenue":360,"buyers":5,"avg_check":72},{"m":"2026-07","sales":6,"revenue":120,"buyers":6,"avg_check":20}],"sales_by_plan":[{"plan_name":"Base","subs_period":"monthly","sales":83,"revenue":1810},{"plan_name":"Base","subs_period":"yearly","sales":8,"revenue":1087.5},{"plan_name":"Pro","subs_period":"yearly","sales":1,"revenue":205.67},{"plan_name":"Pro","subs_period":"monthly","sales":6,"revenue":184.75}],"sales_by_method":[{"payment_method":"mono","attempts":113,"success":61,"failed":15,"pending":36,"revenue":1462.67},{"payment_method":"overpay","attempts":87,"success":30,"failed":55,"pending":2,"revenue":1239.58},{"payment_method":"whitepay","attempts":18,"success":7,"failed":0,"pending":10,"revenue":585.67}],"sales_by_status":[{"status":"success","n":98},{"status":"failed","n":70},{"status":"pending","n":48},{"status":"canceled","n":2}],"repeat_purchases":[{"purchases":1,"users":67},{"purchases":2,"users":9},{"purchases":3,"users":3},{"purchases":4,"users":1}],"registrations_weekly":[{"w":"2024-03-25","regs":11},{"w":"2024-04-01","regs":77},{"w":"2024-04-08","regs":42},{"w":"2024-04-15","regs":24},{"w":"2024-04-22","regs":30},{"w":"2024-04-29","regs":12},{"w":"2024-05-06","regs":11},{"w":"2024-05-13","regs":26},{"w":"2024-05-20","regs":27},{"w":"2024-05-27","regs":300},{"w":"2024-06-03","regs":121},{"w":"2024-06-10","regs":40},{"w":"2024-06-17","regs":56},{"w":"2024-06-24","regs":70},{"w":"2024-07-01","regs":34},{"w":"2024-07-08","regs":26},{"w":"2024-07-15","regs":111},{"w":"2024-07-22","regs":61},{"w":"2024-07-29","regs":94},{"w":"2024-08-05","regs":56},{"w":"2024-08-12","regs":18},{"w":"2024-08-19","regs":27},{"w":"2024-08-26","regs":17},{"w":"2024-09-02","regs":20},{"w":"2024-09-09","regs":60},{"w":"2024-09-16","regs":25},{"w":"2024-09-23","regs":131},{"w":"2024-09-30","regs":23},{"w":"2024-10-07","regs":34},{"w":"2024-10-14","regs":21},{"w":"2024-10-21","regs":29},{"w":"2024-10-28","regs":26},{"w":"2024-11-04","regs":55},{"w":"2024-11-11","regs":55},{"w":"2024-11-18","regs":95},{"w":"2024-11-25","regs":110},{"w":"2024-12-02","regs":43},{"w":"2024-12-09","regs":226},{"w":"2024-12-16","regs":198},{"w":"2024-12-23","regs":95},{"w":"2024-12-30","regs":98},{"w":"2025-01-06","regs":172},{"w":"2025-01-13","regs":538},{"w":"2025-01-20","regs":148},{"w":"2025-01-27","regs":175},{"w":"2025-02-03","regs":263},{"w":"2025-02-10","regs":81},{"w":"2025-02-17","regs":97},{"w":"2025-02-24","regs":115},{"w":"2025-03-03","regs":114},{"w":"2025-03-10","regs":108},{"w":"2025-03-17","regs":184},{"w":"2025-03-24","regs":99},{"w":"2025-03-31","regs":56},{"w":"2025-04-07","regs":154},{"w":"2025-04-14","regs":137},{"w":"2025-04-21","regs":90},{"w":"2025-04-28","regs":167},{"w":"2025-05-05","regs":124},{"w":"2025-05-12","regs":158},{"w":"2025-05-19","regs":38},{"w":"2025-05-26","regs":48},{"w":"2025-06-02","regs":34},{"w":"2025-06-09","regs":37},{"w":"2025-06-16","regs":37},{"w":"2025-06-23","regs":34},{"w":"2025-06-30","regs":52},{"w":"2025-07-07","regs":113},{"w":"2025-07-14","regs":92},{"w":"2025-07-21","regs":70},{"w":"2025-07-28","regs":40},{"w":"2025-08-04","regs":40},{"w":"2025-08-11","regs":78},{"w":"2025-08-18","regs":36},{"w":"2025-08-25","regs":37},{"w":"2025-09-01","regs":60},{"w":"2025-09-08","regs":37},{"w":"2025-09-15","regs":78},{"w":"2025-09-22","regs":74},{"w":"2025-09-29","regs":119},{"w":"2025-10-06","regs":65},{"w":"2025-10-13","regs":160},{"w":"2025-10-20","regs":101},{"w":"2025-10-27","regs":121},{"w":"2025-11-03","regs":137},{"w":"2025-11-10","regs":152},{"w":"2025-11-17","regs":75},{"w":"2025-11-24","regs":152},{"w":"2025-12-01","regs":128},{"w":"2025-12-08","regs":82},{"w":"2025-12-15","regs":106},{"w":"2025-12-22","regs":66},{"w":"2025-12-29","regs":53},{"w":"2026-01-05","regs":68},{"w":"2026-01-12","regs":258},{"w":"2026-01-19","regs":114},{"w":"2026-01-26","regs":268},{"w":"2026-02-02","regs":216},{"w":"2026-02-09","regs":90},{"w":"2026-02-16","regs":118},{"w":"2026-02-23","regs":106},{"w":"2026-03-02","regs":60},{"w":"2026-03-09","regs":54},{"w":"2026-03-16","regs":67},{"w":"2026-03-23","regs":132},{"w":"2026-03-30","regs":150},{"w":"2026-04-06","regs":168},{"w":"2026-04-13","regs":240},{"w":"2026-04-20","regs":134},{"w":"2026-04-27","regs":86},{"w":"2026-05-04","regs":196},{"w":"2026-05-11","regs":87},{"w":"2026-05-18","regs":82},{"w":"2026-05-25","regs":212},{"w":"2026-06-01","regs":373},{"w":"2026-06-08","regs":217},{"w":"2026-06-15","regs":341},{"w":"2026-06-22","regs":163},{"w":"2026-06-29","regs":224},{"w":"2026-07-06","regs":337},{"w":"2026-07-13","regs":145},{"w":"2026-07-20","regs":65}],"users_summary":[{"total_users":12938,"payers":92,"ltv_total":3637.92,"arppu":39.54}],"plans_current":[{"plan":"Free","users":11606},{"plan":"Base","users":1021},{"plan":"Pro","users":189},{"plan":"нет плана","users":122}],"spent_distribution":[{"bucket":"1-24","users":62},{"bucket":"100-199","users":11},{"bucket":"200+","users":1},{"bucket":"25-49","users":15},{"bucket":"50-99","users":3}],"utm_sources":[{"source":"ovva-meta","visitors":699,"regs":699,"converted":0,"revenue":0},{"source":"fb","visitors":12,"regs":12,"converted":0,"revenue":0},{"source":"trustpilot","visitors":1,"regs":1,"converted":0,"revenue":0}],"referral_totals":[{"links":13104,"active":13104,"clicks":274,"regs":525,"payments":7,"revenue":198.5}],"referral_top":[{"campaign_name":null,"clicks":13,"regs":13,"payments":2,"revenue":126.5},{"campaign_name":null,"clicks":14,"regs":14,"payments":2,"revenue":28},{"campaign_name":null,"clicks":41,"regs":41,"payments":1,"revenue":15},{"campaign_name":null,"clicks":1,"regs":1,"payments":1,"revenue":15},{"campaign_name":null,"clicks":20,"regs":20,"payments":1,"revenue":14},{"campaign_name":null,"clicks":0,"regs":109,"payments":0,"revenue":0},{"campaign_name":null,"clicks":0,"regs":55,"payments":0,"revenue":0},{"campaign_name":null,"clicks":0,"regs":29,"payments":0,"revenue":0},{"campaign_name":null,"clicks":27,"regs":27,"payments":0,"revenue":0},{"campaign_name":null,"clicks":25,"regs":25,"payments":0,"revenue":0}],"promo_usage":[{"uses":2255}],"events_weekly":[{"w":"2024-01-01","kind":"Подключение аккаунта","n":22},{"w":"2024-05-20","kind":"Подключение аккаунта","n":3},{"w":"2024-05-27","kind":"Подключение аккаунта","n":57},{"w":"2024-06-03","kind":"Подключение аккаунта","n":24},{"w":"2024-06-10","kind":"Подключение аккаунта","n":2},{"w":"2024-06-17","kind":"Подключение аккаунта","n":7},{"w":"2024-06-24","kind":"Подключение аккаунта","n":11},{"w":"2024-07-01","kind":"Подключение аккаунта","n":4},{"w":"2024-07-08","kind":"Подключение аккаунта","n":5},{"w":"2024-07-15","kind":"Подключение аккаунта","n":23},{"w":"2024-07-22","kind":"Подключение аккаунта","n":14},{"w":"2024-07-29","kind":"Подключение аккаунта","n":5},{"w":"2024-08-05","kind":"Подключение аккаунта","n":22},{"w":"2024-08-12","kind":"Подключение аккаунта","n":5},{"w":"2024-08-19","kind":"Подключение аккаунта","n":9},{"w":"2024-08-26","kind":"Подключение аккаунта","n":4},{"w":"2024-09-02","kind":"Подключение аккаунта","n":7},{"w":"2024-09-09","kind":"Подключение аккаунта","n":16},{"w":"2024-09-16","kind":"Подключение аккаунта","n":6},{"w":"2024-09-23","kind":"Подключение аккаунта","n":39},{"w":"2024-09-30","kind":"Подключение аккаунта","n":7},{"w":"2024-10-07","kind":"Подключение аккаунта","n":17},{"w":"2024-10-14","kind":"Подключение аккаунта","n":29},{"w":"2024-10-21","kind":"Подключение аккаунта","n":14},{"w":"2024-10-28","kind":"Подключение аккаунта","n":4},{"w":"2024-11-04","kind":"Подключение аккаунта","n":13},{"w":"2024-11-11","kind":"Подключение аккаунта","n":21},{"w":"2024-11-18","kind":"Подключение аккаунта","n":71},{"w":"2024-11-25","kind":"Подключение аккаунта","n":60},{"w":"2024-12-02","kind":"Подключение аккаунта","n":24},{"w":"2024-12-09","kind":"Подключение аккаунта","n":62},{"w":"2024-12-16","kind":"Подключение аккаунта","n":36},{"w":"2024-12-23","kind":"Подключение аккаунта","n":28},{"w":"2024-12-30","kind":"Подключение аккаунта","n":38},{"w":"2025-01-06","kind":"Подключение аккаунта","n":53},{"w":"2025-01-13","kind":"Подключение аккаунта","n":121},{"w":"2025-01-20","kind":"Подключение аккаунта","n":81},{"w":"2025-01-27","kind":"Подключение аккаунта","n":67},{"w":"2025-02-03","kind":"Подключение аккаунта","n":53},{"w":"2025-02-10","kind":"Подключение аккаунта","n":27},{"w":"2025-02-17","kind":"Подключение аккаунта","n":25},{"w":"2025-02-24","kind":"Подключение аккаунта","n":57},{"w":"2025-03-03","kind":"Подключение аккаунта","n":48},{"w":"2025-03-10","kind":"Подключение аккаунта","n":41},{"w":"2025-03-17","kind":"Подключение аккаунта","n":89},{"w":"2025-03-24","kind":"Подключение аккаунта","n":53},{"w":"2025-03-31","kind":"Подключение аккаунта","n":58},{"w":"2025-04-07","kind":"Подключение аккаунта","n":70},{"w":"2025-04-14","kind":"Подключение аккаунта","n":53},{"w":"2025-04-21","kind":"Подключение аккаунта","n":45},{"w":"2025-04-28","kind":"Подключение аккаунта","n":37},{"w":"2025-05-05","kind":"Подключение аккаунта","n":40},{"w":"2025-05-12","kind":"Подключение аккаунта","n":45},{"w":"2025-05-19","kind":"Подключение аккаунта","n":22},{"w":"2025-05-26","kind":"Подключение аккаунта","n":27},{"w":"2025-06-02","kind":"Подключение аккаунта","n":33},{"w":"2025-06-09","kind":"Подключение аккаунта","n":31},{"w":"2025-06-16","kind":"Подключение аккаунта","n":19},{"w":"2025-06-23","kind":"Подключение аккаунта","n":12},{"w":"2025-06-30","kind":"Подключение аккаунта","n":22},{"w":"2025-07-07","kind":"Подключение аккаунта","n":39},{"w":"2025-07-14","kind":"Подключение аккаунта","n":41},{"w":"2025-07-21","kind":"Подключение аккаунта","n":19},{"w":"2025-07-28","kind":"Подключение аккаунта","n":16},{"w":"2025-08-04","kind":"Подключение аккаунта","n":10},{"w":"2025-08-11","kind":"Подключение аккаунта","n":20},{"w":"2025-08-18","kind":"Подключение аккаунта","n":17},{"w":"2025-08-25","kind":"Подключение аккаунта","n":14},{"w":"2025-09-01","kind":"Подключение аккаунта","n":28},{"w":"2025-09-08","kind":"Подключение аккаунта","n":32},{"w":"2025-09-15","kind":"Подключение аккаунта","n":25},{"w":"2025-09-22","kind":"Подключение аккаунта","n":39},{"w":"2025-09-29","kind":"Подключение аккаунта","n":73},{"w":"2025-10-06","kind":"Подключение аккаунта","n":29},{"w":"2025-10-13","kind":"Подключение аккаунта","n":109},{"w":"2025-10-20","kind":"Подключение аккаунта","n":50},{"w":"2025-10-27","kind":"Подключение аккаунта","n":49},{"w":"2025-11-03","kind":"Подключение аккаунта","n":49},{"w":"2025-11-10","kind":"Подключение аккаунта","n":62},{"w":"2025-11-17","kind":"Подключение аккаунта","n":39},{"w":"2025-11-24","kind":"Подключение аккаунта","n":56},{"w":"2025-12-01","kind":"Подключение аккаунта","n":62},{"w":"2025-12-08","kind":"Подключение аккаунта","n":41},{"w":"2025-12-15","kind":"Подключение аккаунта","n":36},{"w":"2025-12-22","kind":"Подключение аккаунта","n":28},{"w":"2025-12-29","kind":"Подключение аккаунта","n":32},{"w":"2026-01-05","kind":"Подключение аккаунта","n":37},{"w":"2026-01-12","kind":"Подключение аккаунта","n":121},{"w":"2026-01-19","kind":"Подключение аккаунта","n":44},{"w":"2026-01-26","kind":"Подключение аккаунта","n":79},{"w":"2026-02-02","kind":"Подключение аккаунта","n":61},{"w":"2026-02-09","kind":"Подключение аккаунта","n":53},{"w":"2026-02-16","kind":"Подключение аккаунта","n":57},{"w":"2026-02-23","kind":"Подключение аккаунта","n":55},{"w":"2026-03-02","kind":"Подключение аккаунта","n":31},{"w":"2026-03-09","kind":"Подключение аккаунта","n":27},{"w":"2026-03-16","kind":"Подключение аккаунта","n":28},{"w":"2026-03-23","kind":"Подключение аккаунта","n":129},{"w":"2026-03-30","kind":"Подключение аккаунта","n":73},{"w":"2026-04-06","kind":"Подключение аккаунта","n":50},{"w":"2026-04-13","kind":"Подключение аккаунта","n":69},{"w":"2026-04-20","kind":"Подключение аккаунта","n":57},{"w":"2026-04-27","kind":"Подключение аккаунта","n":44},{"w":"2026-05-04","kind":"Подключение аккаунта","n":87},{"w":"2026-05-11","kind":"Подключение аккаунта","n":46},{"w":"2026-05-18","kind":"Подключение аккаунта","n":22},{"w":"2026-05-25","kind":"Подключение аккаунта","n":63},{"w":"2026-06-01","kind":"Подключение аккаунта","n":193},{"w":"2026-06-08","kind":"Подключение аккаунта","n":57},{"w":"2026-06-15","kind":"Ручные позиции","n":20},{"w":"2026-06-15","kind":"Синк журнала","n":171},{"w":"2026-06-15","kind":"Подключение аккаунта","n":51},{"w":"2026-06-22","kind":"Ручные позиции","n":40},{"w":"2026-06-22","kind":"Синк журнала","n":133},{"w":"2026-06-22","kind":"Подключение аккаунта","n":48},{"w":"2026-06-29","kind":"AI-запросы","n":19},{"w":"2026-06-29","kind":"Ручные позиции","n":65},{"w":"2026-06-29","kind":"Экспорт XLSX","n":11},{"w":"2026-06-29","kind":"Подключение аккаунта","n":77},{"w":"2026-06-29","kind":"Синк журнала","n":143},{"w":"2026-07-06","kind":"Подключение аккаунта","n":158},{"w":"2026-07-06","kind":"Ручные позиции","n":75},{"w":"2026-07-06","kind":"Экспорт XLSX","n":48},{"w":"2026-07-06","kind":"AI-запросы","n":61},{"w":"2026-07-06","kind":"Синк журнала","n":385},{"w":"2026-07-13","kind":"Подключение аккаунта","n":67},{"w":"2026-07-13","kind":"Экспорт XLSX","n":45},{"w":"2026-07-13","kind":"Ручные позиции","n":61},{"w":"2026-07-13","kind":"AI-запросы","n":42},{"w":"2026-07-13","kind":"Синк журнала","n":197},{"w":"2026-07-20","kind":"Подключение аккаунта","n":28},{"w":"2026-07-20","kind":"AI-запросы","n":13},{"w":"2026-07-20","kind":"Синк журнала","n":68},{"w":"2026-07-20","kind":"Ручные позиции","n":15},{"w":"2026-07-20","kind":"Экспорт XLSX","n":7}],"sync_by_market":[{"market":"fx","syncs":884,"users":191},{"market":"crypto","syncs":213,"users":34}],"connections_by_provider":[{"provider":"metatrader5","connections":2854,"users":1696},{"provider":"binance","connections":1375,"users":1022},{"provider":"bybit","connections":356,"users":308},{"provider":"okx","connections":148,"users":127},{"provider":"","connections":45,"users":37},{"provider":"metatrader4","connections":26,"users":24},{"provider":"ctrader","connections":20,"users":14},{"provider":"mexc","connections":17,"users":13},{"provider":"hyperliquid","connections":17,"users":12},{"provider":"orderly_perptools","connections":4,"users":3},{"provider":"kraken","connections":3,"users":3}],"mrr_monthly":[{"m":"2025-12","monthly_subs":3,"yearly_subs":1,"mrr":75.58},{"m":"2026-01","monthly_subs":21,"yearly_subs":2,"mrr":471},{"m":"2026-02","monthly_subs":23,"yearly_subs":2,"mrr":733.67},{"m":"2026-03","monthly_subs":13,"yearly_subs":3,"mrr":274.38},{"m":"2026-04","monthly_subs":10,"yearly_subs":5,"mrr":229.25},{"m":"2026-05","monthly_subs":10,"yearly_subs":7,"mrr":266.76},{"m":"2026-06","monthly_subs":3,"yearly_subs":9,"mrr":167.76},{"m":"2026-07","monthly_subs":6,"yearly_subs":9,"mrr":227.76}],"renewals_monthly":[{"due_month":"2026-01","due":3,"renewed":1},{"due_month":"2026-02","due":21,"renewed":3},{"due_month":"2026-03","due":23,"renewed":0},{"due_month":"2026-04","due":13,"renewed":2},{"due_month":"2026-05","due":10,"renewed":1},{"due_month":"2026-06","due":10,"renewed":0},{"due_month":"2026-07","due":3,"renewed":1}],"cohort_conversion":[{"cohort":"2025-11","users":554,"pay7":0,"pay30":0,"pay90":3,"pay_ever":5},{"cohort":"2025-12","users":393,"pay7":0,"pay30":0,"pay90":1,"pay_ever":4},{"cohort":"2026-01","users":704,"pay7":2,"pay30":2,"pay90":3,"pay_ever":4},{"cohort":"2026-02","users":567,"pay7":3,"pay30":3,"pay90":8,"pay_ever":9},{"cohort":"2026-03","users":363,"pay7":1,"pay30":1,"pay90":2,"pay_ever":2},{"cohort":"2026-04","users":706,"pay7":1,"pay30":1,"pay90":2,"pay_ever":2},{"cohort":"2026-05","users":608,"pay7":1,"pay30":1,"pay90":1,"pay_ever":1},{"cohort":"2026-06","users":1113,"pay7":0,"pay30":1,"pay90":1,"pay_ever":1},{"cohort":"2026-07","users":752,"pay7":0,"pay30":0,"pay90":0,"pay_ever":0}],"time_to_value":[{"med_create_d":0,"med_conn_d":0.01,"med_sync_d":0.02,"med_pay_d":44.5,"activation7_pct":21.4}],"stuck_pending":[{"payment_method":"mono","n":36,"amount":973.42,"oldest":"2026-02-24"},{"payment_method":"whitepay","n":10,"amount":800,"oldest":"2026-05-11"},{"payment_method":"overpay","n":2,"amount":40,"oldest":"2026-04-18"}],"funnel":[{"registered":12938,"created_account":8600,"connected":2907,"synced":224,"paid":80}]};
+
+const NS = 'http://www.w3.org/2000/svg';
+const fmtN = n => Math.round(n).toLocaleString('ru-RU');
+const fmtM = n => '$' + Math.round(n).toLocaleString('ru-RU');
+const MONTHS = ['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+const mLabel = m => { const [y, mm] = m.split('-'); return MONTHS[+mm - 1] + ' ' + y.slice(2); };
+const wLabel = w => { const [y, mm, d] = w.split('-'); return +d + ' ' + MONTHS[+mm - 1] + ' ' + y.slice(2); };
+
+function E(tag, attrs, parent) {
+  const el = document.createElementNS(NS, tag);
+  for (const k in attrs) el.setAttribute(k, attrs[k]);
+  if (parent) parent.appendChild(el);
+  return el;
+}
+function niceTicks(max, count = 4) {
+  const raw = max / count;
+  const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1, 2, 2.5, 5, 10].map(s => s * mag).find(s => max / s <= count) || 10 * mag;
+  const ticks = [];
+  for (let v = 0; v <= max + 1e-9; v += step) ticks.push(v);
+  return ticks;
+}
+
+const tip = document.getElementById('tip');
+function showTip(x, y, title, rows) {
+  tip.textContent = '';
+  const t = document.createElement('div'); t.className = 't'; t.textContent = title; tip.appendChild(t);
+  for (const r of rows) {
+    const d = document.createElement('div'); d.className = 'r';
+    if (r.color) { const k = document.createElement('span'); k.className = 'k'; k.style.background = r.color; d.appendChild(k); }
+    const v = document.createElement('span'); v.className = 'v'; v.textContent = r.value; d.appendChild(v);
+    const l = document.createElement('span'); l.className = 'l'; l.textContent = r.label; d.appendChild(l);
+    tip.appendChild(d);
+  }
+  tip.style.display = 'block';
+  const r = tip.getBoundingClientRect();
+  tip.style.left = Math.min(x + 14, innerWidth - r.width - 8) + 'px';
+  tip.style.top = Math.max(8, Math.min(y - r.height - 12, innerHeight - r.height - 8)) + 'px';
+}
+const hideTip = () => { tip.style.display = 'none'; };
+
+function legend(host, items, kind = 'sw') {
+  const box = document.createElement('div'); box.className = 'legend';
+  for (const it of items) {
+    const s = document.createElement('span'); s.className = 'it';
+    const sw = document.createElement('span'); sw.className = kind; sw.style.background = it.color;
+    const tx = document.createElement('span'); tx.textContent = it.label;
+    s.append(sw, tx); box.appendChild(s);
+  }
+  host.parentNode.insertBefore(box, host.nextSibling);
+}
+function tableView(host, headers, rows) {
+  const det = document.createElement('details'); det.className = 'tbl';
+  const sum = document.createElement('summary'); sum.textContent = 'Показать таблицей'; det.appendChild(sum);
+  const tb = document.createElement('table');
+  const trh = document.createElement('tr');
+  headers.forEach((h, i) => { const th = document.createElement('th'); if (i > 0) th.className = 'n'; th.textContent = h; trh.appendChild(th); });
+  tb.appendChild(trh);
+  for (const row of rows) {
+    const tr = document.createElement('tr');
+    row.forEach((c, i) => { const td = document.createElement('td'); if (i > 0) td.className = 'n'; td.textContent = c; tr.appendChild(td); });
+    tb.appendChild(tr);
+  }
+  det.appendChild(tb);
+  host.parentNode.appendChild(det);
+}
+
+const PAD = { l: 58, r: 14, t: 14, b: 26 };
+
+function frame(host, H) {
+  host.textContent = '';
+  const W = Math.max(host.clientWidth || +host.dataset.w || 0, 280);
+  const svg = E('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H }, host);
+  return { svg, W, H, pw: W - PAD.l - PAD.r, ph: H - PAD.t - PAD.b };
+}
+function yAxis(svg, ticks, yMax, pw, ph, fmt) {
+  for (const t of ticks) {
+    const y = PAD.t + ph - (t / yMax) * ph;
+    E('line', { x1: PAD.l, x2: PAD.l + pw, y1: y, y2: y, stroke: t === 0 ? 'var(--axis)' : 'var(--grid)', 'stroke-width': 1 }, svg);
+    if (t > 0) E('text', { x: PAD.l - 8, y: y + 4, 'text-anchor': 'end' }, svg).textContent = fmt(t);
+  }
+}
+
+// Колонки: одна серия, подсветка при наведении, подписи у максимума и последней
+function columns(host, data, { y, tooltip, xl, xlt, label, H = 230, color = 'var(--s1)' }) {
+  const { svg, pw, ph } = frame(host, H);
+  const yMax = Math.max(...data.map(y)) * 1.12;
+  const ticks = niceTicks(Math.max(...data.map(y)));
+  yAxis(svg, ticks, yMax, pw, ph, label);
+  const band = pw / data.length;
+  const bw = Math.min(24, band * 0.62);
+  const maxI = data.reduce((a, r, i) => y(r) > y(data[a]) ? i : a, 0);
+  const lstep = Math.ceil(data.length / 8);
+  data.forEach((r, i) => {
+    const h = (y(r) / yMax) * ph;
+    const x = PAD.l + band * i + (band - bw) / 2;
+    const yTop = PAD.t + ph - h;
+    const rr = Math.min(4, h / 2);
+    const bar = E('path', {
+      d: `M${x},${PAD.t + ph} v${-(h - rr)} q0,${-rr} ${rr},${-rr} h${bw - 2 * rr} q${rr},0 ${rr},${rr} v${h - rr} z`,
+      fill: color, class: 'col'
+    }, svg);
+    if (i === maxI || i === data.length - 1) {
+      E('text', { x: x + bw / 2, y: yTop - 6, 'text-anchor': 'middle', class: 'dl' }, svg).textContent = label(y(r));
+    }
+    const showLbl = i === data.length - 1 || (i % lstep === 0 && i < data.length - lstep * 0.6);
+    E('text', { x: PAD.l + band * i + band / 2, y: PAD.t + ph + 17, 'text-anchor': 'middle' }, svg).textContent =
+      showLbl ? xl(r) : '';
+    const hit = E('rect', { x: PAD.l + band * i, y: PAD.t, width: band, height: ph, fill: 'transparent' }, svg);
+    hit.addEventListener('pointermove', e => { bar.style.opacity = 0.75; showTip(e.clientX, e.clientY, (xlt || xl)(r), tooltip(r)); });
+    hit.addEventListener('pointerleave', () => { bar.style.opacity = 1; hideTip(); });
+  });
+}
+
+// Линия с областью, кросхейром и общей подсказкой
+function line(host, data, { y, xl, label, H = 240, color = 'var(--s1)' }) {
+  const { svg, pw, ph } = frame(host, H);
+  const yMax = Math.max(...data.map(y)) * 1.12;
+  yAxis(svg, niceTicks(Math.max(...data.map(y))), yMax, pw, ph, label);
+  const X = i => PAD.l + (data.length === 1 ? pw / 2 : (i / (data.length - 1)) * pw);
+  const Y = v => PAD.t + ph - (v / yMax) * ph;
+  const pts = data.map((r, i) => `${X(i)},${Y(y(r))}`);
+  E('path', { d: `M${pts.join('L')}L${X(data.length - 1)},${PAD.t + ph}L${X(0)},${PAD.t + ph}Z`, fill: color, opacity: 0.1 }, svg);
+  E('path', { d: 'M' + pts.join('L'), fill: 'none', stroke: color, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
+  const step = Math.max(1, Math.floor(data.length / 6));
+  data.forEach((r, i) => {
+    if ((i % step === 0 && i < data.length - step * 0.6) || i === data.length - 1)
+      E('text', { x: X(i), y: PAD.t + ph + 17, 'text-anchor': i === data.length - 1 ? 'end' : 'middle' }, svg).textContent = xl(r);
+  });
+  const maxI = data.reduce((a, r, i) => y(r) > y(data[a]) ? i : a, 0);
+  E('circle', { cx: X(maxI), cy: Y(y(data[maxI])), r: 4.5, fill: color, stroke: 'var(--surface)', 'stroke-width': 2 }, svg);
+  E('text', { x: X(maxI), y: Y(y(data[maxI])) - 9, 'text-anchor': 'middle', class: 'dl' }, svg).textContent = label(y(data[maxI]));
+  const cross = E('line', { y1: PAD.t, y2: PAD.t + ph, stroke: 'var(--axis)', 'stroke-width': 1, visibility: 'hidden' }, svg);
+  const dot = E('circle', { r: 4.5, fill: color, stroke: 'var(--surface)', 'stroke-width': 2, visibility: 'hidden' }, svg);
+  const hit = E('rect', { x: PAD.l, y: PAD.t, width: pw, height: ph, fill: 'transparent' }, svg);
+  hit.addEventListener('pointermove', e => {
+    const box = svg.getBoundingClientRect();
+    const i = Math.round((e.clientX - box.left - PAD.l) / pw * (data.length - 1));
+    const ci = Math.max(0, Math.min(data.length - 1, i));
+    cross.setAttribute('x1', X(ci)); cross.setAttribute('x2', X(ci)); cross.setAttribute('visibility', 'visible');
+    dot.setAttribute('cx', X(ci)); dot.setAttribute('cy', Y(y(data[ci]))); dot.setAttribute('visibility', 'visible');
+    showTip(e.clientX, e.clientY, xl(data[ci]), [{ color, value: label(y(data[ci])), label: '' }]);
+  });
+  hit.addEventListener('pointerleave', () => { cross.setAttribute('visibility', 'hidden'); dot.setAttribute('visibility', 'hidden'); hideTip(); });
+}
+
+// Горизонтальные бары: подпись значения у конца
+function hbars(host, data, { cat, val, label, colors, tooltip, sub, labelW }) {
+  const rowH = 34, H = data.length * rowH + 14;
+  host.textContent = '';
+  const W = Math.max(host.clientWidth || +host.dataset.w || 0, 280);
+  const svg = E('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H }, host);
+  const lw = Math.min(labelW || 150, W * 0.34);
+  const vMax = Math.max(...data.map(val));
+  const maxRow = data.find(r => val(r) === vMax);
+  const txt = r => label(val(r)) + (sub ? sub(r) : '');
+  const pw = W - lw - Math.max(60, txt(maxRow).length * 7.2 + 14);
+  data.forEach((r, i) => {
+    const y = 8 + i * rowH;
+    const w = Math.max((val(r) / vMax) * pw, 2);
+    E('text', { x: lw - 10, y: y + 15, 'text-anchor': 'end', fill: 'var(--ink-2)' }, svg).textContent = cat(r);
+    const c = colors ? colors[i] : 'var(--s1)';
+    const rr = Math.min(4, w / 2);
+    const bar = E('path', { d: `M${lw},${y} h${w - rr} q${rr},0 ${rr},${rr} v${22 - 2 * rr} q0,${rr} ${-rr},${rr} h${-(w - rr)} z`, fill: c, class: 'bar' }, svg);
+    E('text', { x: lw + w + 8, y: y + 15, class: 'dl' }, svg).textContent = label(val(r)) + (sub ? sub(r) : '');
+    const hit = E('rect', { x: 0, y, width: W, height: rowH, fill: 'transparent' }, svg);
+    hit.addEventListener('pointermove', e => { bar.style.opacity = 0.75; showTip(e.clientX, e.clientY, cat(r), tooltip(r)); });
+    hit.addEventListener('pointerleave', () => { bar.style.opacity = 1; hideTip(); });
+  });
+}
+
+// Стек-бары по строкам (статусы платёжных методов)
+function stackedH(host, data, { cat, segs, total }) {
+  const rowH = 40, H = data.length * rowH + 8;
+  host.textContent = '';
+  const W = Math.max(host.clientWidth || +host.dataset.w || 0, 280);
+  const svg = E('svg', { viewBox: `0 0 ${W} ${H}`, width: W, height: H }, host);
+  const lw = 92, pw = W - lw - 56;
+  const vMax = Math.max(...data.map(total));
+  data.forEach((r, i) => {
+    const y = 6 + i * rowH;
+    E('text', { x: lw - 10, y: y + 16, 'text-anchor': 'end', fill: 'var(--ink-2)' }, svg).textContent = cat(r);
+    let x = lw;
+    for (const s of segs) {
+      const v = s.val(r);
+      if (!v) continue;
+      const w = (v / vMax) * pw;
+      const bar = E('rect', { x, y, width: Math.max(w - 2, 1), height: 24, rx: 3, fill: s.color, class: 'bar' }, svg);
+      if (w > 34) {
+        const inl = E('text', { x: x + Math.max(w - 2, 1) / 2, y: y + 16, 'text-anchor': 'middle', fill: s.ink || '#fff', 'font-weight': 600 }, svg);
+        inl.textContent = v;
+      }
+      bar.addEventListener('pointermove', e => {
+        bar.style.opacity = 0.8;
+        showTip(e.clientX, e.clientY, cat(r), segs.map(g => ({ color: g.color, value: fmtN(g.val(r)), label: g.label })));
+      });
+      bar.addEventListener('pointerleave', () => { bar.style.opacity = 1; hideTip(); });
+      x += w;
+    }
+    E('text', { x: x + 8, y: y + 16, class: 'dl' }, svg).textContent = fmtN(total(r));
+  });
+}
+
+// Сгруппированные колонки (события по неделям, 5 серий)
+function grouped(host, weeks, series, { H = 250 }) {
+  const { svg, pw, ph } = frame(host, H);
+  const vMax = Math.max(...series.flatMap(s => weeks.map(w => s.val(w)))) * 1.12;
+  yAxis(svg, niceTicks(vMax / 1.12), vMax, pw, ph, fmtN);
+  const band = pw / weeks.length;
+  const bw = Math.min(13, (band - 10) / series.length);
+  weeks.forEach((w, i) => {
+    const gx = PAD.l + band * i + (band - bw * series.length) / 2;
+    series.forEach((s, j) => {
+      const v = s.val(w);
+      const h = (v / vMax) * ph;
+      const bar = E('rect', { x: gx + j * bw, y: PAD.t + ph - h, width: bw - 2, height: h, rx: 2, fill: s.color, class: 'col' }, svg);
+      bar.addEventListener('pointermove', e => {
+        bar.style.opacity = 0.75;
+        showTip(e.clientX, e.clientY, 'Неделя ' + wLabel(w.w), series.map(g => ({ color: g.color, value: fmtN(g.val(w)), label: g.label })));
+      });
+      bar.addEventListener('pointerleave', () => { bar.style.opacity = 1; hideTip(); });
+    });
+    E('text', { x: PAD.l + band * i + band / 2, y: PAD.t + ph + 17, 'text-anchor': 'middle' }, svg).textContent = wLabel(w.w).slice(0, -3);
+  });
+}
+
+function tile(host, label, value, sub) {
+  const d = document.createElement('div'); d.className = 'tile';
+  const l = document.createElement('div'); l.className = 'lbl'; l.textContent = label;
+  const v = document.createElement('div'); v.className = 'val'; v.textContent = value;
+  d.append(l, v);
+  if (sub) { const s = document.createElement('div'); s.className = 'sub'; s.innerHTML = sub; d.appendChild(s); }
+  host.appendChild(d);
+}
+
+// --- Виджет выручки: гранулярность (недели/месяцы/кварталы) + период ---
+const revState = { g: 'month', from: null, to: null };
+const revBounds = () => [DATA.sales_daily[0].d, DATA.sales_daily[DATA.sales_daily.length - 1].d];
+
+function aggRevenue() {
+  const key = d => {
+    if (revState.g === 'month') return d.slice(0, 7);
+    if (revState.g === 'quarter') return d.slice(0, 4) + '-Q' + (Math.floor((+d.slice(5, 7) - 1) / 3) + 1);
+    const dt = new Date(d + 'T00:00:00Z');
+    dt.setUTCDate(dt.getUTCDate() - (dt.getUTCDay() + 6) % 7);
+    return dt.toISOString().slice(0, 10);
+  };
+  const map = new Map();
+  for (const r of DATA.sales_daily) {
+    if (revState.from && r.d < revState.from) continue;
+    if (revState.to && r.d > revState.to) continue;
+    const k = key(r.d);
+    const o = map.get(k) || { k, sales: 0, revenue: 0 };
+    o.sales += r.sales; o.revenue += r.revenue;
+    map.set(k, o);
+  }
+  return [...map.values()].sort((a, b) => a.k < b.k ? -1 : 1);
+}
+
+const revXL = r =>
+  revState.g === 'month' ? mLabel(r.k) :
+  revState.g === 'quarter' ? 'Q' + r.k.slice(6) + ' ' + r.k.slice(2, 4) :
+  +r.k.slice(8) + ' ' + MONTHS[+r.k.slice(5, 7) - 1];
+const revXLT = r => revState.g === 'week' ? 'Неделя ' + wLabel(r.k) : revXL(r);
+
+function renderRevenue() {
+  const host = document.getElementById('revMonthly');
+  host.parentNode.querySelectorAll('details.tbl').forEach(e => e.remove());
+  const data = aggRevenue();
+  if (!data.length) {
+    host.textContent = '';
+    const p = document.createElement('p');
+    p.className = 'note'; p.textContent = 'Нет успешных платежей за выбранный период.';
+    host.appendChild(p);
+    return;
+  }
+  columns(host, data, {
+    y: r => r.revenue, xl: revXL, xlt: revXLT, label: fmtM,
+    tooltip: r => [
+      { color: 'var(--s1)', value: fmtM(r.revenue), label: 'выручка' },
+      { value: fmtN(r.sales), label: 'оплат' },
+      { value: '$' + (r.revenue / r.sales).toFixed(2).replace('.', ','), label: 'средний чек' },
+    ],
+  });
+  tableView(host, [{ week: 'Неделя', month: 'Месяц', quarter: 'Квартал' }[revState.g], 'Выручка', 'Оплат', 'Ср. чек'],
+    data.map(r => [revXLT(r), fmtM(r.revenue), r.sales, '$' + (r.revenue / r.sales).toFixed(2)]));
+}
+
+function setupRevControls() {
+  const gran = document.getElementById('revGran');
+  const preset = document.getElementById('revPreset');
+  const ctrls = document.getElementById('revCtrls');
+  const from = document.getElementById('revFrom');
+  const to = document.getElementById('revTo');
+  const [minD, maxD] = revBounds();
+  from.min = to.min = minD; from.max = to.max = maxD;
+  gran.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    revState.g = b.dataset.g;
+    gran.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    renderRevenue();
+  }));
+  preset.addEventListener('change', () => {
+    ctrls.classList.toggle('custom', preset.value === 'custom');
+    if (preset.value === 'all') {
+      revState.from = revState.to = null;
+    } else if (preset.value === 'custom') {
+      from.value = from.value || minD; to.value = to.value || maxD;
+      revState.from = from.value; revState.to = to.value;
+    } else {
+      const dt = new Date(maxD + 'T00:00:00Z');
+      dt.setUTCDate(dt.getUTCDate() - (+preset.value) + 1);
+      revState.from = dt.toISOString().slice(0, 10); revState.to = maxD;
+    }
+    renderRevenue();
+  });
+  [from, to].forEach(inp => inp.addEventListener('change', () => {
+    if (preset.value !== 'custom') return;
+    revState.from = from.value || minD; revState.to = to.value || maxD;
+    renderRevenue();
+  }));
+}
+
+function render() {
+  document.querySelectorAll('.legend, details.tbl').forEach(e => e.remove());
+  const D = DATA;
+  const us = D.users_summary[0];
+  const fu = D.funnel[0];
+  const revTotal = D.sales_daily.reduce((a, r) => a + r.revenue, 0);
+  const salesTotal = D.sales_daily.reduce((a, r) => a + r.sales, 0);
+
+  // KPI
+  const k = document.getElementById('kpis'); k.textContent = '';
+  tile(k, 'Пользователи', fmtN(us.total_users), 'регистрации с марта 2024');
+  tile(k, 'Платящие', fmtN(us.payers), 'конверсия <b>' + (us.payers / us.total_users * 100).toFixed(2).replace('.', ',') + '%</b>');
+  tile(k, 'Выручка', fmtM(revTotal), fmtN(salesTotal) + ' успешных оплат');
+  tile(k, 'Средний чек', '$' + (revTotal / salesTotal).toFixed(2).replace('.', ','), 'на успешную оплату');
+  tile(k, 'ARPPU', '$' + us.arppu.toFixed(2).replace('.', ','), 'на платящего за всё время');
+  tile(k, 'Применений промокодов', fmtN(D.promo_usage[0].uses), 'за всю историю');
+  const curMrr = D.mrr_monthly[D.mrr_monthly.length - 1];
+  tile(k, 'MRR сейчас', fmtM(curMrr.mrr), curMrr.monthly_subs + ' месячных + ' + curMrr.yearly_subs + ' годовых подписок');
+  const renClosed = D.renewals_monthly.slice(0, -1);
+  const renDue = renClosed.reduce((a, r) => a + r.due, 0);
+  const renOk = renClosed.reduce((a, r) => a + r.renewed, 0);
+  tile(k, 'Продлеваемость месячных', renDue ? Math.round(renOk / renDue * 100) + '%' : '—',
+    renOk + ' продлений из ' + renDue + ' истёкших');
+
+  // Деньги
+  renderRevenue();
+
+  columns(document.getElementById('salesMonthly'), D.sales_monthly, {
+    y: r => r.sales, xl: r => mLabel(r.m), label: fmtN,
+    tooltip: r => [
+      { color: 'var(--s1)', value: fmtN(r.sales), label: 'оплат' },
+      { value: fmtN(r.buyers), label: 'покупателей' },
+    ],
+  });
+  tableView(document.getElementById('salesMonthly'), ['Месяц', 'Оплат', 'Покупателей'],
+    D.sales_monthly.map(r => [mLabel(r.m), r.sales, r.buyers]));
+
+  const methods = D.sales_by_method;
+  const segs = [
+    { label: 'успех', color: 'var(--good)', val: r => r.success, ink: '#fff' },
+    { label: 'в ожидании', color: 'var(--warning)', val: r => r.pending, ink: '#4a3500' },
+    { label: 'отказ', color: 'var(--critical)', val: r => r.failed, ink: '#fff' },
+  ];
+  stackedH(document.getElementById('methods'), methods, { cat: r => r.payment_method, segs, total: r => r.attempts });
+  legend(document.getElementById('methods'), segs.map(s => ({ label: s.label, color: s.color })));
+  tableView(document.getElementById('methods'), ['Метод', 'Попыток', 'Успех', 'В ожидании', 'Отказ', 'Выручка'],
+    methods.map(r => [r.payment_method, r.attempts, r.success, r.pending, r.failed, fmtM(r.revenue || 0)]));
+
+  hbars(document.getElementById('stuck'), D.stuck_pending, {
+    cat: r => r.payment_method, val: r => r.amount, label: fmtM,
+    sub: r => '  ·  ' + r.n + ' шт.',
+    colors: D.stuck_pending.map(() => 'var(--warning)'),
+    tooltip: r => [
+      { color: 'var(--warning)', value: fmtM(r.amount), label: 'зависло' },
+      { value: fmtN(r.n), label: 'платежей' },
+      { value: r.oldest.split('-').reverse().join('.'), label: 'старейший' },
+    ],
+  });
+  tableView(document.getElementById('stuck'), ['Метод', 'Сумма', 'Платежей', 'Старейший'],
+    D.stuck_pending.map(r => [r.payment_method, fmtM(r.amount), r.n, r.oldest.split('-').reverse().join('.')]));
+
+  const ov = methods.find(r => r.payment_method === 'overpay');
+  document.getElementById('payCallout').innerHTML =
+    '<b>Отказы платежей.</b> У overpay из ' + ov.attempts + ' попыток провалились ' + ov.failed +
+    ' (' + Math.round(ov.failed / ov.attempts * 100) + '%) — это до ' + fmtM(ov.failed * (revTotal / salesTotal)) +
+    ' потенциально потерянной выручки в среднем чеке. У mono 36 платежей висят в pending.';
+
+  const plansData = D.sales_by_plan.map(r => ({ ...r, name: r.plan_name + ' · ' + ({ monthly: 'месячный', yearly: 'годовой', unlimited: 'безлимит' }[r.subs_period] || r.subs_period) }));
+  hbars(document.getElementById('plans'), plansData, {
+    cat: r => r.name, val: r => r.revenue, label: fmtM,
+    tooltip: r => [
+      { color: 'var(--s1)', value: fmtM(r.revenue), label: 'выручка' },
+      { value: fmtN(r.sales), label: 'оплат' },
+    ],
+  });
+  tableView(document.getElementById('plans'), ['Тариф', 'Выручка', 'Оплат'],
+    plansData.map(r => [r.name, fmtM(r.revenue), r.sales]));
+
+  // Подписочная экономика
+  columns(document.getElementById('mrr'), D.mrr_monthly, {
+    y: r => r.mrr, xl: r => mLabel(r.m), label: fmtM,
+    tooltip: r => [
+      { color: 'var(--s1)', value: fmtM(r.mrr), label: 'MRR' },
+      { value: fmtN(r.monthly_subs), label: 'активных месячных' },
+      { value: fmtN(r.yearly_subs), label: 'активных годовых' },
+    ],
+  });
+  tableView(document.getElementById('mrr'), ['Месяц', 'MRR', 'Месячных', 'Годовых'],
+    D.mrr_monthly.map(r => [mLabel(r.m), fmtM(r.mrr), r.monthly_subs, r.yearly_subs]));
+
+  columns(document.getElementById('renewals'), D.renewals_monthly, {
+    y: r => r.due ? r.renewed / r.due * 100 : 0, xl: r => mLabel(r.due_month),
+    label: v => Math.round(v) + '%',
+    tooltip: r => [
+      { color: 'var(--s1)', value: (r.due ? Math.round(r.renewed / r.due * 100) : 0) + '%', label: 'продлеваемость' },
+      { value: fmtN(r.due), label: 'подписок истекло' },
+      { value: fmtN(r.renewed), label: 'продлено' },
+    ],
+  });
+  tableView(document.getElementById('renewals'), ['Месяц истечения', 'Истекло', 'Продлено', 'Продлеваемость'],
+    D.renewals_monthly.map(r => [mLabel(r.due_month), r.due, r.renewed, (r.due ? Math.round(r.renewed / r.due * 100) : 0) + '%']));
+
+  // Когорты регистрация -> первая оплата
+  const cohHost = document.getElementById('cohorts');
+  cohHost.textContent = '';
+  const today = new Date();
+  const windows = [{ n: 7, h: '≤7 дней' }, { n: 30, h: '≤30 дней' }, { n: 90, h: '≤90 дней' }];
+  const cohMax = Math.max(...D.cohort_conversion.flatMap(r =>
+    [r.pay7, r.pay30, r.pay90].map(v => v / r.users * 100)), 0.01);
+  const ctb = document.createElement('table');
+  const hRow = document.createElement('tr');
+  ['Когорта', 'Юзеров', ...windows.map(w => w.h), 'Оплатили всего'].forEach(h => {
+    const th = document.createElement('th'); th.textContent = h; hRow.appendChild(th);
+  });
+  ctb.appendChild(hRow);
+  for (const r of D.cohort_conversion) {
+    const tr = document.createElement('tr');
+    const [cy, cm] = r.cohort.split('-').map(Number);
+    const monthEnd = new Date(Date.UTC(cy, cm, 0));
+    const td0 = document.createElement('td'); td0.textContent = mLabel(r.cohort); tr.appendChild(td0);
+    const td1 = document.createElement('td'); td1.textContent = fmtN(r.users); tr.appendChild(td1);
+    windows.forEach((w, i) => {
+      const td = document.createElement('td');
+      const mature = new Date(monthEnd.getTime() + w.n * 86400000) <= today;
+      if (!mature) { td.textContent = '—'; td.className = 'dim'; }
+      else {
+        const v = [r.pay7, r.pay30, r.pay90][i];
+        const pct = v / r.users * 100;
+        td.textContent = pct.toFixed(2).replace('.', ',') + '%';
+        td.title = v + ' чел.';
+        if (pct > 0) td.style.background = 'rgba(57,135,229,' + (0.06 + 0.36 * pct / cohMax).toFixed(2) + ')';
+      }
+      tr.appendChild(td);
+    });
+    const tdE = document.createElement('td');
+    tdE.textContent = r.pay_ever + ' · ' + (r.pay_ever / r.users * 100).toFixed(2).replace('.', ',') + '%';
+    tr.appendChild(tdE);
+    ctb.appendChild(tr);
+  }
+  cohHost.appendChild(ctb);
+
+  // Воронка
+  const fun = [
+    { name: 'Зарегистрировался', v: fu.registered },
+    { name: 'Создал торговый аккаунт', v: fu.created_account },
+    { name: 'Подключил аккаунт', v: fu.connected },
+    { name: 'Оплатил', v: fu.paid },
+  ];
+  hbars(document.getElementById('funnel'), fun, {
+    cat: r => r.name, val: r => r.v, label: fmtN, labelW: 215,
+    colors: ['var(--ord1)', 'var(--ord2)', 'var(--ord3)', 'var(--ord4)'],
+    sub: r => {
+      const i = fun.indexOf(r);
+      return i === 0 ? '' : '  ·  ' + (r.v / fun[i - 1].v * 100).toFixed(1).replace('.', ',') + '% от предыдущего';
+    },
+    tooltip: r => {
+      const i = fun.indexOf(r);
+      return [
+        { value: fmtN(r.v), label: 'пользователей' },
+        { value: (r.v / fun[0].v * 100).toFixed(2).replace('.', ',') + '%', label: 'от всех регистраций' },
+        ...(i > 0 ? [{ value: (r.v / fun[i - 1].v * 100).toFixed(1).replace('.', ',') + '%', label: 'от предыдущего шага' }] : []),
+      ];
+    },
+  });
+  tableView(document.getElementById('funnel'), ['Шаг', 'Пользователей', '% от регистраций'],
+    fun.map(r => [r.name, fmtN(r.v), (r.v / fun[0].v * 100).toFixed(2) + '%']));
+
+  // Скорость пути к ценности
+  const tv = D.time_to_value[0];
+  const ttv = document.getElementById('ttv'); ttv.textContent = '';
+  const fmtDays = d => d == null ? '—'
+    : d < 0.005 ? 'сразу'
+    : d < 1 ? '≈' + Math.round(d * 1440) + ' мин'
+    : String(d).replace('.', ',') + ' дн.';
+  tile(ttv, 'До создания аккаунта', fmtDays(tv.med_create_d), 'медиана');
+  tile(ttv, 'До подключения аккаунта', fmtDays(tv.med_conn_d), 'медиана');
+  tile(ttv, 'До первого синка журнала', fmtDays(tv.med_sync_d), 'медиана');
+  tile(ttv, 'До первой оплаты', fmtDays(tv.med_pay_d), 'медиана по платящим');
+  tile(ttv, 'Активация за 7 дней', String(tv.activation7_pct).replace('.', ',') + '%', 'подключили аккаунт, регистрации за 90 дней');
+
+  // Пользователи
+  line(document.getElementById('regs'), D.registrations_weekly, {
+    y: r => r.regs, xl: r => 'нед. ' + wLabel(r.w), label: fmtN,
+  });
+  tableView(document.getElementById('regs'), ['Неделя', 'Регистраций'],
+    D.registrations_weekly.slice(-16).map(r => [wLabel(r.w), r.regs]));
+
+  hbars(document.getElementById('plansNow'), D.plans_current, {
+    cat: r => r.plan, val: r => r.users, label: fmtN,
+    tooltip: r => [{ color: 'var(--s1)', value: fmtN(r.users), label: 'пользователей — ' + (r.users / us.total_users * 100).toFixed(1).replace('.', ',') + '%' }],
+  });
+  tableView(document.getElementById('plansNow'), ['Тариф', 'Пользователей'],
+    D.plans_current.map(r => [r.plan, fmtN(r.users)]));
+
+  const order = ['1-24', '25-49', '50-99', '100-199', '200+'];
+  const spent = order.map(b => D.spent_distribution.find(r => r.bucket === b) || { bucket: b, users: 0 });
+  columns(document.getElementById('spent'), spent, {
+    y: r => r.users, xl: r => '$' + r.bucket, label: fmtN, H: 210,
+    tooltip: r => [{ color: 'var(--s1)', value: fmtN(r.users), label: 'платящих' }],
+  });
+  tableView(document.getElementById('spent'), ['Потрачено', 'Платящих'], spent.map(r => ['$' + r.bucket, r.users]));
+
+  // Продукт
+  const conns = D.events_weekly.filter(r => r.kind === 'Подключение аккаунта' && r.w >= '2024-05-01');
+  line(document.getElementById('conns'), conns, {
+    y: r => r.n, xl: r => 'нед. ' + wLabel(r.w), label: fmtN, color: 'var(--s1)',
+  });
+  tableView(document.getElementById('conns'), ['Неделя', 'Подключений'], conns.slice(-16).map(r => [wLabel(r.w), r.n]));
+
+  const provRaw = D.connections_by_provider.map(r => ({ ...r, provider: r.provider || '(не указан)' }));
+  const provTop = provRaw.slice(0, 6);
+  const rest = provRaw.slice(6);
+  provTop.push({ provider: 'прочие (' + rest.length + ')', users: rest.reduce((a, r) => a + r.users, 0), connections: rest.reduce((a, r) => a + r.connections, 0) });
+  hbars(document.getElementById('providers'), provTop, {
+    cat: r => r.provider, val: r => r.users, label: fmtN,
+    tooltip: r => [
+      { color: 'var(--s1)', value: fmtN(r.users), label: 'пользователей' },
+      { value: fmtN(r.connections), label: 'подключений' },
+    ],
+  });
+  tableView(document.getElementById('providers'), ['Провайдер', 'Пользователей', 'Подключений'],
+    provRaw.map(r => [r.provider, r.users, r.connections]));
+
+  const KINDS = [
+    { label: 'Синк журнала', color: 'var(--s1)' },
+    { label: 'Подключение аккаунта', color: 'var(--s2)' },
+    { label: 'Ручные позиции', color: 'var(--s3)' },
+    { label: 'AI-запросы', color: 'var(--s4)' },
+    { label: 'Экспорт XLSX', color: 'var(--s5)' },
+  ];
+  const evWeeks = [...new Set(D.events_weekly.filter(r => r.w >= '2026-06-15').map(r => r.w))].sort()
+    .map(w => {
+      const o = { w };
+      for (const kd of KINDS) o[kd.label] = (D.events_weekly.find(r => r.w === w && r.kind === kd.label) || {}).n || 0;
+      return o;
+    });
+  grouped(document.getElementById('events'), evWeeks,
+    KINDS.map(kd => ({ label: kd.label, color: kd.color, val: w => w[kd.label] })), { H: 230 });
+  legend(document.getElementById('events'), KINDS);
+  tableView(document.getElementById('events'), ['Неделя', ...KINDS.map(kd => kd.label)],
+    evWeeks.map(w => [wLabel(w.w), ...KINDS.map(kd => w[kd.label])]));
+
+  // Маркетинг
+  const rt = D.referral_totals[0];
+  const mk = document.getElementById('mkt'); mk.textContent = '';
+  tile(mk, 'Реферальных ссылок', fmtN(rt.links), 'все активны');
+  tile(mk, 'Кликов по ссылкам', fmtN(rt.clicks), 'за всю историю');
+  tile(mk, 'Регистраций по рефам', fmtN(rt.regs), '');
+  tile(mk, 'Оплат по рефам', fmtN(rt.payments), 'на ' + fmtM(rt.revenue));
+  const utm = D.utm_sources.reduce((a, r) => a + r.visitors, 0);
+  tile(mk, 'Юзеров с UTM-метками', fmtN(utm), 'из ' + fmtN(us.total_users) + ' — ' + (utm / us.total_users * 100).toFixed(1).replace('.', ',') + '%');
+  const ovva = D.utm_sources[0];
+  document.getElementById('mktCallout').innerHTML =
+    '<b>Атрибуция.</b> UTM-метки есть только у ' + (utm / us.total_users * 100).toFixed(1).replace('.', ',') +
+    '% пользователей. Крупнейший источник ' + ovva.source + ' привёл ' + fmtN(ovva.regs) +
+    ' регистраций и <b>0 оплат</b>. Пока трекинг не чинится, оценить окупаемость каналов нельзя.';
+}
+
+render();
+setupRevControls();
+let rT, lastW = document.body.clientWidth;
+const rerender = force => {
+  if (!force && document.body.clientWidth === lastW) return;
+  lastW = document.body.clientWidth;
+  clearTimeout(rT); rT = setTimeout(render, 120);
+};
+addEventListener('resize', () => rerender(false));
+if (typeof ResizeObserver !== 'undefined') new ResizeObserver(() => rerender(false)).observe(document.body);
+addEventListener('load', () => setTimeout(() => rerender(true), 150));
+</script>
