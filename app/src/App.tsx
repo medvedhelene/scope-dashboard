@@ -501,6 +501,17 @@ export default function App() {
     return acc
   }, [rkey, D])
 
+  const AGE_ORDER = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+']
+  const metaDemographics = useMemo(() => {
+    const rows = (D.meta_demographics ?? []).filter((r: Row) => AGE_ORDER.includes(r.age))
+    const totalSpend = rows.reduce((a: number, r: Row) => a + r.spend, 0)
+    return AGE_ORDER.map(age => {
+      const female = rows.find((r: Row) => r.age === age && r.gender === 'Женщины')?.spend ?? 0
+      const male = rows.find((r: Row) => r.age === age && r.gender === 'Мужчины')?.spend ?? 0
+      return { age, female, male, total: female + male }
+    }).filter(r => r.total > 0).map(r => ({ ...r, share: totalSpend ? r.total / totalSpend * 100 : 0 }))
+  }, [D])
+
   const KINDS = ['Синк журнала', 'Подключение аккаунта', 'Ручные позиции', 'AI-запросы', 'Экспорт XLSX', 'Заметки']
   const evWeeks = useMemo(() => {
     const weeks = [...new Set(D.events_weekly
@@ -879,11 +890,15 @@ export default function App() {
 
         {tab === 'ads' && (<>
         <Section title="Платный трафик (Meta Ads)">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
             <Tile label="Расходы" value={fmtM(metaKpi.spend)} sub="Facebook + Instagram" />
             <Tile label="Показы" value={fmtN(metaKpi.impressions)} />
             <Tile label="Клики" value={fmtN(metaKpi.clicks)}
               sub={metaKpi.impressions ? `CTR ${comma((metaKpi.clicks / metaKpi.impressions * 100).toFixed(2))}%` : undefined} />
+            <Tile label="CPM" value={metaKpi.impressions ? '$' + comma((metaKpi.spend / metaKpi.impressions * 1000).toFixed(2)) : '—'}
+              sub="за 1000 показов" />
+            <Tile label="CPC" value={metaKpi.clicks ? '$' + comma((metaKpi.spend / metaKpi.clicks).toFixed(2)) : '—'}
+              sub="за клик" />
             <Tile label="Регистраций" value={fmtN(metaKpi.regs)}
               sub={metaKpi.regs ? `по $${comma((metaKpi.spend / metaKpi.regs).toFixed(2))} за рег.` : 'нет данных'} />
             <Tile label="Лидов" value={fmtN(metaKpi.leads)} sub="заявки с рекламы" />
@@ -937,6 +952,28 @@ export default function App() {
                     { color: 'transparent', label: 'клики', value: fmtN(p.clicks) },
                   ]} />
                 </BarChart>
+              ) : <EmptyNote />}
+            </Card>
+
+            <Card title="Возраст и пол аудитории" note="Расходы за последние 90 дней, по кликнувшим на рекламу.">
+              {metaDemographics.length ? (
+                <div className="space-y-1.5">
+                  {metaDemographics.map(r => (
+                    <div key={r.age} className="flex items-center gap-2 text-[12.5px]">
+                      <span className="w-12 shrink-0 text-muted-foreground">{r.age}</span>
+                      <div className="flex h-4 flex-1 overflow-hidden rounded-full bg-accent">
+                        <div className="h-full bg-[var(--chart-1)]" style={{ width: `${r.total ? r.female / r.total * 100 : 0}%` }} />
+                        <div className="h-full bg-[var(--chart-3)]" style={{ width: `${r.total ? r.male / r.total * 100 : 0}%` }} />
+                      </div>
+                      <span className="w-16 shrink-0 text-right font-medium">{fmtM(r.total)}</span>
+                      <span className="w-12 shrink-0 text-right text-muted-foreground">{comma(r.share.toFixed(0))}%</span>
+                    </div>
+                  ))}
+                  <div className="mt-2 flex items-center gap-4 text-[11.5px] text-muted-foreground">
+                    <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-[var(--chart-1)]" />женщины</span>
+                    <span className="flex items-center gap-1.5"><span className="h-2.5 w-2.5 rounded-full bg-[var(--chart-3)]" />мужчины</span>
+                  </div>
+                </div>
               ) : <EmptyNote />}
             </Card>
           </div>

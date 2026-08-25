@@ -656,12 +656,33 @@ def fetch_meta():
     placement.sort(key=lambda r: r["spend"], reverse=True)
     meta_placement = placement
 
+    # Возраст + пол аудитории
+    demo_raw = insights_nonzero(
+        ["spend", "impressions", "clicks"],
+        breakdowns=["age", "gender"], date_preset="last_90d",
+    )
+    GENDER_NAMES = {"male": "Мужчины", "female": "Женщины", "unknown": "Не указан"}
+    demo_by_key = {}
+    for r in demo_raw:
+        key = (r.get("age", "?"), GENDER_NAMES.get(r.get("gender", "?"), "Не указан"))
+        o = demo_by_key.setdefault(key, {"spend": 0.0, "impressions": 0, "clicks": 0})
+        o["spend"] += float(r.get("spend", 0))
+        o["impressions"] += int(r.get("impressions", 0))
+        o["clicks"] += int(r.get("clicks", 0))
+    meta_demographics = [
+        {"age": age, "gender": gender, "spend": round(o["spend"], 2),
+         "impressions": o["impressions"], "clicks": o["clicks"]}
+        for (age, gender), o in demo_by_key.items()
+    ]
+    meta_demographics.sort(key=lambda r: (r["age"], r["gender"]))
+
     return {
         "meta_spend_weekly": meta_spend_weekly,
         "meta_spend_monthly": meta_spend_monthly,
         "meta_creatives": meta_creatives,
         "meta_geo": meta_geo,
         "meta_placement": meta_placement,
+        "meta_demographics": meta_demographics,
     }
 
 
@@ -703,7 +724,7 @@ def main():
         if data_path.exists():
             prev = json.loads(data_path.read_text())
             for k in ("meta_spend_weekly", "meta_spend_monthly", "meta_creatives",
-                      "meta_geo", "meta_placement"):
+                      "meta_geo", "meta_placement", "meta_demographics"):
                 out[k] = prev.get(k, [])
 
     data_path.write_text(json.dumps(out, ensure_ascii=False, indent=1))
