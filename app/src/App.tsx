@@ -870,8 +870,7 @@ export default function App() {
               sub={metaKpi.impressions ? `CTR ${comma((metaKpi.clicks / metaKpi.impressions * 100).toFixed(2))}%` : undefined} />
             <Tile label="Регистраций" value={fmtN(metaKpi.regs)}
               sub={metaKpi.regs ? `по $${comma((metaKpi.spend / metaKpi.regs).toFixed(2))} за рег.` : 'нет данных'} />
-            <Tile label="Лидов" value={fmtN(metaKpi.leads)}
-              sub={metaKpi.leads ? `по $${comma((metaKpi.spend / metaKpi.leads).toFixed(2))} за лид` : 'нет данных'} />
+            <Tile label="Лидов" value={fmtN(metaKpi.leads)} sub="заявки с рекламы" />
             <Tile label="Оплаты" value={fmtN(metaKpi.payments)}
               sub={metaKpi.payments
                 ? fmtM(metaKpi.revenue) + ' выручки'
