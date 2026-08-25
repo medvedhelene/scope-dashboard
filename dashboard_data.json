@@ -6708,11 +6708,11 @@
   },
   {
    "w": "2026-08-24",
-   "spend": 61.56,
-   "impressions": 105423,
-   "clicks": 5153,
+   "spend": 62.04,
+   "impressions": 106888,
+   "clicks": 5219,
    "regs": 30,
-   "leads": 183
+   "leads": 185
   }
  ],
  "meta_spend_monthly": [
@@ -6758,157 +6758,133 @@
   },
   {
    "m": "2026-08",
-   "spend": 316.84,
-   "impressions": 329115,
-   "clicks": 14811,
+   "spend": 317.32,
+   "impressions": 330580,
+   "clicks": 14877,
    "regs": 123,
-   "leads": 367
+   "leads": 369
   }
  ],
  "meta_creatives": [
   {
-   "ad_id": "120244814743470319",
-   "ad_name": "b13",
-   "campaign_name": "OVVA | CPL | COMPLETE REG | EU",
-   "spend": 568.66,
-   "impressions": 166427,
-   "clicks": 2436,
-   "regs": 159,
-   "leads": 0,
-   "cost_per_reg": 3.58,
-   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/658511421_929138566756933_5851201932298632261_n.png?_nc_cat=102&ccb=1-7&_nc_ohc=Vg3Kn0qC8e4Q7kNvwFFAHL1&_nc_oc=AdrXEPA24Gp7uiNuczbvUZFEe7vVkDLnRkAdKtBGiVpYXOhySpiI7YZnHQFcTRbEfo8&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=Drpm5YOqlA6u3lcAMQEIAg&_nc_tpa=Q5bMBQIcW2thYbKI6uPJj68K0NasVV8uemzEawZ6hpW_PoDzR-JsgfROWwDU26_NkYmNBwnC0xZmi13lXA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQHpvkmYYavMHO0wNf98Y8vohDaB5t0o3kplMZnmReCl_w&oe=6A934169"
-  },
-  {
-   "ad_id": "120248608189570319",
-   "ad_name": "cb13",
-   "campaign_name": "OVVA | CPL | COMPLETE REG | ind_filip_indz_braz",
-   "spend": 261.96,
-   "impressions": 558682,
-   "clicks": 5942,
-   "regs": 347,
-   "leads": 0,
-   "cost_per_reg": 0.75,
-   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/658511421_929138566756933_5851201932298632261_n.png?_nc_cat=102&ccb=1-7&_nc_ohc=Vg3Kn0qC8e4Q7kNvwFFAHL1&_nc_oc=AdrXEPA24Gp7uiNuczbvUZFEe7vVkDLnRkAdKtBGiVpYXOhySpiI7YZnHQFcTRbEfo8&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=i4LZWS8Aq7zpb88hkjTf4A&_nc_tpa=Q5bMBQJCIwKtA6m4PZVnCwUuBuT_DG5hHPnKCrbwgawqC95GyIiIhUrO7H7NRJWfG1UcFo-zQi24BlDlcw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQHirHe4D9tYbwnZ7Vs0o38z8rpvxk5PQrXvrGBY9AFK4Q&oe=6A934169"
-  },
-  {
-   "ad_id": "120251099415420319",
-   "ad_name": "cb45",
-   "campaign_name": "OVVA | CPL | COMPLETE REG | ind_filip_indz_braz",
-   "spend": 168.21,
-   "impressions": 303836,
-   "clicks": 3386,
-   "regs": 125,
-   "leads": 0,
-   "cost_per_reg": 1.35,
-   "thumbnail_url": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/348009057328174378?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJAsxj5gxnPTqqcGm8NAXHRG028QkU3LLcTpiZIgL6j4yaxHlixrXgOIFND-U4BDjq48959y4g97DJW5aE8nLYQD6Wcifv2q4XC193ZCvYUi9JOM09wooV-mad4T74iZsR2HW6GHw-nYnahhSVqD02P&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&edm=AAwGEdEEAAAA&_nc_gid=-XV-HYh24YKj7HstysMwkA&_nc_oc=AdrZa3rP2PO-5wpe80Z1KAEfmc9UnFsVOB1H-Ad-oLnfqcRy-w8W1VjSX_A2rsWsaPI&ccb=13-1&oh=06_Q3_CAdQ6O7loGzl1KVqo-xGWLIXDOvMWNIxXDpaxCR6qsZH_&oe=6A8F7845&_nc_sid=58080a"
-  },
-  {
-   "ad_id": "120248608189860319",
-   "ad_name": "cb34",
-   "campaign_name": "OVVA | CPL | COMPLETE REG | ind_filip_indz_braz",
-   "spend": 143.18,
-   "impressions": 243948,
-   "clicks": 2234,
-   "regs": 114,
-   "leads": 0,
-   "cost_per_reg": 1.26,
-   "thumbnail_url": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/9250476450329823349?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKDUp1IafVi4f7Eg34FMqVu1EgOeGtbZBazcfX9H7X6TcempJnErpO5WFpByyXk-608mLRo7d66Apk-sOyoDgafGvcbcGoNQi4t98RtUdOuVcTLQdMkDClFTfujCTWfc6hAXs-zbcaeSmbqNqHl_oIB&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&edm=AAwGEdEEAAAA&_nc_gid=NeozLGHwc6o2w_grBcsomw&_nc_oc=Adq7LqrCsTPkmebqIRlhIe_C1hRpgvGfimVcr4NFFmvHN1dYQsIBJayQBcMewfeOLXk&ccb=13-1&oh=06_Q3_CAcbx0-1oWE7n39AfOs9sywAqp2YFOBkkqejc3UxOPgwA&oe=6A8F7A85&_nc_sid=58080a"
-  },
-  {
-   "ad_id": "120248015211440319",
-   "ad_name": "b32",
-   "campaign_name": "OVVA | CPL | COMPLETE REG | EU",
-   "spend": 143.13,
-   "impressions": 39642,
-   "clicks": 476,
-   "regs": 29,
-   "leads": 0,
-   "cost_per_reg": 4.94,
-   "thumbnail_url": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/2217395692969985256?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQIk0uDBmk1aZ_uXCtWkDfT_2k9BB17oagQNogWWi81-Ip24V8Bws6SkXn4j845JEMeJvyC9M6XXm3-GxqocXxgwlNt0bzqP1VjJWN5N35z03Lwll1kemdtBJb5kbuHN7kGub8Hy2mBDxCvoTWp-1tV6&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&edm=AAwGEdEEAAAA&_nc_gid=od-J7-myNcuZtOpfqy-4Eg&_nc_oc=AdrJD-4vYBvNRUa-ZvIkTbj7GdWyphwKofQTdIWywTF6qiy348urKn5dpM-UsFJifmQ&ccb=13-1&oh=06_Q3_CAW1KtQAIzxObcHMeTrZ6Cian6hMNM4a0N-75IyGAKAp-&oe=6A8F4839&_nc_sid=58080a"
-  },
-  {
-   "ad_id": "120245217677520319",
-   "ad_name": "v11",
-   "campaign_name": "OVVA | CPL | COMPLETE REG | EU",
-   "spend": 113.5,
-   "impressions": 27981,
-   "clicks": 163,
-   "regs": 27,
-   "leads": 0,
-   "cost_per_reg": 4.2,
-   "thumbnail_url": "https://scontent-waw2-1.xx.fbcdn.net/v/t15.5256-10/671625461_1589826688790201_6070901742583206160_n.jpg?_nc_cat=108&ccb=1-7&_nc_ohc=C2P2VBwl2xkQ7kNvwGtE_Kq&_nc_oc=Adr42ZuzSQ79jThA2pbqCLirVpfzvrBq483S4nqKDMmU1LJXucJvysqK0DppSXEbMZg&_nc_zt=23&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=2_EqKjJDN2RRfJeG-WGEmQ&_nc_tpa=Q5bMBQJ27xDpzPIVZeg2lE3X2ebluEnRZGklDi7SF9OzCqEE1ZW0l52OCEfFBei_2zTW_-Tt0JaBKGDr8A&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AQFBXgdIh7JF-A8GoWgE24rF7dMP14mcrpNn8DumrIpjnQ&oe=6A933CCE"
-  },
-  {
-   "ad_id": "120248608189380319",
-   "ad_name": "cb27",
-   "campaign_name": "OVVA | CPL | COMPLETE REG | ind_filip_indz_braz",
-   "spend": 102.97,
-   "impressions": 174616,
-   "clicks": 1805,
-   "regs": 92,
-   "leads": 0,
-   "cost_per_reg": 1.12,
-   "thumbnail_url": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/13691836830985431205?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKfYZbUEP7nbiVo7tYJbgHQd4ui19xgECEwdRAjbJ2Q8em98pq_-3k7Rw_PAgQUSWMD9QT41fukTrW6fb06qxhf4N2Y9InhtmwxwKHjCZJzDjfuHGbv34362NYP0-Up6WHKAgHExi6l2jGOHq4kbG9c&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&edm=AAwGEdEEAAAA&_nc_gid=jWPtvLPWlQSZLODtZUPoEA&_nc_oc=AdoHSnbZK1LR9tio8kWVyi3tOpoy9kIjYzH6YMx7ElhTGhURQlsXHHIduj6GdEPQPi8&ccb=13-1&oh=06_Q3_CAa0Pv28vovzp-NDdK_LAqtbm_O-kpeXMayM8vBExS5B8&oe=6A8F5A98&_nc_sid=58080a"
-  },
-  {
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "OVVA | CPL | COMPLETE REG",
-   "spend": 85.59,
-   "impressions": 31049,
-   "clicks": 2442,
+   "spend": 85.68,
+   "impressions": 31102,
+   "clicks": 2445,
    "regs": 37,
    "leads": 10,
-   "cost_per_reg": 2.31,
-   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/772467619_1043810385289750_7963152105835466225_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=iT9rBSg4g9QQ7kNvwGmjlwh&_nc_oc=AdoGq3_wP1EZ-d_HKfoXGT8ww8inn1UtbVpCrQ-svx_CWhKHokqqcSN2leP0I0VxgX4&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=eu_CM4Aer3ZK34Zhnafdsg&_nc_tpa=Q5bMBQJpeRdetjdns03ycFJ3TKMOgoclZEED7hT5BNrZl9YI6OA3rEKNHERP2cZoCHHG8DXtf-Un1UCFvA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQGYvWCOSNZYmI5BfuQpGr0sJLXsXcEbGpOVcUfddJzSEQ&oe=6A934B8F"
+   "cost_per_reg": 2.32,
+   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/772467619_1043810385289750_7963152105835466225_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=iT9rBSg4g9QQ7kNvwGmjlwh&_nc_oc=AdoGq3_wP1EZ-d_HKfoXGT8ww8inn1UtbVpCrQ-svx_CWhKHokqqcSN2leP0I0VxgX4&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=qgMwq2dDYJRax-1s5KoEcQ&_nc_tpa=Q5bMBQKHk8-1Xtqmu25PPKhpzkB0dJ9SC4Tv729YiKwtqNI8ET86Z4X4C3RSaQVzr87jb8rWn-bnO3Np1Q&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQG_qke8144alTCDPrvTusIJ_Ycr4c36VabmkPwwPGfRWQ&oe=6A934B8F"
   },
   {
-   "ad_id": "120244954069950319",
-   "ad_name": "b19",
-   "campaign_name": "OVVA | CPL | COMPLETE REG | EU",
-   "spend": 85.31,
-   "impressions": 17761,
-   "clicks": 164,
-   "regs": 19,
+   "ad_id": "120251314120120272",
+   "ad_name": "cb34",
+   "campaign_name": "OVVA | CPL | COMPLETE REG",
+   "spend": 45.1,
+   "impressions": 20092,
+   "clicks": 410,
+   "regs": 12,
    "leads": 0,
-   "cost_per_reg": 4.49,
-   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/667117572_936410826029707_5571745589841560305_n.png?_nc_cat=106&ccb=1-7&_nc_ohc=UCyEZgboDj4Q7kNvwE3IIZn&_nc_oc=AdrJ00RELpMyJyMeFvHu9p_8raViUoJYNwVV4oCla0PN-pIsmaUqlTfl6UeOCLvwI60&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=1S957g6p-AbXTqHk4jEgtA&_nc_tpa=Q5bMBQI92BlRJyKV7HOC7AgY6UA4_Czd6nbCxS2CNqATyUN9mcVbcwXNuWrasnbXefvq_jYUPR-8QN2Mrg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQEWPggLkZKpGwZkqGq_McDTsGf45RTgb7dCs4soz23bjg&oe=6A935192"
+   "cost_per_reg": 3.76,
+   "thumbnail_url": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/771653119_1043820688622053_5785432116845975508_n.png?_nc_cat=109&ccb=1-7&_nc_ohc=F2Cnnqf4-eMQ7kNvwEIciDK&_nc_oc=Adozigi16Xja7aM4LVK1_D0rEg5ROSVnMZ2MKd8T6x7_dnSfbNWIlPvi87uKay-zsio&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=ahgEgp7FuDBxvrSl2Gd4ug&_nc_tpa=Q5bMBQIeRIJJRGOamkg7m2A6t_tzA_VPQPGJMWnGNFsUhb0OXW4lROeEE2DhI3DUYVFqetti7DMhcZm1mQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQEg62nJIeubG7Nj94A128UZR5PW4naEhkEJmZ-OEwly2A&oe=6A93668F"
   },
   {
-   "ad_id": "120248015211380319",
-   "ad_name": "b27",
-   "campaign_name": "OVVA | CPL | COMPLETE REG | EU",
-   "spend": 83.85,
-   "impressions": 23780,
-   "clicks": 292,
-   "regs": 8,
-   "leads": 0,
-   "cost_per_reg": 10.48,
-   "thumbnail_url": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/15836136869604584692?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQIsSJbxts3XkCmIMPh7o2gSwJQaIh28nZoqfdbbjkMpdCCxLqTnGnSjJH_kSLUrnnyjYOwrHHXkxkJK88WxmG-Zuum6d0ZxoIIUUSvn3s4AUkrwvh_gPhlZhUnJFxBiSDjS_OpQGZHIzFS8MYEh1-hH&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&edm=AAwGEdEEAAAA&_nc_gid=C3LYgB-45ASV52AFQ51oRQ&_nc_oc=Adr9RjPaUhTsgIPxRRIPbekYRPzYEcnlzAJl5e2mC2oF_mY58mUutmWu4vb8vSWAzrg&ccb=13-1&oh=06_Q3_CAQWqprFeqiQqlixFzG7Dj9B0ndB5elRPkfs3I7bQuZuK&oe=6A8F6A27&_nc_sid=58080a"
+   "ad_id": "120251542144610272",
+   "ad_name": "lead_video_1",
+   "campaign_name": "Leads_video_subs",
+   "spend": 26.99,
+   "impressions": 23242,
+   "clicks": 1599,
+   "regs": 13,
+   "leads": 339,
+   "cost_per_reg": 2.08,
+   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/611670260_122104252233191963_2381832528929569951_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=LgFsBVojlQIQ7kNvwEiG7s2&_nc_oc=Ado5RTQfbRpmEszo9xcbIoWrRu1sVyMSvYrW3lallqjFG4YDxhNjog2HpWiMgDoCG08&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=MMmbVOQNfKzV7LtXaHVHLQ&_nc_tpa=Q5bMBQKne_A3lncyYBLGdAk98AKfaWEABdBiIfGRDMG5FaWZv614CDb6L-Df7JqjLI9TTbQwLJiD_-UeOA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=68aae3&_nc_sid=58080a&oh=00_AQHu-N6EtJqDhwjNs1JDOuRrfgsAXVkRclvLL-585JkoTg&oe=6A93470E"
   },
   {
-   "ad_id": "120248608189530319",
-   "ad_name": "cb33",
-   "campaign_name": "OVVA | CPL | COMPLETE REG | ind_filip_indz_braz",
-   "spend": 64.63,
-   "impressions": 130778,
-   "clicks": 1368,
-   "regs": 54,
+   "ad_id": "120251542289530272",
+   "ad_name": "sales_video_4",
+   "campaign_name": "Sales_video_subs",
+   "spend": 14.88,
+   "impressions": 7930,
+   "clicks": 601,
+   "regs": 10,
    "leads": 0,
-   "cost_per_reg": 1.2,
-   "thumbnail_url": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/5557702069740985881?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJ5BTgB9gHP15_Oxwm2R6XuA8dzKnQXsNTfY--SNw1TBXv7b7WJzQlosnsZsgyMIRqV8y-2z2hFijAU--_hKs4daN8QPqZUdpcDoTfmNFFrhVED1gLaJBmZoXZKB-fQPRtgKjb4O8X9aoGgXq73aMG_&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&edm=AAwGEdEEAAAA&_nc_gid=ovtiwKOSE4PKCzWCDWBsSw&_nc_oc=AdrDMBJ5BV5xb9-cW0i5HONOmgcPGobVzksXZdmbHVtEZpUpoJ_WWGQ-igobM-j3LjU&ccb=13-1&oh=06_Q3_CAcK10dRYaavUyE4u5mRH95fHm6pmigB69Epqhf5w-FOQ&oe=6A8F4277&_nc_sid=58080a"
+   "cost_per_reg": 1.49,
+   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t15.5256-10/784018704_2262969354545417_7477449654494895754_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=NkW59HXIRp8Q7kNvwH-eCGP&_nc_oc=AdqHHN5_u38eOajdA27f9SPseD5Nz7dOetoBU9-myxFEZZ1q-Sp7eZyxi7PM4LDzsfE&_nc_zt=23&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=5RoccOeFPh6YNT6kG5tWvw&_nc_tpa=Q5bMBQID-HHw-sw5njUtemhVT4CrgmKwJtwv6MF3h-00q1CIQc4xy3ZobA8z_kVQtq_BdRY1xt3-7LBmqQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AQE3qeV9MbJkfLEaEO2N7HsnF5Qi41NTl19YvY6Q_8awbQ&oe=6A934121"
   },
   {
-   "ad_id": "120248608189410319",
-   "ad_name": "cb32",
-   "campaign_name": "OVVA | CPL | COMPLETE REG | ind_filip_indz_braz",
-   "spend": 62.53,
-   "impressions": 111327,
-   "clicks": 1175,
-   "regs": 79,
+   "ad_id": "120251314120140272",
+   "ad_name": "cb35",
+   "campaign_name": "OVVA | CPL | COMPLETE REG",
+   "spend": 10.86,
+   "impressions": 2805,
+   "clicks": 241,
+   "regs": 1,
    "leads": 0,
-   "cost_per_reg": 0.79,
-   "thumbnail_url": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/10420318134027688327?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQImTU4fpnflHTVxm1LF72eO9HhknFmMLKST2-vkqE7s8vudpsvrx_e4cVoy0o2-ut7ZwzlXs6he2JAsy3wVjbCETkP3oLd2-gBeT3C-LqyLIY0qHeKTc5VYa-2KSMXVaUIZW3y49HBR7QHZcHZEk4Vl&fb_obo=1&utld=facebook.com&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&edm=AAwGEdEEAAAA&_nc_gid=ZizqpxA_hh1irr60NL1WHg&_nc_oc=AdqSxPQlNYVGk1HETX5yXXiK_54cFMxIyH2SCnbrh-ePeSAfWs4cB52YPJgZa45VaAs&ccb=13-1&oh=06_Q3_CAZaspYAQeCWriUULgzeYsdQjbFIFqrm5yiij5PqpZ5eO&oe=6A8F4C4E&_nc_sid=58080a"
+   "cost_per_reg": 10.86,
+   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/772374413_1043851531952302_6237662140462138473_n.png?_nc_cat=103&ccb=1-7&_nc_ohc=J87Wgvwh818Q7kNvwH6QC6G&_nc_oc=AdoXY5DWLvyFFvOjUPs4LRASej6DZBzmOE8GLFjxsYA7dmQNBb7HoWW5LMQLKQoDbo0&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=zKeVSH9sqhyqXIAjK8qVLA&_nc_tpa=Q5bMBQJ7QZ9B3WDP9GhVP7bNtRZESV6YXeS7zoOU8oq5Ajt5hJVg9sblE--WbivryOLt7PUm17yW2_6PEA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQHV38RxJalUI3VZqpgUETSAkKRdXSb2GL458I7ZE7TOOQ&oe=6A936DAF"
+  },
+  {
+   "ad_id": "120251542289540272",
+   "ad_name": "sales_video_3",
+   "campaign_name": "Sales_video_subs",
+   "spend": 9.5,
+   "impressions": 9766,
+   "clicks": 252,
+   "regs": 17,
+   "leads": 0,
+   "cost_per_reg": 0.56,
+   "thumbnail_url": "https://scontent-waw2-1.xx.fbcdn.net/v/t15.5256-10/777260103_1413828357342902_3600398494300829776_n.jpg?_nc_cat=111&ccb=1-7&_nc_ohc=cYuhTQQZDFwQ7kNvwGSAftv&_nc_oc=Adp2Fiver2cxk6Zc8PYhIAppmrU_JDKBBt6SDVnAY9bySbnBG0mmCZauK3yc2oGG5xE&_nc_zt=23&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=seE_jpy7majr3-b6vSFCJw&_nc_tpa=Q5bMBQIcc3KeQwB39KlCFB9gKKbZhI4yTxK-D2bFZeLDJT5ziBfymV-Ft3zv-qOXSTNhBCEjIDo5M4sBbA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AQFsy2zg1Gq9jZaEHACwjUk-Rj1p966C6qJNfdfsEjzBpg&oe=6A934C23"
+  },
+  {
+   "ad_id": "120251542217650272",
+   "ad_name": "lead_video_4",
+   "campaign_name": "Leads_video_subs",
+   "spend": 7.38,
+   "impressions": 5891,
+   "clicks": 229,
+   "regs": 0,
+   "leads": 14,
+   "cost_per_reg": null,
+   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/611670260_122104252233191963_2381832528929569951_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=LgFsBVojlQIQ7kNvwEiG7s2&_nc_oc=Ado5RTQfbRpmEszo9xcbIoWrRu1sVyMSvYrW3lallqjFG4YDxhNjog2HpWiMgDoCG08&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=ohjA6XxTf9zqHU9fglpZfg&_nc_tpa=Q5bMBQLGYVgKhq_5tSSn0ixxvxVnRVWPbXyh8QkGBljDrx3JM4xYRhSQtRgwyGClTfmEntETXPdZ1YTt-g&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=68aae3&_nc_sid=58080a&oh=00_AQGKZzHjK7F4UglrK1qzOIFfohqqBAhO27EfWy2Q2Y0WDg&oe=6A93470E"
+  },
+  {
+   "ad_id": "120251542289520272",
+   "ad_name": "sales_video_2",
+   "campaign_name": "Sales_video_subs",
+   "spend": 5.02,
+   "impressions": 3190,
+   "clicks": 212,
+   "regs": 20,
+   "leads": 0,
+   "cost_per_reg": 0.25,
+   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t15.5256-10/780422338_1089261507113892_3188921711503847474_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=bSEBuAqRZewQ7kNvwES-SHS&_nc_oc=Ado8EtcUpIVSzde3MKV7t1R3PeQjbA0SAxQSZzVNDWXCmWWcxbxiQer7IWLRWgDJUKQ&_nc_zt=23&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=oA18Buf0TGFEXiP5z4SJaQ&_nc_tpa=Q5bMBQJPIAhXl3LMEeebvAswYFWfkhIrREM2Syn0-v7PXCeNQsfbqlXkyXWdMeoA1JQcwwy05fQd7BPBOg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=5fad0e&_nc_sid=58080a&oh=00_AQFmi8LiPgDJl5i9R2tjZEVYcZPaF8T9Uy7fxr8rQ7kZJQ&oe=6A934688"
+  },
+  {
+   "ad_id": "120251542201950272",
+   "ad_name": "lead_video_2",
+   "campaign_name": "Leads_video_subs",
+   "spend": 0.82,
+   "impressions": 602,
+   "clicks": 31,
+   "regs": 0,
+   "leads": 4,
+   "cost_per_reg": null,
+   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/611670260_122104252233191963_2381832528929569951_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=LgFsBVojlQIQ7kNvwEiG7s2&_nc_oc=Ado5RTQfbRpmEszo9xcbIoWrRu1sVyMSvYrW3lallqjFG4YDxhNjog2HpWiMgDoCG08&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=B6Jo_Xe-fK-BTk3gzYGSBg&_nc_tpa=Q5bMBQLs74USXO2xW73RTkq8_y9vNa267TQG2T9-_SbstPzf-WdAi6Rsd9aFQ-j_u_-0j3oBJefuEjkpKw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=68aae3&_nc_sid=58080a&oh=00_AQE5MxDtn7gQLsPB5P2ErEb8HspoKXqsY2nvpTndA4IUCQ&oe=6A93470E"
+  },
+  {
+   "ad_id": "120251542210180272",
+   "ad_name": "lead_video_3",
+   "campaign_name": "Leads_video_subs",
+   "spend": 0.52,
+   "impressions": 324,
+   "clicks": 18,
+   "regs": 0,
+   "leads": 2,
+   "cost_per_reg": null,
+   "thumbnail_url": "https://scontent-waw2-2.xx.fbcdn.net/v/t39.30808-1/611670260_122104252233191963_2381832528929569951_n.jpg?_nc_cat=103&ccb=1-7&_nc_ohc=LgFsBVojlQIQ7kNvwEiG7s2&_nc_oc=Ado5RTQfbRpmEszo9xcbIoWrRu1sVyMSvYrW3lallqjFG4YDxhNjog2HpWiMgDoCG08&_nc_zt=24&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=z7NKYprlCwfcjvBtejT7lg&_nc_tpa=Q5bMBQJx-n9GCj8jr-csg-CY8rcuLZ_-JriIVbuf_2e63NxVFEbPtkp4dxrDeNdE3imOi2tDJ6znHyQeuw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=68aae3&_nc_sid=58080a&oh=00_AQFtpPDKQ_BekmCTgH7O_kMMIuPTawIz2tSsa_pXaJFVXA&oe=6A93470E"
   }
  ],
  "meta_geo": [
@@ -7003,7 +6979,7 @@
   {
    "country": "DZ",
    "spend": 75.85,
-   "impressions": 122345,
+   "impressions": 122347,
    "clicks": 3890,
    "regs": 22,
    "leads": 1
@@ -7083,7 +7059,7 @@
   {
    "country": "MA",
    "spend": 29.12,
-   "impressions": 63266,
+   "impressions": 63267,
    "clicks": 1679,
    "regs": 22,
    "leads": 6
@@ -7155,7 +7131,7 @@
   {
    "country": "SO",
    "spend": 10.48,
-   "impressions": 34695,
+   "impressions": 34696,
    "clicks": 1839,
    "regs": 5,
    "leads": 6
@@ -7731,13 +7707,13 @@
   {
    "platform": "Facebook",
    "spend": 464.84,
-   "impressions": 494094,
+   "impressions": 494099,
    "clicks": 9479
   },
   {
    "platform": "Audience Network",
    "spend": 134.76,
-   "impressions": 132321,
+   "impressions": 132320,
    "clicks": 9874
   },
   {

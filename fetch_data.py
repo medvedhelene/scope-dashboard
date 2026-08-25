@@ -530,16 +530,27 @@ def fetch_meta():
     import time
     import meta
 
-    def insights_nonzero(*args, retries=4, **kwargs):
+    def insights_nonzero(*args, account=None, retries=4, **kwargs):
         """Meta Insights иногда отдаёт spend=0/impressions=0 при непустых actions —
-        воспроизводимый глюк API на длинных интервалах. Перезапрашиваем."""
-        rows = meta.insights_all_accounts(*args, **kwargs)
+        воспроизводимый глюк API на длинных интервалах. Перезапрашиваем.
+
+        account: если задан (dict {"id", "token"}) — запрос только по этому
+        кабинету, а не по всем сразу (см. meta.ACCOUNTS)."""
+        def _fetch():
+            if account:
+                return meta.insights(*args, account_id=account["id"], token=account["token"], **kwargs)
+            return meta.insights_all_accounts(*args, **kwargs)
+        rows = _fetch()
         for _ in range(retries):
             if sum(float(r.get("spend", 0)) for r in rows) > 0 or not rows:
                 return rows
             time.sleep(12)
-            rows = meta.insights_all_accounts(*args, **kwargs)
+            rows = _fetch()
         return rows
+
+    # Новый активный кабинет (Scope Reserve) — топ креативов считаем только по
+    # нему: старый (Scope 360) заблокирован Meta и содержит только историю.
+    NEW_ACCOUNT = meta.ACCOUNTS[-1]
 
     # Внимание: если запросить spend/impressions/clicks и actions ОДНИМ вызовом
     # с time_increment=1 на длинном интервале — Meta воспроизводимо отдаёт
@@ -585,7 +596,7 @@ def fetch_meta():
 
     creatives_raw = insights_nonzero(
         ["ad_id", "ad_name", "campaign_name", "spend", "impressions", "clicks", "actions"],
-        level="ad", date_preset="maximum",
+        level="ad", date_preset="maximum", account=NEW_ACCOUNT,
     )
     creatives = []
     for r in creatives_raw:
@@ -602,14 +613,12 @@ def fetch_meta():
             "regs": regs,
             "leads": leads,
             "cost_per_reg": round(spend / regs, 2) if regs else None,
-            "_token": r.get("_token"),
         })
     creatives = [r for r in creatives if r["regs"] > 0 or r["leads"] > 0]
     creatives.sort(key=lambda r: r["spend"], reverse=True)
     meta_creatives = creatives[:12]
     for r in meta_creatives:
-        token = r.pop("_token", None)
-        r["thumbnail_url"] = meta.ad_creative_thumbnail(r["ad_id"], token=token) if r["ad_id"] else None
+        r["thumbnail_url"] = meta.ad_creative_thumbnail(r["ad_id"], token=NEW_ACCOUNT["token"]) if r["ad_id"] else None
 
     geo_raw = insights_nonzero(
         ["spend", "impressions", "clicks", "actions"],
