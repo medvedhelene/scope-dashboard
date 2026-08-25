@@ -516,6 +516,8 @@ def fetch_ga4():
 META_START = "2026-03-01"
 # Название результата рекламных кампаний (objective = COMPLETE REG)
 META_RESULT_ACTION = "complete_registration"
+# Второй ключевой ивент пикселя — лиды (обращения), из Events Manager
+META_LEAD_ACTION = "lead"
 
 
 def fetch_meta():
@@ -547,8 +549,10 @@ def fetch_meta():
     daily_actions_raw = insights_nonzero(["actions"], date_preset="maximum", time_increment=1)
     # По нескольким кабинетам на одну дату приходит по строке за кабинет — суммируем
     regs_by_date = {}
+    leads_by_date = {}
     for r in daily_actions_raw:
         regs_by_date[r["date_start"]] = regs_by_date.get(r["date_start"], 0) + int(meta.action_value(r, META_RESULT_ACTION))
+        leads_by_date[r["date_start"]] = leads_by_date.get(r["date_start"], 0) + int(meta.action_value(r, META_LEAD_ACTION))
 
     daily_by_date = {}
     for r in daily_stats_raw:
@@ -560,7 +564,7 @@ def fetch_meta():
         o["clicks"] += int(r.get("clicks", 0))
     daily = [
         {"date": d, "spend": round(o["spend"], 2), "impressions": o["impressions"], "clicks": o["clicks"],
-         "regs": regs_by_date.get(d, 0)}
+         "regs": regs_by_date.get(d, 0), "leads": leads_by_date.get(d, 0)}
         for d, o in sorted(daily_by_date.items())
     ]
 
@@ -571,9 +575,9 @@ def fetch_meta():
         wk = (d - timedelta(days=d.weekday())).isoformat()
         m = r["date"][:7]
         for bucket, key in ((weekly, wk), (monthly, m)):
-            o = bucket.setdefault(key, {"spend": 0.0, "impressions": 0, "clicks": 0, "regs": 0})
+            o = bucket.setdefault(key, {"spend": 0.0, "impressions": 0, "clicks": 0, "regs": 0, "leads": 0})
             o["spend"] += r["spend"]; o["impressions"] += r["impressions"]
-            o["clicks"] += r["clicks"]; o["regs"] += r["regs"]
+            o["clicks"] += r["clicks"]; o["regs"] += r["regs"]; o["leads"] += r["leads"]
     meta_spend_weekly = [{"w": k, **{kk: round(vv, 2) if kk == "spend" else vv for kk, vv in v.items()}}
                          for k, v in sorted(weekly.items())]
     meta_spend_monthly = [{"m": k, **{kk: round(vv, 2) if kk == "spend" else vv for kk, vv in v.items()}}
@@ -587,6 +591,7 @@ def fetch_meta():
     for r in creatives_raw:
         spend = float(r.get("spend", 0))
         regs = int(meta.action_value(r, META_RESULT_ACTION))
+        leads = int(meta.action_value(r, META_LEAD_ACTION))
         creatives.append({
             "ad_id": r.get("ad_id"),
             "ad_name": r.get("ad_name", "(без имени)"),
@@ -595,10 +600,11 @@ def fetch_meta():
             "impressions": int(r.get("impressions", 0)),
             "clicks": int(r.get("clicks", 0)),
             "regs": regs,
+            "leads": leads,
             "cost_per_reg": round(spend / regs, 2) if regs else None,
             "_token": r.get("_token"),
         })
-    creatives = [r for r in creatives if r["regs"] > 0]
+    creatives = [r for r in creatives if r["regs"] > 0 or r["leads"] > 0]
     creatives.sort(key=lambda r: r["spend"], reverse=True)
     meta_creatives = creatives[:12]
     for r in meta_creatives:
@@ -611,13 +617,14 @@ def fetch_meta():
     )
     geo_by_country = {}
     for r in geo_raw:
-        o = geo_by_country.setdefault(r.get("country", "??"), {"spend": 0.0, "impressions": 0, "clicks": 0, "regs": 0})
+        o = geo_by_country.setdefault(r.get("country", "??"), {"spend": 0.0, "impressions": 0, "clicks": 0, "regs": 0, "leads": 0})
         o["spend"] += float(r.get("spend", 0))
         o["impressions"] += int(r.get("impressions", 0))
         o["clicks"] += int(r.get("clicks", 0))
         o["regs"] += int(meta.action_value(r, META_RESULT_ACTION))
+        o["leads"] += int(meta.action_value(r, META_LEAD_ACTION))
     geo = [{"country": c, "spend": round(o["spend"], 2), "impressions": o["impressions"],
-            "clicks": o["clicks"], "regs": o["regs"]} for c, o in geo_by_country.items()]
+            "clicks": o["clicks"], "regs": o["regs"], "leads": o["leads"]} for c, o in geo_by_country.items()]
     geo.sort(key=lambda r: r["spend"], reverse=True)
     meta_geo = geo  # без обрезки — для карты нужны все страны с рекламой
 

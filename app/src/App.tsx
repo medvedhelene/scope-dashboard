@@ -163,6 +163,9 @@ function CreativeTile({ r }: { r: Row }) {
       <div className="mt-2 space-y-1 text-[12.5px]">
         <div className="flex justify-between"><span className="text-muted-foreground">расходы</span><b>{fmtM(r.spend)}</b></div>
         <div className="flex justify-between"><span className="text-muted-foreground">регистраций</span><b>{fmtN(r.regs)}</b></div>
+        {r.leads > 0 && (
+          <div className="flex justify-between"><span className="text-muted-foreground">лидов</span><b>{fmtN(r.leads)}</b></div>
+        )}
         <div className="flex justify-between"><span className="text-muted-foreground">цена рег.</span>
           <b>{r.cost_per_reg != null ? '$' + comma(r.cost_per_reg) : '—'}</b></div>
       </div>
@@ -486,10 +489,10 @@ export default function App() {
     })), [rkey])
 
   const metaKpi = useMemo(() => {
-    const acc = { spend: 0, impressions: 0, clicks: 0, regs: 0, payments: 0, revenue: 0 }
+    const acc = { spend: 0, impressions: 0, clicks: 0, regs: 0, leads: 0, payments: 0, revenue: 0 }
     for (const r of D.meta_spend_monthly ?? []) {
       if (!monthInRange(r.m, range)) continue
-      acc.spend += r.spend; acc.impressions += r.impressions; acc.clicks += r.clicks; acc.regs += r.regs
+      acc.spend += r.spend; acc.impressions += r.impressions; acc.clicks += r.clicks; acc.regs += r.regs; acc.leads += r.leads
     }
     for (const r of D.meta_utm_sales_monthly ?? []) {
       if (!monthInRange(r.m, range)) continue
@@ -860,13 +863,15 @@ export default function App() {
 
         {tab === 'ads' && (<>
         <Section title="Платный трафик (Meta Ads)">
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-6">
             <Tile label="Расходы" value={fmtM(metaKpi.spend)} sub="Facebook + Instagram" />
             <Tile label="Показы" value={fmtN(metaKpi.impressions)} />
             <Tile label="Клики" value={fmtN(metaKpi.clicks)}
               sub={metaKpi.impressions ? `CTR ${comma((metaKpi.clicks / metaKpi.impressions * 100).toFixed(2))}%` : undefined} />
             <Tile label="Регистраций" value={fmtN(metaKpi.regs)}
               sub={metaKpi.regs ? `по $${comma((metaKpi.spend / metaKpi.regs).toFixed(2))} за рег.` : 'нет данных'} />
+            <Tile label="Лидов" value={fmtN(metaKpi.leads)}
+              sub={metaKpi.leads ? `по $${comma((metaKpi.spend / metaKpi.leads).toFixed(2))} за лид` : 'нет данных'} />
             <Tile label="Оплаты" value={fmtN(metaKpi.payments)}
               sub={metaKpi.payments
                 ? fmtM(metaKpi.revenue) + ' выручки'
@@ -883,6 +888,7 @@ export default function App() {
                   <ChartTooltip showDatePill={false} rows={(p: Row) => [
                     { color: C[2], label: 'расходы', value: fmtM(p.spend) },
                     { color: 'transparent', label: 'регистраций', value: fmtN(p.regs) },
+                    { color: 'transparent', label: 'лидов', value: fmtN(p.leads) },
                     { color: 'transparent', label: 'цена рег.', value: p.cost_per_reg != null ? '$' + comma(p.cost_per_reg.toFixed(2)) : '—' },
                     { color: 'transparent', label: 'CTR', value: p.impressions ? comma((p.clicks / p.impressions * 100).toFixed(2)) + '%' : '—' },
                   ]} />
