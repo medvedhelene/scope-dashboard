@@ -547,6 +547,14 @@ export default function App() {
               {t.label}
             </button>
           ))}
+          <a href="/userflow.html"
+            className="mt-3 block w-full rounded-lg border border-border px-3 py-2 text-left text-[13.5px] font-medium text-foreground transition-colors hover:bg-accent">
+            Userflow
+          </a>
+          <a href="/onboarding.html"
+            className="mt-1 block w-full rounded-lg border border-border px-3 py-2 text-left text-[13.5px] font-medium text-foreground transition-colors hover:bg-accent">
+            Onboarding
+          </a>
         </nav>
         <div className="min-w-0 flex-1 text-[15px]">
         <header className="flex flex-wrap items-start justify-between gap-x-6 gap-y-3">
@@ -572,6 +580,14 @@ export default function App() {
               {t.label}
             </button>
           ))}
+          <a href="/userflow.html"
+            className="flex-1 whitespace-nowrap border-l border-border px-3 py-2 text-center text-[13px] font-medium text-foreground">
+            Userflow
+          </a>
+          <a href="/onboarding.html"
+            className="flex-1 whitespace-nowrap border-l border-border px-3 py-2 text-center text-[13px] font-medium text-foreground">
+            Onboarding
+          </a>
         </div>
 
         <FilterBar preset={preset} setPreset={setPreset} from={from} setFrom={setFrom} to={to} setTo={setTo} />

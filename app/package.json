@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "cp ../dashboard_data.json src/data.json && vite",
-    "build": "cp ../dashboard_data.json src/data.json && vite build",
+    "dev": "cp ../dashboard_data.json src/data.json && cp ../dashboard_data.json public/dashboard_data.json && vite",
+    "build": "cp ../dashboard_data.json src/data.json && cp ../dashboard_data.json public/dashboard_data.json && vite build",
     "lint": "oxlint",
     "preview": "vite preview"
   },

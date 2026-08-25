@@ -1,0 +1,379 @@
+<script setup lang="ts">
+import { computed, nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
+import { Background } from '@vue-flow/background'
+import { Controls } from '@vue-flow/controls'
+import { VueFlow, Handle, Position, MarkerType, useVueFlow, type Edge, type Node } from '@vue-flow/core'
+import { MiniMap } from '@vue-flow/minimap'
+import '@vue-flow/core/dist/style.css'
+import '@vue-flow/core/dist/theme-default.css'
+import '@vue-flow/controls/dist/style.css'
+import '@vue-flow/minimap/dist/style.css'
+
+type FeatureRow = { feat: string; n: number; users: number }
+type FunnelRow = { m: string; registered: number; connected: number }
+type PaymentRow = { payment_method: string; success: number; pending: number; failed: number }
+type AnalyticsData = {
+  time_to_value?: Array<{ med_sync_d?: number; activation7_pct?: number }>
+  feature_events_summary?: FeatureRow[]
+  funnel_by_month?: FunnelRow[]
+  pay_attempts_daily?: PaymentRow[]
+  stuck_pending?: Array<{ n: number; amount: number }>
+}
+type FlowMetrics = {
+  activation7: number
+  connectionDrop7: number
+  recentConnectionRate: number
+  syncMinutes: number
+  manualUsers: number
+  overpayFailureRate: number
+  overpayFailed: number
+  overpayAttempts: number
+  pendingCount: number
+  pendingAmount: number
+}
+type NodeData = {
+  title: string
+  subtitle?: string
+  evidence?: string
+  source?: string
+  kind: 'action' | 'screen' | 'decision' | 'blocker' | 'solution' | 'lane'
+  branch: 'common' | 'connected' | 'manual' | 'payment'
+}
+
+const EMPTY_METRICS: FlowMetrics = {
+  activation7: 0,
+  connectionDrop7: 0,
+  recentConnectionRate: 0,
+  syncMinutes: 0,
+  manualUsers: 0,
+  overpayFailureRate: 0,
+  overpayFailed: 0,
+  overpayAttempts: 0,
+  pendingCount: 0,
+  pendingAmount: 0,
+}
+
+const nodes = ref<Node<NodeData>[]>([])
+const edges = ref<Edge[]>([])
+const metrics = ref<FlowMetrics>(EMPTY_METRICS)
+const selected = ref<Node<NodeData> | null>(null)
+const loading = ref(true)
+const loadError = ref('')
+const loadedAt = ref<Date | null>(null)
+const sourceModifiedAt = ref<Date | null>(null)
+const autoRefresh = ref(true)
+let timer: number | undefined
+
+const { setViewport } = useVueFlow()
+const fmtPct = (value: number) => `${value.toLocaleString('ru-RU', { maximumFractionDigits: 1 })}%`
+const fmtMoney = (value: number) => `$${Math.round(value).toLocaleString('ru-RU')}`
+const fmtDate = (value: Date | null) => value
+  ? value.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+  : '—'
+
+function deriveMetrics(data: AnalyticsData): FlowMetrics {
+  const tv = data.time_to_value?.[0]
+  const activation7 = Number(tv?.activation7_pct ?? 0)
+  const recent = (data.funnel_by_month ?? []).slice(-4)
+  const recentRegistered = recent.reduce((sum, row) => sum + Number(row.registered || 0), 0)
+  const recentConnected = recent.reduce((sum, row) => sum + Number(row.connected || 0), 0)
+  const manual = (data.feature_events_summary ?? []).find(row => row.feat === 'Ручные позиции')
+  const overpay = (data.pay_attempts_daily ?? [])
+    .filter(row => row.payment_method === 'overpay')
+    .reduce((acc, row) => ({
+      success: acc.success + Number(row.success || 0),
+      pending: acc.pending + Number(row.pending || 0),
+      failed: acc.failed + Number(row.failed || 0),
+    }), { success: 0, pending: 0, failed: 0 })
+  const overpayAttempts = overpay.success + overpay.pending + overpay.failed
+  const pending = (data.stuck_pending ?? []).reduce((acc, row) => ({
+    count: acc.count + Number(row.n || 0),
+    amount: acc.amount + Number(row.amount || 0),
+  }), { count: 0, amount: 0 })
+
+  return {
+    activation7,
+    connectionDrop7: Math.max(0, 100 - activation7),
+    recentConnectionRate: recentRegistered ? recentConnected / recentRegistered * 100 : 0,
+    syncMinutes: Number(tv?.med_sync_d ?? 0) * 24 * 60,
+    manualUsers: Number(manual?.users ?? 0),
+    overpayFailureRate: overpayAttempts ? overpay.failed / overpayAttempts * 100 : 0,
+    overpayFailed: overpay.failed,
+    overpayAttempts,
+    pendingCount: pending.count,
+    pendingAmount: pending.amount,
+  }
+}
+
+const node = (
+  id: string,
+  x: number,
+  y: number,
+  title: string,
+  kind: NodeData['kind'],
+  branch: NodeData['branch'],
+  subtitle?: string,
+  evidence?: string,
+  source?: string,
+): Node<NodeData> => ({ id, type: 'product', position: { x, y }, data: { title, kind, branch, subtitle, evidence, source } })
+
+function buildNodes(m: FlowMetrics): Node<NodeData>[] {
+  const connectionIsCritical = m.connectionDrop7 >= 60
+  const paymentIsCritical = m.overpayFailureRate >= 40 || m.pendingCount >= 10
+  const dropEvidence = `${fmtPct(m.connectionDrop7)} не подключили аккаунт за 7 дней; ` +
+    `по последним четырём месячным когортам подключились ${fmtPct(m.recentConnectionRate)}. ` +
+    `Красный порог: ≥60% без подключения.`
+  return [
+    node('lane-common', 0, 190, 'ОБЩИЙ ПУТЬ', 'lane', 'common'),
+    node('signup', 0, 245, 'Создаёт аккаунт', 'action', 'common', 'Email или Google'),
+    node('confirm', 250, 245, 'Подтверждает вход', 'action', 'common', 'Код / Google / 2FA'),
+    node('session', 500, 245, 'Получает сессию', 'screen', 'common'),
+    node('promo', 750, 245, 'Промокод', 'action', 'common', 'Применить или пропустить'),
+    node('all-set', 1000, 245, 'All Set', 'screen', 'common', 'Trial запущен'),
+    node('choose-path', 1250, 245, 'Выбирает действие', 'decision', 'common', 'Подключить аккаунт или ручной журнал'),
+
+    node('lane-connected', 1570, 0, 'ПОДКЛЮЧЕННЫЙ АККАУНТ', 'lane', 'connected'),
+    node('connect-cta', 1570, 55, 'Нажимает «Подключить»', 'action', 'connected'),
+    node('connection-manager', 1820, 55, 'Connection Manager', 'screen', 'connected', 'Открывается с initMode=auto'),
+    node('plan-check', 2070, 55, 'Проверка тарифа', 'decision', 'connected', 'Free или платный'),
+    node('add-account', 2320, 55, 'Добавляет аккаунт', 'action', 'connected'),
+    node('provider-auth', 2570, 55, 'Провайдер и доступы', 'action', 'connected', 'API key / login / wallet'),
+    node('connected', 2820, 55, 'Аккаунт подключён', 'screen', 'connected', `${fmtPct(m.activation7)} новых пользователей ≤7 дней`, dropEvidence, 'time_to_value.activation7_pct + funnel_by_month'),
+    node('sync', 3070, 55, 'Импорт / первый sync', 'screen', 'connected', `≈${Math.round(m.syncMinutes)} мин среди дошедших`, 'Медиана считается только среди пользователей, достигших sync.', 'time_to_value.med_sync_d'),
+    node('manager-stays', 3320, 55, 'Остаётся в Manager', 'screen', 'connected'),
+    node('open-journal', 3570, 55, 'Сам открывает Journal', 'action', 'connected'),
+    node('positions', 3820, 55, 'Видит позиции', 'screen', 'connected', 'Получает первую ценность'),
+
+    node('drop-zone', 2320, 230, connectionIsCritical ? 'Главная зона потенциального отвала' : 'Зона подключения', connectionIsCritical ? 'blocker' : 'screen', 'connected', `${fmtPct(m.connectionDrop7)} не доходят до подключения ≤7 дней`, `${dropEvidence} Промежуточные события не трекаются, поэтому точная точка внутри участка неизвестна.`, 'time_to_value.activation7_pct'),
+    node('mode-blocker', 1820, 390, 'Режим может остаться manual', 'blocker', 'connected', 'Без существующего auto-аккаунта initMode=auto не гарантирует Connected mode.', 'Подтверждено текущей логикой приложения.', 'код Base/Futures'),
+    node('free-blocker', 2070, 390, 'Free → Dashboard', 'blocker', 'connected', 'Пользователь может покинуть сценарий подключения.', 'Доля затронутых новых пользователей не измеряется.', 'код Connection Manager'),
+    node('onboarding-state-solution', 2570, 390, 'Сохранять состояние онбординга', 'solution', 'connected', 'registered → path_selected → provider_selected → credentials_submitted → connected → first_value → completed', 'Сохранять onboarding_path, provider, error_code и время входа/завершения каждого состояния. Это позволит в реальном времени локализовать отвал на конкретном действии, а не на всём участке подключения.', 'Потенциальное решение · ещё не реализовано'),
+    node('nav-blocker', 3320, 390, 'Нет перехода в Journal', 'blocker', 'connected', 'После подключения пользователь остаётся в Connection Manager.', 'Нужен самостоятельный дополнительный переход.', 'код Connection Manager'),
+
+    node('lane-manual', 1570, 650, 'РУЧНОЙ ЖУРНАЛ', 'lane', 'manual'),
+    node('manual-cta', 1570, 705, 'Нажимает «Ручной журнал»', 'action', 'manual'),
+    node('manual-journal', 1820, 705, 'Пустой Journal', 'screen', 'manual', 'initMode=manual'),
+    node('create-portfolio', 2070, 705, 'Создаёт портфель', 'action', 'manual'),
+    node('manual-account', 2320, 705, 'Ручной аккаунт создан', 'screen', 'manual'),
+    node('add-trade', 2570, 705, 'Добавляет сделку', 'action', 'manual'),
+    node('save-trade', 2820, 705, 'Сохраняет сделку', 'action', 'manual'),
+    node('manual-value', 3070, 705, 'Позиция в Journal', 'screen', 'manual', `${m.manualUsers.toLocaleString('ru-RU')} пользователей создавали ручные позиции`, 'Нет событий открытия ветки и создания портфеля — локальный drop-off не рассчитывается.', 'feature_events_summary'),
+    node('copy-blocker', 1820, 900, 'Empty state ведёт к API', 'blocker', 'manual', 'Текст «Подключить API» противоречит выбранному manual-сценарию.', 'Подтверждено текущим экраном Journal.', 'код Journal'),
+
+    node('lane-payment', 3370, 650, 'ПОЗЖЕ: ОПЛАТА', 'lane', 'payment'),
+    node('payment-attempt', 3370, 705, 'Пробует оплатить', 'action', 'payment', 'После trial'),
+    node('payment-result', 3620, 705, 'Результат платежа', 'decision', 'payment'),
+    node('payment-success', 3870, 705, 'Оплата успешна', 'screen', 'payment'),
+    node('payment-blocker', 3620, 900, paymentIsCritical ? 'Проблема оплаты' : 'Оплата без критичного сигнала', paymentIsCritical ? 'blocker' : 'screen', 'payment', `Overpay: ${m.overpayFailed} из ${m.overpayAttempts} failed (${fmtPct(m.overpayFailureRate)})`, `${m.pendingCount} pending на ${fmtMoney(m.pendingAmount)}. Красный порог: ≥40% failed или ≥10 pending. Это downstream-блокер, не часть 7-дневной activation.`, 'pay_attempts_daily + stuck_pending'),
+  ]
+}
+
+const edge = (id: string, source: string, target: string, label?: string, blocker = false): Edge => ({
+  id,
+  source,
+  target,
+  label,
+  type: 'smoothstep',
+  markerEnd: MarkerType.ArrowClosed,
+  class: blocker ? 'flow-edge flow-edge--blocker' : 'flow-edge',
+})
+
+function buildEdges(): Edge[] {
+  return [
+    edge('e-signup-confirm', 'signup', 'confirm'),
+    edge('e-confirm-session', 'confirm', 'session'),
+    edge('e-session-promo', 'session', 'promo'),
+    edge('e-promo-allset', 'promo', 'all-set'),
+    edge('e-allset-choose', 'all-set', 'choose-path'),
+    edge('e-choose-connect', 'choose-path', 'connect-cta', 'Подключить'),
+    edge('e-connect-manager', 'connect-cta', 'connection-manager'),
+    edge('e-manager-plan', 'connection-manager', 'plan-check'),
+    edge('e-plan-add', 'plan-check', 'add-account', 'не Free'),
+    edge('e-add-provider', 'add-account', 'provider-auth'),
+    edge('e-provider-connected', 'provider-auth', 'connected'),
+    edge('e-connected-sync', 'connected', 'sync'),
+    edge('e-sync-manager', 'sync', 'manager-stays'),
+    edge('e-manager-journal', 'manager-stays', 'open-journal'),
+    edge('e-journal-positions', 'open-journal', 'positions'),
+    edge('e-drop-provider', 'drop-zone', 'provider-auth', undefined, metrics.value.connectionDrop7 >= 60),
+    {
+      ...edge('e-drop-solution', 'drop-zone', 'onboarding-state-solution', 'Локализовать отвал'),
+      class: 'flow-edge flow-edge--solution',
+    },
+    edge('e-mode-manager', 'mode-blocker', 'connection-manager', undefined, true),
+    edge('e-free-plan', 'free-blocker', 'plan-check', 'Free', true),
+    edge('e-nav-manager', 'nav-blocker', 'manager-stays', undefined, true),
+    edge('e-choose-manual', 'choose-path', 'manual-cta', 'Ручной'),
+    edge('e-manual-journal', 'manual-cta', 'manual-journal'),
+    edge('e-journal-portfolio', 'manual-journal', 'create-portfolio'),
+    edge('e-portfolio-account', 'create-portfolio', 'manual-account'),
+    edge('e-account-trade', 'manual-account', 'add-trade'),
+    edge('e-add-save', 'add-trade', 'save-trade'),
+    edge('e-save-value', 'save-trade', 'manual-value'),
+    edge('e-copy-journal', 'copy-blocker', 'manual-journal', undefined, true),
+    edge('e-value-payment', 'manual-value', 'payment-attempt', 'позже'),
+    edge('e-payment-result', 'payment-attempt', 'payment-result'),
+    edge('e-result-success', 'payment-result', 'payment-success'),
+    edge('e-payment-problem', 'payment-blocker', 'payment-result', undefined, metrics.value.overpayFailureRate >= 40 || metrics.value.pendingCount >= 10),
+  ]
+}
+
+function preservePositions(next: Node<NodeData>[]) {
+  const current = new Map(nodes.value.map(item => [item.id, item.position]))
+  return next.map(item => ({ ...item, position: current.get(item.id) ?? item.position }))
+}
+
+async function loadData(silent = false) {
+  if (!silent) loading.value = true
+  loadError.value = ''
+  try {
+    const response = await fetch(`/dashboard_data.json?t=${Date.now()}`, { cache: 'no-store' })
+    if (!response.ok) throw new Error(`HTTP ${response.status}`)
+    const data = await response.json() as AnalyticsData
+    const nextMetrics = deriveMetrics(data)
+    metrics.value = nextMetrics
+    nodes.value = preservePositions(buildNodes(nextMetrics))
+    edges.value = buildEdges()
+    loadedAt.value = new Date()
+    const modified = response.headers.get('last-modified')
+    sourceModifiedAt.value = modified ? new Date(modified) : null
+    if (selected.value) selected.value = nodes.value.find(item => item.id === selected.value?.id) ?? null
+  } catch (error) {
+    loadError.value = `Не удалось прочитать dashboard_data.json: ${error instanceof Error ? error.message : 'ошибка'}`
+  } finally {
+    loading.value = false
+  }
+}
+
+async function focusStart() {
+  await nextTick()
+  setViewport({ x: 55, y: 125, zoom: 0.62 })
+}
+
+function onNodeClick(event: { node: Node<NodeData> }) {
+  if (event.node.data.kind !== 'lane') selected.value = event.node
+}
+
+const blockerCount = computed(() => nodes.value.filter(item => item.data.kind === 'blocker').length)
+
+onMounted(async () => {
+  await loadData()
+  await focusStart()
+  timer = window.setInterval(() => {
+    if (autoRefresh.value) void loadData(true)
+  }, 60_000)
+})
+
+onBeforeUnmount(() => window.clearInterval(timer))
+</script>
+
+<template>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">Scope360 · аналитика продукта</div>
+        <h1>Userflow после регистрации</h1>
+        <p>Живая карта activation: действия, реальные переходы и потенциальные точки отвала.</p>
+      </div>
+      <div class="topbar-actions">
+        <a class="button button--quiet" href="/dashboard.html">К дашборду</a>
+        <a class="button button--quiet" href="/onboarding.html">Onboarding</a>
+        <button class="button" type="button" :disabled="loading" @click="loadData(false)">
+          {{ loading ? 'Обновляю…' : 'Перечитать данные' }}
+        </button>
+      </div>
+    </header>
+
+    <section class="metrics" aria-label="Ключевые показатели userflow">
+      <article>
+        <span>Подключили аккаунт ≤7 дней</span>
+        <strong>{{ fmtPct(metrics.activation7) }}</strong>
+      </article>
+      <article class="metric-critical">
+        <span>Не дошли до подключения ≤7 дней</span>
+        <strong>{{ fmtPct(metrics.connectionDrop7) }}</strong>
+      </article>
+      <article>
+        <span>Первый sync среди дошедших</span>
+        <strong>≈{{ Math.round(metrics.syncMinutes) }} мин</strong>
+      </article>
+      <article>
+        <span>Красных зон на карте</span>
+        <strong>{{ blockerCount }}</strong>
+      </article>
+    </section>
+
+    <div class="status-row">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span>Автообновление раз в минуту</span>
+      <label class="switch">
+        <input v-model="autoRefresh" type="checkbox">
+        <span>{{ autoRefresh ? 'включено' : 'выключено' }}</span>
+      </label>
+      <span class="status-separator">Источник изменён: {{ fmtDate(sourceModifiedAt) }}</span>
+      <span>Перечитан: {{ fmtDate(loadedAt) }}</span>
+      <span v-if="loadError" class="status-error">{{ loadError }}</span>
+    </div>
+
+    <section class="flow-shell" aria-label="Интерактивный userflow">
+      <VueFlow
+        v-model:nodes="nodes"
+        v-model:edges="edges"
+        :min-zoom="0.2"
+        :max-zoom="1.6"
+        :nodes-draggable="true"
+        :nodes-connectable="false"
+        :elements-selectable="true"
+        class="scope-flow"
+        @node-click="onNodeClick"
+      >
+        <template #node-product="props">
+          <div class="flow-node" :class="[`flow-node--${props.data.kind}`, `flow-node--${props.data.branch}`]">
+            <Handle v-if="props.data.kind !== 'lane'" type="target" :position="Position.Left" />
+            <div v-if="props.data.kind === 'blocker'" class="node-kicker">Потенциальный блокер</div>
+            <div v-if="props.data.kind === 'solution'" class="node-kicker node-kicker--solution">Потенциальное решение</div>
+            <div class="node-title">{{ props.data.title }}</div>
+            <div v-if="props.data.subtitle" class="node-subtitle">{{ props.data.subtitle }}</div>
+            <Handle v-if="props.data.kind !== 'lane'" type="source" :position="Position.Right" />
+          </div>
+        </template>
+
+        <Background pattern-color="#d7dde5" :gap="24" :size="1" />
+        <MiniMap node-color="#cbd5e1" node-stroke-color="#64748b" mask-color="rgba(248,250,252,.78)" pannable zoomable />
+        <Controls position="bottom-left" />
+      </VueFlow>
+
+      <aside v-if="selected" class="details-panel" aria-live="polite">
+        <button class="panel-close" type="button" aria-label="Закрыть детали" @click="selected = null">×</button>
+        <div class="panel-label" :class="{ 'panel-label--critical': selected.data.kind === 'blocker' }">
+          {{ selected.data.kind === 'blocker' ? 'Потенциальный блокер' : selected.data.kind === 'solution' ? 'Потенциальное решение' : 'Шаг userflow' }}
+        </div>
+        <h2>{{ selected.data.title }}</h2>
+        <p v-if="selected.data.subtitle">{{ selected.data.subtitle }}</p>
+        <dl>
+          <template v-if="selected.data.evidence">
+            <dt>Что известно</dt>
+            <dd>{{ selected.data.evidence }}</dd>
+          </template>
+          <template v-if="selected.data.source">
+            <dt>Источник</dt>
+            <dd>{{ selected.data.source }}</dd>
+          </template>
+          <dt>Ветка</dt>
+          <dd>{{ selected.data.branch }}</dd>
+        </dl>
+      </aside>
+
+      <div class="legend" aria-label="Легенда">
+        <span><i class="legend-action"></i> действие</span>
+        <span><i class="legend-screen"></i> экран / результат</span>
+        <span><i class="legend-blocker"></i> потенциальный блокер</span>
+        <span><i class="legend-solution"></i> потенциальное решение</span>
+      </div>
+    </section>
+
+    <footer>
+      Красное означает потенциальную проблему, подтверждённую агрегатами или текущей логикой продукта. Data-пороги: ≥60% без подключения; ≥40% failed или ≥10 pending. Причинность не доказана; manual-ветка не входит в метрику подключения.
+    </footer>
+  </main>
+</template>
