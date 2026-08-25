@@ -531,12 +531,12 @@ def fetch_meta():
     def insights_nonzero(*args, retries=4, **kwargs):
         """Meta Insights иногда отдаёт spend=0/impressions=0 при непустых actions —
         воспроизводимый глюк API на длинных интервалах. Перезапрашиваем."""
-        rows = meta.insights(*args, **kwargs)
+        rows = meta.insights_all_accounts(*args, **kwargs)
         for _ in range(retries):
             if sum(float(r.get("spend", 0)) for r in rows) > 0 or not rows:
                 return rows
             time.sleep(12)
-            rows = meta.insights(*args, **kwargs)
+            rows = meta.insights_all_accounts(*args, **kwargs)
         return rows
 
     # Внимание: если запросить spend/impressions/clicks и actions ОДНИМ вызовом
@@ -545,19 +545,24 @@ def fetch_meta():
     # в этой комбинации полей; разносим на два вызова и склеиваем по дате.
     daily_stats_raw = insights_nonzero(["spend", "impressions", "clicks"], date_preset="maximum", time_increment=1)
     daily_actions_raw = insights_nonzero(["actions"], date_preset="maximum", time_increment=1)
-    regs_by_date = {r["date_start"]: int(meta.action_value(r, META_RESULT_ACTION)) for r in daily_actions_raw}
+    # По нескольким кабинетам на одну дату приходит по строке за кабинет — суммируем
+    regs_by_date = {}
+    for r in daily_actions_raw:
+        regs_by_date[r["date_start"]] = regs_by_date.get(r["date_start"], 0) + int(meta.action_value(r, META_RESULT_ACTION))
 
-    daily = []
+    daily_by_date = {}
     for r in daily_stats_raw:
         if r["date_start"] < META_START:
             continue
-        daily.append({
-            "date": r["date_start"],
-            "spend": round(float(r.get("spend", 0)), 2),
-            "impressions": int(r.get("impressions", 0)),
-            "clicks": int(r.get("clicks", 0)),
-            "regs": regs_by_date.get(r["date_start"], 0),
-        })
+        o = daily_by_date.setdefault(r["date_start"], {"spend": 0.0, "impressions": 0, "clicks": 0})
+        o["spend"] += float(r.get("spend", 0))
+        o["impressions"] += int(r.get("impressions", 0))
+        o["clicks"] += int(r.get("clicks", 0))
+    daily = [
+        {"date": d, "spend": round(o["spend"], 2), "impressions": o["impressions"], "clicks": o["clicks"],
+         "regs": regs_by_date.get(d, 0)}
+        for d, o in sorted(daily_by_date.items())
+    ]
 
     weekly = {}
     monthly = {}
@@ -591,26 +596,28 @@ def fetch_meta():
             "clicks": int(r.get("clicks", 0)),
             "regs": regs,
             "cost_per_reg": round(spend / regs, 2) if regs else None,
+            "_token": r.get("_token"),
         })
     creatives = [r for r in creatives if r["regs"] > 0]
     creatives.sort(key=lambda r: r["spend"], reverse=True)
     meta_creatives = creatives[:12]
     for r in meta_creatives:
-        r["thumbnail_url"] = meta.ad_creative_thumbnail(r["ad_id"]) if r["ad_id"] else None
+        token = r.pop("_token", None)
+        r["thumbnail_url"] = meta.ad_creative_thumbnail(r["ad_id"], token=token) if r["ad_id"] else None
 
     geo_raw = insights_nonzero(
         ["spend", "impressions", "clicks", "actions"],
         breakdowns=["country"], date_preset="last_90d",
     )
-    geo = []
+    geo_by_country = {}
     for r in geo_raw:
-        geo.append({
-            "country": r.get("country", "??"),
-            "spend": round(float(r.get("spend", 0)), 2),
-            "impressions": int(r.get("impressions", 0)),
-            "clicks": int(r.get("clicks", 0)),
-            "regs": int(meta.action_value(r, META_RESULT_ACTION)),
-        })
+        o = geo_by_country.setdefault(r.get("country", "??"), {"spend": 0.0, "impressions": 0, "clicks": 0, "regs": 0})
+        o["spend"] += float(r.get("spend", 0))
+        o["impressions"] += int(r.get("impressions", 0))
+        o["clicks"] += int(r.get("clicks", 0))
+        o["regs"] += int(meta.action_value(r, META_RESULT_ACTION))
+    geo = [{"country": c, "spend": round(o["spend"], 2), "impressions": o["impressions"],
+            "clicks": o["clicks"], "regs": o["regs"]} for c, o in geo_by_country.items()]
     geo.sort(key=lambda r: r["spend"], reverse=True)
     meta_geo = geo  # без обрезки — для карты нужны все страны с рекламой
 
@@ -621,15 +628,15 @@ def fetch_meta():
     )
     PLATFORM_NAMES = {"facebook": "Facebook", "instagram": "Instagram", "threads": "Threads",
                       "messenger": "Messenger", "audience_network": "Audience Network"}
-    placement = []
+    placement_by_platform = {}
     for r in placement_raw:
-        platform = r.get("publisher_platform", "?")
-        placement.append({
-            "platform": PLATFORM_NAMES.get(platform, platform),
-            "spend": round(float(r.get("spend", 0)), 2),
-            "impressions": int(r.get("impressions", 0)),
-            "clicks": int(r.get("clicks", 0)),
-        })
+        platform = PLATFORM_NAMES.get(r.get("publisher_platform", "?"), r.get("publisher_platform", "?"))
+        o = placement_by_platform.setdefault(platform, {"spend": 0.0, "impressions": 0, "clicks": 0})
+        o["spend"] += float(r.get("spend", 0))
+        o["impressions"] += int(r.get("impressions", 0))
+        o["clicks"] += int(r.get("clicks", 0))
+    placement = [{"platform": p, "spend": round(o["spend"], 2), "impressions": o["impressions"],
+                  "clicks": o["clicks"]} for p, o in placement_by_platform.items()]
     placement.sort(key=lambda r: r["spend"], reverse=True)
     meta_placement = placement
 

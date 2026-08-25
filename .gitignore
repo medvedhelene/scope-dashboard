@@ -1,4 +1,6 @@
 .env
+.env.deploy
 .local-node/
 ga4-service-account.json
 .claude/
+.DS_Store

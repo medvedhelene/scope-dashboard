@@ -8,12 +8,13 @@
 Запуск: python3 serve.py  →  http://localhost:8765/dashboard.html
 """
 import http.server
+import os
 import subprocess
 import sys
 from pathlib import Path
 
 DIR = Path(__file__).parent
-PORT = 8765
+PORT = int(os.environ.get('PORT', 8765))
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):

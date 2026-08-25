@@ -17,9 +17,32 @@ ENV = dict(
     for line in (HERE / ".env").read_text().splitlines()
     if "=" in line
 )
-TOKEN = ENV["META_ACCESS_TOKEN"]
-AD_ACCOUNT_ID = ENV["META_AD_ACCOUNT_ID"]
 API = "https://graph.facebook.com/v21.0"
+
+
+def _accounts():
+    """Один или несколько рекламных кабинетов: META_AD_ACCOUNT_ID_1/META_ACCESS_TOKEN_1,
+    _2, ... Для обратной совместимости также понимает старые META_AD_ACCOUNT_ID/
+    META_ACCESS_TOKEN без суффикса (как один кабинет)."""
+    accounts = []
+    if "META_AD_ACCOUNT_ID" in ENV and "META_ACCESS_TOKEN" in ENV:
+        accounts.append({"id": ENV["META_AD_ACCOUNT_ID"], "token": ENV["META_ACCESS_TOKEN"]})
+    i = 1
+    while f"META_AD_ACCOUNT_ID_{i}" in ENV:
+        accounts.append({
+            "id": ENV[f"META_AD_ACCOUNT_ID_{i}"],
+            "token": ENV[f"META_ACCESS_TOKEN_{i}"],
+        })
+        i += 1
+    if not accounts:
+        sys.exit("ERROR: нет ни META_AD_ACCOUNT_ID/META_ACCESS_TOKEN, ни META_AD_ACCOUNT_ID_1/META_ACCESS_TOKEN_1 в .env")
+    return accounts
+
+
+ACCOUNTS = _accounts()
+# Дефолты для обратной совместимости (CLI-вызов ./meta.py insights ... без указания кабинета)
+TOKEN = ACCOUNTS[0]["token"]
+AD_ACCOUNT_ID = ACCOUNTS[0]["id"]
 
 
 def _get(url, params=None):
@@ -35,8 +58,9 @@ def _get(url, params=None):
     return data
 
 
-def insights(fields, breakdowns=None, level=None, date_preset=None, time_range=None, time_increment=None, limit=200):
-    params = {"fields": ",".join(fields), "limit": limit, "access_token": TOKEN}
+def insights(fields, breakdowns=None, level=None, date_preset=None, time_range=None, time_increment=None,
+             limit=200, account_id=None, token=None):
+    params = {"fields": ",".join(fields), "limit": limit, "access_token": token or TOKEN}
     if time_range:
         params["time_range"] = json.dumps(time_range)
     else:
@@ -49,7 +73,7 @@ def insights(fields, breakdowns=None, level=None, date_preset=None, time_range=N
         params["time_increment"] = time_increment
 
     rows = []
-    url = f"{API}/{AD_ACCOUNT_ID}/insights"
+    url = f"{API}/{account_id or AD_ACCOUNT_ID}/insights"
     while url:
         data = _get(url, params)
         rows.extend(data.get("data", []))
@@ -60,14 +84,30 @@ def insights(fields, breakdowns=None, level=None, date_preset=None, time_range=N
     return rows
 
 
-def ad_creative_thumbnail(ad_id, size=300):
+def insights_all_accounts(fields, breakdowns=None, level=None, date_preset=None, time_range=None, time_increment=None, limit=200):
+    """Как insights(), но по всем кабинетам из .env сразу — строки помечаются
+    account_id (нужно для ad_creative_thumbnail, у которого id рекламы привязан
+    к конкретному кабинету/токену)."""
+    rows = []
+    for acc in ACCOUNTS:
+        acc_rows = insights(fields, breakdowns=breakdowns, level=level, date_preset=date_preset,
+                             time_range=time_range, time_increment=time_increment, limit=limit,
+                             account_id=acc["id"], token=acc["token"])
+        for r in acc_rows:
+            r["_account_id"] = acc["id"]
+            r["_token"] = acc["token"]
+        rows.extend(acc_rows)
+    return rows
+
+
+def ad_creative_thumbnail(ad_id, size=300, token=None):
     """Превью креатива (картинка/первый кадр видео). None, если недоступно."""
     try:
         resp = requests.get(
             f"{API}/{ad_id}",
             params={
                 "fields": f"creative.thumbnail_width({size}).thumbnail_height({size}){{thumbnail_url}}",
-                "access_token": TOKEN,
+                "access_token": token or TOKEN,
             },
             timeout=30,
         )
