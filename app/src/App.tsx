@@ -360,6 +360,16 @@ export default function App() {
   }, [preset, from, to])
   const rkey = range.join()
 
+  // Платный трафик по умолчанию смотрим за текущий месяц — отдельно от
+  // глобального фильтра периода, чтобы не менять дефолт для других разделов.
+  const [adsPreset, setAdsPreset] = useState('month')
+  const adsRange = useMemo((): Range => {
+    if (adsPreset === 'month') return [TODAY.slice(0, 7) + '-01', TODAY]
+    if (adsPreset === 'all') return [null, null]
+    return [shiftDays(TODAY, -(+adsPreset) + 1), TODAY]
+  }, [adsPreset])
+  const adsRkey = adsRange.join()
+
   const us = D.users_summary[0]
   const tv = D.time_to_value[0]
   const revTotal = D.sales_daily.reduce((a: number, r: Row) => a + r.revenue, 0)
@@ -500,6 +510,28 @@ export default function App() {
     }
     return acc
   }, [rkey, D])
+
+  // То же самое, но только для раздела «Платный трафик» — своим периодом
+  // (по умолчанию текущий месяц), не завязанным на глобальный фильтр сверху.
+  const adsMonthly = useMemo(() => (D.meta_spend_monthly ?? [])
+    .filter((r: Row) => monthInRange(r.m, adsRange))
+    .map((r: Row) => ({
+      ...r, label: mLabel(r.m),
+      cost_per_reg: r.regs ? r.spend / r.regs : null,
+    })), [adsRkey])
+
+  const adsKpi = useMemo(() => {
+    const acc = { spend: 0, impressions: 0, clicks: 0, regs: 0, leads: 0, payments: 0, revenue: 0 }
+    for (const r of D.meta_spend_monthly ?? []) {
+      if (!monthInRange(r.m, adsRange)) continue
+      acc.spend += r.spend; acc.impressions += r.impressions; acc.clicks += r.clicks; acc.regs += r.regs; acc.leads += r.leads
+    }
+    for (const r of D.meta_utm_sales_monthly ?? []) {
+      if (!monthInRange(r.m, adsRange)) continue
+      acc.payments += r.payments; acc.revenue += r.revenue
+    }
+    return acc
+  }, [adsRkey, D])
 
   const AGE_ORDER = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+']
   const metaDemographics = useMemo(() => {
@@ -890,27 +922,39 @@ export default function App() {
 
         {tab === 'ads' && (<>
         <Section title="Платный трафик (Meta Ads)">
+          <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-2">
+            <span className="text-[13px] font-medium text-muted-foreground">Период (только этот раздел)</span>
+            <div className="flex overflow-hidden rounded-lg border border-border [&>button+button]:border-l [&>button+button]:border-border">
+              {[['month', 'Текущий месяц'], ['30', '30 дней'], ['90', '90 дней'], ['all', 'Всё время']].map(([v, label]) => (
+                <button key={v} type="button" onClick={() => setAdsPreset(v)} aria-pressed={adsPreset === v}
+                  className={'px-3 py-1.5 text-[13px] transition-colors ' +
+                    (adsPreset === v ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground')}>
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
-            <Tile label="Расходы" value={fmtM(metaKpi.spend)} sub="Facebook + Instagram" />
-            <Tile label="Показы" value={fmtN(metaKpi.impressions)} />
-            <Tile label="Клики" value={fmtN(metaKpi.clicks)}
-              sub={metaKpi.impressions ? `CTR ${comma((metaKpi.clicks / metaKpi.impressions * 100).toFixed(2))}%` : undefined} />
-            <Tile label="CPM" value={metaKpi.impressions ? '$' + comma((metaKpi.spend / metaKpi.impressions * 1000).toFixed(2)) : '—'}
+            <Tile label="Расходы" value={fmtM(adsKpi.spend)} sub="Facebook + Instagram" />
+            <Tile label="Показы" value={fmtN(adsKpi.impressions)} />
+            <Tile label="Клики" value={fmtN(adsKpi.clicks)}
+              sub={adsKpi.impressions ? `CTR ${comma((adsKpi.clicks / adsKpi.impressions * 100).toFixed(2))}%` : undefined} />
+            <Tile label="CPM" value={adsKpi.impressions ? '$' + comma((adsKpi.spend / adsKpi.impressions * 1000).toFixed(2)) : '—'}
               sub="за 1000 показов" />
-            <Tile label="CPC" value={metaKpi.clicks ? '$' + comma((metaKpi.spend / metaKpi.clicks).toFixed(2)) : '—'}
+            <Tile label="CPC" value={adsKpi.clicks ? '$' + comma((adsKpi.spend / adsKpi.clicks).toFixed(2)) : '—'}
               sub="за клик" />
-            <Tile label="Регистраций" value={fmtN(metaKpi.regs)}
-              sub={metaKpi.regs ? `по $${comma((metaKpi.spend / metaKpi.regs).toFixed(2))} за рег.` : 'нет данных'} />
-            <Tile label="Лидов" value={fmtN(metaKpi.leads)} sub="заявки с рекламы" />
-            <Tile label="Оплаты" value={fmtN(metaKpi.payments)}
-              sub={metaKpi.payments
-                ? fmtM(metaKpi.revenue) + ' выручки'
+            <Tile label="Регистраций" value={fmtN(adsKpi.regs)}
+              sub={adsKpi.regs ? `по $${comma((adsKpi.spend / adsKpi.regs).toFixed(2))} за рег.` : 'нет данных'} />
+            <Tile label="Лидов" value={fmtN(adsKpi.leads)} sub="заявки с рекламы" />
+            <Tile label="Оплаты" value={fmtN(adsKpi.payments)}
+              sub={adsKpi.payments
+                ? fmtM(adsKpi.revenue) + ' выручки'
                 : metaPending?.pending ? `${metaPending.pending} в pending` : 'ни одной успешной'} />
           </div>
           <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
             <Card wide title="Расходы и цена регистрации по месяцам" note="Facebook + Instagram Ads. Цена за регистрацию — в подсказке, отдельно на каждый месяц.">
-              {metaMonthly.length ? (
-                <BarChart key={rkey} data={metaMonthly} xDataKey="label" aspectRatio="16 / 6" margin={{ top: 16, right: 52, bottom: 36, left: 12 }}>
+              {adsMonthly.length ? (
+                <BarChart key={adsRkey} data={adsMonthly} xDataKey="label" aspectRatio="16 / 6" margin={{ top: 16, right: 52, bottom: 36, left: 12 }}>
                   <Grid horizontal />
                   <YAxis orientation="right" numTicks={4} formatValue={v => fmtM(v)} />
                   <Bar dataKey="spend" fill={C[2]} lineCap={3} />
