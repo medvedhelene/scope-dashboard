@@ -162,12 +162,12 @@ function buildNodes(m: FlowMetrics, ph: Record<string, number>): Node<NodeData>[
   }
   return [
     node('lane-common', 0, 190, 'ОБЩИЙ ПУТЬ', 'lane', 'common'),
-    node('signup', 0, 245, 'Создаёт аккаунт', 'action', 'common', 'Email или Google'),
-    node('confirm', 250, 245, 'Подтверждает вход', 'action', 'common', 'Код / Google / 2FA'),
-    node('session', 500, 245, 'Получает сессию', 'screen', 'common'),
-    node('promo', 750, 245, 'Промокод', 'action', 'common', 'Применить или пропустить'),
-    node('all-set', 1000, 245, 'All Set', 'screen', 'common', 'Trial запущен'),
-    node('choose-path', 1250, 245, 'Выбирает действие', 'decision', 'common', 'Подключить аккаунт или ручной журнал'),
+    node('signup', 0, 245, 'Создаёт аккаунт', 'action', 'common', `Email или Google · ${ph30('$identify') ?? '—'}`, 'Единственная точка «Общего пути», которую видит PostHog — дальше до открытия приложения (nav_tab_selected) события не идут.', 'PostHog · $identify'),
+    node('confirm', 250, 245, 'Подтверждает вход', 'action', 'common', 'Код / Google / 2FA · нет данных PostHog', 'Слепая зона трекинга: между регистрацией и открытием приложения шаги не инструментированы.', undefined),
+    node('session', 500, 245, 'Получает сессию', 'screen', 'common', 'нет данных PostHog'),
+    node('promo', 750, 245, 'Промокод', 'action', 'common', 'Применить или пропустить · нет данных PostHog'),
+    node('all-set', 1000, 245, 'All Set', 'screen', 'common', 'Trial запущен · нет данных PostHog'),
+    node('choose-path', 1250, 245, 'Выбирает действие', 'decision', 'common', 'Подключить аккаунт или ручной журнал · нет данных PostHog', 'Выбор ветки не трекается отдельным событием — видно только по следующему шагу (connect-cta / manual-cta).'),
 
     node('lane-connected', 1570, 0, 'ПОДКЛЮЧЕННЫЙ АККАУНТ', 'lane', 'connected'),
     node('connect-cta', 1570, 55, 'Нажимает «Подключить»', 'action', 'connected', ph30('trading_account_add_clicked') ?? undefined, 'Клики по CTA «Подключить аккаунт», без разбивки на завершённые подключения.', ph30('trading_account_add_clicked') ? 'PostHog · trading_account_add_clicked' : undefined),
@@ -397,7 +397,9 @@ const posthogFunnelWithPct = computed(() => {
   const first = posthogFunnel.value[0]?.count || 0
   return posthogFunnel.value.map(step => ({ ...step, pct: first ? step.count / first * 100 : 0 }))
 })
-const posthogTopEvents = computed(() => [...posthogEvents.value].sort((a, b) => b.count - a.count).slice(0, 10))
+const posthogTopEvents = computed(() => [...posthogEvents.value]
+  .filter(e => e.event !== '$identify') // регистрация — не действие внутри приложения, показана в воронке выше
+  .sort((a, b) => b.count - a.count).slice(0, 10))
 const posthogEventsMax = computed(() => Math.max(1, ...posthogTopEvents.value.map(e => e.count)))
 
 onMounted(async () => {

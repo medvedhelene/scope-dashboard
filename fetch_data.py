@@ -691,6 +691,7 @@ def fetch_meta():
 # пользователя). Используется и для топ-списка на Userflow, и как источник
 # чисел для сгруппированных карточек "Дальше: вовлечённость".
 POSTHOG_ENGAGEMENT_EVENTS = [
+    ("$identify", "Зарегистрировался"),
     ("trading_account_add_clicked", "Клик «подключить аккаунт»"),
     ("api_connect_cta_clicked", "Клик «подключить API»"),
     ("trade_opened", "Открыл сделку"),
