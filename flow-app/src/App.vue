@@ -34,6 +34,7 @@ type FlowMetrics = {
   overpayAttempts: number
   pendingCount: number
   pendingAmount: number
+  accountUsers: number
 }
 type NodeData = {
   title: string
@@ -55,6 +56,7 @@ const EMPTY_METRICS: FlowMetrics = {
   overpayAttempts: 0,
   pendingCount: 0,
   pendingAmount: 0,
+  accountUsers: 0,
 }
 
 const nodes = ref<Node<NodeData>[]>([])
@@ -91,6 +93,7 @@ function deriveMetrics(data: AnalyticsData): FlowMetrics {
   const recentRegistered = recent.reduce((sum, row) => sum + Number(row.registered || 0), 0)
   const recentConnected = recent.reduce((sum, row) => sum + Number(row.connected || 0), 0)
   const manual = (data.feature_events_summary ?? []).find(row => row.feat === 'Ручные позиции')
+  const accountUsers = Number((data.feature_events_summary ?? []).find(row => row.feat === 'Подключение аккаунта')?.users ?? 0)
   const overpay = (data.pay_attempts_daily ?? [])
     .filter(row => row.payment_method === 'overpay')
     .reduce((acc, row) => ({
@@ -115,6 +118,7 @@ function deriveMetrics(data: AnalyticsData): FlowMetrics {
     overpayAttempts,
     pendingCount: pending.count,
     pendingAmount: pending.amount,
+    accountUsers,
   }
 }
 
@@ -138,15 +142,22 @@ function buildNodes(m: FlowMetrics, ph: Record<string, number>): Node<NodeData>[
     `Красный порог: ≥60% без подключения.`
   // PostHog считает клики/действия, а не только завершённые события из БД —
   // подписываем узлы, где это реально измерено, отдельной меткой источника.
-  const ph30 = (event: string) => ph[event] != null ? `${ph[event].toLocaleString('ru-RU')} за 30 дней` : null
+  // % считаем от пользователей с подключённым аккаунтом (Metabase,
+  // feature_events_summary) — это не «доля юзеров, сделавших действие»
+  // (PostHog отдаёт события, не уникальных людей), а грубая интенсивность
+  // относительно всей базы с аккаунтом.
+  const pctOfAccounts = (count: number) => m.accountUsers ? `${fmtPct(count / m.accountUsers * 100)} от юзеров с аккаунтом` : null
+  const ph30 = (event: string) => ph[event] != null
+    ? `${ph[event].toLocaleString('ru-RU')} за 30 дней · ${pctOfAccounts(ph[event]) ?? '—'}`
+    : null
   // Группа мелких событий одной темы -> заголовочная цифра (топ события) на
   // карточке + полная раскладка по каждому событию в панели деталей.
   const phGroup = (events: Array<[string, string]>) => {
     const rows = events.map(([ev, label]) => ({ ev, label, count: ph[ev] ?? 0 })).sort((a, b) => b.count - a.count)
     const top = rows[0]
     return {
-      subtitle: top ? `${top.label}: ${top.count.toLocaleString('ru-RU')} за 30 дней` : undefined,
-      evidence: rows.map(r => `${r.label} — ${r.count.toLocaleString('ru-RU')}`).join('; '),
+      subtitle: top ? `${top.label}: ${top.count.toLocaleString('ru-RU')} за 30 дней · ${pctOfAccounts(top.count) ?? '—'}` : undefined,
+      evidence: rows.map(r => `${r.label} — ${r.count.toLocaleString('ru-RU')} (${pctOfAccounts(r.count) ?? '—'})`).join('; '),
     }
   }
   return [
@@ -255,12 +266,12 @@ function buildNodes(m: FlowMetrics, ph: Record<string, number>): Node<NodeData>[
     node('eng-friction', 4300, 860,
       (ph['$dead_click'] ?? 0) >= 200 ? 'UX-трение: мёртвые клики' : 'UX-трение',
       (ph['$dead_click'] ?? 0) >= 200 ? 'blocker' : 'screen', 'engagement',
-      `Мёртвые клики: ${(ph['$dead_click'] ?? 0).toLocaleString('ru-RU')} · свайпы: ${(ph['$dead_swipe'] ?? 0).toLocaleString('ru-RU')}`,
+      `Мёртвые клики: ${(ph['$dead_click'] ?? 0).toLocaleString('ru-RU')} (${pctOfAccounts(ph['$dead_click'] ?? 0) ?? '—'}) · свайпы: ${(ph['$dead_swipe'] ?? 0).toLocaleString('ru-RU')}`,
       'Клики/свайпы без реакции интерфейса — автозахват PostHog ($dead_click, $dead_swipe). Не привязаны к конкретному экрану без доп. разбивки по pathname.',
       'PostHog · $dead_click, $dead_swipe'),
 
     node('eng-churn-risk', 4300, 1000, 'Запросы на удаление аккаунта', 'blocker', 'engagement',
-      `${(ph['account_deletion_requested'] ?? 0).toLocaleString('ru-RU')} за 30 дней`,
+      `${(ph['account_deletion_requested'] ?? 0).toLocaleString('ru-RU')} за 30 дней · ${pctOfAccounts(ph['account_deletion_requested'] ?? 0) ?? '—'}`,
       'Явный сигнал оттока — стоит трекать причину рядом с этим событием (сейчас не собирается).',
       'PostHog · account_deletion_requested'),
   ]
@@ -333,11 +344,24 @@ function preservePositions(next: Node<NodeData>[]) {
   return next.map(item => ({ ...item, position: current.get(item.id) ?? item.position }))
 }
 
+async function fetchWithRetry(url: string, init: RequestInit, retries = 1): Promise<Response> {
+  try {
+    return await fetch(url, init)
+  } catch (error) {
+    if (retries <= 0) throw error
+    await new Promise(resolve => window.setTimeout(resolve, 1500))
+    return fetchWithRetry(url, init, retries - 1)
+  }
+}
+
 async function loadData(silent = false) {
   if (!silent) loading.value = true
   loadError.value = ''
   try {
-    const response = await fetch(`/dashboard_data.json?t=${Date.now()}`, { cache: 'no-store' })
+    // Без ?t=Date.now() — cache: 'no-store' уже гарантирует свежий запрос,
+    // а вечно меняющийся query-параметр некоторые блокировщики рекламы
+    // ошибочно принимают за трекинг-пиксель и режут запрос целиком.
+    const response = await fetchWithRetry('/dashboard_data.json', { cache: 'no-store' })
     if (!response.ok) throw new Error(`HTTP ${response.status}`)
     const data = await response.json() as AnalyticsData
     const nextMetrics = deriveMetrics(data)
