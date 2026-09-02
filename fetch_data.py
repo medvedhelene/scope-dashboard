@@ -686,6 +686,56 @@ def fetch_meta():
     }
 
 
+# Топ продуктовых событий из PostHog (клики/действия в приложении) — для
+# Userflow и на будущее. Не весь список из 46 событий, только те, что
+# отражают реальное вовлечение, а не UI-шум (переключение вкладок и т.п.).
+POSTHOG_ENGAGEMENT_EVENTS = [
+    ("trading_account_add_clicked", "Клик «подключить аккаунт»"),
+    ("api_connect_cta_clicked", "Клик «подключить API»"),
+    ("trade_opened", "Открыл сделку"),
+    ("manual_trade_added", "Добавил сделку вручную"),
+    ("note_created", "Создал заметку"),
+    ("ai_chat_opened", "Открыл AI-чат"),
+    ("portfolio_created", "Создал портфель"),
+    ("content_shared", "Поделился контентом"),
+    ("app_store_link_clicked", "Клик по ссылке на app store"),
+]
+
+# Воронка, уже определённая продуктовой командой в самом PostHog
+# (Insight «Конверсия: регистрация → трейд») — берём те же шаги.
+POSTHOG_FUNNEL_STEPS = [
+    ("$identify", "Зарегистрировался"),
+    ("nav_tab_selected", "Открыл раздел приложения"),
+    ("trade_opened", "Открыл сделку"),
+]
+
+
+def fetch_posthog():
+    import posthog
+
+    funnel_raw = posthog.funnel(POSTHOG_FUNNEL_STEPS)
+    posthog_funnel = [
+        {
+            "name": r.get("custom_name") or r.get("name"),
+            "count": r.get("count", 0),
+            "median_conversion_sec": r.get("median_conversion_time"),
+        }
+        for r in funnel_raw
+    ]
+
+    counts = posthog.trends([ev for ev, _ in POSTHOG_ENGAGEMENT_EVENTS])
+    posthog_events = [
+        {"event": ev, "name": name, "count": counts.get(ev, 0)}
+        for ev, name in POSTHOG_ENGAGEMENT_EVENTS
+    ]
+    posthog_events.sort(key=lambda r: r["count"], reverse=True)
+
+    return {
+        "posthog_funnel": posthog_funnel,
+        "posthog_events": posthog_events,
+    }
+
+
 def main():
     out = {}
     for name, sql in QUERIES.items():
@@ -725,6 +775,18 @@ def main():
             prev = json.loads(data_path.read_text())
             for k in ("meta_spend_weekly", "meta_spend_monthly", "meta_creatives",
                       "meta_geo", "meta_placement", "meta_demographics"):
+                out[k] = prev.get(k, [])
+
+    try:
+        posthog_out = fetch_posthog()
+        out.update(posthog_out)
+        for name, rows in posthog_out.items():
+            print(f"{name}: {len(rows)} rows")
+    except Exception as e:
+        print(f"PostHog: ERROR {e}")
+        if data_path.exists():
+            prev = json.loads(data_path.read_text())
+            for k in ("posthog_funnel", "posthog_events"):
                 out[k] = prev.get(k, [])
 
     data_path.write_text(json.dumps(out, ensure_ascii=False, indent=1))

@@ -12,12 +12,16 @@ import '@vue-flow/minimap/dist/style.css'
 type FeatureRow = { feat: string; n: number; users: number }
 type FunnelRow = { m: string; registered: number; connected: number }
 type PaymentRow = { payment_method: string; success: number; pending: number; failed: number }
+type PosthogFunnelStep = { name: string; count: number; median_conversion_sec: number | null }
+type PosthogEvent = { event: string; name: string; count: number }
 type AnalyticsData = {
   time_to_value?: Array<{ med_sync_d?: number; activation7_pct?: number }>
   feature_events_summary?: FeatureRow[]
   funnel_by_month?: FunnelRow[]
   pay_attempts_daily?: PaymentRow[]
   stuck_pending?: Array<{ n: number; amount: number }>
+  posthog_funnel?: PosthogFunnelStep[]
+  posthog_events?: PosthogEvent[]
 }
 type FlowMetrics = {
   activation7: number
@@ -56,6 +60,8 @@ const EMPTY_METRICS: FlowMetrics = {
 const nodes = ref<Node<NodeData>[]>([])
 const edges = ref<Edge[]>([])
 const metrics = ref<FlowMetrics>(EMPTY_METRICS)
+const posthogFunnel = ref<PosthogFunnelStep[]>([])
+const posthogEvents = ref<PosthogEvent[]>([])
 const selected = ref<Node<NodeData> | null>(null)
 const loading = ref(true)
 const loadError = ref('')
@@ -70,6 +76,12 @@ const fmtMoney = (value: number) => `$${Math.round(value).toLocaleString('ru-RU'
 const fmtDate = (value: Date | null) => value
   ? value.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })
   : '—'
+const fmtDuration = (sec: number | null) => {
+  if (sec == null) return '—'
+  if (sec < 90) return `${Math.round(sec)} сек`
+  if (sec < 3600) return `${Math.round(sec / 60)} мин`
+  return `${(sec / 3600).toLocaleString('ru-RU', { maximumFractionDigits: 1 })} ч`
+}
 
 function deriveMetrics(data: AnalyticsData): FlowMetrics {
   const tv = data.time_to_value?.[0]
@@ -232,6 +244,8 @@ async function loadData(silent = false) {
     const data = await response.json() as AnalyticsData
     const nextMetrics = deriveMetrics(data)
     metrics.value = nextMetrics
+    posthogFunnel.value = data.posthog_funnel ?? []
+    posthogEvents.value = data.posthog_events ?? []
     nodes.value = preservePositions(buildNodes(nextMetrics))
     edges.value = buildEdges()
     loadedAt.value = new Date()
@@ -255,6 +269,12 @@ function onNodeClick(event: { node: Node<NodeData> }) {
 }
 
 const blockerCount = computed(() => nodes.value.filter(item => item.data.kind === 'blocker').length)
+
+const posthogFunnelWithPct = computed(() => {
+  const first = posthogFunnel.value[0]?.count || 0
+  return posthogFunnel.value.map(step => ({ ...step, pct: first ? step.count / first * 100 : 0 }))
+})
+const posthogEventsMax = computed(() => Math.max(1, ...posthogEvents.value.map(e => e.count)))
 
 onMounted(async () => {
   await loadData()
@@ -301,6 +321,33 @@ onBeforeUnmount(() => window.clearInterval(timer))
         <span>Красных зон на карте</span>
         <strong>{{ blockerCount }}</strong>
       </article>
+    </section>
+
+    <section v-if="posthogFunnelWithPct.length" class="posthog-section" aria-label="PostHog: путь к первому трейду">
+      <h2>PostHog: путь к первому трейду <span class="posthog-badge">факт кликов, 30 дней</span></h2>
+      <div class="posthog-funnel">
+        <div v-for="(step, i) in posthogFunnelWithPct" :key="step.name" class="posthog-funnel-step">
+          <div class="posthog-funnel-bar-track">
+            <div class="posthog-funnel-bar" :style="{ width: step.pct + '%' }"></div>
+          </div>
+          <div class="posthog-funnel-label">
+            <span>{{ step.name }}</span>
+            <strong>{{ step.count }}</strong>
+            <span class="posthog-funnel-pct">{{ fmtPct(step.pct) }}</span>
+          </div>
+          <div v-if="i > 0" class="posthog-funnel-time">медиана до этого шага: {{ fmtDuration(step.median_conversion_sec) }}</div>
+        </div>
+      </div>
+      <h3>Топ действий в приложении (30 дней)</h3>
+      <div class="posthog-events">
+        <div v-for="ev in posthogEvents" :key="ev.event" class="posthog-event-row">
+          <span class="posthog-event-name">{{ ev.name }}</span>
+          <div class="posthog-event-bar-track">
+            <div class="posthog-event-bar" :style="{ width: (ev.count / posthogEventsMax * 100) + '%' }"></div>
+          </div>
+          <span class="posthog-event-count">{{ ev.count }}</span>
+        </div>
+      </div>
     </section>
 
     <div class="status-row">

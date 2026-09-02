@@ -28,6 +28,25 @@ h1 { margin: 5px 0 3px; font-size: clamp(24px, 2.3vw, 34px); letter-spacing: -.0
 .metrics .metric-critical { border-color: #ef4444; background: #fff7f7; }
 .metrics .metric-critical strong { color: #b91c1c; }
 
+.posthog-section { margin: 18px 0; border: 1px solid #d8dee7; border-radius: 10px; background: white; padding: 16px 18px; }
+.posthog-section h2 { margin: 0 0 12px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+.posthog-section h3 { margin: 18px 0 10px; font-size: 12px; color: #64748b; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.posthog-badge { font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #64748b; background: #f1f5f9; border-radius: 999px; padding: 2px 8px; }
+.posthog-funnel { display: flex; flex-direction: column; gap: 10px; }
+.posthog-funnel-step { display: flex; flex-direction: column; gap: 4px; }
+.posthog-funnel-bar-track { height: 10px; border-radius: 999px; background: #eef2f7; overflow: hidden; }
+.posthog-funnel-bar { height: 100%; border-radius: 999px; background: #2563eb; transition: width .3s; }
+.posthog-funnel-label { display: flex; align-items: baseline; gap: 8px; font-size: 13px; }
+.posthog-funnel-label strong { font-size: 15px; }
+.posthog-funnel-pct { margin-left: auto; color: #64748b; font-size: 12px; }
+.posthog-funnel-time { color: #94a3b8; font-size: 11px; }
+.posthog-events { display: flex; flex-direction: column; gap: 6px; }
+.posthog-event-row { display: grid; grid-template-columns: 180px 1fr 40px; align-items: center; gap: 10px; font-size: 12px; }
+.posthog-event-name { color: #475569; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.posthog-event-bar-track { height: 8px; border-radius: 999px; background: #eef2f7; overflow: hidden; }
+.posthog-event-bar { height: 100%; border-radius: 999px; background: #7c3aed; }
+.posthog-event-count { text-align: right; color: #64748b; }
+
 .status-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; min-height: 28px; color: #64748b; font-size: 12px; }
 .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #2563eb; box-shadow: 0 0 0 3px #dbeafe; }
 .switch { display: inline-flex; align-items: center; gap: 5px; color: #334155; cursor: pointer; }
