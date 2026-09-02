@@ -462,7 +462,7 @@ onMounted(async () => {
         <p>Текущее поведение, missing gaps, целевой flow, события и движение данных.</p>
       </div>
       <div class="topbar-actions onboarding-links">
-        <a class="button button--quiet" href="/dashboard.html">Дашборд</a>
+        <a class="button button--quiet" href="/">Дашборд</a>
         <a class="button button--quiet" href="/userflow.html">Userflow</a>
       </div>
     </header>

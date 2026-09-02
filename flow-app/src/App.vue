@@ -426,7 +426,7 @@ onBeforeUnmount(() => window.clearInterval(timer))
         <p>Живая карта activation: действия, реальные переходы и потенциальные точки отвала.</p>
       </div>
       <div class="topbar-actions">
-        <a class="button button--quiet" href="/dashboard.html">К дашборду</a>
+        <a class="button button--quiet" href="/">К дашборду</a>
         <a class="button button--quiet" href="/onboarding.html">Onboarding</a>
         <button class="button" type="button" :disabled="loading" @click="loadData(false)">
           {{ loading ? 'Обновляю…' : 'Перечитать данные' }}
