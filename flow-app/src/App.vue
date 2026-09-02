@@ -129,12 +129,15 @@ const node = (
   source?: string,
 ): Node<NodeData> => ({ id, type: 'product', position: { x, y }, data: { title, kind, branch, subtitle, evidence, source } })
 
-function buildNodes(m: FlowMetrics): Node<NodeData>[] {
+function buildNodes(m: FlowMetrics, ph: Record<string, number>): Node<NodeData>[] {
   const connectionIsCritical = m.connectionDrop7 >= 60
   const paymentIsCritical = m.overpayFailureRate >= 40 || m.pendingCount >= 10
   const dropEvidence = `${fmtPct(m.connectionDrop7)} не подключили аккаунт за 7 дней; ` +
     `по последним четырём месячным когортам подключились ${fmtPct(m.recentConnectionRate)}. ` +
     `Красный порог: ≥60% без подключения.`
+  // PostHog считает клики/действия, а не только завершённые события из БД —
+  // подписываем узлы, где это реально измерено, отдельной меткой источника.
+  const ph30 = (event: string) => ph[event] != null ? `${ph[event].toLocaleString('ru-RU')} за 30 дней` : null
   return [
     node('lane-common', 0, 190, 'ОБЩИЙ ПУТЬ', 'lane', 'common'),
     node('signup', 0, 245, 'Создаёт аккаунт', 'action', 'common', 'Email или Google'),
@@ -145,16 +148,16 @@ function buildNodes(m: FlowMetrics): Node<NodeData>[] {
     node('choose-path', 1250, 245, 'Выбирает действие', 'decision', 'common', 'Подключить аккаунт или ручной журнал'),
 
     node('lane-connected', 1570, 0, 'ПОДКЛЮЧЕННЫЙ АККАУНТ', 'lane', 'connected'),
-    node('connect-cta', 1570, 55, 'Нажимает «Подключить»', 'action', 'connected'),
+    node('connect-cta', 1570, 55, 'Нажимает «Подключить»', 'action', 'connected', ph30('trading_account_add_clicked') ?? undefined, 'Клики по CTA «Подключить аккаунт», без разбивки на завершённые подключения.', ph30('trading_account_add_clicked') ? 'PostHog · trading_account_add_clicked' : undefined),
     node('connection-manager', 1820, 55, 'Connection Manager', 'screen', 'connected', 'Открывается с initMode=auto'),
     node('plan-check', 2070, 55, 'Проверка тарифа', 'decision', 'connected', 'Free или платный'),
-    node('add-account', 2320, 55, 'Добавляет аккаунт', 'action', 'connected'),
+    node('add-account', 2320, 55, 'Добавляет аккаунт', 'action', 'connected', ph30('api_connect_cta_clicked') ?? undefined, 'Клики по CTA подключения API/провайдера.', ph30('api_connect_cta_clicked') ? 'PostHog · api_connect_cta_clicked' : undefined),
     node('provider-auth', 2570, 55, 'Провайдер и доступы', 'action', 'connected', 'API key / login / wallet'),
     node('connected', 2820, 55, 'Аккаунт подключён', 'screen', 'connected', `${fmtPct(m.activation7)} новых пользователей ≤7 дней`, dropEvidence, 'time_to_value.activation7_pct + funnel_by_month'),
     node('sync', 3070, 55, 'Импорт / первый sync', 'screen', 'connected', `≈${Math.round(m.syncMinutes)} мин среди дошедших`, 'Медиана считается только среди пользователей, достигших sync.', 'time_to_value.med_sync_d'),
     node('manager-stays', 3320, 55, 'Остаётся в Manager', 'screen', 'connected'),
     node('open-journal', 3570, 55, 'Сам открывает Journal', 'action', 'connected'),
-    node('positions', 3820, 55, 'Видит позиции', 'screen', 'connected', 'Получает первую ценность'),
+    node('positions', 3820, 55, 'Видит позиции', 'screen', 'connected', ph30('trade_opened') ? `Получает первую ценность · ${ph30('trade_opened')}` : 'Получает первую ценность', 'Клики «Открыть сделку» по всем пользователям, не только новым.', ph30('trade_opened') ? 'PostHog · trade_opened' : undefined),
 
     node('drop-zone', 2320, 230, connectionIsCritical ? 'Главная зона потенциального отвала' : 'Зона подключения', connectionIsCritical ? 'blocker' : 'screen', 'connected', `${fmtPct(m.connectionDrop7)} не доходят до подключения ≤7 дней`, `${dropEvidence} Промежуточные события не трекаются, поэтому точная точка внутри участка неизвестна.`, 'time_to_value.activation7_pct'),
     node('mode-blocker', 1820, 390, 'Режим может остаться manual', 'blocker', 'connected', 'Без существующего auto-аккаунта initMode=auto не гарантирует Connected mode.', 'Подтверждено текущей логикой приложения.', 'код Base/Futures'),
@@ -165,10 +168,10 @@ function buildNodes(m: FlowMetrics): Node<NodeData>[] {
     node('lane-manual', 1570, 650, 'РУЧНОЙ ЖУРНАЛ', 'lane', 'manual'),
     node('manual-cta', 1570, 705, 'Нажимает «Ручной журнал»', 'action', 'manual'),
     node('manual-journal', 1820, 705, 'Пустой Journal', 'screen', 'manual', 'initMode=manual'),
-    node('create-portfolio', 2070, 705, 'Создаёт портфель', 'action', 'manual'),
+    node('create-portfolio', 2070, 705, 'Создаёт портфель', 'action', 'manual', ph30('portfolio_created') ?? undefined, 'Портфелей реально создано за период — сравните с кликами по «Ручной журнал» слева, отвал внутри ветки виден напрямую.', ph30('portfolio_created') ? 'PostHog · portfolio_created' : undefined),
     node('manual-account', 2320, 705, 'Ручной аккаунт создан', 'screen', 'manual'),
     node('add-trade', 2570, 705, 'Добавляет сделку', 'action', 'manual'),
-    node('save-trade', 2820, 705, 'Сохраняет сделку', 'action', 'manual'),
+    node('save-trade', 2820, 705, 'Сохраняет сделку', 'action', 'manual', ph30('manual_trade_added') ?? undefined, 'Сделок добавлено вручную за период.', ph30('manual_trade_added') ? 'PostHog · manual_trade_added' : undefined),
     node('manual-value', 3070, 705, 'Позиция в Journal', 'screen', 'manual', `${m.manualUsers.toLocaleString('ru-RU')} пользователей создавали ручные позиции`, 'Нет событий открытия ветки и создания портфеля — локальный drop-off не рассчитывается.', 'feature_events_summary'),
     node('copy-blocker', 1820, 900, 'Empty state ведёт к API', 'blocker', 'manual', 'Текст «Подключить API» противоречит выбранному manual-сценарию.', 'Подтверждено текущим экраном Journal.', 'код Journal'),
 
@@ -246,7 +249,8 @@ async function loadData(silent = false) {
     metrics.value = nextMetrics
     posthogFunnel.value = data.posthog_funnel ?? []
     posthogEvents.value = data.posthog_events ?? []
-    nodes.value = preservePositions(buildNodes(nextMetrics))
+    const posthogCounts = Object.fromEntries(posthogEvents.value.map(e => [e.event, e.count]))
+    nodes.value = preservePositions(buildNodes(nextMetrics, posthogCounts))
     edges.value = buildEdges()
     loadedAt.value = new Date()
     const modified = response.headers.get('last-modified')
@@ -379,6 +383,7 @@ onBeforeUnmount(() => window.clearInterval(timer))
             <Handle v-if="props.data.kind !== 'lane'" type="target" :position="Position.Left" />
             <div v-if="props.data.kind === 'blocker'" class="node-kicker">Потенциальный блокер</div>
             <div v-if="props.data.kind === 'solution'" class="node-kicker node-kicker--solution">Потенциальное решение</div>
+            <div v-if="props.data.source?.startsWith('PostHog')" class="node-source-badge">PostHog</div>
             <div class="node-title">{{ props.data.title }}</div>
             <div v-if="props.data.subtitle" class="node-subtitle">{{ props.data.subtitle }}</div>
             <Handle v-if="props.data.kind !== 'lane'" type="source" :position="Position.Right" />
