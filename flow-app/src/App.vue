@@ -14,6 +14,7 @@ type FunnelRow = { m: string; registered: number; connected: number }
 type PaymentRow = { payment_method: string; success: number; pending: number; failed: number }
 type PosthogFunnelStep = { name: string; count: number; median_conversion_sec: number | null }
 type PosthogEvent = { event: string; name: string; count: number }
+type PosthogActivity = { dau: number; wau: number; mau: number }
 type AnalyticsData = {
   time_to_value?: Array<{ med_sync_d?: number; activation7_pct?: number }>
   feature_events_summary?: FeatureRow[]
@@ -22,6 +23,7 @@ type AnalyticsData = {
   stuck_pending?: Array<{ n: number; amount: number }>
   posthog_funnel?: PosthogFunnelStep[]
   posthog_events?: PosthogEvent[]
+  posthog_activity?: PosthogActivity
 }
 type FlowMetrics = {
   activation7: number
@@ -65,6 +67,7 @@ const metrics = ref<FlowMetrics>(EMPTY_METRICS)
 const posthogFunnel = ref<PosthogFunnelStep[]>([])
 const posthogEvents = ref<PosthogEvent[]>([])
 const posthogCounts = ref<Record<string, number>>({})
+const posthogActivity = ref<PosthogActivity | null>(null)
 const selected = ref<Node<NodeData> | null>(null)
 const loading = ref(true)
 const loadError = ref('')
@@ -369,6 +372,7 @@ async function loadData(silent = false) {
     posthogFunnel.value = data.posthog_funnel ?? []
     posthogEvents.value = data.posthog_events ?? []
     posthogCounts.value = Object.fromEntries(posthogEvents.value.map(e => [e.event, e.count]))
+    posthogActivity.value = data.posthog_activity ?? null
     nodes.value = preservePositions(buildNodes(nextMetrics, posthogCounts.value))
     edges.value = buildEdges()
     loadedAt.value = new Date()
@@ -451,6 +455,12 @@ onBeforeUnmount(() => window.clearInterval(timer))
 
     <section v-if="posthogFunnelWithPct.length" class="posthog-section" aria-label="PostHog: путь к первому трейду">
       <h2>PostHog: путь к первому трейду <span class="posthog-badge">факт кликов, 30 дней</span></h2>
+      <div v-if="posthogActivity" class="posthog-activity">
+        <div class="posthog-activity-tile"><span>DAU</span><strong>{{ posthogActivity.dau }}</strong></div>
+        <div class="posthog-activity-tile"><span>WAU</span><strong>{{ posthogActivity.wau }}</strong></div>
+        <div class="posthog-activity-tile"><span>MAU</span><strong>{{ posthogActivity.mau }}</strong></div>
+        <div class="posthog-activity-note">по «открыл раздел приложения» (nav_tab_selected) — на сегодня</div>
+      </div>
       <div class="posthog-funnel">
         <div v-for="(step, i) in posthogFunnelWithPct" :key="step.name" class="posthog-funnel-step">
           <div class="posthog-funnel-bar-track">

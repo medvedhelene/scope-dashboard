@@ -62,6 +62,23 @@ def trends(events, date_from="-30d"):
     return {r["label"]: r.get("count", 0) for r in data.get("results", [])}
 
 
+def active_users(event, date_from="-30d"):
+    """Текущие DAU/WAU/MAU по событию-индикатору активности (последняя точка
+    скользящего окна на сегодня, не среднее за период)."""
+    out = {}
+    for math, key in [("dau", "dau"), ("weekly_active", "wau"), ("monthly_active", "mau")]:
+        data = query({
+            "kind": "TrendsQuery",
+            "series": [{"event": event, "math": math}],
+            "dateRange": {"date_from": date_from},
+            "interval": "day",
+            "filterTestAccounts": True,
+        })
+        series = (data.get("results") or [{}])[0].get("data", [])
+        out[key] = series[-1] if series else 0
+    return out
+
+
 def main():
     if len(sys.argv) < 3:
         sys.exit("usage: ./posthog.py trends '[\"event1\",\"event2\"]'")

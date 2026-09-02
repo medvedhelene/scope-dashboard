@@ -765,9 +765,19 @@ def fetch_posthog():
     ]
     posthog_events.sort(key=lambda r: r["count"], reverse=True)
 
+    # DAU/WAU/MAU по nav_tab_selected — единственное событие, которое стабильно
+    # фиксирует «зашёл в приложение» (не завязано на конкретную фичу).
+    # Web Analytics ($pageview/$autocapture) и Error Tracking ($exception)
+    # в проекте не инструментированы (0 событий за всё время) — раздела для
+    # них нет, показывать было бы нечего. Retention пока тоже не показателен:
+    # трекинг большинства событий начался считанные недели назад, кривая
+    # почти сплошь нулевая — вернёмся к ней, когда накопится история.
+    posthog_activity = posthog.active_users("nav_tab_selected")
+
     return {
         "posthog_funnel": posthog_funnel,
         "posthog_events": posthog_events,
+        "posthog_activity": posthog_activity,
     }
 
 
@@ -821,7 +831,7 @@ def main():
         print(f"PostHog: ERROR {e}")
         if data_path.exists():
             prev = json.loads(data_path.read_text())
-            for k in ("posthog_funnel", "posthog_events"):
+            for k in ("posthog_funnel", "posthog_events", "posthog_activity"):
                 out[k] = prev.get(k, [])
 
     data_path.write_text(json.dumps(out, ensure_ascii=False, indent=1))

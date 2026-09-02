@@ -32,6 +32,11 @@ h1 { margin: 5px 0 3px; font-size: clamp(24px, 2.3vw, 34px); letter-spacing: -.0
 .posthog-section h2 { margin: 0 0 12px; font-size: 15px; display: flex; align-items: center; gap: 8px; }
 .posthog-section h3 { margin: 18px 0 10px; font-size: 12px; color: #64748b; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
 .posthog-badge { font-size: 10px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #64748b; background: #f1f5f9; border-radius: 999px; padding: 2px 8px; }
+.posthog-activity { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+.posthog-activity-tile { min-width: 76px; border: 1px solid #d8dee7; border-radius: 8px; padding: 8px 12px; }
+.posthog-activity-tile span { display: block; color: #64748b; font-size: 11px; }
+.posthog-activity-tile strong { display: block; margin-top: 2px; font-size: 20px; }
+.posthog-activity-note { color: #94a3b8; font-size: 11px; }
 .posthog-funnel { display: flex; flex-direction: column; gap: 10px; }
 .posthog-funnel-step { display: flex; flex-direction: column; gap: 4px; }
 .posthog-funnel-bar-track { height: 10px; border-radius: 999px; background: #eef2f7; overflow: hidden; }
