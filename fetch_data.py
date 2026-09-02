@@ -686,19 +686,53 @@ def fetch_meta():
     }
 
 
-# Топ продуктовых событий из PostHog (клики/действия в приложении) — для
-# Userflow и на будущее. Не весь список из 46 событий, только те, что
-# отражают реальное вовлечение, а не UI-шум (переключение вкладок и т.п.).
+# Все продуктовые события из PostHog, кроме $identify/nav_tab_selected (уже
+# в воронке ниже) и $set/$web_vitals (техническая телеметрия, не действие
+# пользователя). Используется и для топ-списка на Userflow, и как источник
+# чисел для сгруппированных карточек "Дальше: вовлечённость".
 POSTHOG_ENGAGEMENT_EVENTS = [
     ("trading_account_add_clicked", "Клик «подключить аккаунт»"),
     ("api_connect_cta_clicked", "Клик «подключить API»"),
     ("trade_opened", "Открыл сделку"),
     ("manual_trade_added", "Добавил сделку вручную"),
+    ("manual_trade_creation_started", "Начал создание сделки"),
     ("note_created", "Создал заметку"),
+    ("note_block_added", "Добавил блок в заметку"),
+    ("note_tag_created", "Создал тег заметки"),
+    ("note_folder_created", "Создал папку заметок"),
     ("ai_chat_opened", "Открыл AI-чат"),
+    ("ai_message_sent", "Отправил сообщение AI"),
     ("portfolio_created", "Создал портфель"),
     ("content_shared", "Поделился контентом"),
     ("app_store_link_clicked", "Клик по ссылке на app store"),
+    ("settings_tab_selected", "Открыл вкладку настроек"),
+    ("settings_empty_state_cta_clicked", "Клик по пустому состоянию настроек"),
+    ("platform_setting_updated", "Изменил настройку платформы"),
+    ("risk_rule_updated", "Обновил risk-правило"),
+    ("workspace_switched", "Переключил workspace"),
+    ("profile_field_updated", "Изменил поле профиля"),
+    ("profile_picture_updated", "Обновил аватар"),
+    ("external_auth_credentials_managed", "Управлял внешними credentials"),
+    ("notification_preference_toggled", "Переключил уведомления"),
+    ("calendar_day_viewed", "Открыл день в календаре"),
+    ("calendar_month_navigated", "Пролистал месяц в календаре"),
+    ("date_range_selected", "Выбрал диапазон дат"),
+    ("data_refreshed", "Обновил данные вручную"),
+    ("dashboard_widget_view_toggled", "Переключил вид виджета"),
+    ("dashboard_layout_toggled", "Изменил layout дашборда"),
+    ("dashboard_widgets_managed", "Настроил набор виджетов"),
+    ("journal_view_mode_changed", "Сменил режим просмотра журнала"),
+    ("journal_mode_switched", "Переключил режим журнала"),
+    ("journal_summary_toggled", "Показал/скрыл summary журнала"),
+    ("journal_filters_opened", "Открыл фильтры журнала"),
+    ("journal_column_added", "Добавил колонку журнала"),
+    ("manual_journal_empty_state_shown", "Увидел пустой ручной журнал"),
+    ("trade_detail_block_added", "Добавил блок в детали сделки"),
+    ("trade_detail_column_added", "Добавил колонку в детали сделки"),
+    ("trade_template_selected", "Выбрал шаблон сделки"),
+    ("account_deletion_requested", "Запросил удаление аккаунта"),
+    ("$dead_click", "Мёртвый клик (без реакции интерфейса)"),
+    ("$dead_swipe", "Мёртвый свайп (без реакции интерфейса)"),
 ]
 
 # Воронка, уже определённая продуктовой командой в самом PostHog

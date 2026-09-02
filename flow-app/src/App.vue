@@ -41,7 +41,7 @@ type NodeData = {
   evidence?: string
   source?: string
   kind: 'action' | 'screen' | 'decision' | 'blocker' | 'solution' | 'lane'
-  branch: 'common' | 'connected' | 'manual' | 'payment'
+  branch: 'common' | 'connected' | 'manual' | 'payment' | 'engagement'
 }
 
 const EMPTY_METRICS: FlowMetrics = {
@@ -62,6 +62,7 @@ const edges = ref<Edge[]>([])
 const metrics = ref<FlowMetrics>(EMPTY_METRICS)
 const posthogFunnel = ref<PosthogFunnelStep[]>([])
 const posthogEvents = ref<PosthogEvent[]>([])
+const posthogCounts = ref<Record<string, number>>({})
 const selected = ref<Node<NodeData> | null>(null)
 const loading = ref(true)
 const loadError = ref('')
@@ -138,6 +139,16 @@ function buildNodes(m: FlowMetrics, ph: Record<string, number>): Node<NodeData>[
   // PostHog считает клики/действия, а не только завершённые события из БД —
   // подписываем узлы, где это реально измерено, отдельной меткой источника.
   const ph30 = (event: string) => ph[event] != null ? `${ph[event].toLocaleString('ru-RU')} за 30 дней` : null
+  // Группа мелких событий одной темы -> заголовочная цифра (топ события) на
+  // карточке + полная раскладка по каждому событию в панели деталей.
+  const phGroup = (events: Array<[string, string]>) => {
+    const rows = events.map(([ev, label]) => ({ ev, label, count: ph[ev] ?? 0 })).sort((a, b) => b.count - a.count)
+    const top = rows[0]
+    return {
+      subtitle: top ? `${top.label}: ${top.count.toLocaleString('ru-RU')} за 30 дней` : undefined,
+      evidence: rows.map(r => `${r.label} — ${r.count.toLocaleString('ru-RU')}`).join('; '),
+    }
+  }
   return [
     node('lane-common', 0, 190, 'ОБЩИЙ ПУТЬ', 'lane', 'common'),
     node('signup', 0, 245, 'Создаёт аккаунт', 'action', 'common', 'Email или Google'),
@@ -180,6 +191,78 @@ function buildNodes(m: FlowMetrics, ph: Record<string, number>): Node<NodeData>[
     node('payment-result', 3620, 705, 'Результат платежа', 'decision', 'payment'),
     node('payment-success', 3870, 705, 'Оплата успешна', 'screen', 'payment'),
     node('payment-blocker', 3620, 900, paymentIsCritical ? 'Проблема оплаты' : 'Оплата без критичного сигнала', paymentIsCritical ? 'blocker' : 'screen', 'payment', `Overpay: ${m.overpayFailed} из ${m.overpayAttempts} failed (${fmtPct(m.overpayFailureRate)})`, `${m.pendingCount} pending на ${fmtMoney(m.pendingAmount)}. Красный порог: ≥40% failed или ≥10 pending. Это downstream-блокер, не часть 7-дневной activation.`, 'pay_attempts_daily + stuck_pending'),
+
+    // Дальше: всё, что PostHog видит после первой ценности — 39 оставшихся
+    // событий, сгруппированных по темам (иначе на карте было бы 39 карточек
+    // с единичными числами). $set и $web_vitals не показаны отдельно — это
+    // техническая телеметрия (свойства пользователя, производительность),
+    // не действие в интерфейсе.
+    node('lane-engagement', 4300, -320, 'ДАЛЬШЕ: ЗАЛУЧЕНІСТЬ (POSTHOG)', 'lane', 'engagement'),
+    node('continues-using', 4050, 380, 'Продолжает пользоваться', 'screen', 'engagement', 'Все действия ниже — за 30 дней, по всем пользователям'),
+
+    node('eng-settings', 4300, -260, 'Настройки и профиль', 'screen', 'engagement',
+      phGroup([['settings_tab_selected', 'Открыл вкладку настроек'], ['platform_setting_updated', 'Изменил настройку платформы'],
+        ['risk_rule_updated', 'Обновил risk-правило'], ['workspace_switched', 'Переключил workspace'],
+        ['profile_field_updated', 'Изменил поле профиля'], ['external_auth_credentials_managed', 'Управлял внешними credentials'],
+        ['notification_preference_toggled', 'Переключил уведомления'], ['settings_empty_state_cta_clicked', 'Клик по пустому состоянию настроек'],
+        ['profile_picture_updated', 'Обновил аватар']]).subtitle,
+      phGroup([['settings_tab_selected', 'Открыл вкладку настроек'], ['platform_setting_updated', 'Изменил настройку платформы'],
+        ['risk_rule_updated', 'Обновил risk-правило'], ['workspace_switched', 'Переключил workspace'],
+        ['profile_field_updated', 'Изменил поле профиля'], ['external_auth_credentials_managed', 'Управлял внешними credentials'],
+        ['notification_preference_toggled', 'Переключил уведомления'], ['settings_empty_state_cta_clicked', 'Клик по пустому состоянию настроек'],
+        ['profile_picture_updated', 'Обновил аватар']]).evidence, 'PostHog · 9 событий (settings_*, profile_*, workspace_switched, external_auth_credentials_managed)'),
+
+    node('eng-dashboard', 4300, -100, 'Дашборд и календарь', 'screen', 'engagement',
+      phGroup([['calendar_day_viewed', 'Открыл день в календаре'], ['date_range_selected', 'Выбрал диапазон дат'],
+        ['data_refreshed', 'Обновил данные вручную'], ['calendar_month_navigated', 'Пролистал месяц'],
+        ['dashboard_widget_view_toggled', 'Переключил вид виджета'], ['dashboard_layout_toggled', 'Изменил layout дашборда'],
+        ['dashboard_widgets_managed', 'Настроил набор виджетов']]).subtitle,
+      phGroup([['calendar_day_viewed', 'Открыл день в календаре'], ['date_range_selected', 'Выбрал диапазон дат'],
+        ['data_refreshed', 'Обновил данные вручную'], ['calendar_month_navigated', 'Пролистал месяц'],
+        ['dashboard_widget_view_toggled', 'Переключил вид виджета'], ['dashboard_layout_toggled', 'Изменил layout дашборда'],
+        ['dashboard_widgets_managed', 'Настроил набор виджетов']]).evidence, 'PostHog · 7 событий (calendar_*, dashboard_*, date_range_selected, data_refreshed)'),
+
+    node('eng-journal-ui', 4300, 60, 'Журнал: настройка вида', 'screen', 'engagement',
+      phGroup([['journal_view_mode_changed', 'Сменил режим просмотра'], ['journal_mode_switched', 'Переключил режим журнала'],
+        ['journal_summary_toggled', 'Показал/скрыл summary'], ['journal_filters_opened', 'Открыл фильтры'],
+        ['journal_column_added', 'Добавил колонку']]).subtitle,
+      phGroup([['journal_view_mode_changed', 'Сменил режим просмотра'], ['journal_mode_switched', 'Переключил режим журнала'],
+        ['journal_summary_toggled', 'Показал/скрыл summary'], ['journal_filters_opened', 'Открыл фильтры'],
+        ['journal_column_added', 'Добавил колонку']]).evidence, 'PostHog · 5 событий (journal_*)'),
+
+    node('eng-trade-detail', 4300, 220, 'Детали сделок', 'screen', 'engagement',
+      phGroup([['trade_detail_block_added', 'Добавил блок в детали сделки'], ['manual_trade_creation_started', 'Начал создание сделки'],
+        ['trade_template_selected', 'Выбрал шаблон сделки'], ['trade_detail_column_added', 'Добавил колонку в детали']]).subtitle,
+      phGroup([['trade_detail_block_added', 'Добавил блок в детали сделки'], ['manual_trade_creation_started', 'Начал создание сделки'],
+        ['trade_template_selected', 'Выбрал шаблон сделки'], ['trade_detail_column_added', 'Добавил колонку в детали']]).evidence, 'PostHog · 4 события (trade_detail_*, trade_template_selected, manual_trade_creation_started)'),
+
+    node('eng-notes', 4300, 380, 'Заметки', 'screen', 'engagement',
+      phGroup([['note_block_added', 'Добавил блок в заметку'], ['note_created', 'Создал заметку'],
+        ['note_tag_created', 'Создал тег'], ['note_folder_created', 'Создал папку заметок']]).subtitle,
+      phGroup([['note_block_added', 'Добавил блок в заметку'], ['note_created', 'Создал заметку'],
+        ['note_tag_created', 'Создал тег'], ['note_folder_created', 'Создал папку заметок']]).evidence, 'PostHog · 4 события (note_*)'),
+
+    node('eng-ai', 4300, 540, 'AI-ассистент', 'screen', 'engagement',
+      phGroup([['ai_chat_opened', 'Открыл AI-чат'], ['ai_message_sent', 'Отправил сообщение AI']]).subtitle,
+      phGroup([['ai_chat_opened', 'Открыл AI-чат'], ['ai_message_sent', 'Отправил сообщение AI']]).evidence,
+      'PostHog · 2 события (ai_chat_opened, ai_message_sent)'),
+
+    node('eng-growth', 4300, 700, 'Рост и шеринг', 'screen', 'engagement',
+      phGroup([['content_shared', 'Поделился контентом'], ['app_store_link_clicked', 'Клик по ссылке на app store']]).subtitle,
+      phGroup([['content_shared', 'Поделился контентом'], ['app_store_link_clicked', 'Клик по ссылке на app store']]).evidence,
+      'PostHog · 2 события (content_shared, app_store_link_clicked)'),
+
+    node('eng-friction', 4300, 860,
+      (ph['$dead_click'] ?? 0) >= 200 ? 'UX-трение: мёртвые клики' : 'UX-трение',
+      (ph['$dead_click'] ?? 0) >= 200 ? 'blocker' : 'screen', 'engagement',
+      `Мёртвые клики: ${(ph['$dead_click'] ?? 0).toLocaleString('ru-RU')} · свайпы: ${(ph['$dead_swipe'] ?? 0).toLocaleString('ru-RU')}`,
+      'Клики/свайпы без реакции интерфейса — автозахват PostHog ($dead_click, $dead_swipe). Не привязаны к конкретному экрану без доп. разбивки по pathname.',
+      'PostHog · $dead_click, $dead_swipe'),
+
+    node('eng-churn-risk', 4300, 1000, 'Запросы на удаление аккаунта', 'blocker', 'engagement',
+      `${(ph['account_deletion_requested'] ?? 0).toLocaleString('ru-RU')} за 30 дней`,
+      'Явный сигнал оттока — стоит трекать причину рядом с этим событием (сейчас не собирается).',
+      'PostHog · account_deletion_requested'),
   ]
 }
 
@@ -230,6 +313,18 @@ function buildEdges(): Edge[] {
     edge('e-payment-result', 'payment-attempt', 'payment-result'),
     edge('e-result-success', 'payment-result', 'payment-success'),
     edge('e-payment-problem', 'payment-blocker', 'payment-result', undefined, metrics.value.overpayFailureRate >= 40 || metrics.value.pendingCount >= 10),
+
+    edge('e-positions-continues', 'positions', 'continues-using'),
+    edge('e-manualvalue-continues', 'manual-value', 'continues-using'),
+    edge('e-continues-settings', 'continues-using', 'eng-settings'),
+    edge('e-continues-dashboard', 'continues-using', 'eng-dashboard'),
+    edge('e-continues-journal-ui', 'continues-using', 'eng-journal-ui'),
+    edge('e-continues-trade-detail', 'continues-using', 'eng-trade-detail'),
+    edge('e-continues-notes', 'continues-using', 'eng-notes'),
+    edge('e-continues-ai', 'continues-using', 'eng-ai'),
+    edge('e-continues-growth', 'continues-using', 'eng-growth'),
+    edge('e-continues-friction', 'continues-using', 'eng-friction', undefined, (posthogCounts.value['$dead_click'] ?? 0) >= 200),
+    edge('e-continues-churn', 'continues-using', 'eng-churn-risk', undefined, true),
   ]
 }
 
@@ -249,8 +344,8 @@ async function loadData(silent = false) {
     metrics.value = nextMetrics
     posthogFunnel.value = data.posthog_funnel ?? []
     posthogEvents.value = data.posthog_events ?? []
-    const posthogCounts = Object.fromEntries(posthogEvents.value.map(e => [e.event, e.count]))
-    nodes.value = preservePositions(buildNodes(nextMetrics, posthogCounts))
+    posthogCounts.value = Object.fromEntries(posthogEvents.value.map(e => [e.event, e.count]))
+    nodes.value = preservePositions(buildNodes(nextMetrics, posthogCounts.value))
     edges.value = buildEdges()
     loadedAt.value = new Date()
     const modified = response.headers.get('last-modified')
@@ -278,7 +373,8 @@ const posthogFunnelWithPct = computed(() => {
   const first = posthogFunnel.value[0]?.count || 0
   return posthogFunnel.value.map(step => ({ ...step, pct: first ? step.count / first * 100 : 0 }))
 })
-const posthogEventsMax = computed(() => Math.max(1, ...posthogEvents.value.map(e => e.count)))
+const posthogTopEvents = computed(() => [...posthogEvents.value].sort((a, b) => b.count - a.count).slice(0, 10))
+const posthogEventsMax = computed(() => Math.max(1, ...posthogTopEvents.value.map(e => e.count)))
 
 onMounted(async () => {
   await loadData()
@@ -342,9 +438,9 @@ onBeforeUnmount(() => window.clearInterval(timer))
           <div v-if="i > 0" class="posthog-funnel-time">медиана до этого шага: {{ fmtDuration(step.median_conversion_sec) }}</div>
         </div>
       </div>
-      <h3>Топ действий в приложении (30 дней)</h3>
+      <h3>Топ-10 действий в приложении (30 дней) <span class="posthog-badge">из {{ posthogEvents.length }} событий — остальные на карте ниже</span></h3>
       <div class="posthog-events">
-        <div v-for="ev in posthogEvents" :key="ev.event" class="posthog-event-row">
+        <div v-for="ev in posthogTopEvents" :key="ev.event" class="posthog-event-row">
           <span class="posthog-event-name">{{ ev.name }}</span>
           <div class="posthog-event-bar-track">
             <div class="posthog-event-bar" :style="{ width: (ev.count / posthogEventsMax * 100) + '%' }"></div>
