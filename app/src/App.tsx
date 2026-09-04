@@ -119,6 +119,18 @@ function Card({ title, note, wide, right, stretch, children }: {
   )
 }
 
+const SOURCE_COLORS: Record<string, string> = {
+  PostHog: 'text-violet-500 bg-violet-500/10',
+  Metabase: 'text-sky-500 bg-sky-500/10',
+  GA4: 'text-amber-500 bg-amber-500/10',
+}
+function SourceTag({ source }: { source: keyof typeof SOURCE_COLORS }) {
+  return <span className={'shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ' + SOURCE_COLORS[source]}>{source}</span>
+}
+function DataSinceTag({ date }: { date: string }) {
+  return <span className="text-[10px] font-bold uppercase tracking-wide text-red-500">данные с {date}</span>
+}
+
 function Tile({ label, value, sub }: { label: string; value: ReactNode; sub?: ReactNode }) {
   return (
     <div className="rounded-xl border border-border bg-card text-card-foreground px-4 py-3">
@@ -185,10 +197,11 @@ function EmptyNote() {
 }
 
 // ---------- глобальный фильтр периода ----------
-function FilterBar({ preset, setPreset, from, setFrom, to, setTo }: {
+function FilterBar({ preset, setPreset, from, setFrom, to, setTo, right }: {
   preset: string; setPreset: (v: string) => void
   from: string; setFrom: (v: string) => void
   to: string; setTo: (v: string) => void
+  right?: ReactNode
 }) {
   const opt = (v: string, name: ReactNode, label?: string) => (
     <button type="button" onClick={() => setPreset(v)} aria-pressed={preset === v}
@@ -214,6 +227,7 @@ function FilterBar({ preset, setPreset, from, setFrom, to, setTo }: {
               className="rounded-lg border border-border bg-card px-2 py-1 text-[13px] text-foreground" />
           </span>
         )}
+        {right && <span className="ml-auto">{right}</span>}
       </div>
     </div>
   )
@@ -594,6 +608,23 @@ export default function App() {
   ]
   const onboardingResumed = posthogEvent('onboarding_resumed')
 
+  // Управление подпиской — события выкачены на прод 04.09.2026, живых данных пока 0.
+  const cancelFunnelData = [
+    { label: 'Клик Get support', value: posthogEvent('cancellation_support_clicked'), displayValue: fmtN(posthogEvent('cancellation_support_clicked')) },
+    { label: 'Продолжил отмену', value: posthogEvent('cancellation_continued'), displayValue: fmtN(posthogEvent('cancellation_continued')) },
+    { label: 'Указал причину', value: posthogEvent('cancellation_reason_submitted'), displayValue: fmtN(posthogEvent('cancellation_reason_submitted')) },
+    { label: 'Подписка отменена', value: posthogEvent('subscription_cancelled'), displayValue: fmtN(posthogEvent('subscription_cancelled')) },
+  ]
+  const reactivationFunnelData = [
+    { label: 'Клик «реактивировать»', value: posthogEvent('subscription_reactivation_clicked'), displayValue: fmtN(posthogEvent('subscription_reactivation_clicked')) },
+    { label: 'Подписка реактивирована', value: posthogEvent('subscription_reactivated'), displayValue: fmtN(posthogEvent('subscription_reactivated')) },
+  ]
+  const deletionFunnelData = [
+    { label: 'Начал удаление', value: posthogEvent('account_deletion_flow_started'), displayValue: fmtN(posthogEvent('account_deletion_flow_started')) },
+    { label: 'Подтвердил причину', value: posthogEvent('account_deletion_verification_requested'), displayValue: fmtN(posthogEvent('account_deletion_verification_requested')) },
+    { label: 'Удаление завершено', value: posthogEvent('account_deletion_confirmed'), displayValue: fmtN(posthogEvent('account_deletion_confirmed')) },
+  ]
+
   return (
     <div className="min-h-dvh bg-background text-foreground">
       <div className="mx-auto flex max-w-[1400px] items-start gap-6 px-6 pb-16 pt-8">
@@ -648,7 +679,8 @@ export default function App() {
           </a>
         </div>
 
-        <FilterBar preset={preset} setPreset={setPreset} from={from} setFrom={setFrom} to={to} setTo={setTo} />
+        <FilterBar preset={preset} setPreset={setPreset} from={from} setFrom={setFrom} to={to} setTo={setTo}
+          right={tab === 'subscriptions' ? <DataSinceTag date="04.09.2026" /> : undefined} />
 
         {tab === 'kpi' && (<>
         <Section title="Ключевые показатели">
@@ -1184,6 +1216,11 @@ export default function App() {
         <Section title="Выводы">
           <ul className="grid gap-2.5 text-sm text-muted-foreground">
             {[
+              onboardingResumed > 0 && <><b className="text-foreground">Онбординг редко проходят с одного захода:</b> ещё {fmtN(onboardingResumed)} человек
+                за тот же период (PostHog, 30 дней) вернулись в онбординг повторно — это не отдельный шаг воронки, а сигнал, что часть выбравших ветку
+                на самом деле повторные попытки.</>,
+              trialFunnelData[0].value > 0 && trialFunnelData[1].value < trialFunnelData[0].value && <><b className="text-foreground">Резкий провал на активации trial:</b> {fmtN(trialFunnelData[0].value - trialFunnelData[1].value)} из {fmtN(trialFunnelData[0].value)} начавших
+                оформление (PostHog, 30 дней) не дошли до активации — объём пока небольшой, но стоит проверить этот шаг отдельно.</>,
               <><b className="text-foreground">Платёжка теряет деньги: у overpay {Math.round(ovAll.failed / ovAll.attempts * 100)}% попыток заканчиваются отказом.</b> Починка
                 overpay — самый быстрый способ поднять выручку без роста трафика; плюс {fmtM(pendingTotal)} висит в pending.</>,
               <><b className="text-foreground">Рост регистраций не конвертируется в деньги.</b> Регистрации на максимумах (200–370 в неделю),
@@ -1196,7 +1233,7 @@ export default function App() {
                 14 минут после регистрации, первая оплата — 44,5 дня. Разрыв воронки — между «создал аккаунт» и «подключил» (теряем две трети).</>,
               <><b className="text-foreground">Атрибуция почти слепая:</b> UTM у 5,5% пользователей; рефералка: 13 тысяч ссылок → 274 клика → 7 оплат.
                 Ядро продукта — форекс на MetaTrader 5.</>,
-            ].map((x, i) => (
+            ].filter(Boolean).map((x, i) => (
               <li key={i} className="rounded-xl border border-border bg-card px-4 py-3">{x}</li>
             ))}
           </ul>
@@ -1205,16 +1242,7 @@ export default function App() {
 
         {tab === 'subscriptions' && (<>
         <Section title="Подписки: онбординг и trial">
-          <p className="text-[11px] font-bold uppercase tracking-wide text-red-500">
-            Сбор данных по этим событиям в PostHog начался 04.09.2026 — цифры за очень короткий период, для трендов пока не показательны
-          </p>
-
-          <Callout>
-            Воронки онбординга и trial ниже — из PostHog, окно фиксированное (последние 30 дней), не зависит от фильтра периода выше.
-            Блок «Оплаты» — из Metabase, за выбранный период. Это разные источники и окна — не складывайте числа из разных блоков друг с другом.
-          </Callout>
-
-          <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-6">
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-6">
             <Tile label="Регистрация" value={fmtN(posthogEvent('user_signed_up'))} sub="PostHog, 30 дней" />
             <Tile label="Онбординг начат" value={fmtN(posthogEvent('onboarding_started'))} />
             <Tile label="Выбрал ветку" value={fmtN(posthogEvent('onboarding_path_selected'))} />
@@ -1224,7 +1252,7 @@ export default function App() {
           </div>
 
           <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
-            <Card title="Воронка онбординга" note="PostHog, последние 30 дней. Регистрация формы → начал онбординг → выбрал ветку (подключить аккаунт или ручной журнал).">
+            <Card title="Воронка онбординга" note="Регистрация формы → начал онбординг → выбрал ветку." right={<SourceTag source="PostHog" />}>
               {onboardingFunnelData[0].value ? (
                 <FunnelChart key="onboarding-funnel"
                   data={onboardingFunnelData}
@@ -1232,15 +1260,9 @@ export default function App() {
                   formatPercentage={(p: number) => comma(p.toFixed(p < 1 ? 2 : 1)) + '%'}
                 />
               ) : <EmptyNote />}
-              {onboardingResumed > 0 && (
-                <p className="mt-3 text-[12.5px] text-amber-500">
-                  Ещё {fmtN(onboardingResumed)} человек за этот же период вернулись в онбординг повторно (не прошли с одного захода) —
-                  это не отдельный шаг воронки, а сигнал, что часть выбравших ветку — на самом деле повторные попытки.
-                </p>
-              )}
             </Card>
 
-            <Card title="Воронка trial" note="PostHog, последние 30 дней. Начал оформление → trial реально активирован.">
+            <Card title="Воронка trial" note="Начал оформление → trial реально активирован." right={<SourceTag source="PostHog" />}>
               {trialFunnelData[0].value ? (
                 <FunnelChart key="trial-funnel"
                   data={trialFunnelData}
@@ -1248,18 +1270,28 @@ export default function App() {
                   formatPercentage={(p: number) => comma(p.toFixed(p < 1 ? 2 : 1)) + '%'}
                 />
               ) : <EmptyNote />}
-              {trialFunnelData[0].value > 0 && trialFunnelData[1].value < trialFunnelData[0].value && (
-                <p className="mt-3 text-[12.5px] text-amber-500">
-                  {fmtN(trialFunnelData[0].value - trialFunnelData[1].value)} из {fmtN(trialFunnelData[0].value)} начавших оформление
-                  не дошли до активации trial за период — стоит проверить этот шаг отдельно, объём небольшой, но провал резкий.
-                </p>
-              )}
             </Card>
           </div>
         </Section>
 
-        <Section title="Оплаты">
-            <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+        <Section title="Оплаты за всё время">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              <Card wide title="Stripe: оформление trial по плану" right={<SourceTag source="PostHog" />}>
+                {(D.posthog_trial_by_plan ?? []).length ? (
+                  <BarChart data={D.posthog_trial_by_plan.map((r: Row) => ({ ...r, label: `${r.step} · ${r.plan}` }))}
+                    xDataKey="label" orientation="horizontal" aspectRatio="16 / 6" margin={{ top: 8, right: 24, bottom: 8, left: 140 }}>
+                    <Bar dataKey="amount" fill={C[3]} lineCap={3} />
+                    <BarYAxis />
+                    <ChartTooltip showDatePill={false} rows={(p: Row) => [
+                      { color: C[3], label: 'сумма', value: `$${comma(p.amount.toFixed(2))} ${p.currency?.toUpperCase()}` },
+                      { color: 'transparent', label: 'кол-во', value: fmtN(p.count) },
+                    ]} />
+                  </BarChart>
+                ) : <EmptyNote />}
+              </Card>
+            </div>
+
+            <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-5">
               <Tile label="Выручка" value={fmtM(revTotal)} sub={fmtN(salesTotal) + ' успешных оплат'} />
               <Tile label="MRR сейчас" value={fmtM(curMrr.mrr)} sub={`${curMrr.monthly_subs} месячных + ${curMrr.yearly_subs} годовых`} />
               <Tile label="Средний чек" value={'$' + comma((revTotal / salesTotal).toFixed(2))} sub="на успешную оплату" />
@@ -1269,7 +1301,7 @@ export default function App() {
                 sub={ovAll ? `${ovAll.failed} из ${ovAll.attempts} попыток` : undefined} />
             </div>
             <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
-              <Card title="Платежи по месяцам" note="Число успешных оплат; покупатели — в подсказке.">
+              <Card title="Платежи по месяцам" note="Число успешных оплат; покупатели — в подсказке." right={<SourceTag source="Metabase" />}>
                 {salesMonthly.length ? (
                   <BarChart key={rkey} data={salesMonthly} xDataKey="label"
                     aspectRatio="16 / 7" margin={{ top: 16, right: 52, bottom: 36, left: 12 }}>
@@ -1284,7 +1316,7 @@ export default function App() {
                   </BarChart>
                 ) : <EmptyNote />}
               </Card>
-              <Card title="Платёжные методы: исходы попыток" note="Попытки оплаты по статусам за период. Stripe сюда пока не входит — см. заметку ниже.">
+              <Card title="Платёжные методы: исходы попыток" note="Попытки оплаты по статусам за период. Stripe — см. график выше." right={<SourceTag source="Metabase" />}>
                 {methods.length ? (
                   <>
                     <BarChart key={rkey} data={methods} xDataKey="payment_method" barWidth={26}
@@ -1305,81 +1337,55 @@ export default function App() {
                   </>
                 ) : <EmptyNote />}
               </Card>
-
-              <Card wide title="Stripe: оформление trial по плану" note="PostHog, из свойств событий (provider=stripe) — таблица fact_sales_transactions в Metabase Stripe ещё не получает, поэтому этих сумм там нет.">
-                {(D.posthog_trial_by_plan ?? []).length ? (
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-[13px]">
-                      <thead>
-                        <tr className="text-left text-muted-foreground">
-                          <th className="pb-2 font-medium">Шаг</th>
-                          <th className="pb-2 font-medium">План</th>
-                          <th className="pb-2 pr-2 text-right font-medium">Кол-во</th>
-                          <th className="pb-2 text-right font-medium">Сумма</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {D.posthog_trial_by_plan.map((r: Row, i: number) => (
-                          <tr key={i} className="border-t border-border">
-                            <td className="py-1.5">{r.step}</td>
-                            <td className="py-1.5">{r.plan}</td>
-                            <td className="py-1.5 pr-2 text-right font-medium">{fmtN(r.count)}</td>
-                            <td className="py-1.5 text-right font-medium">${comma(r.amount.toFixed(2))} {r.currency?.toUpperCase()}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                ) : <EmptyNote />}
-              </Card>
             </div>
         </Section>
 
         <Section title="Управление подпиской">
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-wide text-red-500">
-            События выкачены на прод недавно — по всем пока 0, цифры появятся сами по мере использования
-          </p>
-          <Card wide title="Смена плана, отмена, реактивация, удаление аккаунта" note="PostHog, за всё время. Клики по шагам флоу — не только завершённые действия.">
-            <div className="overflow-x-auto">
-              <table className="w-full text-[13px]">
-                <thead>
-                  <tr className="text-left text-muted-foreground">
-                    <th className="pb-2 font-medium">Группа</th>
-                    <th className="pb-2 font-medium">Шаг</th>
-                    <th className="pb-2 text-right font-medium">Кол-во</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    ['Смена плана', 'plan_change_clicked', 'Клик «сменить план»'],
-                    ['Отмена', 'cancellation_support_clicked', 'Клик «Get support»'],
-                    ['Отмена', 'cancellation_continued', 'Продолжил отмену'],
-                    ['Отмена', 'cancellation_reason_submitted', 'Указал причину'],
-                    ['Отмена', 'cancellation_kept', 'Передумал (Keep Base plan)'],
-                    ['Отмена', 'cancellation_aborted', 'Передумал (Stay with Scope360)'],
-                    ['Отмена', 'subscription_cancelled', 'Подписка отменена'],
-                    ['Возврат', 'plan_reupgrade_link_clicked', 'Клик «вернуть план»'],
-                    ['Возврат', 'subscription_reactivation_clicked', 'Клик «реактивировать»'],
-                    ['Возврат', 'subscription_reactivated', 'Подписка реактивирована'],
-                    ['Удаление аккаунта', 'account_deletion_flow_started', 'Начал удаление'],
-                    ['Удаление аккаунта', 'account_deletion_verification_requested', 'Подтвердил причину'],
-                    ['Удаление аккаунта', 'account_deletion_confirmed', 'Удаление завершено'],
-                  ].map(([group, ev, label], i) => (
-                    <tr key={ev} className="border-t border-border">
-                      <td className="py-1.5 text-muted-foreground">{group}</td>
-                      <td className="py-1.5">{label}</td>
-                      <td className="py-1.5 text-right font-medium">{fmtN(posthogEvent(ev))}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Card>
+          <DataSinceTag date="04.09.2026" />
+          <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
+            <Card title="Смена плана" right={<SourceTag source="PostHog" />}>
+              <Tile label="Клик «сменить план»" value={fmtN(posthogEvent('plan_change_clicked'))} />
+            </Card>
+
+            <Card title="Реактивация" right={<SourceTag source="PostHog" />}>
+              {reactivationFunnelData[0].value ? (
+                <FunnelChart key="reactivation-funnel" data={reactivationFunnelData}
+                  color="var(--chart-2)" orientation="horizontal" className="w-full"
+                  formatPercentage={(p: number) => comma(p.toFixed(p < 1 ? 2 : 1)) + '%'}
+                />
+              ) : <EmptyNote />}
+              <div className="mt-3">
+                <Tile label="Клик «вернуть план» (из отменённых)" value={fmtN(posthogEvent('plan_reupgrade_link_clicked'))} />
+              </div>
+            </Card>
+
+            <Card wide title="Отмена подписки" note="Основной путь: Get support → продолжил → указал причину → отменено." right={<SourceTag source="PostHog" />}>
+              {cancelFunnelData[0].value ? (
+                <FunnelChart key="cancel-funnel" data={cancelFunnelData}
+                  color={CRIT} orientation="horizontal" className="w-full"
+                  formatPercentage={(p: number) => comma(p.toFixed(p < 1 ? 2 : 1)) + '%'}
+                />
+              ) : <EmptyNote />}
+              <div className="mt-3 grid grid-cols-2 gap-3">
+                <Tile label="Передумал (Keep Base plan)" value={fmtN(posthogEvent('cancellation_kept'))} />
+                <Tile label="Передумал (Stay with Scope360)" value={fmtN(posthogEvent('cancellation_aborted'))} />
+              </div>
+            </Card>
+
+            <Card title="Удаление аккаунта" note="Начал → подтвердил причину → удалено." right={<SourceTag source="PostHog" />}>
+              {deletionFunnelData[0].value ? (
+                <FunnelChart key="deletion-funnel" data={deletionFunnelData}
+                  color={CRIT} orientation="horizontal" className="w-full"
+                  formatPercentage={(p: number) => comma(p.toFixed(p < 1 ? 2 : 1)) + '%'}
+                />
+              ) : <EmptyNote />}
+            </Card>
+          </div>
         </Section>
 
         <Section title="Откуда трафик">
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              <Card wide title="UTM и партнёрские ссылки" note="По регистрациям; клики, оплаты и выручка — в подсказке. За всю историю.">
+              <Card wide title="UTM и партнёрские ссылки" note="По регистрациям; клики, оплаты и выручка — в подсказке. За всю историю." right={<SourceTag source="Metabase" />}>
                 <BarChart data={D.attribution_links.map((r: Row) => ({ ...r, label: r.kind === 'UTM' ? r.category : 'Партнёрская' }))}
                   xDataKey="label" orientation="horizontal" aspectRatio="16 / 6" margin={{ top: 8, right: 24, bottom: 8, left: 112 }}>
                   <Bar dataKey="regs" fill={C[2]} lineCap={3} />
@@ -1392,7 +1398,7 @@ export default function App() {
                   ]} />
                 </BarChart>
               </Card>
-              <Card title="Каналы трафика (GA4)" note="Сессии на лендинг, за всю историю.">
+              <Card title="Каналы трафика (GA4)" note="Сессии на лендинг, за всю историю." right={<SourceTag source="GA4" />}>
                 {(D.ga4_channels ?? []).length ? (
                   <BarChart data={D.ga4_channels} xDataKey="sessionDefaultChannelGroup" orientation="horizontal"
                     aspectRatio="16 / 9" margin={{ top: 8, right: 24, bottom: 8, left: 96 }}>
