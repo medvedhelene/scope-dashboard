@@ -419,6 +419,19 @@ export default function App() {
     return [...map.values()].sort((a, b) => (b.success + b.pending + b.failed) - (a.success + a.pending + a.failed))
   }, [rkey, D])
 
+  // Метабейз не видит Stripe вообще (нет таких строк в транзакциях) — добавляем
+  // его отдельной колонкой из PostHog checkout-событий. Это не «попытки оплаты»
+  // в том же смысле, что у остальных методов, а весь период целиком (PostHog
+  // здесь не режется по выбранному диапазону дат), поэтому держим отдельно
+  // от основного `methods` и подписываем в интерфейсе явно.
+  const methodsWithStripe = useMemo(() => {
+    const trial: Row[] = D.posthog_trial_by_plan ?? []
+    const started = trial.filter((r: Row) => r.step === 'Начал оформление').reduce((a: number, r: Row) => a + r.count, 0)
+    const activated = trial.filter((r: Row) => r.step === 'Trial активирован').reduce((a: number, r: Row) => a + r.count, 0)
+    if (!started) return methods
+    return [...methods, { payment_method: 'stripe', success: activated, pending: 0, failed: Math.max(started - activated, 0) }]
+  }, [methods, D])
+
   const plans = useMemo(() => {
     const names: Row = { monthly: 'мес.', yearly: 'год.', unlimited: 'безлим.' }
     const map = new Map<string, Row>()
@@ -720,10 +733,10 @@ export default function App() {
                 </BarChart>
               ) : <EmptyNote />}
             </Card>
-            <Card title="Платёжные методы: исходы попыток" note="Попытки оплаты по статусам за период.">
-              {methods.length ? (
+            <Card title="Платёжные методы: исходы попыток" note="Метабейз — попытки за период; Stripe — за всё время из PostHog (Метабейз его не видит)." right={<><SourceTag source="Metabase" /> <SourceTag source="PostHog" /></>}>
+              {methodsWithStripe.length ? (
                 <>
-                  <BarChart key={rkey} data={methods} xDataKey="payment_method" barWidth={26}
+                  <BarChart key={rkey} data={methodsWithStripe} xDataKey="payment_method" barWidth={26}
                     aspectRatio="16 / 7" margin={{ top: 16, right: 52, bottom: 36, left: 12 }}>
                     <Grid horizontal />
                     <YAxis orientation="right" numTicks={4} formatValue={v => fmtN(v)} />
