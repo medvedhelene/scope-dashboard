@@ -282,6 +282,26 @@ function buildNodes(m: FlowMetrics, ph: Record<string, number>): Node<NodeData>[
       `${(ph['account_deletion_requested'] ?? 0).toLocaleString('ru-RU')} за 30 дней · ${pctOfAccounts(ph['account_deletion_requested'] ?? 0) ?? '—'}`,
       'Явный сигнал оттока — стоит трекать причину рядом с этим событием (сейчас не собирается).',
       'PostHog · account_deletion_requested'),
+
+    // 13 событий управления подпиской (смена плана, отмена, реактивация,
+    // удаление аккаунта) выкатили на прод позже остальных — цифры появятся
+    // сами, как только кто-то пройдёт эти флоу.
+    node('eng-subscription', 4300, 1160, 'Управление подпиской', 'screen', 'engagement',
+      phGroup([['plan_change_clicked', 'Клик «сменить план»'], ['plan_reupgrade_link_clicked', 'Клик «вернуть план»'],
+        ['cancellation_support_clicked', 'Клик «Get support» при отмене'], ['cancellation_continued', 'Продолжил отмену'],
+        ['cancellation_reason_submitted', 'Указал причину отмены'], ['cancellation_kept', 'Передумал (Keep Base plan)'],
+        ['cancellation_aborted', 'Передумал (Stay with Scope360)'], ['subscription_cancelled', 'Подписка отменена'],
+        ['subscription_reactivation_clicked', 'Клик «реактивировать»'], ['subscription_reactivated', 'Подписка реактивирована'],
+        ['account_deletion_flow_started', 'Начал удаление аккаунта'], ['account_deletion_verification_requested', 'Подтвердил причину удаления'],
+        ['account_deletion_confirmed', 'Удаление аккаунта завершено']]).subtitle,
+      phGroup([['plan_change_clicked', 'Клик «сменить план»'], ['plan_reupgrade_link_clicked', 'Клик «вернуть план»'],
+        ['cancellation_support_clicked', 'Клик «Get support» при отмене'], ['cancellation_continued', 'Продолжил отмену'],
+        ['cancellation_reason_submitted', 'Указал причину отмены'], ['cancellation_kept', 'Передумал (Keep Base plan)'],
+        ['cancellation_aborted', 'Передумал (Stay with Scope360)'], ['subscription_cancelled', 'Подписка отменена'],
+        ['subscription_reactivation_clicked', 'Клик «реактивировать»'], ['subscription_reactivated', 'Подписка реактивирована'],
+        ['account_deletion_flow_started', 'Начал удаление аккаунта'], ['account_deletion_verification_requested', 'Подтвердил причину удаления'],
+        ['account_deletion_confirmed', 'Удаление аккаунта завершено']]).evidence + ' · выкачены на прод недавно, живых событий пока может быть 0',
+      'PostHog · 13 событий (plan_*, cancellation_*, subscription_*, account_deletion_*) — подробнее на вкладке «Подписки» дашборда'),
   ]
 }
 
@@ -345,6 +365,7 @@ function buildEdges(): Edge[] {
     edge('e-continues-growth', 'continues-using', 'eng-growth'),
     edge('e-continues-friction', 'continues-using', 'eng-friction', undefined, (posthogCounts.value['$dead_click'] ?? 0) >= 200),
     edge('e-continues-churn', 'continues-using', 'eng-churn-risk', undefined, true),
+    edge('e-continues-subscription', 'continues-using', 'eng-subscription'),
   ]
 }
 
