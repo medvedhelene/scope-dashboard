@@ -745,9 +745,9 @@ export default function App() {
                     <Bar dataKey="failed" fill={CRIT} lineCap={2} />
                     <BarXAxis showAllLabels />
                     <ChartTooltip showDatePill={false} rows={(p: Row) => [
-                      { color: GOOD, label: 'успех', value: fmtN(p.success) },
+                      { color: GOOD, label: p.payment_method === 'stripe' ? 'trial активирован' : 'успех', value: fmtN(p.success) },
                       { color: WARN, label: 'в ожидании', value: fmtN(p.pending) },
-                      { color: CRIT, label: 'отказ', value: fmtN(p.failed) },
+                      { color: CRIT, label: p.payment_method === 'stripe' ? 'не завершили' : 'отказ', value: fmtN(p.failed) },
                     ]} />
                   </BarChart>
                   <Legend items={statusLegend} />
