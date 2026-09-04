@@ -77,6 +77,7 @@ const TABS = [
   { id: 'marketing', label: 'Маркетинг' },
   { id: 'ads', label: 'Платный трафик' },
   { id: 'conclusions', label: 'Выводы' },
+  { id: 'subscriptions', label: 'Подписки' },
 ] as const
 
 const inRange = (d: string, [f, t]: Range) => (!f || d >= f) && (!t || d <= t)
@@ -578,6 +579,20 @@ export default function App() {
     { label: 'успех', color: GOOD }, { label: 'в ожидании', color: WARN }, { label: 'отказ', color: CRIT }]
 
   const ovAll = D.sales_by_method.find((r: Row) => r.payment_method === 'overpay')
+
+  // PostHog: воронки онбординга и trial — за последние 30 дней (окно фиксирует
+  // сам PostHog при выгрузке), не привязаны к глобальному фильтру периода.
+  const posthogEvent = (id: string) => (D.posthog_events ?? []).find((r: Row) => r.event === id)?.count ?? 0
+  const onboardingFunnelData = [
+    { label: 'Зарегистрировался', value: posthogEvent('user_signed_up'), displayValue: fmtN(posthogEvent('user_signed_up')) },
+    { label: 'Начал онбординг', value: posthogEvent('onboarding_started'), displayValue: fmtN(posthogEvent('onboarding_started')) },
+    { label: 'Выбрал ветку (подключить / вручную)', value: posthogEvent('onboarding_path_selected'), displayValue: fmtN(posthogEvent('onboarding_path_selected')) },
+  ]
+  const trialFunnelData = [
+    { label: 'Начал оформление trial', value: posthogEvent('trial_checkout_started'), displayValue: fmtN(posthogEvent('trial_checkout_started')) },
+    { label: 'Trial активирован', value: posthogEvent('trial_started'), displayValue: fmtN(posthogEvent('trial_started')) },
+  ]
+  const onboardingResumed = posthogEvent('onboarding_resumed')
 
   return (
     <div className="min-h-dvh bg-background text-foreground">
@@ -1185,6 +1200,131 @@ export default function App() {
               <li key={i} className="rounded-xl border border-border bg-card px-4 py-3">{x}</li>
             ))}
           </ul>
+        </Section>
+        </>)}
+
+        {tab === 'subscriptions' && (<>
+        <Section title="Подписки: онбординг и trial">
+          <Callout>
+            Воронки онбординга и trial ниже — из PostHog, окно фиксированное (последние 30 дней), не зависит от фильтра периода выше.
+            Блок «Оплаты» — из Metabase, за выбранный период. Это разные источники и окна — не складывайте числа из разных блоков друг с другом.
+          </Callout>
+
+          <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
+            <Card title="Воронка онбординга" note="PostHog, последние 30 дней. Регистрация формы → начал онбординг → выбрал ветку (подключить аккаунт или ручной журнал).">
+              {onboardingFunnelData[0].value ? (
+                <FunnelChart key="onboarding-funnel"
+                  data={onboardingFunnelData}
+                  color="var(--chart-1)" orientation="horizontal" className="w-full"
+                  formatPercentage={(p: number) => comma(p.toFixed(p < 1 ? 2 : 1)) + '%'}
+                />
+              ) : <EmptyNote />}
+              {onboardingResumed > 0 && (
+                <p className="mt-3 text-[12.5px] text-amber-500">
+                  Ещё {fmtN(onboardingResumed)} человек за этот же период вернулись в онбординг повторно (не прошли с одного захода) —
+                  это не отдельный шаг воронки, а сигнал, что часть выбравших ветку — на самом деле повторные попытки.
+                </p>
+              )}
+            </Card>
+
+            <Card title="Воронка trial" note="PostHog, последние 30 дней. Начал оформление → trial реально активирован.">
+              {trialFunnelData[0].value ? (
+                <FunnelChart key="trial-funnel"
+                  data={trialFunnelData}
+                  color="var(--chart-3)" orientation="horizontal" className="w-full"
+                  formatPercentage={(p: number) => comma(p.toFixed(p < 1 ? 2 : 1)) + '%'}
+                />
+              ) : <EmptyNote />}
+              {trialFunnelData[0].value > 0 && trialFunnelData[1].value < trialFunnelData[0].value && (
+                <p className="mt-3 text-[12.5px] text-amber-500">
+                  {fmtN(trialFunnelData[0].value - trialFunnelData[1].value)} из {fmtN(trialFunnelData[0].value)} начавших оформление
+                  не дошли до активации trial за период — стоит проверить этот шаг отдельно, объём небольшой, но провал резкий.
+                </p>
+              )}
+            </Card>
+          </div>
+        </Section>
+
+        <Section title="Оплаты">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+              <Tile label="Выручка" value={fmtM(revTotal)} sub={fmtN(salesTotal) + ' успешных оплат'} />
+              <Tile label="MRR сейчас" value={fmtM(curMrr.mrr)} sub={`${curMrr.monthly_subs} месячных + ${curMrr.yearly_subs} годовых`} />
+              <Tile label="Средний чек" value={'$' + comma((revTotal / salesTotal).toFixed(2))} sub="на успешную оплату" />
+              <Tile label="Продлеваемость месячных" value={renDue ? Math.round(renOk / renDue * 100) + '%' : '—'}
+                sub={`${renOk} продлений из ${renDue} истёкших`} />
+              <Tile label="Отказы overpay" value={ovAll ? Math.round(ovAll.failed / ovAll.attempts * 100) + '%' : '—'}
+                sub={ovAll ? `${ovAll.failed} из ${ovAll.attempts} попыток` : undefined} />
+            </div>
+            <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
+              <Card title="Платежи по месяцам" note="Число успешных оплат; покупатели — в подсказке.">
+                {salesMonthly.length ? (
+                  <BarChart key={rkey} data={salesMonthly} xDataKey="label"
+                    aspectRatio="16 / 7" margin={{ top: 16, right: 52, bottom: 36, left: 12 }}>
+                    <Grid horizontal />
+                    <YAxis orientation="right" numTicks={4} formatValue={v => fmtN(v)} />
+                    <Bar dataKey="sales" fill={C[0]} lineCap={3} />
+                    <BarXAxis maxLabels={8} />
+                    <ChartTooltip showDatePill={false} rows={(p: Row) => [
+                      { color: C[0], label: 'оплат', value: fmtN(p.sales) },
+                      { color: 'transparent', label: 'покупателей', value: fmtN(p.buyers) },
+                    ]} />
+                  </BarChart>
+                ) : <EmptyNote />}
+              </Card>
+              <Card title="Платёжные методы: исходы попыток" note="Попытки оплаты по статусам за период.">
+                {methods.length ? (
+                  <>
+                    <BarChart key={rkey} data={methods} xDataKey="payment_method" barWidth={26}
+                      aspectRatio="16 / 7" margin={{ top: 16, right: 52, bottom: 36, left: 12 }}>
+                      <Grid horizontal />
+                      <YAxis orientation="right" numTicks={4} formatValue={v => fmtN(v)} />
+                      <Bar dataKey="success" fill={GOOD} lineCap={2} />
+                      <Bar dataKey="pending" fill={WARN} lineCap={2} />
+                      <Bar dataKey="failed" fill={CRIT} lineCap={2} />
+                      <BarXAxis showAllLabels />
+                      <ChartTooltip showDatePill={false} rows={(p: Row) => [
+                        { color: GOOD, label: 'успех', value: fmtN(p.success) },
+                        { color: WARN, label: 'в ожидании', value: fmtN(p.pending) },
+                        { color: CRIT, label: 'отказ', value: fmtN(p.failed) },
+                      ]} />
+                    </BarChart>
+                    <Legend items={statusLegend} />
+                  </>
+                ) : <EmptyNote />}
+              </Card>
+            </div>
+        </Section>
+
+        <Section title="Откуда трафик">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              <Card wide title="UTM и партнёрские ссылки" note="По регистрациям; клики, оплаты и выручка — в подсказке. За всю историю.">
+                <BarChart data={D.attribution_links.map((r: Row) => ({ ...r, label: r.kind === 'UTM' ? r.category : 'Партнёрская' }))}
+                  xDataKey="label" orientation="horizontal" aspectRatio="16 / 6" margin={{ top: 8, right: 24, bottom: 8, left: 112 }}>
+                  <Bar dataKey="regs" fill={C[2]} lineCap={3} />
+                  <BarYAxis />
+                  <ChartTooltip showDatePill={false} rows={(p: Row) => [
+                    { color: C[2], label: 'регистраций', value: fmtN(p.regs) },
+                    { color: 'transparent', label: 'кликов', value: fmtN(p.clicks) },
+                    { color: 'transparent', label: 'оплат', value: fmtN(p.payments) },
+                    { color: 'transparent', label: 'выручка', value: fmtM(p.revenue) },
+                  ]} />
+                </BarChart>
+              </Card>
+              <Card title="Каналы трафика (GA4)" note="Сессии на лендинг, за всю историю.">
+                {(D.ga4_channels ?? []).length ? (
+                  <BarChart data={D.ga4_channels} xDataKey="sessionDefaultChannelGroup" orientation="horizontal"
+                    aspectRatio="16 / 9" margin={{ top: 8, right: 24, bottom: 8, left: 96 }}>
+                    <Bar dataKey="sessions" fill={C[0]} lineCap={3} />
+                    <BarYAxis />
+                    <ChartTooltip showDatePill={false} rows={(p: Row) => [
+                      { color: C[0], label: 'сессий', value: fmtN(p.sessions) },
+                      { color: 'transparent', label: 'пользователей', value: fmtN(p.totalUsers) },
+                      { color: 'transparent', label: 'вовлечённость', value: comma(p.engagementRate) + '%' },
+                    ]} />
+                  </BarChart>
+                ) : <EmptyNote />}
+              </Card>
+            </div>
         </Section>
         </>)}
 
