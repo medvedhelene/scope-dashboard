@@ -1402,9 +1402,9 @@ export default function App() {
 
         <Section title="Откуда трафик">
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              <Card wide title="UTM и партнёрские ссылки" note="По регистрациям; клики, оплаты и выручка — в подсказке. За всю историю." right={<SourceTag source="Metabase" />}>
+              <Card title="UTM и партнёрские ссылки" note="По регистрациям; клики, оплаты и выручка — в подсказке. За всю историю." right={<SourceTag source="Metabase" />}>
                 <BarChart data={D.attribution_links.map((r: Row) => ({ ...r, label: r.kind === 'UTM' ? r.category : 'Партнёрская' }))}
-                  xDataKey="label" orientation="horizontal" aspectRatio="16 / 6" margin={{ top: 8, right: 24, bottom: 8, left: 112 }}>
+                  xDataKey="label" orientation="horizontal" aspectRatio="16 / 9" margin={{ top: 8, right: 24, bottom: 8, left: 112 }}>
                   <Bar dataKey="regs" fill={C[2]} lineCap={3} />
                   <BarYAxis />
                   <ChartTooltip showDatePill={false} rows={(p: Row) => [
