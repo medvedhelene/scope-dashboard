@@ -128,7 +128,11 @@ function SourceTag({ source }: { source: keyof typeof SOURCE_COLORS }) {
   return <span className={'shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ' + SOURCE_COLORS[source]}>{source}</span>
 }
 function DataSinceTag({ date }: { date: string }) {
-  return <span className="text-[10px] font-bold uppercase tracking-wide text-red-500">данные с {date}</span>
+  return (
+    <span className="rounded-full border border-red-600 bg-red-600/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-red-500">
+      Сбор данных начат с {date}
+    </span>
+  )
 }
 
 function Tile({ label, value, sub }: { label: string; value: ReactNode; sub?: ReactNode }) {
@@ -1275,23 +1279,7 @@ export default function App() {
         </Section>
 
         <Section title="Оплаты за всё время">
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              <Card wide title="Stripe: оформление trial по плану" right={<SourceTag source="PostHog" />}>
-                {(D.posthog_trial_by_plan ?? []).length ? (
-                  <BarChart data={D.posthog_trial_by_plan.map((r: Row) => ({ ...r, label: `${r.step} · ${r.plan}` }))}
-                    xDataKey="label" orientation="horizontal" aspectRatio="16 / 6" margin={{ top: 8, right: 24, bottom: 8, left: 140 }}>
-                    <Bar dataKey="amount" fill={C[3]} lineCap={3} />
-                    <BarYAxis />
-                    <ChartTooltip showDatePill={false} rows={(p: Row) => [
-                      { color: C[3], label: 'сумма', value: `$${comma(p.amount.toFixed(2))} ${p.currency?.toUpperCase()}` },
-                      { color: 'transparent', label: 'кол-во', value: fmtN(p.count) },
-                    ]} />
-                  </BarChart>
-                ) : <EmptyNote />}
-              </Card>
-            </div>
-
-            <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-5">
+            <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
               <Tile label="Выручка" value={fmtM(revTotal)} sub={fmtN(salesTotal) + ' успешных оплат'} />
               <Tile label="MRR сейчас" value={fmtM(curMrr.mrr)} sub={`${curMrr.monthly_subs} месячных + ${curMrr.yearly_subs} годовых`} />
               <Tile label="Средний чек" value={'$' + comma((revTotal / salesTotal).toFixed(2))} sub="на успешную оплату" />
@@ -1300,7 +1288,7 @@ export default function App() {
               <Tile label="Отказы overpay" value={ovAll ? Math.round(ovAll.failed / ovAll.attempts * 100) + '%' : '—'}
                 sub={ovAll ? `${ovAll.failed} из ${ovAll.attempts} попыток` : undefined} />
             </div>
-            <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
+            <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-3">
               <Card title="Платежи по месяцам" note="Число успешных оплат; покупатели — в подсказке." right={<SourceTag source="Metabase" />}>
                 {salesMonthly.length ? (
                   <BarChart key={rkey} data={salesMonthly} xDataKey="label"
@@ -1316,7 +1304,7 @@ export default function App() {
                   </BarChart>
                 ) : <EmptyNote />}
               </Card>
-              <Card title="Платёжные методы: исходы попыток" note="Попытки оплаты по статусам за период. Stripe — см. график выше." right={<SourceTag source="Metabase" />}>
+              <Card title="Платёжные методы: исходы попыток" note="Попытки оплаты по статусам за период." right={<SourceTag source="Metabase" />}>
                 {methods.length ? (
                   <>
                     <BarChart key={rkey} data={methods} xDataKey="payment_method" barWidth={26}
@@ -1335,6 +1323,19 @@ export default function App() {
                     </BarChart>
                     <Legend items={statusLegend} />
                   </>
+                ) : <EmptyNote />}
+              </Card>
+              <Card title="Stripe: оформление trial по плану" right={<SourceTag source="PostHog" />}>
+                {(D.posthog_trial_by_plan ?? []).length ? (
+                  <BarChart data={D.posthog_trial_by_plan.map((r: Row) => ({ ...r, label: `${r.step} · ${r.plan}` }))}
+                    xDataKey="label" orientation="horizontal" aspectRatio="16 / 7" margin={{ top: 8, right: 24, bottom: 8, left: 84 }}>
+                    <Bar dataKey="amount" fill={C[3]} lineCap={3} />
+                    <BarYAxis />
+                    <ChartTooltip showDatePill={false} rows={(p: Row) => [
+                      { color: C[3], label: 'сумма', value: `$${comma(p.amount.toFixed(2))} ${p.currency?.toUpperCase()}` },
+                      { color: 'transparent', label: 'кол-во', value: fmtN(p.count) },
+                    ]} />
+                  </BarChart>
                 ) : <EmptyNote />}
               </Card>
             </div>
