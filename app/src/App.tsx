@@ -92,10 +92,13 @@ const WARN = '#f59e0b'
 const CRIT = '#dc2626'
 
 // ---------- каркас ----------
-function Section({ title, children }: { title: string; children: ReactNode }) {
+function Section({ title, right, children }: { title: string; right?: ReactNode; children: ReactNode }) {
   return (
     <section className="mt-10">
-      <h2 className="mb-3.5 text-[13px] font-semibold uppercase tracking-wider text-muted-foreground">{title}</h2>
+      <h2 className="mb-3.5 flex items-center gap-2 text-[13px] font-semibold uppercase tracking-wider text-muted-foreground">
+        {title}
+        {right}
+      </h2>
       {children}
     </section>
   )
@@ -700,7 +703,7 @@ export default function App() {
           right={tab === 'subscriptions' ? <DataSinceTag date="04.09.2026" /> : undefined} />
 
         {tab === 'kpi' && (<>
-        <Section title="Ключевые показатели">
+        <Section title="Ключевые показатели" right={<SourceTag source="Metabase" />}>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
             <Tile label="Пользователи" value={fmtN(us.total_users)} sub="регистрации с марта 2024" />
             <Tile label="Платящие" value={fmtN(us.payers)}
@@ -715,7 +718,7 @@ export default function App() {
           </div>
         </Section>
 
-        <Section title="Деньги">
+        <Section title="Деньги" right={<SourceTag source="Metabase" />}>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             <RevenueCard range={range} daily={D.sales_daily} />
             <Card title="Платежи по месяцам" note="Число успешных оплат; покупатели — в подсказке.">
@@ -787,7 +790,7 @@ export default function App() {
           </Callout>
         </Section>
 
-        <Section title="Подписочная экономика">
+        <Section title="Подписочная экономика" right={<SourceTag source="Metabase" />}>
           <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
             <Card title="MRR по месяцам, $" note="Активные подписки на конец месяца; годовые — как цена/12.">
               {mrrRows.length ? (
@@ -921,14 +924,14 @@ export default function App() {
                 ]} />
               </BarChart>
             </Card>
-            <Card title="Активность в продукте" note="Последние недели. Синк, AI и экспорт трекаются с 15 июня 2026; заметки — с 2024 года.">
+            <Card wide title="Активность в продукте" note="Последние недели. Синк, AI и экспорт трекаются с 15 июня 2026; заметки — с 2024 года.">
               {evWeeks.length ? (
                 <>
-                  <BarChart key={rkey} data={evWeeks} xDataKey="label" aspectRatio="16 / 9" margin={{ top: 16, right: 52, bottom: 36, left: 12 }}>
+                  <BarChart key={rkey} data={evWeeks} xDataKey="label" aspectRatio="16 / 6" margin={{ top: 16, right: 52, bottom: 36, left: 12 }}>
                     <Grid horizontal />
                     <YAxis orientation="right" numTicks={4} formatValue={v => fmtN(v)} />
                     {KINDS.map((k, i) => <Bar key={k} dataKey={k} fill={C[i]} lineCap={2} />)}
-                    <BarXAxis showAllLabels />
+                    <BarXAxis maxLabels={10} />
                     <ChartTooltip showDatePill={false} rows={(p: Row) =>
                       KINDS.map((k, i) => ({ color: C[i], label: k, value: fmtN(p[k]) }))} />
                   </BarChart>

@@ -245,9 +245,11 @@ const BarInner = memo(function BarInner({
       // Stacked bars use full band width
       return bandWidth;
     }
-    // Leave a gap between grouped bars (controlled by groupGap prop)
+    // Leave a gap between grouped bars (controlled by groupGap prop). With
+    // many series crammed into a narrow band this can go negative, which is
+    // an invalid SVG rect width and makes the whole bar disappear — clamp it.
     const effectiveGroupGap = seriesCount > 1 ? groupGap : 0;
-    return (bandWidth - effectiveGroupGap * (seriesCount - 1)) / seriesCount;
+    return Math.max(0, (bandWidth - effectiveGroupGap * (seriesCount - 1)) / seriesCount);
   }, [bandWidth, seriesCount, stacked, groupGap]);
 
   // Calculate corner radius based on lineCap. Perspective bars force a flat
