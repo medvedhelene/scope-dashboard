@@ -1335,6 +1335,48 @@ export default function App() {
             </div>
         </Section>
 
+        <Section title="Управление подпиской">
+          <p className="mb-3 text-[11px] font-bold uppercase tracking-wide text-red-500">
+            События выкачены на прод недавно — по всем пока 0, цифры появятся сами по мере использования
+          </p>
+          <Card wide title="Смена плана, отмена, реактивация, удаление аккаунта" note="PostHog, за всё время. Клики по шагам флоу — не только завершённые действия.">
+            <div className="overflow-x-auto">
+              <table className="w-full text-[13px]">
+                <thead>
+                  <tr className="text-left text-muted-foreground">
+                    <th className="pb-2 font-medium">Группа</th>
+                    <th className="pb-2 font-medium">Шаг</th>
+                    <th className="pb-2 text-right font-medium">Кол-во</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['Смена плана', 'plan_change_clicked', 'Клик «сменить план»'],
+                    ['Отмена', 'cancellation_support_clicked', 'Клик «Get support»'],
+                    ['Отмена', 'cancellation_continued', 'Продолжил отмену'],
+                    ['Отмена', 'cancellation_reason_submitted', 'Указал причину'],
+                    ['Отмена', 'cancellation_kept', 'Передумал (Keep Base plan)'],
+                    ['Отмена', 'cancellation_aborted', 'Передумал (Stay with Scope360)'],
+                    ['Отмена', 'subscription_cancelled', 'Подписка отменена'],
+                    ['Возврат', 'plan_reupgrade_link_clicked', 'Клик «вернуть план»'],
+                    ['Возврат', 'subscription_reactivation_clicked', 'Клик «реактивировать»'],
+                    ['Возврат', 'subscription_reactivated', 'Подписка реактивирована'],
+                    ['Удаление аккаунта', 'account_deletion_flow_started', 'Начал удаление'],
+                    ['Удаление аккаунта', 'account_deletion_verification_requested', 'Подтвердил причину'],
+                    ['Удаление аккаунта', 'account_deletion_confirmed', 'Удаление завершено'],
+                  ].map(([group, ev, label], i) => (
+                    <tr key={ev} className="border-t border-border">
+                      <td className="py-1.5 text-muted-foreground">{group}</td>
+                      <td className="py-1.5">{label}</td>
+                      <td className="py-1.5 text-right font-medium">{fmtN(posthogEvent(ev))}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Card>
+        </Section>
+
         <Section title="Откуда трафик">
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <Card wide title="UTM и партнёрские ссылки" note="По регистрациям; клики, оплаты и выручка — в подсказке. За всю историю.">

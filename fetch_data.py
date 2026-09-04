@@ -750,6 +750,21 @@ POSTHOG_ENGAGEMENT_EVENTS = [
     ("item_favorited", "Добавил в избранное"),
     ("trade_template_saved", "Сохранил шаблон сделки"),
     ("dashboard_widget_settings_opened", "Открыл настройки виджета"),
+    # Управление подпиской — выкачены на прод позже, живых событий пока 0,
+    # но чтобы цифры появились сами, как только кто-то пройдёт этот флоу.
+    ("plan_change_clicked", "Клик «сменить план»"),
+    ("cancellation_support_clicked", "Клик «Get support» при отмене"),
+    ("cancellation_continued", "Продолжил отмену"),
+    ("cancellation_reason_submitted", "Указал причину отмены"),
+    ("cancellation_kept", "Передумал (Keep Base plan)"),
+    ("cancellation_aborted", "Передумал (Stay with Scope360)"),
+    ("subscription_cancelled", "Подписка отменена"),
+    ("plan_reupgrade_link_clicked", "Клик «вернуть план»"),
+    ("subscription_reactivation_clicked", "Клик «реактивировать»"),
+    ("subscription_reactivated", "Подписка реактивирована"),
+    ("account_deletion_flow_started", "Начал удаление аккаунта"),
+    ("account_deletion_verification_requested", "Подтвердил причину удаления"),
+    ("account_deletion_confirmed", "Удаление аккаунта завершено"),
 ]
 
 # Воронка, уже определённая продуктовой командой в самом PostHog
