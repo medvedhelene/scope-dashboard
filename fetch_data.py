@@ -790,10 +790,38 @@ def fetch_posthog():
     # почти сплошь нулевая — вернёмся к ней, когда накопится история.
     posthog_activity = posthog.active_users("nav_tab_selected")
 
+    # Разбивка trial-воронки по плану (Base/Pro) и сумме — из properties
+    # сырых событий (provider=stripe, plan.code/amount_cents), не через
+    # TrendsQuery: план — вложенный объект, агрегировать его напрямую нельзя.
+    posthog_trial_by_plan = []
+    # trial_checkout_started несёт полный объект plan {id, code, name, amount_cents,
+    # currency}; trial_started — только plan_id (число). Строим id -> plan
+    # по чекаутам и используем для обоих шагов.
+    checkout_events = posthog.raw_events("trial_checkout_started", limit=500)
+    plan_by_id = {}
+    for e in checkout_events:
+        plan = (e.get("properties") or {}).get("plan") or {}
+        if plan.get("id") is not None:
+            plan_by_id[plan["id"]] = plan
+
+    for step_event, step_name in [("trial_checkout_started", "Начал оформление"), ("trial_started", "Trial активирован")]:
+        events = checkout_events if step_event == "trial_checkout_started" else posthog.raw_events(step_event, limit=500)
+        by_plan = {}
+        for e in events:
+            props = e.get("properties", {})
+            plan = props.get("plan") or plan_by_id.get(props.get("plan_id")) or {}
+            code = plan.get("code") or "неизвестно"
+            o = by_plan.setdefault(code, {"plan": plan.get("name") or code, "count": 0, "amount": 0.0, "currency": plan.get("currency", "usd")})
+            o["count"] += 1
+            o["amount"] += (plan.get("amount_cents") or 0) / 100
+        for code, o in by_plan.items():
+            posthog_trial_by_plan.append({"step": step_name, "plan_code": code, **o})
+
     return {
         "posthog_funnel": posthog_funnel,
         "posthog_events": posthog_events,
         "posthog_activity": posthog_activity,
+        "posthog_trial_by_plan": posthog_trial_by_plan,
     }
 
 
@@ -847,7 +875,7 @@ def main():
         print(f"PostHog: ERROR {e}")
         if data_path.exists():
             prev = json.loads(data_path.read_text())
-            for k in ("posthog_funnel", "posthog_events", "posthog_activity"):
+            for k in ("posthog_funnel", "posthog_events", "posthog_activity", "posthog_trial_by_plan"):
                 out[k] = prev.get(k, [])
 
     data_path.write_text(json.dumps(out, ensure_ascii=False, indent=1))

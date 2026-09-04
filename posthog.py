@@ -62,6 +62,21 @@ def trends(events, date_from="-30d"):
     return {r["label"]: r.get("count", 0) for r in data.get("results", [])}
 
 
+def raw_events(event, limit=200):
+    """Сырые события с полным набором properties (для нестандартных полей —
+    план, сумма, провайдер и т.п., которые не агрегируешь через TrendsQuery,
+    т.к. они вложены в объект, а не плоское свойство). Без date-фильтра —
+    просто последние `limit` штук, объём событий пока небольшой."""
+    resp = requests.get(
+        f"{HOST}/api/projects/{PROJECT_ID}/events/",
+        headers={"Authorization": f"Bearer {API_KEY}"},
+        params={"event": event, "limit": limit, "orderBy": '["-timestamp"]'},
+        timeout=30,
+    )
+    resp.raise_for_status()
+    return resp.json().get("results", [])
+
+
 def active_users(event, date_from="-30d"):
     """Текущие DAU/WAU/MAU по событию-индикатору активности (последняя точка
     скользящего окна на сегодня, не среднее за период)."""

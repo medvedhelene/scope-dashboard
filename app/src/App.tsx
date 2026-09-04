@@ -1284,7 +1284,7 @@ export default function App() {
                   </BarChart>
                 ) : <EmptyNote />}
               </Card>
-              <Card title="Платёжные методы: исходы попыток" note="Попытки оплаты по статусам за период.">
+              <Card title="Платёжные методы: исходы попыток" note="Попытки оплаты по статусам за период. Stripe сюда пока не входит — см. заметку ниже.">
                 {methods.length ? (
                   <>
                     <BarChart key={rkey} data={methods} xDataKey="payment_method" barWidth={26}
@@ -1303,6 +1303,33 @@ export default function App() {
                     </BarChart>
                     <Legend items={statusLegend} />
                   </>
+                ) : <EmptyNote />}
+              </Card>
+
+              <Card wide title="Stripe: оформление trial по плану" note="PostHog, из свойств событий (provider=stripe) — таблица fact_sales_transactions в Metabase Stripe ещё не получает, поэтому этих сумм там нет.">
+                {(D.posthog_trial_by_plan ?? []).length ? (
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-[13px]">
+                      <thead>
+                        <tr className="text-left text-muted-foreground">
+                          <th className="pb-2 font-medium">Шаг</th>
+                          <th className="pb-2 font-medium">План</th>
+                          <th className="pb-2 pr-2 text-right font-medium">Кол-во</th>
+                          <th className="pb-2 text-right font-medium">Сумма</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {D.posthog_trial_by_plan.map((r: Row, i: number) => (
+                          <tr key={i} className="border-t border-border">
+                            <td className="py-1.5">{r.step}</td>
+                            <td className="py-1.5">{r.plan}</td>
+                            <td className="py-1.5 pr-2 text-right font-medium">{fmtN(r.count)}</td>
+                            <td className="py-1.5 text-right font-medium">${comma(r.amount.toFixed(2))} {r.currency?.toUpperCase()}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 ) : <EmptyNote />}
               </Card>
             </div>
