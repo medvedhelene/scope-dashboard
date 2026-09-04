@@ -584,13 +584,13 @@ export default function App() {
   // сам PostHog при выгрузке), не привязаны к глобальному фильтру периода.
   const posthogEvent = (id: string) => (D.posthog_events ?? []).find((r: Row) => r.event === id)?.count ?? 0
   const onboardingFunnelData = [
-    { label: 'Зарегистрировался', value: posthogEvent('user_signed_up'), displayValue: fmtN(posthogEvent('user_signed_up')) },
-    { label: 'Начал онбординг', value: posthogEvent('onboarding_started'), displayValue: fmtN(posthogEvent('onboarding_started')) },
-    { label: 'Выбрал ветку (подключить / вручную)', value: posthogEvent('onboarding_path_selected'), displayValue: fmtN(posthogEvent('onboarding_path_selected')) },
+    { label: 'Регистрация', value: posthogEvent('user_signed_up'), displayValue: fmtN(posthogEvent('user_signed_up')) },
+    { label: 'Онбординг начат', value: posthogEvent('onboarding_started'), displayValue: fmtN(posthogEvent('onboarding_started')) },
+    { label: 'Выбрал ветку', value: posthogEvent('onboarding_path_selected'), displayValue: fmtN(posthogEvent('onboarding_path_selected')) },
   ]
   const trialFunnelData = [
-    { label: 'Начал оформление trial', value: posthogEvent('trial_checkout_started'), displayValue: fmtN(posthogEvent('trial_checkout_started')) },
-    { label: 'Trial активирован', value: posthogEvent('trial_started'), displayValue: fmtN(posthogEvent('trial_started')) },
+    { label: 'Оформление trial', value: posthogEvent('trial_checkout_started'), displayValue: fmtN(posthogEvent('trial_checkout_started')) },
+    { label: 'Trial активен', value: posthogEvent('trial_started'), displayValue: fmtN(posthogEvent('trial_started')) },
   ]
   const onboardingResumed = posthogEvent('onboarding_resumed')
 
@@ -1205,10 +1205,24 @@ export default function App() {
 
         {tab === 'subscriptions' && (<>
         <Section title="Подписки: онбординг и trial">
+          <p className="rounded-lg border border-red-600 bg-red-600/10 px-4 py-2.5 text-[13px] font-bold uppercase tracking-wide text-red-500">
+            Сбор данных по этим событиям в PostHog начался 04.09.2026 — цифры ниже за очень короткий период,
+            для трендов и выводов пока не показательны
+          </p>
+
           <Callout>
             Воронки онбординга и trial ниже — из PostHog, окно фиксированное (последние 30 дней), не зависит от фильтра периода выше.
             Блок «Оплаты» — из Metabase, за выбранный период. Это разные источники и окна — не складывайте числа из разных блоков друг с другом.
           </Callout>
+
+          <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-6">
+            <Tile label="Регистрация" value={fmtN(posthogEvent('user_signed_up'))} sub="PostHog, 30 дней" />
+            <Tile label="Онбординг начат" value={fmtN(posthogEvent('onboarding_started'))} />
+            <Tile label="Выбрал ветку" value={fmtN(posthogEvent('onboarding_path_selected'))} />
+            <Tile label="Вернулись повторно" value={fmtN(onboardingResumed)} sub="не прошли с 1 раза" />
+            <Tile label="Оформление trial" value={fmtN(posthogEvent('trial_checkout_started'))} />
+            <Tile label="Trial активен" value={fmtN(posthogEvent('trial_started'))} />
+          </div>
 
           <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
             <Card title="Воронка онбординга" note="PostHog, последние 30 дней. Регистрация формы → начал онбординг → выбрал ветку (подключить аккаунт или ручной журнал).">
