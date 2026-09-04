@@ -734,6 +734,22 @@ POSTHOG_ENGAGEMENT_EVENTS = [
     ("account_deletion_requested", "Запросил удаление аккаунта"),
     ("$dead_click", "Мёртвый клик (без реакции интерфейса)"),
     ("$dead_swipe", "Мёртвый свайп (без реакции интерфейса)"),
+    # Добавлены продуктовой командой позже (онбординг, trial, оплата) —
+    # закрывают прежние "нет данных PostHog" на карте.
+    ("user_signed_up", "Зарегистрировался (форма)"),
+    ("onboarding_started", "Начал онбординг"),
+    ("onboarding_path_selected", "Выбрал ветку онбординга"),
+    ("onboarding_resumed", "Вернулся в онбординг"),
+    ("manual_onboarding_completed", "Завершил ручной онбординг"),
+    ("manual_account_created", "Создал ручной аккаунт"),
+    ("promo_code_resolved", "Промокод обработан"),
+    ("trial_checkout_started", "Начал оформление trial/оплаты"),
+    ("trial_started", "Trial активирован"),
+    ("referral_link_copied", "Скопировал реферальную ссылку"),
+    ("demo_mode_clicked", "Клик «демо-режим»"),
+    ("item_favorited", "Добавил в избранное"),
+    ("trade_template_saved", "Сохранил шаблон сделки"),
+    ("dashboard_widget_settings_opened", "Открыл настройки виджета"),
 ]
 
 # Воронка, уже определённая продуктовой командой в самом PostHog
