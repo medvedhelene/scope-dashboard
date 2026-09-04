@@ -1205,9 +1205,8 @@ export default function App() {
 
         {tab === 'subscriptions' && (<>
         <Section title="Подписки: онбординг и trial">
-          <p className="rounded-lg border border-red-600 bg-red-600/10 px-4 py-2.5 text-[13px] font-bold uppercase tracking-wide text-red-500">
-            Сбор данных по этим событиям в PostHog начался 04.09.2026 — цифры ниже за очень короткий период,
-            для трендов и выводов пока не показательны
+          <p className="text-[11px] font-bold uppercase tracking-wide text-red-500">
+            Сбор данных по этим событиям в PostHog начался 04.09.2026 — цифры за очень короткий период, для трендов пока не показательны
           </p>
 
           <Callout>
