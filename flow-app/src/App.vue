@@ -23,6 +23,7 @@ type AnalyticsData = {
   stuck_pending?: Array<{ n: number; amount: number }>
   posthog_funnel?: PosthogFunnelStep[]
   posthog_events?: PosthogEvent[]
+  posthog_onboarding_props?: { promo_applied: number; promo_skipped: number; path_split: Record<string, number> }
   posthog_activity?: PosthogActivity
 }
 type FlowMetrics = {
@@ -168,9 +169,13 @@ function buildNodes(m: FlowMetrics, ph: Record<string, number>): Node<NodeData>[
     node('signup', 0, 245, 'Создаёт аккаунт', 'action', 'common', `Email или Google · ${ph30('user_signed_up') ?? '—'}`, `Форма регистрации (user_signed_up). Идентификаций в PostHog за период больше (${ph30('$identify') ?? '—'}) — включает повторные визиты уже существующих пользователей, не только новых.`, 'PostHog · user_signed_up'),
     node('confirm', 250, 245, 'Подтверждает вход', 'action', 'common', `Код / Google / 2FA · ${ph30('onboarding_started') ?? '—'}`, 'Событие onboarding_started фиксируется сразу после подтверждения входа — используем как прокси для этого шага.', 'PostHog · onboarding_started'),
     node('session', 500, 245, 'Получает сессию', 'screen', 'common', 'нет данных PostHog', 'Между началом онбординга и выбором ветки отдельного события «получил сессию» нет.'),
-    node('promo', 750, 245, 'Промокод', 'action', 'common', ph30('promo_code_resolved') ?? undefined, 'Фиксируется и применение, и пропуск промокода одним событием — по отдельности не различить.', 'PostHog · promo_code_resolved'),
+    node('promo', 750, 245, 'Промокод', 'action', 'common', ph30('promo_code_resolved') ?? undefined,
+      `Событие теперь несёт свойство applied — применение и пропуск различимы: применили ${(ph['promo_applied'] ?? 0).toLocaleString('ru-RU')}, пропустили ${(ph['promo_skipped'] ?? 0).toLocaleString('ru-RU')}.`,
+      'PostHog · promo_code_resolved (свойство applied)'),
     node('all-set', 1000, 245, 'All Set', 'screen', 'common', `Trial запущен · ${ph30('trial_started') ?? '—'}`, `Резкое падение от регистраций: ${ph['trial_checkout_started'] ?? 0} начали оформление (trial_checkout_started), но только ${ph['trial_started'] ?? 0} реально получили запущенный trial. Стоит проверить этот переход отдельно.`, 'PostHog · trial_started, trial_checkout_started'),
-    node('choose-path', 1250, 245, 'Выбирает действие', 'decision', 'common', `Подключить аккаунт или ручной журнал · ${ph30('onboarding_path_selected') ?? '—'}`, `Также ${ph['demo_mode_clicked'] ?? 0} кликов «демо-режим» за период — альтернативный путь до выбора ветки, не учтён в основной воронке.`, 'PostHog · onboarding_path_selected, demo_mode_clicked'),
+    node('choose-path', 1250, 245, 'Выбирает действие', 'decision', 'common', `Подключить аккаунт или ручной журнал · ${ph30('onboarding_path_selected') ?? '—'}`,
+      (ph['path_manual'] ?? ph['path_auto']) != null ? `Свойство path на этом же событии показывает реальную ветку: ручной — ${(ph['path_manual'] ?? 0).toLocaleString('ru-RU')}, авто-подключение — ${(ph['path_auto'] ?? 0).toLocaleString('ru-RU')}.` : undefined,
+      ph['onboarding_path_selected'] != null ? 'PostHog · onboarding_path_selected (свойство path)' : undefined),
     node('onboarding-resumed', 1250, 60, 'Возвращается в онбординг', (ph['onboarding_resumed'] ?? 0) >= (ph['onboarding_path_selected'] ?? 0) * 0.5 ? 'blocker' : 'screen', 'common', ph30('onboarding_resumed') ?? undefined, 'Люди, ушедшие с онбординга и вернувшиеся позже (не за один заход). Большая доля относительно выбора ветки — сигнал, что онбординг не проходят с первого раза.', 'PostHog · onboarding_resumed'),
 
     node('lane-connected', 1570, 0, 'ПОДКЛЮЧЕННЫЙ АККАУНТ', 'lane', 'connected'),
@@ -193,13 +198,18 @@ function buildNodes(m: FlowMetrics, ph: Record<string, number>): Node<NodeData>[
 
     node('lane-manual', 1570, 650, 'РУЧНОЙ ЖУРНАЛ', 'lane', 'manual'),
     node('manual-cta', 1570, 705, 'Нажимает «Ручной журнал»', 'action', 'manual'),
-    node('manual-journal', 1820, 705, 'Пустой Journal', 'screen', 'manual', 'initMode=manual'),
+    node('manual-journal', 1820, 705, 'Пустой Journal', 'screen', 'manual',
+      `initMode=manual · демо-режим: ${ph30('demo_mode_clicked') ?? '0 за 30 дней'}`,
+      'Демо-режим кликают именно с этого пустого экрана (свойство события location=empty_state) — отдельного входа с шага «Выбирает действие» у него нет, хотя раньше карта показывала его там.',
+      ph['demo_mode_clicked'] != null ? 'PostHog · demo_mode_clicked (location=empty_state)' : undefined),
     node('create-portfolio', 2070, 705, 'Создаёт портфель', 'action', 'manual', ph30('portfolio_created') ?? undefined, 'Портфелей реально создано за период — сравните с кликами по «Ручной журнал» слева, отвал внутри ветки виден напрямую.', ph30('portfolio_created') ? 'PostHog · portfolio_created' : undefined),
     node('manual-account', 2320, 705, 'Ручной аккаунт создан', 'screen', 'manual', ph30('manual_account_created') ?? undefined, undefined, ph30('manual_account_created') ? 'PostHog · manual_account_created' : undefined),
     node('add-trade', 2570, 705, 'Добавляет сделку', 'action', 'manual'),
     node('save-trade', 2820, 705, 'Сохраняет сделку', 'action', 'manual', ph30('manual_trade_added') ?? undefined, 'Сделок добавлено вручную за период.', ph30('manual_trade_added') ? 'PostHog · manual_trade_added' : undefined),
     node('manual-value', 3070, 705, 'Позиция в Journal', 'screen', 'manual', `${m.manualUsers.toLocaleString('ru-RU')} пользователей создавали ручные позиции`, `Метабейз: нет событий открытия ветки и создания портфеля — локальный drop-off не рассчитывается. PostHog: manual_onboarding_completed — ${ph30('manual_onboarding_completed') ?? 'нет данных'}.`, 'feature_events_summary + PostHog · manual_onboarding_completed'),
-    node('copy-blocker', 1820, 900, 'Empty state ведёт к API', 'blocker', 'manual', 'Текст «Подключить API» противоречит выбранному manual-сценарию.', 'Подтверждено текущим экраном Journal.', 'код Journal'),
+    node('copy-blocker', 1820, 900, 'Empty state ведёт к API', 'blocker', 'manual', 'Текст «Подключить API» противоречит выбранному manual-сценарию.',
+      `Подтверждено текущим экраном Journal. У этого же экрана есть третий выход — кнопка демо-режима (${ph30('demo_mode_clicked') ?? '0 за 30 дней'}), но она не убирает противоречие текста для тех, кто уже выбрал ручной ввод.`,
+      'код Journal + PostHog · demo_mode_clicked'),
 
     node('lane-payment', 3370, 650, 'ПОЗЖЕ: ОПЛАТА', 'lane', 'payment'),
     node('payment-attempt', 3370, 705, 'Пробует оплатить', 'action', 'payment', `После trial · ${ph30('trial_checkout_started') ?? 'нет данных PostHog'}`, 'trial_checkout_started — клик по CTA оформления, раньше факта оплаты из Metabase (pay_attempts_daily).', ph['trial_checkout_started'] != null ? 'PostHog · trial_checkout_started' : undefined),
@@ -398,7 +408,15 @@ async function loadData(silent = false) {
     metrics.value = nextMetrics
     posthogFunnel.value = data.posthog_funnel ?? []
     posthogEvents.value = data.posthog_events ?? []
-    posthogCounts.value = Object.fromEntries(posthogEvents.value.map(e => [e.event, e.count]))
+    // promo_applied/promo_skipped и path_manual/path_auto — новые серверные
+    // properties на онбординг-событиях, а не отдельные события; сплющиваем
+    // их в тот же Record<string, number>, чтобы buildNodes ничего не менял.
+    const props = data.posthog_onboarding_props
+    const propCounts = props
+      ? { promo_applied: props.promo_applied, promo_skipped: props.promo_skipped,
+          path_manual: props.path_split.manual ?? 0, path_auto: props.path_split.auto ?? 0 }
+      : {}
+    posthogCounts.value = { ...Object.fromEntries(posthogEvents.value.map(e => [e.event, e.count])), ...propCounts }
     posthogActivity.value = data.posthog_activity ?? null
     nodes.value = preservePositions(buildNodes(nextMetrics, posthogCounts.value))
     edges.value = buildEdges()

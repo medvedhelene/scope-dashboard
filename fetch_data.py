@@ -832,11 +832,32 @@ def fetch_posthog():
         for code, o in by_plan.items():
             posthog_trial_by_plan.append({"step": step_name, "plan_code": code, **o})
 
+    # Онбординг-события недавно обросли серверными properties, которых
+    # раньше не было (onboarding_id, path, init_mode, applied) — теперь
+    # можно различить применение/пропуск промокода и auto/manual-ветку,
+    # а не только посчитать событие целиком.
+    promo_events = posthog.raw_events("promo_code_resolved", limit=500)
+    promo_applied = sum(1 for e in promo_events if (e.get("properties") or {}).get("applied") is True)
+    promo_skipped = sum(1 for e in promo_events if (e.get("properties") or {}).get("applied") is False)
+
+    path_events = posthog.raw_events("onboarding_path_selected", limit=500)
+    path_split: dict = {}
+    for e in path_events:
+        p = (e.get("properties") or {}).get("path") or "неизвестно"
+        path_split[p] = path_split.get(p, 0) + 1
+
+    posthog_onboarding_props = {
+        "promo_applied": promo_applied,
+        "promo_skipped": promo_skipped,
+        "path_split": path_split,
+    }
+
     return {
         "posthog_funnel": posthog_funnel,
         "posthog_events": posthog_events,
         "posthog_activity": posthog_activity,
         "posthog_trial_by_plan": posthog_trial_by_plan,
+        "posthog_onboarding_props": posthog_onboarding_props,
     }
 
 
@@ -890,7 +911,7 @@ def main():
         print(f"PostHog: ERROR {e}")
         if data_path.exists():
             prev = json.loads(data_path.read_text())
-            for k in ("posthog_funnel", "posthog_events", "posthog_activity", "posthog_trial_by_plan"):
+            for k in ("posthog_funnel", "posthog_events", "posthog_activity", "posthog_trial_by_plan", "posthog_onboarding_props"):
                 out[k] = prev.get(k, [])
 
     data_path.write_text(json.dumps(out, ensure_ascii=False, indent=1))
