@@ -594,92 +594,129 @@ def fetch_meta():
     meta_spend_monthly = [{"m": k, **{kk: round(vv, 2) if kk == "spend" else vv for kk, vv in v.items()}}
                           for k, v in sorted(monthly.items())]
 
-    creatives_raw = insights_nonzero(
-        ["ad_id", "ad_name", "campaign_name", "spend", "impressions", "clicks", "actions"],
-        level="ad", date_preset="maximum", account=NEW_ACCOUNT,
-    )
-    creatives = []
-    for r in creatives_raw:
-        spend = float(r.get("spend", 0))
-        regs = int(meta.action_value(r, META_RESULT_ACTION))
-        leads = int(meta.action_value(r, META_LEAD_ACTION))
-        creatives.append({
-            "ad_id": r.get("ad_id"),
-            "ad_name": r.get("ad_name", "(без имени)"),
-            "campaign_name": r.get("campaign_name", ""),
-            "spend": round(spend, 2),
-            "impressions": int(r.get("impressions", 0)),
-            "clicks": int(r.get("clicks", 0)),
-            "regs": regs,
-            "leads": leads,
-            "cost_per_reg": round(spend / regs, 2) if regs else None,
-        })
-    creatives = [r for r in creatives if r["regs"] > 0 or r["leads"] > 0]
-    creatives.sort(key=lambda r: r["spend"], reverse=True)
-    meta_creatives = creatives[:12]
-    for r in meta_creatives:
-        r["thumbnail_url"] = meta.ad_creative_thumbnail(r["ad_id"], token=NEW_ACCOUNT["token"]) if r["ad_id"] else None
 
+    # Гео/плейсменты/демография/креативы — раньше брались фиксированным окном
+    # last_90d (без разбивки по дням), поэтому переключатель периода на вкладке
+    # на них не влиял. Теперь тянем с time_increment=1 (день + нужный breakdown)
+    # за всю историю и отдаём как есть — фронтенд сам агрегирует по выбранному
+    # периоду, как уже делает с meta_spend_monthly/adsKpi.
     geo_raw = insights_nonzero(
         ["spend", "impressions", "clicks", "actions"],
-        breakdowns=["country"], date_preset="last_90d",
+        breakdowns=["country"], date_preset="maximum", time_increment=1,
     )
-    geo_by_country = {}
+    geo_by_key = {}
     for r in geo_raw:
-        o = geo_by_country.setdefault(r.get("country", "??"), {"spend": 0.0, "impressions": 0, "clicks": 0, "regs": 0, "leads": 0})
+        if r["date_start"] < META_START:
+            continue
+        key = (r["date_start"], r.get("country", "??"))
+        o = geo_by_key.setdefault(key, {"spend": 0.0, "impressions": 0, "clicks": 0, "regs": 0, "leads": 0})
         o["spend"] += float(r.get("spend", 0))
         o["impressions"] += int(r.get("impressions", 0))
         o["clicks"] += int(r.get("clicks", 0))
         o["regs"] += int(meta.action_value(r, META_RESULT_ACTION))
         o["leads"] += int(meta.action_value(r, META_LEAD_ACTION))
-    geo = [{"country": c, "spend": round(o["spend"], 2), "impressions": o["impressions"],
-            "clicks": o["clicks"], "regs": o["regs"], "leads": o["leads"]} for c, o in geo_by_country.items()]
-    geo.sort(key=lambda r: r["spend"], reverse=True)
-    meta_geo = geo  # без обрезки — для карты нужны все страны с рекламой
+    meta_geo = [
+        {"date": d, "country": c, "spend": round(o["spend"], 2), "impressions": o["impressions"],
+         "clicks": o["clicks"], "regs": o["regs"], "leads": o["leads"]}
+        for (d, c), o in sorted(geo_by_key.items())
+    ]
 
     # Только платформа (Instagram/Facebook/Threads) — без разбивки по ленте/сторис/рилс
     placement_raw = insights_nonzero(
         ["spend", "impressions", "clicks"],
-        breakdowns=["publisher_platform"], date_preset="last_90d",
+        breakdowns=["publisher_platform"], date_preset="maximum", time_increment=1,
     )
     PLATFORM_NAMES = {"facebook": "Facebook", "instagram": "Instagram", "threads": "Threads",
                       "messenger": "Messenger", "audience_network": "Audience Network"}
-    placement_by_platform = {}
+    placement_by_key = {}
     for r in placement_raw:
+        if r["date_start"] < META_START:
+            continue
         platform = PLATFORM_NAMES.get(r.get("publisher_platform", "?"), r.get("publisher_platform", "?"))
-        o = placement_by_platform.setdefault(platform, {"spend": 0.0, "impressions": 0, "clicks": 0})
+        key = (r["date_start"], platform)
+        o = placement_by_key.setdefault(key, {"spend": 0.0, "impressions": 0, "clicks": 0})
         o["spend"] += float(r.get("spend", 0))
         o["impressions"] += int(r.get("impressions", 0))
         o["clicks"] += int(r.get("clicks", 0))
-    placement = [{"platform": p, "spend": round(o["spend"], 2), "impressions": o["impressions"],
-                  "clicks": o["clicks"]} for p, o in placement_by_platform.items()]
-    placement.sort(key=lambda r: r["spend"], reverse=True)
-    meta_placement = placement
-
-    # Возраст + пол аудитории
-    demo_raw = insights_nonzero(
-        ["spend", "impressions", "clicks"],
-        breakdowns=["age", "gender"], date_preset="last_90d",
-    )
-    GENDER_NAMES = {"male": "Мужчины", "female": "Женщины", "unknown": "Не указан"}
-    demo_by_key = {}
-    for r in demo_raw:
-        key = (r.get("age", "?"), GENDER_NAMES.get(r.get("gender", "?"), "Не указан"))
-        o = demo_by_key.setdefault(key, {"spend": 0.0, "impressions": 0, "clicks": 0})
-        o["spend"] += float(r.get("spend", 0))
-        o["impressions"] += int(r.get("impressions", 0))
-        o["clicks"] += int(r.get("clicks", 0))
-    meta_demographics = [
-        {"age": age, "gender": gender, "spend": round(o["spend"], 2),
-         "impressions": o["impressions"], "clicks": o["clicks"]}
-        for (age, gender), o in demo_by_key.items()
+    meta_placement = [
+        {"date": d, "platform": p, "spend": round(o["spend"], 2), "impressions": o["impressions"], "clicks": o["clicks"]}
+        for (d, p), o in sorted(placement_by_key.items())
     ]
-    meta_demographics.sort(key=lambda r: (r["age"], r["gender"]))
+
+    # Возраст + пол аудитории — единственная разбивка, которая у Meta Insights
+    # воспроизводимо падает "Service temporarily unavailable" при связке
+    # breakdowns=[age,gender] + time_increment (день ИЛИ неделя, проверено),
+    # хотя тот же breakdown без time_increment отдаётся стабильно. Поэтому
+    # вместо ежедневных строк берём 4 фиксированных снимка — по одному на
+    # каждую кнопку периода на вкладке — и фронтенд выбирает нужный сам,
+    # без арифметики по дням (кроме adsPreset='custom', для него нет снимка,
+    # берём ближайший — last_90d).
+    GENDER_NAMES = {"male": "Мужчины", "female": "Женщины", "unknown": "Не указан"}
+    today_str = datetime.now().date().isoformat()
+    month_start = today_str[:7] + "-01"
+    demo_windows = {
+        "month": {"time_range": {"since": month_start, "until": today_str}},
+        "30": {"date_preset": "last_30d"},
+        "90": {"date_preset": "last_90d"},
+        # date_preset="maximum" может утянуть данные раньше META_START — тот
+        # же кабинет мог быть активен и до начала надёжного трекинга.
+        "all": {"time_range": {"since": META_START, "until": today_str}},
+    }
+    meta_demographics = {}
+    for preset_key, window in demo_windows.items():
+        rows = insights_nonzero(
+            ["spend", "impressions", "clicks"], breakdowns=["age", "gender"],
+            date_preset=window.get("date_preset"), time_range=window.get("time_range"),
+        )
+        by_key = {}
+        for r in rows:
+            key = (r.get("age", "?"), GENDER_NAMES.get(r.get("gender", "?"), "Не указан"))
+            o = by_key.setdefault(key, {"spend": 0.0, "impressions": 0, "clicks": 0})
+            o["spend"] += float(r.get("spend", 0))
+            o["impressions"] += int(r.get("impressions", 0))
+            o["clicks"] += int(r.get("clicks", 0))
+        meta_demographics[preset_key] = [
+            {"age": age, "gender": gender, "spend": round(o["spend"], 2),
+             "impressions": o["impressions"], "clicks": o["clicks"]}
+            for (age, gender), o in sorted(by_key.items())
+        ]
+
+    # Креативы — тоже по дням, чтобы топ-12 по расходам пересчитывался под
+    # выбранный период на фронтенде, а не показывал всегда всю историю.
+    creatives_daily_raw = insights_nonzero(
+        ["ad_id", "ad_name", "campaign_name", "spend", "impressions", "clicks", "actions"],
+        level="ad", date_preset="maximum", time_increment=1, account=NEW_ACCOUNT,
+    )
+    creatives_by_key = {}
+    creative_meta = {}
+    for r in creatives_daily_raw:
+        if r["date_start"] < META_START:
+            continue
+        ad_id = r.get("ad_id")
+        key = (r["date_start"], ad_id)
+        o = creatives_by_key.setdefault(key, {"spend": 0.0, "impressions": 0, "clicks": 0, "regs": 0, "leads": 0})
+        o["spend"] += float(r.get("spend", 0))
+        o["impressions"] += int(r.get("impressions", 0))
+        o["clicks"] += int(r.get("clicks", 0))
+        o["regs"] += int(meta.action_value(r, META_RESULT_ACTION))
+        o["leads"] += int(meta.action_value(r, META_LEAD_ACTION))
+        creative_meta[ad_id] = {"ad_name": r.get("ad_name", "(без имени)"), "campaign_name": r.get("campaign_name", "")}
+    meta_creatives_daily = [
+        {"date": d, "ad_id": ad_id, **creative_meta.get(ad_id, {}), **{kk: (round(vv, 2) if kk == "spend" else vv) for kk, vv in o.items()}}
+        for (d, ad_id), o in sorted(creatives_by_key.items())
+    ]
+    # Все ad_id с картинкой креатива — тянем один раз, фронтенд сам решает,
+    # какие 12 показать по расходам за выбранный период.
+    creative_thumbnails = {
+        ad_id: meta.ad_creative_thumbnail(ad_id, token=NEW_ACCOUNT["token"])
+        for ad_id in creative_meta
+    }
 
     return {
         "meta_spend_weekly": meta_spend_weekly,
         "meta_spend_monthly": meta_spend_monthly,
-        "meta_creatives": meta_creatives,
+        "meta_creatives": meta_creatives_daily,
+        "meta_creative_thumbnails": creative_thumbnails,
         "meta_geo": meta_geo,
         "meta_placement": meta_placement,
         "meta_demographics": meta_demographics,
@@ -898,7 +935,7 @@ def main():
         print(f"Meta Ads: ERROR {e}")
         if data_path.exists():
             prev = json.loads(data_path.read_text())
-            for k in ("meta_spend_weekly", "meta_spend_monthly", "meta_creatives",
+            for k in ("meta_spend_weekly", "meta_spend_monthly", "meta_creatives", "meta_creative_thumbnails",
                       "meta_geo", "meta_placement", "meta_demographics"):
                 out[k] = prev.get(k, [])
 

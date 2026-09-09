@@ -50,10 +50,15 @@ def _get(url, params=None):
         resp = requests.get(url, params=params, timeout=60)
         data = resp.json()
         if "error" in data:
-            if data["error"].get("code") == 4 and attempt < 5:
+            # code 4 = rate limit, code 2 = "Service temporarily unavailable" —
+            # оба транзиентные, повторяем. Остальные ошибки (auth, permissions
+            # и т.п.) реальные — падать сразу, но через исключение, а не
+            # sys.exit, чтобы вызывающий fetch_data.py мог откатиться на
+            # предыдущую выгрузку вместо полного краха скрипта.
+            if data["error"].get("code") in (2, 4) and attempt < 5:
                 time.sleep(15)
                 continue
-            sys.exit(f"ERROR: {data['error']}")
+            raise RuntimeError(f"Meta API error: {data['error']}")
         return data
     return data
 

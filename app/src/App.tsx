@@ -385,11 +385,14 @@ export default function App() {
   // Платный трафик по умолчанию смотрим за текущий месяц — отдельно от
   // глобального фильтра периода, чтобы не менять дефолт для других разделов.
   const [adsPreset, setAdsPreset] = useState('month')
+  const [adsFrom, setAdsFrom] = useState(MIN_DATE)
+  const [adsTo, setAdsTo] = useState(TODAY)
   const adsRange = useMemo((): Range => {
     if (adsPreset === 'month') return [TODAY.slice(0, 7) + '-01', TODAY]
     if (adsPreset === 'all') return [null, null]
+    if (adsPreset === 'custom') return [adsFrom, adsTo]
     return [shiftDays(TODAY, -(+adsPreset) + 1), TODAY]
-  }, [adsPreset])
+  }, [adsPreset, adsFrom, adsTo])
   const adsRkey = adsRange.join()
 
   const us = D.users_summary[0]
@@ -400,6 +403,18 @@ export default function App() {
   const renClosed = D.renewals_monthly.slice(0, -1)
   const renDue = renClosed.reduce((a: number, r: Row) => a + r.due, 0)
   const renOk = renClosed.reduce((a: number, r: Row) => a + r.renewed, 0)
+
+  // Те же метрики, но под глобальный фильтр периода — отдельно от revTotal/
+  // curMrr/renDue/renOk выше, которые остаются «за всё время» для карточек
+  // на вкладке Подписки (там это заявлено в названии секции).
+  const salesDailyInRange = useMemo(() => D.sales_daily.filter((r: Row) => inRange(r.d, range)), [rkey, D])
+  const revTotalKpi = salesDailyInRange.reduce((a: number, r: Row) => a + r.revenue, 0)
+  const salesTotalKpi = salesDailyInRange.reduce((a: number, r: Row) => a + r.sales, 0)
+  const mrrInRange = useMemo(() => D.mrr_monthly.filter((r: Row) => monthInRange(r.m, range)), [rkey, D])
+  const curMrrKpi = mrrInRange[mrrInRange.length - 1] ?? curMrr
+  const renClosedKpi = useMemo(() => D.renewals_monthly.filter((r: Row) => monthInRange(r.due_month, range)).slice(0, -1), [rkey, D])
+  const renDueKpi = renClosedKpi.reduce((a: number, r: Row) => a + r.due, 0)
+  const renOkKpi = renClosedKpi.reduce((a: number, r: Row) => a + r.renewed, 0)
   const utmTotal = D.utm_sources.reduce((a: number, r: Row) => a + r.visitors, 0)
   const rt = D.referral_totals[0]
   const ovva = D.utm_sources[0]
@@ -569,15 +584,60 @@ export default function App() {
   }, [adsRkey, D])
 
   const AGE_ORDER = ['18-24', '25-34', '35-44', '45-54', '55-64', '65+']
+  // Гео/плейсменты/креативы приходят по дням — агрегируем под выбранный на
+  // вкладке период (adsRange). Демография — исключение: связка breakdown
+  // age+gender с разбивкой по дням у Meta Insights API воспроизводимо не
+  // работает (Service temporarily unavailable), поэтому для неё бэкенд
+  // присылает 4 готовых снимка (month/30/90/all) под кнопки периода —
+  // 'custom' точного снимка не имеет, берём ближайший по охвату (90 дней).
   const metaDemographics = useMemo(() => {
-    const rows = (D.meta_demographics ?? []).filter((r: Row) => AGE_ORDER.includes(r.age))
-    const totalSpend = rows.reduce((a: number, r: Row) => a + r.spend, 0)
+    const snapshots = D.meta_demographics ?? {}
+    const rows = (snapshots[adsPreset] ?? snapshots['90'] ?? []).filter((r: Row) => AGE_ORDER.includes(r.age))
+    const totalSpend = rows.reduce((a, r) => a + r.spend, 0)
     return AGE_ORDER.map(age => {
-      const female = rows.find((r: Row) => r.age === age && r.gender === 'Женщины')?.spend ?? 0
-      const male = rows.find((r: Row) => r.age === age && r.gender === 'Мужчины')?.spend ?? 0
+      const female = rows.find(r => r.age === age && r.gender === 'Женщины')?.spend ?? 0
+      const male = rows.find(r => r.age === age && r.gender === 'Мужчины')?.spend ?? 0
       return { age, female, male, total: female + male }
     }).filter(r => r.total > 0).map(r => ({ ...r, share: totalSpend ? r.total / totalSpend * 100 : 0 }))
-  }, [D])
+  }, [adsPreset, D])
+
+  const adsGeo = useMemo(() => {
+    const bucket = new Map<string, Row>()
+    for (const r of (D.meta_geo ?? [])) {
+      if (!inRange(r.date, adsRange)) continue
+      const o = bucket.get(r.country) ?? { country: r.country, spend: 0, impressions: 0, clicks: 0, regs: 0, leads: 0 }
+      o.spend += r.spend; o.impressions += r.impressions; o.clicks += r.clicks; o.regs += r.regs; o.leads += r.leads
+      bucket.set(r.country, o)
+    }
+    return [...bucket.values()].sort((a, b) => b.spend - a.spend)
+  }, [adsRkey, D])
+
+  const adsPlacement = useMemo(() => {
+    const bucket = new Map<string, Row>()
+    for (const r of (D.meta_placement ?? [])) {
+      if (!inRange(r.date, adsRange)) continue
+      const o = bucket.get(r.platform) ?? { platform: r.platform, spend: 0, impressions: 0, clicks: 0 }
+      o.spend += r.spend; o.impressions += r.impressions; o.clicks += r.clicks
+      bucket.set(r.platform, o)
+    }
+    return [...bucket.values()].sort((a, b) => b.spend - a.spend)
+  }, [adsRkey, D])
+
+  const adsCreatives = useMemo(() => {
+    const thumbs = D.meta_creative_thumbnails ?? {}
+    const bucket = new Map<string, Row>()
+    for (const r of (D.meta_creatives ?? [])) {
+      if (!inRange(r.date, adsRange)) continue
+      const o = bucket.get(r.ad_id) ?? { ad_id: r.ad_id, ad_name: r.ad_name, campaign_name: r.campaign_name, spend: 0, impressions: 0, clicks: 0, regs: 0, leads: 0 }
+      o.spend += r.spend; o.impressions += r.impressions; o.clicks += r.clicks; o.regs += r.regs; o.leads += r.leads
+      bucket.set(r.ad_id, o)
+    }
+    return [...bucket.values()]
+      .filter(r => r.regs > 0 || r.leads > 0)
+      .map(r => ({ ...r, cost_per_reg: r.regs ? Math.round(r.spend / r.regs * 100) / 100 : null, thumbnail_url: thumbs[r.ad_id] ?? null }))
+      .sort((a, b) => b.spend - a.spend)
+      .slice(0, 12)
+  }, [adsRkey, D])
 
   const KINDS = ['Синк журнала', 'Подключение аккаунта', 'Ручные позиции', 'AI-запросы', 'Экспорт XLSX', 'Заметки']
   const evWeeks = useMemo(() => {
@@ -707,15 +767,15 @@ export default function App() {
         {tab === 'kpi' && (<>
         <Section title="Ключевые показатели" right={<SourceTag source="Metabase" />}>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            <Tile label="Пользователи" value={fmtN(us.total_users)} sub="регистрации с марта 2024" />
+            <Tile label="Пользователи" value={fmtN(us.total_users)} sub="регистрации с марта 2024, за всё время" />
             <Tile label="Платящие" value={fmtN(us.payers)}
-              sub={<>конверсия <b className="text-emerald-600 dark:text-emerald-400">{comma((us.payers / us.total_users * 100).toFixed(2))}%</b></>} />
-            <Tile label="Выручка" value={fmtM(revTotal)} sub={fmtN(salesTotal) + ' успешных оплат'} />
-            <Tile label="Средний чек" value={'$' + comma((revTotal / salesTotal).toFixed(2))} sub="на успешную оплату" />
+              sub={<>за всё время · конверсия <b className="text-emerald-600 dark:text-emerald-400">{comma((us.payers / us.total_users * 100).toFixed(2))}%</b></>} />
+            <Tile label="Выручка" value={fmtM(revTotalKpi)} sub={fmtN(salesTotalKpi) + ' успешных оплат за период'} />
+            <Tile label="Средний чек" value={salesTotalKpi ? '$' + comma((revTotalKpi / salesTotalKpi).toFixed(2)) : '—'} sub="на успешную оплату за период" />
             <Tile label="ARPPU" value={'$' + comma(us.arppu.toFixed(2))} sub="на платящего за всё время" />
-            <Tile label="MRR сейчас" value={fmtM(curMrr.mrr)} sub={`${curMrr.monthly_subs} месячных + ${curMrr.yearly_subs} годовых`} />
-            <Tile label="Продлеваемость месячных" value={renDue ? Math.round(renOk / renDue * 100) + '%' : '—'}
-              sub={`${renOk} продлений из ${renDue} истёкших`} />
+            <Tile label="MRR сейчас" value={fmtM(curMrrKpi.mrr)} sub={`${curMrrKpi.monthly_subs} месячных + ${curMrrKpi.yearly_subs} годовых, на конец периода`} />
+            <Tile label="Продлеваемость месячных" value={renDueKpi ? Math.round(renOkKpi / renDueKpi * 100) + '%' : '—'}
+              sub={`${renOkKpi} продлений из ${renDueKpi} истёкших за период`} />
             <Tile label="Применений промокодов" value={fmtN(D.promo_usage[0].uses)} sub="за всю историю" />
           </div>
         </Section>
@@ -1001,7 +1061,22 @@ export default function App() {
                   {label}
                 </button>
               ))}
+              <button type="button" onClick={() => setAdsPreset('custom')} aria-pressed={adsPreset === 'custom'}
+                aria-label="Свой период" title="Свой период"
+                className={'px-3 py-1.5 text-[13px] transition-colors ' +
+                  (adsPreset === 'custom' ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground')}>
+                <CalendarIcon />
+              </button>
             </div>
+            {adsPreset === 'custom' && (
+              <span className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground">
+                <input type="date" value={adsFrom} min={MIN_DATE} max={TODAY} onChange={e => setAdsFrom(e.target.value)}
+                  className="rounded-lg border border-border bg-card px-2 py-1 text-[13px] text-foreground" />
+                —
+                <input type="date" value={adsTo} min={MIN_DATE} max={TODAY} onChange={e => setAdsTo(e.target.value)}
+                  className="rounded-lg border border-border bg-card px-2 py-1 text-[13px] text-foreground" />
+              </span>
+            )}
           </div>
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
             <Tile label="Расходы" value={fmtM(adsKpi.spend)} sub="Facebook + Instagram" />
@@ -1039,23 +1114,23 @@ export default function App() {
               ) : <EmptyNote />}
             </Card>
 
-            <Card wide title="Топ креативов" note="По расходам за всю историю. Наведите — покажется картинка креатива.">
-              {(D.meta_creatives ?? []).length ? (
+            <Card wide title="Топ креативов" note="По расходам за выбранный период. Наведите — покажется картинка креатива.">
+              {adsCreatives.length ? (
                 <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:grid-cols-4">
-                  {D.meta_creatives.map((r: Row, i: number) => <CreativeTile key={i} r={r} />)}
+                  {adsCreatives.map((r: Row, i: number) => <CreativeTile key={i} r={r} />)}
                 </div>
               ) : <EmptyNote />}
             </Card>
 
-            <Card title="География" note="Расходы за последние 90 дней. Наведите на страну.">
-              {(D.meta_geo ?? []).length ? (
-                <WorldSpendMap data={D.meta_geo} fmtMoney={fmtM} fmtNum={fmtN} />
+            <Card title="География" note="Расходы за выбранный период. Наведите на страну.">
+              {adsGeo.length ? (
+                <WorldSpendMap data={adsGeo} fmtMoney={fmtM} fmtNum={fmtN} />
               ) : <EmptyNote />}
             </Card>
 
-            <Card title="Плейсменты" note="Расходы за последние 90 дней, по платформам.">
-              {(D.meta_placement ?? []).filter((r: Row) => r.spend > 0).length ? (
-                <BarChart data={D.meta_placement.filter((r: Row) => r.spend > 0)} xDataKey="platform" orientation="horizontal"
+            <Card title="Плейсменты" note="Расходы за выбранный период, по платформам.">
+              {adsPlacement.filter((r: Row) => r.spend > 0).length ? (
+                <BarChart key={adsRkey} data={adsPlacement.filter((r: Row) => r.spend > 0)} xDataKey="platform" orientation="horizontal"
                   aspectRatio="16 / 9" margin={{ top: 8, right: 24, bottom: 8, left: 96 }}>
                   <Bar dataKey="spend" fill={C[2]} lineCap={3} />
                   <BarYAxis />
@@ -1068,7 +1143,7 @@ export default function App() {
               ) : <EmptyNote />}
             </Card>
 
-            <Card title="Возраст и пол аудитории" note="Расходы за последние 90 дней, по кликнувшим на рекламу.">
+            <Card title="Возраст и пол аудитории" note={'Расходы по кликнувшим на рекламу' + (adsPreset === 'custom' ? ' за 90 дней (свой период здесь не поддержан — у Meta нестабильно отдаётся).' : ' за выбранный период.')}>
               {metaDemographics.length ? (
                 <div className="space-y-1.5">
                   {metaDemographics.map(r => (
