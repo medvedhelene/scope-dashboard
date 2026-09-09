@@ -415,6 +415,21 @@ export default function App() {
   const renClosedKpi = useMemo(() => D.renewals_monthly.filter((r: Row) => monthInRange(r.due_month, range)).slice(0, -1), [rkey, D])
   const renDueKpi = renClosedKpi.reduce((a: number, r: Row) => a + r.due, 0)
   const renOkKpi = renClosedKpi.reduce((a: number, r: Row) => a + r.renewed, 0)
+  // agg_users_overview даёт только общий total без разбивки по времени, но у
+  // регистраций и оплат есть даты — считаем «новых» и «уникальных плательщиков»
+  // за период из них, а не из фиксированного total.
+  //
+  // us.payers (total_purchases_count > 0 в agg_users_overview) похоже сломан:
+  // там max(total_purchases_count)=1 и всего 3 «плательщика» на всю базу, а в
+  // самой таблице транзакций fact_sales_transactions — 105 успешных оплат от
+  // 82 разных user_id. Дальше везде считаем плательщиков из fact-таблицы
+  // напрямую, а не из этого поля — стоит показать продуктовой команде.
+  const newUsersKpi = useMemo(() => (D.registrations_weekly ?? [])
+    .filter((r: Row) => weekInRange(r.w, range)).reduce((a: number, r: Row) => a + r.regs, 0), [rkey, D])
+  const payersAllTimeKpi = useMemo(() => new Set((D.sales_users_daily ?? []).map((r: Row) => r.user_id)).size, [D])
+  const payersInRangeKpi = useMemo(() => new Set(
+    (D.sales_users_daily ?? []).filter((r: Row) => inRange(r.d, range)).map((r: Row) => r.user_id)
+  ).size, [rkey, D])
   const utmTotal = D.utm_sources.reduce((a: number, r: Row) => a + r.visitors, 0)
   const rt = D.referral_totals[0]
   const ovva = D.utm_sources[0]
@@ -767,12 +782,12 @@ export default function App() {
         {tab === 'kpi' && (<>
         <Section title="Ключевые показатели" right={<SourceTag source="Metabase" />}>
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            <Tile label="Пользователи" value={fmtN(us.total_users)} sub="регистрации с марта 2024, за всё время" />
-            <Tile label="Платящие" value={fmtN(us.payers)}
-              sub={<>за всё время · конверсия <b className="text-emerald-600 dark:text-emerald-400">{comma((us.payers / us.total_users * 100).toFixed(2))}%</b></>} />
+            <Tile label="Пользователи" value={fmtN(newUsersKpi)} sub={`новых регистраций за период · всего ${fmtN(us.total_users)}`} />
+            <Tile label="Платящие" value={fmtN(payersInRangeKpi)} sub={`уникальных за период · всего ${fmtN(payersAllTimeKpi)}`} />
             <Tile label="Выручка" value={fmtM(revTotalKpi)} sub={fmtN(salesTotalKpi) + ' успешных оплат за период'} />
             <Tile label="Средний чек" value={salesTotalKpi ? '$' + comma((revTotalKpi / salesTotalKpi).toFixed(2)) : '—'} sub="на успешную оплату за период" />
-            <Tile label="ARPPU" value={'$' + comma(us.arppu.toFixed(2))} sub="на платящего за всё время" />
+            <Tile label="ARPPU" value={payersInRangeKpi ? '$' + comma((revTotalKpi / payersInRangeKpi).toFixed(2)) : '—'}
+              sub={`на плательщика за период · всего $${payersAllTimeKpi ? comma((revTotal / payersAllTimeKpi).toFixed(2)) : '—'}`} />
             <Tile label="MRR сейчас" value={fmtM(curMrrKpi.mrr)} sub={`${curMrrKpi.monthly_subs} месячных + ${curMrrKpi.yearly_subs} годовых, на конец периода`} />
             <Tile label="Продлеваемость месячных" value={renDueKpi ? Math.round(renOkKpi / renDueKpi * 100) + '%' : '—'}
               sub={`${renOkKpi} продлений из ${renDueKpi} истёкших за период`} />

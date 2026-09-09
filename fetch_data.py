@@ -15,6 +15,15 @@ QUERIES = {
         FROM analytics.fact_sales_transactions
         WHERE status = 'success'
         GROUP BY 1 ORDER BY 1""",
+    # Сырые (дата, user_id) успешных оплат — только для подсчёта уникальных
+    # плательщиков за произвольный период на фронтенде (agg_users_overview
+    # даёт только общий total, без разбивки по времени). Объём маленький
+    # (~сотня оплат за всю историю), так что отдаём построчно как есть.
+    "sales_users_daily": """
+        SELECT purchase_date::text AS d, user_id
+        FROM analytics.fact_sales_transactions
+        WHERE status = 'success'
+        ORDER BY 1""",
     "sales_monthly": """
         SELECT to_char(purchase_date, 'YYYY-MM') AS m,
                count(*) AS sales,
