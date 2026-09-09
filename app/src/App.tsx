@@ -363,7 +363,7 @@ export default function App() {
         const res = await fetch('dashboard_data.json?' + Date.now())
         if (!res.ok) throw new Error('static')
         setD(await res.json()); setUpdatedAt(new Date())
-        setRefreshErr('сервер Metabase недоступен — загружена последняя локальная выгрузка')
+        setRefreshErr('живое обновление здесь недоступно (на проде нет сервера для него) — показаны данные из последней автоматической выгрузки')
       } catch {
         setRefreshErr('обновление недоступно в этой среде — запустите serve.py локально')
       }
@@ -699,8 +699,10 @@ export default function App() {
           </a>
         </div>
 
-        <FilterBar preset={preset} setPreset={setPreset} from={from} setFrom={setFrom} to={to} setTo={setTo}
-          right={tab === 'subscriptions' ? <DataSinceTag date="04.09.2026" /> : undefined} />
+        {tab !== 'ads' && (
+          <FilterBar preset={preset} setPreset={setPreset} from={from} setFrom={setFrom} to={to} setTo={setTo}
+            right={tab === 'subscriptions' ? <DataSinceTag date="04.09.2026" /> : undefined} />
+        )}
 
         {tab === 'kpi' && (<>
         <Section title="Ключевые показатели" right={<SourceTag source="Metabase" />}>
