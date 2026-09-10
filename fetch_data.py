@@ -6,6 +6,16 @@ from pathlib import Path
 
 from mb import request
 
+# Stripe пишет план и период оплаты в другом виде ('base'/'month'/'year'
+# вместо 'Base'/'monthly'/'yearly'), поэтому без нормализации в "Выручке по
+# тарифам" плодятся дубли строк, а из MRR/продлений stripe-подписки вообще
+# выпадают (там фильтр subs_period IN ('monthly','yearly')). Приводим к
+# общему виду прямо в SQL.
+_PERIOD = ("CASE WHEN lower(subs_period) LIKE 'month%' THEN 'monthly' "
+           "WHEN lower(subs_period) LIKE 'year%' THEN 'yearly' "
+           "ELSE lower(subs_period) END")
+_PLAN = "initcap(plan_name)"
+
 QUERIES = {
     # --- Выручка и продажи ---
     "sales_daily": """
@@ -33,8 +43,8 @@ QUERIES = {
         FROM analytics.fact_sales_transactions
         WHERE status = 'success'
         GROUP BY 1 ORDER BY 1""",
-    "sales_by_plan": """
-        SELECT plan_name, subs_period, count(*) AS sales, sum(price) AS revenue
+    "sales_by_plan": f"""
+        SELECT {_PLAN} AS plan_name, {_PERIOD} AS subs_period, count(*) AS sales, sum(price) AS revenue
         FROM analytics.fact_sales_transactions
         WHERE status = 'success'
         GROUP BY 1, 2 ORDER BY revenue DESC""",
@@ -236,8 +246,8 @@ QUERIES = {
                count(*) FILTER (WHERE status = 'failed') AS failed
         FROM analytics.fact_sales_transactions
         GROUP BY 1, 2 ORDER BY 1""",
-    "plan_daily": """
-        SELECT purchase_date::text AS d, plan_name, subs_period,
+    "plan_daily": f"""
+        SELECT purchase_date::text AS d, {_PLAN} AS plan_name, {_PERIOD} AS subs_period,
                count(*) AS sales, sum(price) AS revenue
         FROM analytics.fact_sales_transactions
         WHERE status = 'success'
@@ -258,11 +268,11 @@ QUERIES = {
         GROUP BY 1 ORDER BY 1""",
     # --- Подписочная экономика ---
     # MRR: снапшот активных подписок на конец каждого месяца (для текущего — на сегодня)
-    "mrr_monthly": """
+    "mrr_monthly": f"""
         WITH subs AS (
-            SELECT purchase_date AS d, subs_period, price
+            SELECT purchase_date AS d, {_PERIOD} AS subs_period, price
             FROM analytics.fact_sales_transactions
-            WHERE status = 'success' AND subs_period IN ('monthly', 'yearly')
+            WHERE status = 'success' AND {_PERIOD} IN ('monthly', 'yearly')
         ), months AS (
             SELECT least((date_trunc('month', gs) + interval '1 month' - interval '1 day')::date,
                          CURRENT_DATE) AS me
@@ -280,11 +290,11 @@ QUERIES = {
         GROUP BY 1 ORDER BY 1""",
     # Продления: месячная подписка считается продлённой, если тот же юзер успешно
     # оплатил ещё раз в течение 45 дней после покупки
-    "renewals_monthly": """
+    "renewals_monthly": f"""
         WITH m AS (
             SELECT user_id, purchase_date AS d
             FROM analytics.fact_sales_transactions
-            WHERE status = 'success' AND subs_period = 'monthly'
+            WHERE status = 'success' AND {_PERIOD} = 'monthly'
         )
         SELECT to_char(d + interval '1 month', 'YYYY-MM') AS due_month,
                count(*) AS due,
