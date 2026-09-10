@@ -917,6 +917,14 @@ def fetch_posthog():
     }
 
 
+def fetch_clarity():
+    """Microsoft Clarity — только свежий срез за 3 дня (у API нет истории и
+    лимит 10 запросов в сутки), поэтому одна карточка «UX-сигналы», не завязана
+    на фильтр периода."""
+    import clarity
+    return {"clarity": clarity.summary(3)}
+
+
 def main():
     out = {}
     for name, sql in QUERIES.items():
@@ -969,6 +977,14 @@ def main():
             prev = json.loads(data_path.read_text())
             for k in ("posthog_funnel", "posthog_events", "posthog_activity", "posthog_trial_by_plan", "posthog_onboarding_props"):
                 out[k] = prev.get(k, [])
+
+    try:
+        out.update(fetch_clarity())
+        print("clarity: ok")
+    except Exception as e:
+        print(f"Clarity: ERROR {e}")
+        if data_path.exists():
+            out["clarity"] = json.loads(data_path.read_text()).get("clarity")
 
     data_path.write_text(json.dumps(out, ensure_ascii=False, indent=1))
 

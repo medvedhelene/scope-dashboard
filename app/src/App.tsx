@@ -126,6 +126,7 @@ const SOURCE_COLORS: Record<string, string> = {
   PostHog: 'text-violet-500 bg-violet-500/10',
   Metabase: 'text-sky-500 bg-sky-500/10',
   GA4: 'text-amber-500 bg-amber-500/10',
+  Clarity: 'text-rose-500 bg-rose-500/10',
 }
 function SourceTag({ source }: { source: keyof typeof SOURCE_COLORS }) {
   return <span className={'shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold ' + SOURCE_COLORS[source]}>{source}</span>
@@ -397,6 +398,7 @@ export default function App() {
 
   const us = D.users_summary[0]
   const tv = D.time_to_value[0]
+  const cl = D.clarity ?? null
   const revTotal = D.sales_daily.reduce((a: number, r: Row) => a + r.revenue, 0)
   const salesTotal = D.sales_daily.reduce((a: number, r: Row) => a + r.sales, 0)
   const curMrr = D.mrr_monthly[D.mrr_monthly.length - 1]
@@ -1029,6 +1031,51 @@ export default function App() {
               ) : <EmptyNote />}
             </Card>
           </div>
+        </Section>
+
+        <Section title="UX-сигналы" right={<SourceTag source="Clarity" />}>
+          {cl ? (
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              <Card title="Активность" note={`Свежий срез Clarity за последние ${cl.num_days} дня. Истории у API нет — записи сессий смотреть в самом Clarity.`}>
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+                  <Tile label="Сессии" value={fmtN(cl.sessions)} sub={`${fmtN(cl.distinct_users)} уник. · ${fmtN(cl.bot_sessions)} ботов`} />
+                  <Tile label="Страниц на сессию" value={comma(cl.pages_per_session.toFixed(1))} />
+                  <Tile label="Активное время" value={`${cl.active_time_min} мин`} sub={`из ${cl.total_time_min} мин всего`} />
+                  <Tile label="Глубина скролла" value={comma(cl.avg_scroll_depth.toFixed(0)) + '%'} sub="в среднем" />
+                </div>
+              </Card>
+              <Card title="Трение в интерфейсе" note="Клик/скролл без реакции, злые клики, быстрый уход — за тот же период.">
+                <div className="space-y-1.5 text-[12.5px]">
+                  {[
+                    ['Мёртвые клики', cl.dead_clicks],
+                    ['Rage-клики (злые)', cl.rage_clicks],
+                    ['Быстрый возврат назад', cl.quick_backs],
+                    ['Избыточный скролл', cl.excessive_scroll],
+                    ['JS-ошибки', cl.script_errors],
+                    ['Клики по элементам с ошибкой', cl.error_clicks],
+                  ].map(([label, m]: [string, Row]) => (
+                    <div key={label} className="flex items-center justify-between gap-3">
+                      <span className="text-muted-foreground">{label}</span>
+                      <span className="shrink-0">
+                        <b className={m.count > 0 ? 'text-foreground' : 'text-muted-foreground'}>{fmtN(m.count)}</b>
+                        <span className="text-muted-foreground"> · в {comma((m.sessions_pct ?? 0).toFixed(1))}% сессий</span>
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+              <Card wide title="Самые посещаемые страницы" note="По просмотрам за период.">
+                <div className="grid grid-cols-1 gap-x-6 gap-y-1.5 text-[12.5px] sm:grid-cols-2">
+                  {(cl.top_pages ?? []).map((p: Row, i: number) => (
+                    <div key={i} className="flex items-center justify-between gap-3">
+                      <span className="truncate text-muted-foreground" title={p.url}>{(p.url ?? '').replace(/^https?:\/\/[^/]+/, '') || '/'}</span>
+                      <b className="shrink-0">{fmtN(p.visits)}</b>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+            </div>
+          ) : <EmptyNote />}
         </Section>
         </>)}
 
