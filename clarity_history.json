@@ -1,14 +1,14 @@
 [
  {
   "date": "2026-09-10",
-  "sessions": 250,
-  "distinct_users": 248,
-  "avg_scroll_depth": 99.0,
-  "active_time_min": 38,
-  "dead_clicks": 145,
-  "dead_clicks_pct": 12.4,
-  "rage_clicks": 9,
-  "rage_clicks_pct": 1.2,
+  "sessions": 154,
+  "distinct_users": 151,
+  "avg_scroll_depth": 98.8,
+  "active_time_min": 50,
+  "dead_clicks": 39,
+  "dead_clicks_pct": 9.09,
+  "rage_clicks": 0,
+  "rage_clicks_pct": 0,
   "quick_backs": 0,
   "script_errors": 4,
   "error_clicks": 0

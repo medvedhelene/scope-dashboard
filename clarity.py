@@ -88,9 +88,59 @@ def summary(num_days=3):
     }
 
 
+def pages_friction(num_days=3, top=12):
+    """Разбивка трения по страницам (dimension=URL) — отдельный вызов API.
+    Возвращает страницы, отсортированные по сумме мёртвых + rage-кликов."""
+    rows = live_insights(num_days, ["URL"])
+
+    def by_url(name):
+        out = {}
+        for r in _metric(rows, name):
+            url = r.get("Url") or r.get("url")
+            if url:
+                out[url] = {"count": r.get("subTotal", 0), "pct": r.get("sessionsWithMetricPercentage", 0)}
+        return out
+
+    dead = by_url("DeadClickCount")
+    rage = by_url("RageClickCount")
+    errc = by_url("ErrorClickCount")
+    qback = by_url("QuickbackClick")
+    sessions = {}
+    for r in _metric(rows, "Traffic"):
+        url = r.get("Url") or r.get("url")
+        if url:
+            sessions[url] = r.get("totalSessionCount", 0) or r.get("sessionsCount", 0)
+
+    urls = set(dead) | set(rage) | set(errc) | set(qback)
+    pages = []
+    for url in urls:
+        d, rg = dead.get(url, {}), rage.get(url, {})
+        e, q = errc.get(url, {}), qback.get(url, {})
+        score = d.get("count", 0) + rg.get("count", 0) + e.get("count", 0)
+        if score == 0:
+            continue
+        pages.append({
+            "url": url,
+            "path": url.replace("https://", "").replace("http://", "").split("/", 1)[-1].rstrip("/") or "/",
+            "sessions": sessions.get(url, 0),
+            "dead_clicks": d.get("count", 0), "dead_clicks_pct": d.get("pct", 0),
+            "rage_clicks": rg.get("count", 0), "rage_clicks_pct": rg.get("pct", 0),
+            "error_clicks": e.get("count", 0),
+            "quick_backs": q.get("count", 0),
+            "_score": score,
+        })
+    pages.sort(key=lambda p: p["_score"], reverse=True)
+    for p in pages:
+        del p["_score"]
+    return pages[:top]
+
+
 def main():
     num = int(sys.argv[1]) if len(sys.argv) > 1 else 3
-    print(json.dumps(summary(num), ensure_ascii=False, indent=2))
+    if len(sys.argv) > 2 and sys.argv[2] == "pages":
+        print(json.dumps(pages_friction(num), ensure_ascii=False, indent=2))
+    else:
+        print(json.dumps(summary(num), ensure_ascii=False, indent=2))
 
 
 if __name__ == "__main__":

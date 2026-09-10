@@ -926,6 +926,11 @@ def fetch_clarity():
     достать нельзя."""
     import clarity
     snap = clarity.summary(3)
+    try:
+        pages = clarity.pages_friction(3)
+    except Exception as e:
+        print(f"Clarity pages: {e}")
+        pages = []
 
     hist_path = Path(__file__).with_name("clarity_history.json")
     hist = {}
@@ -952,7 +957,7 @@ def fetch_clarity():
     history = [hist[k] for k in sorted(hist)]
     hist_path.write_text(json.dumps(history, ensure_ascii=False, indent=1))
 
-    return {"clarity": snap, "clarity_history": history}
+    return {"clarity": snap, "clarity_history": history, "clarity_pages": pages}
 
 
 def main():
@@ -1017,6 +1022,7 @@ def main():
             prev = json.loads(data_path.read_text())
             out["clarity"] = prev.get("clarity")
             out["clarity_history"] = prev.get("clarity_history", [])
+            out["clarity_pages"] = prev.get("clarity_pages", [])
 
     data_path.write_text(json.dumps(out, ensure_ascii=False, indent=1))
 

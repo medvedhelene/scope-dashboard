@@ -25,6 +25,13 @@ type AnalyticsData = {
   posthog_events?: PosthogEvent[]
   posthog_onboarding_props?: { promo_applied: number; promo_skipped: number; path_split: Record<string, number> }
   posthog_activity?: PosthogActivity
+  clarity_pages?: ClarityPage[]
+}
+type ClarityPage = {
+  path: string; url: string; sessions: number
+  dead_clicks: number; dead_clicks_pct: number
+  rage_clicks: number; rage_clicks_pct: number
+  error_clicks: number; quick_backs: number
 }
 type FlowMetrics = {
   activation7: number
@@ -69,6 +76,7 @@ const posthogFunnel = ref<PosthogFunnelStep[]>([])
 const posthogEvents = ref<PosthogEvent[]>([])
 const posthogCounts = ref<Record<string, number>>({})
 const posthogActivity = ref<PosthogActivity | null>(null)
+const clarityPages = ref<ClarityPage[]>([])
 const selected = ref<Node<NodeData> | null>(null)
 const loading = ref(true)
 const loadError = ref('')
@@ -284,9 +292,13 @@ function buildNodes(m: FlowMetrics, ph: Record<string, number>): Node<NodeData>[
     node('eng-friction', 4300, 860,
       (ph['$dead_click'] ?? 0) >= 200 ? 'UX-трение: мёртвые клики' : 'UX-трение',
       (ph['$dead_click'] ?? 0) >= 200 ? 'blocker' : 'screen', 'engagement',
-      `Мёртвые клики: ${(ph['$dead_click'] ?? 0).toLocaleString('ru-RU')} (${pctOfAccounts(ph['$dead_click'] ?? 0) ?? '—'}) · свайпы: ${(ph['$dead_swipe'] ?? 0).toLocaleString('ru-RU')}`,
-      'Клики/свайпы без реакции интерфейса — автозахват PostHog ($dead_click, $dead_swipe). Не привязаны к конкретному экрану без доп. разбивки по pathname.',
-      'PostHog · $dead_click, $dead_swipe'),
+      clarityPages.value.length
+        ? `Худшие страницы (Clarity, 3 дня): ${clarityPages.value.slice(0, 3).map(p => `/${p.path} — ${(p.dead_clicks + p.rage_clicks).toLocaleString('ru-RU')}`).join('; ')}`
+        : `Мёртвые клики: ${(ph['$dead_click'] ?? 0).toLocaleString('ru-RU')} (${pctOfAccounts(ph['$dead_click'] ?? 0) ?? '—'}) · свайпы: ${(ph['$dead_swipe'] ?? 0).toLocaleString('ru-RU')}`,
+      clarityPages.value.length
+        ? `PostHog $dead_click ловит объём (${(ph['$dead_click'] ?? 0).toLocaleString('ru-RU')} за 30 дней), но без экрана. Clarity даёт разбивку по страницам за 3 дня — ${clarityPages.value.slice(0, 6).map(p => `/${p.path}: ${p.dead_clicks}✗${p.rage_clicks ? ' ' + p.rage_clicks + '⚡' : ''}${p.error_clicks ? ' ' + p.error_clicks + '!' : ''}`).join('; ')}. Разбирать в записях Clarity.`
+        : 'Клики/свайпы без реакции интерфейса — автозахват PostHog ($dead_click, $dead_swipe). Не привязаны к конкретному экрану без доп. разбивки по pathname.',
+      clarityPages.value.length ? 'PostHog · $dead_click + Clarity (по страницам)' : 'PostHog · $dead_click, $dead_swipe'),
 
     node('eng-churn-risk', 4300, 1000, 'Запросы на удаление аккаунта', 'blocker', 'engagement',
       `${(ph['account_deletion_requested'] ?? 0).toLocaleString('ru-RU')} за 30 дней · ${pctOfAccounts(ph['account_deletion_requested'] ?? 0) ?? '—'}`,
@@ -418,6 +430,7 @@ async function loadData(silent = false) {
       : {}
     posthogCounts.value = { ...Object.fromEntries(posthogEvents.value.map(e => [e.event, e.count])), ...propCounts }
     posthogActivity.value = data.posthog_activity ?? null
+    clarityPages.value = data.clarity_pages ?? []
     nodes.value = preservePositions(buildNodes(nextMetrics, posthogCounts.value))
     edges.value = buildEdges()
     loadedAt.value = new Date()

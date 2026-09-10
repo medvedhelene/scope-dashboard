@@ -1065,8 +1065,8 @@ export default function App() {
                   ))}
                 </div>
               </Card>
-              <Card wide title="Самые посещаемые страницы" note="По просмотрам за период.">
-                <div className="grid grid-cols-1 gap-x-6 gap-y-1.5 text-[12.5px] sm:grid-cols-2">
+              <Card title="Самые посещаемые страницы" note="По просмотрам за период.">
+                <div className="space-y-1.5 text-[12.5px]">
                   {(cl.top_pages ?? []).map((p: Row, i: number) => (
                     <div key={i} className="flex items-center justify-between gap-3">
                       <span className="truncate text-muted-foreground" title={p.url}>{(p.url ?? '').replace(/^https?:\/\/[^/]+/, '') || '/'}</span>
@@ -1074,6 +1074,22 @@ export default function App() {
                     </div>
                   ))}
                 </div>
+              </Card>
+              <Card title="Страницы с трением" note="Мёртвые + rage + error-клики по страницам. Кандидаты на разбор в записях Clarity.">
+                {(D.clarity_pages ?? []).length ? (
+                  <div className="space-y-1.5 text-[12.5px]">
+                    {(D.clarity_pages ?? []).map((p: Row, i: number) => (
+                      <div key={i} className="flex items-center justify-between gap-3">
+                        <span className="truncate text-muted-foreground" title={p.url}>/{p.path}</span>
+                        <span className="shrink-0 tabular-nums">
+                          {p.dead_clicks > 0 && <span title="мёртвые клики"> <b className="text-foreground">{fmtN(p.dead_clicks)}</b><span className="text-muted-foreground">✗</span></span>}
+                          {p.rage_clicks > 0 && <span title="rage-клики" className="text-[var(--chart-4)]"> {fmtN(p.rage_clicks)}⚡</span>}
+                          {p.error_clicks > 0 && <span title="error-клики" className="text-rose-500"> {fmtN(p.error_clicks)}!</span>}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : <EmptyNote />}
               </Card>
               <Card wide title="Трение во времени"
                 note={clHist.length >= 2
