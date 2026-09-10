@@ -918,11 +918,41 @@ def fetch_posthog():
 
 
 def fetch_clarity():
-    """Microsoft Clarity — только свежий срез за 3 дня (у API нет истории и
-    лимит 10 запросов в сутки), поэтому одна карточка «UX-сигналы», не завязана
-    на фильтр периода."""
+    """Microsoft Clarity — API отдаёт только срез за последние 3 дня и без
+    истории. Свою историю копим сами: каждый запуск дописываем снимок в
+    clarity_history.json (одна запись на календарную дату, при повторных
+    запусках за день перезаписываем — к концу дня цифра «устаканивается»).
+    История начинает набираться только с первого запуска, задним числом
+    достать нельзя."""
     import clarity
-    return {"clarity": clarity.summary(3)}
+    snap = clarity.summary(3)
+
+    hist_path = Path(__file__).with_name("clarity_history.json")
+    hist = {}
+    if hist_path.exists():
+        try:
+            hist = {r["date"]: r for r in json.loads(hist_path.read_text())}
+        except Exception:
+            hist = {}
+    today = datetime.now().date().isoformat()
+    hist[today] = {
+        "date": today,
+        "sessions": snap["sessions"],
+        "distinct_users": snap["distinct_users"],
+        "avg_scroll_depth": snap["avg_scroll_depth"],
+        "active_time_min": snap["active_time_min"],
+        "dead_clicks": snap["dead_clicks"]["count"],
+        "dead_clicks_pct": snap["dead_clicks"]["sessions_pct"],
+        "rage_clicks": snap["rage_clicks"]["count"],
+        "rage_clicks_pct": snap["rage_clicks"]["sessions_pct"],
+        "quick_backs": snap["quick_backs"]["count"],
+        "script_errors": snap["script_errors"]["count"],
+        "error_clicks": snap["error_clicks"]["count"],
+    }
+    history = [hist[k] for k in sorted(hist)]
+    hist_path.write_text(json.dumps(history, ensure_ascii=False, indent=1))
+
+    return {"clarity": snap, "clarity_history": history}
 
 
 def main():
@@ -984,7 +1014,9 @@ def main():
     except Exception as e:
         print(f"Clarity: ERROR {e}")
         if data_path.exists():
-            out["clarity"] = json.loads(data_path.read_text()).get("clarity")
+            prev = json.loads(data_path.read_text())
+            out["clarity"] = prev.get("clarity")
+            out["clarity_history"] = prev.get("clarity_history", [])
 
     data_path.write_text(json.dumps(out, ensure_ascii=False, indent=1))
 

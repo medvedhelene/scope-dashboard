@@ -399,6 +399,7 @@ export default function App() {
   const us = D.users_summary[0]
   const tv = D.time_to_value[0]
   const cl = D.clarity ?? null
+  const clHist: Row[] = D.clarity_history ?? []
   const revTotal = D.sales_daily.reduce((a: number, r: Row) => a + r.revenue, 0)
   const salesTotal = D.sales_daily.reduce((a: number, r: Row) => a + r.sales, 0)
   const curMrr = D.mrr_monthly[D.mrr_monthly.length - 1]
@@ -1073,6 +1074,25 @@ export default function App() {
                     </div>
                   ))}
                 </div>
+              </Card>
+              <Card wide title="Трение во времени"
+                note={clHist.length >= 2
+                  ? 'Свою историю копим сами — у Clarity API её нет. Каждая точка — «за последние 3 дня» на эту дату.'
+                  : 'История начнёт накапливаться со следующих обновлений (у Clarity API своей истории нет). Пока только один снимок.'}>
+                {clHist.length >= 2 ? (
+                  <AreaChart data={clHist} xDataKey="date" aspectRatio="16 / 6" margin={{ top: 16, right: 52, bottom: 36, left: 12 }}>
+                    <Grid horizontal />
+                    <YAxis orientation="right" numTicks={4} formatValue={v => comma(v.toFixed(0)) + '%'} />
+                    <Area dataKey="dead_clicks_pct" fill={CRIT} />
+                    <Area dataKey="rage_clicks_pct" fill={WARN} />
+                    <XAxis />
+                    <ChartTooltip rows={(p: Row) => [
+                      { color: CRIT, label: 'мёртвые клики', value: comma((p.dead_clicks_pct ?? 0).toFixed(1)) + '% · ' + fmtN(p.dead_clicks) },
+                      { color: WARN, label: 'rage-клики', value: comma((p.rage_clicks_pct ?? 0).toFixed(1)) + '% · ' + fmtN(p.rage_clicks) },
+                      { color: 'transparent', label: 'сессий', value: fmtN(p.sessions) },
+                    ]} />
+                  </AreaChart>
+                ) : <EmptyNote />}
               </Card>
             </div>
           ) : <EmptyNote />}
