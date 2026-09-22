@@ -218,6 +218,10 @@ function buildNodes(m: FlowMetrics, ph: Record<string, number>): Node<NodeData>[
     node('copy-blocker', 1820, 900, 'Empty state ведёт к API', 'blocker', 'manual', 'Текст «Подключить API» противоречит выбранному manual-сценарию.',
       `Подтверждено текущим экраном Journal. У этого же экрана есть третий выход — кнопка демо-режима (${ph30('demo_mode_clicked') ?? '0 за 30 дней'}), но она не убирает противоречие текста для тех, кто уже выбрал ручной ввод.`,
       'код Journal + PostHog · demo_mode_clicked'),
+    node('demo-funnel', 2070, 900, 'Демо-режим: что дальше', 'screen', 'manual',
+      `Вошли в демо · ${ph30('demo_mode_entered') ?? '0 за 30 дней'}`,
+      `Свежая инструментация (свойства is_demo_mode, entry_point, feature, cta). Вошли в демо — ${(ph['demo_mode_entered'] ?? 0).toLocaleString('ru-RU')}. Упёрлись в закрытую в демо фичу — ${(ph['demo_gated_feature_blocked'] ?? 0).toLocaleString('ru-RU')}. Увидели модалку «подключить API» — ${(ph['connect_api_modal_shown'] ?? 0).toLocaleString('ru-RU')}, из них кликнули в ней — ${(ph['connect_api_modal_cta_clicked'] ?? 0).toLocaleString('ru-RU')}. Закрыли баннер демо-режима и ушли — ${(ph['demo_banner_exit_clicked'] ?? 0).toLocaleString('ru-RU')}.`,
+      'PostHog · demo_mode_entered, demo_gated_feature_blocked, connect_api_modal_shown, connect_api_modal_cta_clicked, demo_banner_exit_clicked'),
 
     node('lane-payment', 3370, 650, 'ПОЗЖЕ: ОПЛАТА', 'lane', 'payment'),
     node('payment-attempt', 3370, 705, 'Пробует оплатить', 'action', 'payment', `После trial · ${ph30('trial_checkout_started') ?? 'нет данных PostHog'}`, 'trial_checkout_started — клик по CTA оформления, раньше факта оплаты из Metabase (pay_attempts_daily).', ph['trial_checkout_started'] != null ? 'PostHog · trial_checkout_started' : undefined),
@@ -371,6 +375,7 @@ function buildEdges(): Edge[] {
     edge('e-add-save', 'add-trade', 'save-trade'),
     edge('e-save-value', 'save-trade', 'manual-value'),
     edge('e-copy-journal', 'copy-blocker', 'manual-journal', undefined, true),
+    edge('e-demo-funnel', 'manual-journal', 'demo-funnel', 'демо'),
     edge('e-value-payment', 'manual-value', 'payment-attempt', 'позже'),
     edge('e-payment-result', 'payment-attempt', 'payment-result'),
     edge('e-result-success', 'payment-result', 'payment-success'),

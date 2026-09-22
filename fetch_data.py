@@ -821,6 +821,15 @@ POSTHOG_ENGAGEMENT_EVENTS = [
     ("account_deletion_flow_started", "Начал удаление аккаунта"),
     ("account_deletion_verification_requested", "Подтвердил причину удаления"),
     ("account_deletion_confirmed", "Удаление аккаунта завершено"),
+    # Новый демо-режим и рекомендации по навигации — появились в проекте
+    # позже остальных, у событий уже есть свойства (is_demo_mode,
+    # entry_point, source_feature, feature, cta, current_screen, plan).
+    ("demo_mode_entered", "Вошёл в демо-режим"),
+    ("connect_api_modal_shown", "Увидел модалку «подключить API»"),
+    ("connect_api_modal_cta_clicked", "Клик в модалке «подключить API»"),
+    ("demo_gated_feature_blocked", "Уткнулся в фичу, закрытую в демо"),
+    ("demo_banner_exit_clicked", "Закрыл баннер демо-режима"),
+    ("nav_recommendation_selected", "Выбрал рекомендацию в навигации"),
 ]
 
 # Воронка, уже определённая продуктовой командой в самом PostHog
