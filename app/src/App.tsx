@@ -1034,6 +1034,38 @@ export default function App() {
           </div>
         </Section>
 
+        <Section title="Баннеры в приложении" right={<SourceTag source="PostHog" />}>
+          <Card title="Клики и закрытия по баннерам"
+            note="События «баннер показан» пока не отправляются — поэтому CTR (клики / показы) посчитать нельзя, есть только клики и закрытия. Данные за всё время сбора.">
+            {(D.posthog_banners ?? []).length ? (
+              <div className="overflow-x-auto">
+                <table className="w-full text-[12.5px]">
+                  <thead>
+                    <tr className="text-left text-muted-foreground">
+                      <th className="pb-2 pr-3 font-medium">Баннер</th>
+                      <th className="pb-2 pr-3 text-right font-medium">Клики</th>
+                      <th className="pb-2 pr-3 text-right font-medium">Закрыли</th>
+                      <th className="pb-2 pr-3 font-medium">Куда ведёт</th>
+                      <th className="pb-2 font-medium">Период</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(D.posthog_banners ?? []).map((b: Row) => (
+                      <tr key={b.banner_id} className="border-t border-border">
+                        <td className="py-2 pr-3"><b>{b.header}</b> <span className="text-muted-foreground">#{b.banner_id}</span></td>
+                        <td className="py-2 pr-3 text-right tabular-nums">{fmtN(b.clicks)}</td>
+                        <td className="py-2 pr-3 text-right tabular-nums">{fmtN(b.dismissals)}</td>
+                        <td className="py-2 pr-3 text-muted-foreground">{(b.link ?? '').replace(/^https?:\/\/[^/]+/, '') || '—'}</td>
+                        <td className="py-2 text-muted-foreground">{b.first_seen === b.last_seen ? b.first_seen : b.first_seen + ' — ' + b.last_seen}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            ) : <EmptyNote />}
+          </Card>
+        </Section>
+
         <Section title="UX-сигналы" right={<SourceTag source="Clarity" />}>
           {cl ? (
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">

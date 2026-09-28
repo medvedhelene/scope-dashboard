@@ -830,6 +830,23 @@ POSTHOG_ENGAGEMENT_EVENTS = [
     ("demo_gated_feature_blocked", "Уткнулся в фичу, закрытую в демо"),
     ("demo_banner_exit_clicked", "Закрыл баннер демо-режима"),
     ("nav_recommendation_selected", "Выбрал рекомендацию в навигации"),
+    # Баннеры в приложении и новая инструментация онбординга/подключения
+    # (onboarding_id, attempt_id, path, init_mode, is_demo_mode).
+    ("banner_clicked", "Клик по баннеру"),
+    ("banner_dismissed", "Закрыл баннер"),
+    ("promocode_activated", "Активировал промокод"),
+    ("purchase_base", "Купил Base (Stripe)"),
+    ("nav_recommendation_dismissed", "Отклонил рекомендацию в навигации"),
+    ("onboarding_completed", "Онбординг завершён"),
+    ("first_value_shown", "Показана первая ценность"),
+    ("onboarding_insight_next_clicked", "Клик «дальше» в инсайтах онбординга"),
+    ("account_connected", "Аккаунт подключён"),
+    ("connection_manager_opened", "Открыл Connection Manager"),
+    ("connection_manager_retained", "Остался в Connection Manager"),
+    ("connection_attempt_started", "Начал попытку подключения"),
+    ("connection_attempt_result", "Результат попытки подключения"),
+    ("connection_attempt_observed", "Наблюдение за попыткой подключения"),
+    ("connection_retry_started", "Повторил попытку подключения"),
 ]
 
 # Воронка, уже определённая продуктовой командой в самом PostHog
@@ -911,6 +928,26 @@ def fetch_posthog():
         p = (e.get("properties") or {}).get("path") or "неизвестно"
         path_split[p] = path_split.get(p, 0) + 1
 
+    # Баннеры: событий «показан» пока нет (только клик и закрытие), поэтому
+    # CTR посчитать нельзя — отдаём клики/закрытия по каждому banner_id.
+    banner_rows = {}
+    for ev_name, field in (("banner_clicked", "clicks"), ("banner_dismissed", "dismissals")):
+        for e in posthog.raw_events(ev_name, limit=500):
+            pr = e.get("properties") or {}
+            key = pr.get("banner_id")
+            o = banner_rows.setdefault(key, {
+                "banner_id": key, "header": pr.get("banner_header_text") or "(без заголовка)",
+                "link": pr.get("button_link"), "clicks": 0, "dismissals": 0,
+                "demo_events": 0, "first_seen": e["timestamp"][:10], "last_seen": e["timestamp"][:10],
+            })
+            o[field] += 1
+            if pr.get("is_demo_mode"):
+                o["demo_events"] += 1
+            ts = e["timestamp"][:10]
+            o["first_seen"] = min(o["first_seen"], ts)
+            o["last_seen"] = max(o["last_seen"], ts)
+    posthog_banners = sorted(banner_rows.values(), key=lambda r: r["clicks"] + r["dismissals"], reverse=True)
+
     posthog_onboarding_props = {
         "promo_applied": promo_applied,
         "promo_skipped": promo_skipped,
@@ -923,6 +960,7 @@ def fetch_posthog():
         "posthog_activity": posthog_activity,
         "posthog_trial_by_plan": posthog_trial_by_plan,
         "posthog_onboarding_props": posthog_onboarding_props,
+        "posthog_banners": posthog_banners,
     }
 
 
@@ -977,6 +1015,13 @@ def main():
         })
         if d.get("error"):
             print(f"{name}: ERROR {d['error']}")
+            # Не теряем ключ: без него фронтенд падает. Берём прошлую выгрузку.
+            _prev = Path(__file__).with_name("dashboard_data.json")
+            if _prev.exists():
+                _old = json.loads(_prev.read_text()).get(name)
+                if _old is not None:
+                    out[name] = _old
+                    print(f"{name}: оставил предыдущее значение ({len(_old)} строк)")
             continue
         cols = [c["name"] for c in d["data"]["cols"]]
         out[name] = [dict(zip(cols, r)) for r in d["data"]["rows"]]
@@ -1019,7 +1064,7 @@ def main():
         print(f"PostHog: ERROR {e}")
         if data_path.exists():
             prev = json.loads(data_path.read_text())
-            for k in ("posthog_funnel", "posthog_events", "posthog_activity", "posthog_trial_by_plan", "posthog_onboarding_props"):
+            for k in ("posthog_funnel", "posthog_events", "posthog_activity", "posthog_trial_by_plan", "posthog_onboarding_props", "posthog_banners"):
                 out[k] = prev.get(k, [])
 
     try:
