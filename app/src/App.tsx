@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react'
+import { Fragment, useMemo, useState, type ReactNode } from 'react'
 import DATA from './data.json'
 import { BarChart } from '@/components/charts/bar-chart'
 import { Bar } from '@/components/charts/bar'
@@ -422,6 +422,33 @@ export default function App() {
       }
     }).sort((a, b) => b.views - a.views)
   }, [D])
+  // Активация до/после нового онбординга (с 03.09.2026)
+  const ONBOARDING_V2_LABEL = '03.09.2026'
+  const era = (which: string, src: string) => {
+    const z = { n: 0, created7: 0, conn7: 0, manual7: 0, any7: 0, sync7: 0 }
+    for (const r of (D.activation_by_era ?? [])) if (r.era === which && r.src === src) for (const k of Object.keys(z)) (z as Row)[k] += r[k]
+    return z
+  }
+  const eraTable = useMemo(() => {
+    const defs: Array<[string, string]> = [
+      ['created7', 'Создали акаунт ≤ 7 дн'], ['conn7', 'Подключили брокера ≤ 7 дн'], ['manual7', 'Ручная позиция ≤ 7 дн'],
+      ['any7', 'Активация: подключил ИЛИ ручная'], ['sync7', 'Синк ≤ 7 дн'],
+    ]
+    const pct = (z: Row, k: string) => (z.n ? z[k] / z.n * 100 : 0)
+    return defs.map(([k, label]) => {
+      const cell = (src: string) => { const a = era('pre', src), b = era('post', src); return { pre: pct(a, k), post: pct(b, k), d: pct(b, k) - pct(a, k) } }
+      return { k, label, other: cell('other'), meta: cell('meta-ads') }
+    })
+  }, [D])
+  const eraN = { preO: era('pre', 'other').n, postO: era('post', 'other').n, preM: era('pre', 'meta-ads').n, postM: era('post', 'meta-ads').n }
+  const actWeekly = useMemo(() => (D.activation_weekly ?? []).map((r: Row) => ({
+    ...r, label: r.w.slice(8) + '.' + r.w.slice(5, 7),
+    conn_pct: r.n ? r.conn7 / r.n * 100 : 0, any_pct: r.n ? r.any7 / r.n * 100 : 0,
+  })), [D])
+  const obPaths: Row[] = D.onboarding_paths ?? []
+  const obAuto = obPaths.find(r => r.path === 'auto'), obManual = obPaths.find(r => r.path === 'manual')
+  const obChosen = (obAuto?.chosen ?? 0) + (obManual?.chosen ?? 0)
+  const connAttempts: Row[] = D.connection_attempts ?? []
   const bnViews = banners.reduce((a, b) => a + b.views, 0)
   const bnUsers = banners.reduce((a, b) => a + b.unique_users, 0)
   const bnClicks = banners.reduce((a, b) => a + b.clicks, 0)
@@ -956,7 +983,95 @@ export default function App() {
                 <Tile label="До подключения" value={fmtDays(tv.med_conn_d)} sub="медиана" />
                 <Tile label="До первого синка" value={fmtDays(tv.med_sync_d)} sub="медиана, рег. после 15.06" />
                 <Tile label="До первой оплаты" value={fmtDays(tv.med_pay_d)} sub="медиана по платящим" />
-                <Tile label="Активация за 7 дней" value={comma(tv.activation7_pct) + '%'} sub="подключили аккаунт, рег. за 90 дней" />
+                <Tile label="Активация за 7 дней" value={comma(tv.activation7_pct) + '%'} sub="только подключение брокера, рег. за 90 дней — см. блок ниже" />
+              </div>
+            </Card>
+            <Card wide title={`Активация до и после нового онбординга (с ${ONBOARDING_V2_LABEL})`}
+              note="Новый онбординг просит выбрать путь, и большинство берёт ручной журнал — поэтому «только подключение брокера» больше не отражает реальность. Здесь активация = подключил брокера ИЛИ создал ручную позицию за 7 дней после регистрации. Только те, у кого 7-дневное окно уже закрылось.">
+              <div className="overflow-x-auto">
+                <table className="w-full text-[12.5px]">
+                  <thead>
+                    <tr className="text-left text-muted-foreground">
+                      <th className="pb-1 pr-3 font-medium" rowSpan={2}>Показатель</th>
+                      <th className="pb-1 pr-3 text-center font-medium" colSpan={3}>Органика (без Meta)</th>
+                      <th className="pb-1 text-center font-medium" colSpan={3}>Meta-реклама</th>
+                    </tr>
+                    <tr className="text-right text-[11px] text-muted-foreground">
+                      <th className="pb-2 pr-2 font-normal">до (июл–авг)<br />n={fmtN(eraN.preO)}</th><th className="pb-2 pr-2 font-normal">после<br />n={fmtN(eraN.postO)}</th><th className="pb-2 pr-3 font-normal">Δ п.п.</th>
+                      <th className="pb-2 pr-2 font-normal">до<br />n={fmtN(eraN.preM)}</th><th className="pb-2 pr-2 font-normal">после<br />n={fmtN(eraN.postM)}</th><th className="pb-2 font-normal">Δ п.п.</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {eraTable.map(r => (
+                      <tr key={r.k} className={'border-t border-border ' + (r.k === 'any7' ? 'font-semibold' : '')}>
+                        <td className="py-1.5 pr-3">{r.label}</td>
+                        {[r.other, r.meta].map((c, i) => (
+                          <Fragment key={i}>
+                            <td className="py-1.5 pr-2 text-right tabular-nums">{comma(c.pre.toFixed(1))}%</td>
+                            <td className="py-1.5 pr-2 text-right tabular-nums">{comma(c.post.toFixed(1))}%</td>
+                            <td className={'py-1.5 text-right tabular-nums ' + (i === 0 ? 'pr-3 ' : '') + (Math.abs(c.d) < 1 ? 'text-muted-foreground' : c.d > 0 ? 'text-emerald-500' : 'text-red-500')}>{c.d > 0 ? '+' : ''}{comma(c.d.toFixed(1))}</td>
+                          </Fragment>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2">
+                <div>
+                  <div className="mb-1 text-[12.5px] font-semibold">Когорты по неделе регистрации, %</div>
+                  {actWeekly.length ? (
+                    <>
+                      <BarChart data={actWeekly} xDataKey="label" aspectRatio="16 / 8" margin={{ top: 12, right: 40, bottom: 32, left: 8 }}>
+                        <Grid horizontal />
+                        <YAxis orientation="right" numTicks={4} formatValue={v => comma(v.toFixed(0)) + '%'} />
+                        <Bar dataKey="conn_pct" fill={C[0]} lineCap={2} />
+                        <Bar dataKey="any_pct" fill={GOOD} lineCap={2} />
+                        <BarXAxis maxLabels={7} />
+                        <ChartTooltip showDatePill={false} rows={(p: Row) => [
+                          { color: C[0], label: 'подключили', value: comma(p.conn_pct.toFixed(1)) + '% (' + fmtN(p.conn7) + ')' },
+                          { color: GOOD, label: 'подключили или ручная', value: comma(p.any_pct.toFixed(1)) + '% (' + fmtN(p.any7) + ')' },
+                          { color: 'transparent', label: 'зарегистрировалось', value: fmtN(p.n) },
+                        ]} />
+                      </BarChart>
+                      <Legend items={[{ label: 'подключили брокера', color: C[0] }, { label: 'подключили или ручная позиция', color: GOOD }]} />
+                    </>
+                  ) : <EmptyNote />}
+                </div>
+                <div className="space-y-3 text-[12.5px]">
+                  <div>
+                    <div className="mb-1 font-semibold">Выбор пути в новом онбординге</div>
+                    {obChosen ? (
+                      <div className="text-muted-foreground">
+                        Ручной журнал — <b className="text-foreground">{fmtN(obManual?.chosen ?? 0)}</b> ({comma(((obManual?.chosen ?? 0) / obChosen * 100).toFixed(0))}%),
+                        автоподключение — <b className="text-foreground">{fmtN(obAuto?.chosen ?? 0)}</b>.
+                      </div>
+                    ) : <EmptyNote />}
+                  </div>
+                  {obAuto && (
+                    <div>
+                      <div className="mb-1 font-semibold">Автоподключение</div>
+                      <div className="text-muted-foreground">выбрали {fmtN(obAuto.chosen)} → начали попытку {fmtN(obAuto.step1)} → подключили {fmtN(obAuto.step2)} → завершили онбординг {fmtN(obAuto.step3)}</div>
+                    </div>
+                  )}
+                  {obManual && (
+                    <div>
+                      <div className="mb-1 font-semibold">Ручной журнал</div>
+                      <div className="text-muted-foreground">выбрали {fmtN(obManual.chosen)} → создали ручной акаунт {fmtN(obManual.step1)} → добавили сделку {fmtN(obManual.step2)} → завершили онбординг {fmtN(obManual.step3)}</div>
+                    </div>
+                  )}
+                  {connAttempts.length > 0 && (
+                    <div>
+                      <div className="mb-1 font-semibold">Попытки подключения</div>
+                      <div className="text-muted-foreground">
+                        {connAttempts.map((r: Row, i: number) => (
+                          <span key={i}>{i > 0 && ' · '}{r.result === 'success' ? 'успех' : 'ошибка' + (r.error_code ? ' ' + r.error_code : '')}: <b className="text-foreground">{fmtN(r.attempts)}</b> ({fmtN(r.users)} юзеров)</span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <div className="text-[11px] text-muted-foreground">PostHog + Metabase · новый трекинг онбординга идёт с {ONBOARDING_V2_LABEL}, выборка пока небольшая.</div>
+                </div>
               </div>
             </Card>
           </div>
@@ -1431,6 +1546,16 @@ export default function App() {
         <Section title="Выводы">
           <ul className="grid gap-2.5 text-sm text-muted-foreground">
             {[
+              <><span className="mr-2 inline-block rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">вывод от 28.09.2026</span>
+                <b className="text-foreground">Новый онбординг (с {ONBOARDING_V2_LABEL}) увёл людей в ручной журнал: «подключение» рухнуло, но не потому, что подключение сломалось.</b>{' '}
+                Метрика «подключил брокера за 7 дней» упала у органики с {comma(eraTable[1].other.pre.toFixed(0))}% до {comma(eraTable[1].other.post.toFixed(0))}%, а «подключил или ручная позиция» — с {comma(eraTable[3].other.pre.toFixed(0))}% до {comma(eraTable[3].other.post.toFixed(0))}%.
+                Причина — выбор пути: {obChosen ? comma(((obManual?.chosen ?? 0) / obChosen * 100).toFixed(0)) : '—'}% берут ручной журнал.
+                Среди выбравших автоподключение до конца доходят {obAuto ? fmtN(obAuto.step2) : '—'} из {obAuto ? fmtN(obAuto.chosen) : '—'} — на уровне прежних ~19%.
+                Реальная активация просела ({comma(eraTable[3].other.post.toFixed(0))}% против {comma(eraTable[3].other.pre.toFixed(0))}%): ручной путь пока не дожимает — до конца доходит лишь {obManual && obManual.chosen ? comma((obManual.step3 / obManual.chosen * 100).toFixed(0)) : '—'}%.
+                Скорость первого шага, наоборот, выросла: путь выбирают за полминуты, ручной аккаунт создают за ~1,5 мин.</>,
+              connAttempts.some((r: Row) => r.result !== 'success') && <><span className="mr-2 inline-block rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">вывод от 28.09.2026</span>
+                <b className="text-foreground">Треть попыток подключения брокера заканчивается ошибкой</b> ({connAttempts.filter((r: Row) => r.result !== 'success').map((r: Row) => `${r.error_code || 'ошибка'} — ${fmtN(r.attempts)}`).join(', ')} против {fmtN(connAttempts.filter((r: Row) => r.result === 'success').reduce((a: number, r: Row) => a + r.attempts, 0))} успешных).
+                Это самый короткий путь поднять «подключение»: разобрать причину ошибки и понятнее показывать её пользователю.</>,
               onboardingResumed > 0 && <><b className="text-foreground">Онбординг редко проходят с одного захода:</b> ещё {fmtN(onboardingResumed)} человек
                 за тот же период (PostHog, 30 дней) вернулись в онбординг повторно — это не отдельный шаг воронки, а сигнал, что часть выбравших ветку
                 на самом деле повторные попытки.</>,

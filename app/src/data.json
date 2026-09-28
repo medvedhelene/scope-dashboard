@@ -1830,6 +1830,164 @@
    "last_activity": "2026-09-25"
   }
  ],
+ "activation_by_era": [
+  {
+   "era": "post",
+   "src": "meta-ads",
+   "n": 51,
+   "created7": 14,
+   "conn7": 1,
+   "manual7": 2,
+   "any7": 3,
+   "sync7": 0
+  },
+  {
+   "era": "post",
+   "src": "other",
+   "n": 166,
+   "created7": 52,
+   "conn7": 5,
+   "manual7": 17,
+   "any7": 21,
+   "sync7": 3
+  },
+  {
+   "era": "pre",
+   "src": "meta-ads",
+   "n": 548,
+   "created7": 54,
+   "conn7": 109,
+   "manual7": 13,
+   "any7": 120,
+   "sync7": 50
+  },
+  {
+   "era": "pre",
+   "src": "other",
+   "n": 812,
+   "created7": 203,
+   "conn7": 152,
+   "manual7": 81,
+   "any7": 224,
+   "sync7": 100
+  }
+ ],
+ "activation_weekly": [
+  {
+   "w": "2026-06-15",
+   "n": 341,
+   "conn7": 38,
+   "any7": 42
+  },
+  {
+   "w": "2026-06-22",
+   "n": 163,
+   "conn7": 25,
+   "any7": 34
+  },
+  {
+   "w": "2026-06-29",
+   "n": 224,
+   "conn7": 52,
+   "any7": 68
+  },
+  {
+   "w": "2026-07-06",
+   "n": 337,
+   "conn7": 95,
+   "any7": 125
+  },
+  {
+   "w": "2026-07-13",
+   "n": 145,
+   "conn7": 38,
+   "any7": 47
+  },
+  {
+   "w": "2026-07-20",
+   "n": 165,
+   "conn7": 43,
+   "any7": 52
+  },
+  {
+   "w": "2026-07-27",
+   "n": 103,
+   "conn7": 17,
+   "any7": 24
+  },
+  {
+   "w": "2026-08-03",
+   "n": 48,
+   "conn7": 11,
+   "any7": 14
+  },
+  {
+   "w": "2026-08-10",
+   "n": 57,
+   "conn7": 5,
+   "any7": 6
+  },
+  {
+   "w": "2026-08-17",
+   "n": 177,
+   "conn7": 1,
+   "any7": 6
+  },
+  {
+   "w": "2026-08-24",
+   "n": 30,
+   "conn7": 0,
+   "any7": 0
+  },
+  {
+   "w": "2026-08-31",
+   "n": 169,
+   "conn7": 7,
+   "any7": 14
+  },
+  {
+   "w": "2026-09-07",
+   "n": 110,
+   "conn7": 2,
+   "any7": 13
+  },
+  {
+   "w": "2026-09-14",
+   "n": 31,
+   "conn7": 3,
+   "any7": 7
+  }
+ ],
+ "onboarding_paths": [
+  {
+   "path": "manual",
+   "chosen": 171,
+   "step1": 98,
+   "step2": 30,
+   "step3": 26
+  },
+  {
+   "path": "auto",
+   "chosen": 23,
+   "step1": 7,
+   "step2": 5,
+   "step3": 4
+  }
+ ],
+ "connection_attempts": [
+  {
+   "result": "success",
+   "error_code": "",
+   "attempts": 18,
+   "users": 6
+  },
+  {
+   "result": "failed",
+   "error_code": "ERR_BAD_REQUEST",
+   "attempts": 8,
+   "users": 4
+  }
+ ],
  "banners_meta": [
   {
    "banner_id": 5,
@@ -2977,7 +3135,7 @@
   {
    "w": "2026-09-28",
    "kind": "Синк журнала",
-   "n": 2
+   "n": 3
   },
   {
    "w": "2026-09-28",
@@ -2998,7 +3156,7 @@
   },
   {
    "market": "crypto",
-   "syncs": 564,
+   "syncs": 565,
    "users": 63
   }
  ],
@@ -3134,7 +3292,7 @@
   },
   {
    "feat": "Синк журнала",
-   "n": 1865,
+   "n": 1866,
    "users": 301
   },
   {
@@ -7075,9 +7233,9 @@
   },
   {
    "w": "2026-09-28",
-   "sessions": 15,
-   "users": 15,
-   "pageviews": 105
+   "sessions": 16,
+   "users": 16,
+   "pageviews": 128
   }
  ],
  "ga4_app_sessions_monthly": [
@@ -7228,8 +7386,8 @@
   },
   {
    "m": "2026-09",
-   "sessions": 2298,
-   "users": 1431
+   "sessions": 2299,
+   "users": 1432
   }
  ],
  "ga4_channels": [
@@ -42891,22 +43049,22 @@
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/notes/create",
-   "path": "notes/create",
-   "sessions": 2,
+   "url": "https://futures.scope360.io/settings/journal",
+   "path": "settings/journal",
+   "sessions": 8,
    "dead_clicks": 1,
-   "dead_clicks_pct": 50,
+   "dead_clicks_pct": 12.5,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/settings/journal",
-   "path": "settings/journal",
-   "sessions": 8,
+   "url": "https://futures.scope360.io/notes/create",
+   "path": "notes/create",
+   "sessions": 2,
    "dead_clicks": 1,
-   "dead_clicks_pct": 12.5,
+   "dead_clicks_pct": 50,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,

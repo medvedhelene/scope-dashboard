@@ -16,6 +16,8 @@ _PERIOD = ("CASE WHEN lower(subs_period) LIKE 'month%' THEN 'monthly' "
            "ELSE lower(subs_period) END")
 _PLAN = "initcap(plan_name)"
 
+ONBOARDING_V2 = "2026-09-03"  # старт нового онбординга с выбором пути
+
 QUERIES = {
     # --- Выручка и продажи ---
     "sales_daily": """
@@ -185,6 +187,63 @@ QUERIES = {
                max(coalesce(last_payment_at, registered_at))::date::text
         FROM analytics.fact_referral_attribution
         ORDER BY revenue DESC, regs DESC""",
+    # --- Активация до/после нового онбординга ---
+    # ONBOARDING_V2 — дата, с которой заработал новый онбординг с выбором
+    # пути (первые события user_signed_up / onboarding_started в PostHog и
+    # analytics.onboarding_events — 2026-09-03). Берём только тех, у кого
+    # 7-дневное окно уже закрылось. «Активация» = подключил брокера ИЛИ
+    # создал ручную позицию: после релиза 88% выбирают ручной журнал, и
+    # метрика «только подключение» перестала отражать реальность.
+    "activation_by_era": """
+        WITH f AS (
+          SELECT u.user_id, u.registered_at,
+            CASE WHEN u.registered_at >= 'ONBOARDING_V2' THEN 'post' ELSE 'pre' END era,
+            CASE WHEN t.utm_source ILIKE '%meta%' OR t.utm_source ILIKE '%ovva%' THEN 'meta-ads' ELSE 'other' END src,
+            (SELECT min(occurred_at) FROM analytics.trading_account_creation_events e WHERE e.user_id=u.user_id AND e.occurred_at>=u.registered_at) f_create,
+            (SELECT min(occurred_at) FROM analytics.trading_account_connection_events e WHERE e.user_id=u.user_id AND e.occurred_at>=u.registered_at) f_conn,
+            (SELECT min(occurred_at) FROM analytics.journal_manual_position_creation_events e WHERE e.user_id=u.user_id AND e.occurred_at>=u.registered_at) f_manual,
+            (SELECT min(occurred_at) FROM analytics.journal_sync_events e WHERE e.user_id=u.user_id AND e.occurred_at>=u.registered_at) f_sync
+          FROM analytics.agg_users_overview u
+          LEFT JOIN analytics.user_utm_tracking t ON t.user_id=u.user_id
+          WHERE u.registered_at >= '2026-07-01' AND u.registered_at < current_date - 7)
+        SELECT era, src, count(*) AS n,
+          count(*) FILTER (WHERE f_create <= registered_at + interval '7 days') AS created7,
+          count(*) FILTER (WHERE f_conn <= registered_at + interval '7 days') AS conn7,
+          count(*) FILTER (WHERE f_manual <= registered_at + interval '7 days') AS manual7,
+          count(*) FILTER (WHERE f_conn <= registered_at + interval '7 days' OR f_manual <= registered_at + interval '7 days') AS any7,
+          count(*) FILTER (WHERE f_sync <= registered_at + interval '7 days') AS sync7
+        FROM f GROUP BY 1, 2 ORDER BY 1, 2""",
+    "activation_weekly": """
+        WITH f AS (
+          SELECT u.user_id, u.registered_at,
+            (SELECT min(occurred_at) FROM analytics.trading_account_connection_events e WHERE e.user_id=u.user_id AND e.occurred_at>=u.registered_at) f_conn,
+            (SELECT min(occurred_at) FROM analytics.journal_manual_position_creation_events e WHERE e.user_id=u.user_id AND e.occurred_at>=u.registered_at) f_manual
+          FROM analytics.agg_users_overview u
+          WHERE u.registered_at >= '2026-06-15' AND u.registered_at < current_date - 7)
+        SELECT to_char(date_trunc('week', registered_at), 'YYYY-MM-DD') AS w, count(*) AS n,
+          count(*) FILTER (WHERE f_conn <= registered_at + interval '7 days') AS conn7,
+          count(*) FILTER (WHERE f_conn <= registered_at + interval '7 days' OR f_manual <= registered_at + interval '7 days') AS any7
+        FROM f GROUP BY 1 ORDER BY 1""",
+    # Воронка нового онбординга по выбранному пути (analytics.onboarding_events).
+    # auto:   выбрал -> начал попытку подключения -> подключил -> увидел first value -> завершил
+    # manual: выбрал -> создал ручной акаунт -> добавил сделку -> завершил ручной онбординг
+    "onboarding_paths": """
+        WITH ch AS (SELECT onboarding_id, properties->>'path' AS path FROM analytics.onboarding_events
+                    WHERE event_type = 'onboarding_path_selected' GROUP BY 1, 2),
+        ev AS (SELECT onboarding_id, event_type FROM analytics.onboarding_events GROUP BY 1, 2)
+        SELECT ch.path, count(*) AS chosen,
+          count(*) FILTER (WHERE ch.path='auto'   AND EXISTS (SELECT 1 FROM ev WHERE ev.onboarding_id=ch.onboarding_id AND ev.event_type='connection_attempt_started')
+                        OR ch.path='manual' AND EXISTS (SELECT 1 FROM ev WHERE ev.onboarding_id=ch.onboarding_id AND ev.event_type='manual_account_created')) AS step1,
+          count(*) FILTER (WHERE ch.path='auto'   AND EXISTS (SELECT 1 FROM ev WHERE ev.onboarding_id=ch.onboarding_id AND ev.event_type='account_connected')
+                        OR ch.path='manual' AND EXISTS (SELECT 1 FROM ev WHERE ev.onboarding_id=ch.onboarding_id AND ev.event_type='manual_trade_added')) AS step2,
+          count(*) FILTER (WHERE ch.path='auto'   AND EXISTS (SELECT 1 FROM ev WHERE ev.onboarding_id=ch.onboarding_id AND ev.event_type='onboarding_completed')
+                        OR ch.path='manual' AND EXISTS (SELECT 1 FROM ev WHERE ev.onboarding_id=ch.onboarding_id AND ev.event_type='manual_onboarding_completed')) AS step3
+        FROM ch GROUP BY 1 ORDER BY 2 DESC""",
+    "connection_attempts": """
+        SELECT coalesce(properties->>'result', '?') AS result, coalesce(properties->>'error_code', '') AS error_code,
+               count(*) AS attempts, count(DISTINCT onboarding_id) AS users
+        FROM analytics.onboarding_events WHERE event_type = 'connection_attempt_result'
+        GROUP BY 1, 2 ORDER BY 3 DESC""",
     # --- Баннеры: справочник + лог показов (dim_banners, fact_banner_views) ---
     # views_count в dim_banners — все показы; fact_banner_views — строка на
     # показ (banner_id, user_id, viewed_at), из неё берём уникальных и дни.
@@ -429,6 +488,7 @@ def _with_sales(sql):
 
 
 for _k, _sql in list(QUERIES.items()):
+    QUERIES[_k] = _sql = _sql.replace("ONBOARDING_V2", ONBOARDING_V2)
     if "fact_sales_transactions" in _sql:
         QUERIES[_k] = _with_sales(_sql.replace("analytics.fact_sales_transactions", "sales"))
 
