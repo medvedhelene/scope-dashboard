@@ -1,4 +1,1063 @@
 {
+ "sales_daily": [
+  {
+   "d": "2025-12-10",
+   "sales": 1,
+   "revenue": 23.08
+  },
+  {
+   "d": "2025-12-15",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2025-12-16",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2025-12-20",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-01-01",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-01-08",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-01-09",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-01-15",
+   "sales": 2,
+   "revenue": 65.0
+  },
+  {
+   "d": "2026-01-18",
+   "sales": 1,
+   "revenue": 45.0
+  },
+  {
+   "d": "2026-01-20",
+   "sales": 2,
+   "revenue": 21.0
+  },
+  {
+   "d": "2026-01-21",
+   "sales": 3,
+   "revenue": 60.0
+  },
+  {
+   "d": "2026-01-24",
+   "sales": 2,
+   "revenue": 40.0
+  },
+  {
+   "d": "2026-01-26",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-01-27",
+   "sales": 2,
+   "revenue": 170.0
+  },
+  {
+   "d": "2026-01-28",
+   "sales": 2,
+   "revenue": 35.0
+  },
+  {
+   "d": "2026-01-29",
+   "sales": 3,
+   "revenue": 60.0
+  },
+  {
+   "d": "2026-01-30",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-02",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-02-03",
+   "sales": 2,
+   "revenue": 40.0
+  },
+  {
+   "d": "2026-02-04",
+   "sales": 2,
+   "revenue": 160.0
+  },
+  {
+   "d": "2026-02-06",
+   "sales": 2,
+   "revenue": 35.0
+  },
+  {
+   "d": "2026-02-07",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-10",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-11",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-12",
+   "sales": 1,
+   "revenue": 14.0
+  },
+  {
+   "d": "2026-02-14",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-15",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-02-17",
+   "sales": 1,
+   "revenue": 45.0
+  },
+  {
+   "d": "2026-02-19",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-20",
+   "sales": 1,
+   "revenue": 25.67
+  },
+  {
+   "d": "2026-02-21",
+   "sales": 2,
+   "revenue": 40.0
+  },
+  {
+   "d": "2026-02-24",
+   "sales": 4,
+   "revenue": 64.0
+  },
+  {
+   "d": "2026-02-28",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-01",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-03",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-04",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-10",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-11",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-15",
+   "sales": 3,
+   "revenue": 60.0
+  },
+  {
+   "d": "2026-03-16",
+   "sales": 1,
+   "revenue": 10.0
+  },
+  {
+   "d": "2026-03-17",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-19",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-27",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-03-29",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-03-30",
+   "sales": 1,
+   "revenue": 112.5
+  },
+  {
+   "d": "2026-04-02",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-04-06",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-04-13",
+   "sales": 1,
+   "revenue": 10.0
+  },
+  {
+   "d": "2026-04-14",
+   "sales": 2,
+   "revenue": 34.0
+  },
+  {
+   "d": "2026-04-22",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-04-23",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-04-24",
+   "sales": 1,
+   "revenue": 112.5
+  },
+  {
+   "d": "2026-04-25",
+   "sales": 2,
+   "revenue": 40.0
+  },
+  {
+   "d": "2026-04-27",
+   "sales": 2,
+   "revenue": 34.0
+  },
+  {
+   "d": "2026-05-03",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-05-05",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-05-13",
+   "sales": 1,
+   "revenue": 205.67
+  },
+  {
+   "d": "2026-05-17",
+   "sales": 1,
+   "revenue": 14.0
+  },
+  {
+   "d": "2026-05-19",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-05-20",
+   "sales": 2,
+   "revenue": 40.0
+  },
+  {
+   "d": "2026-05-21",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-05-25",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-05-27",
+   "sales": 1,
+   "revenue": 112.5
+  },
+  {
+   "d": "2026-05-28",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-05-29",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-06-05",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-06-08",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-06-13",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-06-14",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-06-22",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-07-05",
+   "sales": 3,
+   "revenue": 60.0
+  },
+  {
+   "d": "2026-07-09",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-07-10",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-07-17",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-07-22",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-07-29",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-08-07",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-08-24",
+   "sales": 2,
+   "revenue": 170.0
+  },
+  {
+   "d": "2026-08-31",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-09",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-10",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-12",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-09-18",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-19",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-23",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-24",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-27",
+   "sales": 1,
+   "revenue": 20.0
+  }
+ ],
+ "sales_users_daily": [
+  {
+   "d": "2025-12-10",
+   "user_id": 2699
+  },
+  {
+   "d": "2025-12-15",
+   "user_id": 6299
+  },
+  {
+   "d": "2025-12-16",
+   "user_id": 3805
+  },
+  {
+   "d": "2025-12-20",
+   "user_id": 5827
+  },
+  {
+   "d": "2026-01-01",
+   "user_id": 3364
+  },
+  {
+   "d": "2026-01-08",
+   "user_id": 736
+  },
+  {
+   "d": "2026-01-09",
+   "user_id": 8072
+  },
+  {
+   "d": "2026-01-15",
+   "user_id": 573
+  },
+  {
+   "d": "2026-01-15",
+   "user_id": 1274
+  },
+  {
+   "d": "2026-01-18",
+   "user_id": 6299
+  },
+  {
+   "d": "2026-01-20",
+   "user_id": 10115
+  },
+  {
+   "d": "2026-01-20",
+   "user_id": 7634
+  },
+  {
+   "d": "2026-01-21",
+   "user_id": 4444
+  },
+  {
+   "d": "2026-01-21",
+   "user_id": 7393
+  },
+  {
+   "d": "2026-01-21",
+   "user_id": 7135
+  },
+  {
+   "d": "2026-01-24",
+   "user_id": 6491
+  },
+  {
+   "d": "2026-01-24",
+   "user_id": 7323
+  },
+  {
+   "d": "2026-01-26",
+   "user_id": 6684
+  },
+  {
+   "d": "2026-01-27",
+   "user_id": 8328
+  },
+  {
+   "d": "2026-01-27",
+   "user_id": 4590
+  },
+  {
+   "d": "2026-01-28",
+   "user_id": 2426
+  },
+  {
+   "d": "2026-01-28",
+   "user_id": 478
+  },
+  {
+   "d": "2026-01-29",
+   "user_id": 7719
+  },
+  {
+   "d": "2026-01-29",
+   "user_id": 1357
+  },
+  {
+   "d": "2026-01-29",
+   "user_id": 8569
+  },
+  {
+   "d": "2026-01-30",
+   "user_id": 11646
+  },
+  {
+   "d": "2026-02-02",
+   "user_id": 11893
+  },
+  {
+   "d": "2026-02-03",
+   "user_id": 4622
+  },
+  {
+   "d": "2026-02-03",
+   "user_id": 6089
+  },
+  {
+   "d": "2026-02-04",
+   "user_id": 7164
+  },
+  {
+   "d": "2026-02-04",
+   "user_id": 4718
+  },
+  {
+   "d": "2026-02-06",
+   "user_id": 3593
+  },
+  {
+   "d": "2026-02-06",
+   "user_id": 4725
+  },
+  {
+   "d": "2026-02-07",
+   "user_id": 4139
+  },
+  {
+   "d": "2026-02-10",
+   "user_id": 3122
+  },
+  {
+   "d": "2026-02-11",
+   "user_id": 3805
+  },
+  {
+   "d": "2026-02-12",
+   "user_id": 970
+  },
+  {
+   "d": "2026-02-14",
+   "user_id": 12640
+  },
+  {
+   "d": "2026-02-15",
+   "user_id": 573
+  },
+  {
+   "d": "2026-02-17",
+   "user_id": 6299
+  },
+  {
+   "d": "2026-02-19",
+   "user_id": 8305
+  },
+  {
+   "d": "2026-02-20",
+   "user_id": 12927
+  },
+  {
+   "d": "2026-02-21",
+   "user_id": 3237
+  },
+  {
+   "d": "2026-02-21",
+   "user_id": 2728
+  },
+  {
+   "d": "2026-02-24",
+   "user_id": 7206
+  },
+  {
+   "d": "2026-02-24",
+   "user_id": 4663
+  },
+  {
+   "d": "2026-02-24",
+   "user_id": 6464
+  },
+  {
+   "d": "2026-02-24",
+   "user_id": 7429
+  },
+  {
+   "d": "2026-02-28",
+   "user_id": 6617
+  },
+  {
+   "d": "2026-03-01",
+   "user_id": 7719
+  },
+  {
+   "d": "2026-03-03",
+   "user_id": 4074
+  },
+  {
+   "d": "2026-03-04",
+   "user_id": 5034
+  },
+  {
+   "d": "2026-03-10",
+   "user_id": 374
+  },
+  {
+   "d": "2026-03-11",
+   "user_id": 13287
+  },
+  {
+   "d": "2026-03-15",
+   "user_id": 1695
+  },
+  {
+   "d": "2026-03-15",
+   "user_id": 6474
+  },
+  {
+   "d": "2026-03-15",
+   "user_id": 8167
+  },
+  {
+   "d": "2026-03-16",
+   "user_id": 11823
+  },
+  {
+   "d": "2026-03-17",
+   "user_id": 884
+  },
+  {
+   "d": "2026-03-19",
+   "user_id": 8569
+  },
+  {
+   "d": "2026-03-27",
+   "user_id": 11316
+  },
+  {
+   "d": "2026-03-29",
+   "user_id": 12758
+  },
+  {
+   "d": "2026-03-30",
+   "user_id": 12651
+  },
+  {
+   "d": "2026-04-02",
+   "user_id": 13712
+  },
+  {
+   "d": "2026-04-06",
+   "user_id": 4074
+  },
+  {
+   "d": "2026-04-13",
+   "user_id": 8475
+  },
+  {
+   "d": "2026-04-14",
+   "user_id": 13151
+  },
+  {
+   "d": "2026-04-14",
+   "user_id": 6612
+  },
+  {
+   "d": "2026-04-22",
+   "user_id": 3901
+  },
+  {
+   "d": "2026-04-23",
+   "user_id": 1644
+  },
+  {
+   "d": "2026-04-24",
+   "user_id": 6555
+  },
+  {
+   "d": "2026-04-25",
+   "user_id": 3122
+  },
+  {
+   "d": "2026-04-25",
+   "user_id": 6240
+  },
+  {
+   "d": "2026-04-27",
+   "user_id": 3966
+  },
+  {
+   "d": "2026-04-27",
+   "user_id": 8569
+  },
+  {
+   "d": "2026-05-03",
+   "user_id": 13617
+  },
+  {
+   "d": "2026-05-05",
+   "user_id": 6617
+  },
+  {
+   "d": "2026-05-13",
+   "user_id": 4727
+  },
+  {
+   "d": "2026-05-17",
+   "user_id": 13126
+  },
+  {
+   "d": "2026-05-19",
+   "user_id": 9028
+  },
+  {
+   "d": "2026-05-20",
+   "user_id": 8775
+  },
+  {
+   "d": "2026-05-20",
+   "user_id": 6299
+  },
+  {
+   "d": "2026-05-21",
+   "user_id": 3623
+  },
+  {
+   "d": "2026-05-25",
+   "user_id": 478
+  },
+  {
+   "d": "2026-05-27",
+   "user_id": 14630
+  },
+  {
+   "d": "2026-05-28",
+   "user_id": 15585
+  },
+  {
+   "d": "2026-05-29",
+   "user_id": 13151
+  },
+  {
+   "d": "2026-06-05",
+   "user_id": 3917
+  },
+  {
+   "d": "2026-06-08",
+   "user_id": 4074
+  },
+  {
+   "d": "2026-06-13",
+   "user_id": 13128
+  },
+  {
+   "d": "2026-06-14",
+   "user_id": 8796
+  },
+  {
+   "d": "2026-06-22",
+   "user_id": 8305
+  },
+  {
+   "d": "2026-07-05",
+   "user_id": 6617
+  },
+  {
+   "d": "2026-07-05",
+   "user_id": 16529
+  },
+  {
+   "d": "2026-07-05",
+   "user_id": 11722
+  },
+  {
+   "d": "2026-07-09",
+   "user_id": 11823
+  },
+  {
+   "d": "2026-07-10",
+   "user_id": 392
+  },
+  {
+   "d": "2026-07-17",
+   "user_id": 13128
+  },
+  {
+   "d": "2026-07-22",
+   "user_id": 8305
+  },
+  {
+   "d": "2026-07-29",
+   "user_id": 8569
+  },
+  {
+   "d": "2026-08-07",
+   "user_id": 392
+  },
+  {
+   "d": "2026-08-24",
+   "user_id": 8305
+  },
+  {
+   "d": "2026-08-24",
+   "user_id": 3114
+  },
+  {
+   "d": "2026-08-31",
+   "user_id": 8569
+  },
+  {
+   "d": "2026-09-09",
+   "user_id": 17324
+  },
+  {
+   "d": "2026-09-10",
+   "user_id": 5065
+  },
+  {
+   "d": "2026-09-12",
+   "user_id": 7041
+  },
+  {
+   "d": "2026-09-18",
+   "user_id": 18889
+  },
+  {
+   "d": "2026-09-19",
+   "user_id": 2016
+  },
+  {
+   "d": "2026-09-23",
+   "user_id": 13306
+  },
+  {
+   "d": "2026-09-24",
+   "user_id": 8305
+  },
+  {
+   "d": "2026-09-27",
+   "user_id": 18903
+  }
+ ],
+ "sales_monthly": [
+  {
+   "m": "2025-12",
+   "sales": 4,
+   "revenue": 213.08,
+   "buyers": 4,
+   "avg_check": 53.27
+  },
+  {
+   "m": "2026-01",
+   "sales": 22,
+   "revenue": 596.0,
+   "buyers": 22,
+   "avg_check": 27.09
+  },
+  {
+   "m": "2026-02",
+   "sales": 23,
+   "revenue": 708.67,
+   "buyers": 23,
+   "avg_check": 30.81
+  },
+  {
+   "m": "2026-03",
+   "sales": 14,
+   "revenue": 352.5,
+   "buyers": 14,
+   "avg_check": 25.18
+  },
+  {
+   "m": "2026-04",
+   "sales": 12,
+   "revenue": 435.5,
+   "buyers": 12,
+   "avg_check": 36.29
+  },
+  {
+   "m": "2026-05",
+   "sales": 12,
+   "revenue": 502.17,
+   "buyers": 12,
+   "avg_check": 41.85
+  },
+  {
+   "m": "2026-06",
+   "sales": 5,
+   "revenue": 360.0,
+   "buyers": 5,
+   "avg_check": 72.0
+  },
+  {
+   "m": "2026-07",
+   "sales": 8,
+   "revenue": 160.0,
+   "buyers": 8,
+   "avg_check": 20.0
+  },
+  {
+   "m": "2026-08",
+   "sales": 4,
+   "revenue": 340.0,
+   "buyers": 4,
+   "avg_check": 85.0
+  },
+  {
+   "m": "2026-09",
+   "sales": 8,
+   "revenue": 155.0,
+   "buyers": 8,
+   "avg_check": 19.38
+  }
+ ],
+ "sales_by_plan": [
+  {
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 96,
+   "revenue": 2195.0
+  },
+  {
+   "plan_name": "Base",
+   "subs_period": "yearly",
+   "sales": 9,
+   "revenue": 1237.5
+  },
+  {
+   "plan_name": "Pro",
+   "subs_period": "yearly",
+   "sales": 1,
+   "revenue": 205.67
+  },
+  {
+   "plan_name": "Pro",
+   "subs_period": "monthly",
+   "sales": 6,
+   "revenue": 184.75
+  }
+ ],
+ "sales_by_method": [
+  {
+   "payment_method": "mono",
+   "attempts": 122,
+   "success": 63,
+   "failed": 15,
+   "pending": 41,
+   "revenue": 1502.67
+  },
+  {
+   "payment_method": "overpay",
+   "attempts": 84,
+   "success": 30,
+   "failed": 52,
+   "pending": 2,
+   "revenue": 1239.58
+  },
+  {
+   "payment_method": "whitepay",
+   "attempts": 20,
+   "success": 8,
+   "failed": 0,
+   "pending": 11,
+   "revenue": 735.67
+  },
+  {
+   "payment_method": "stripe",
+   "attempts": 11,
+   "success": 11,
+   "failed": 0,
+   "pending": 0,
+   "revenue": 345.0
+  }
+ ],
+ "sales_by_status": [
+  {
+   "status": "success",
+   "n": 112
+  },
+  {
+   "status": "failed",
+   "n": 67
+  },
+  {
+   "status": "pending",
+   "n": 54
+  },
+  {
+   "status": "canceled",
+   "n": 4
+  }
+ ],
+ "repeat_purchases": [
+  {
+   "purchases": 1,
+   "users": 74
+  },
+  {
+   "purchases": 2,
+   "users": 9
+  },
+  {
+   "purchases": 3,
+   "users": 2
+  },
+  {
+   "purchases": 4,
+   "users": 1
+  },
+  {
+   "purchases": 5,
+   "users": 2
+  }
+ ],
  "registrations_weekly": [
   {
    "w": "2024-03-25",
@@ -563,6 +1622,212 @@
   {
    "bucket": "25-49",
    "users": 1
+  }
+ ],
+ "utm_sources": [
+  {
+   "source": "ovva-meta",
+   "visitors": 870,
+   "regs": 870,
+   "converted": 0,
+   "revenue": 0.0,
+   "pending_payers": 2
+  },
+  {
+   "source": "meta",
+   "visitors": 121,
+   "regs": 121,
+   "converted": 0,
+   "revenue": 0.0,
+   "pending_payers": 0
+  },
+  {
+   "source": "site",
+   "visitors": 30,
+   "regs": 30,
+   "converted": 0,
+   "revenue": 0.0,
+   "pending_payers": 0
+  },
+  {
+   "source": "youtube",
+   "visitors": 18,
+   "regs": 18,
+   "converted": 0,
+   "revenue": 0.0,
+   "pending_payers": 0
+  },
+  {
+   "source": "fb",
+   "visitors": 12,
+   "regs": 12,
+   "converted": 0,
+   "revenue": 0.0,
+   "pending_payers": 0
+  },
+  {
+   "source": "chatgpt.com",
+   "visitors": 2,
+   "regs": 2,
+   "converted": 0,
+   "revenue": 0.0,
+   "pending_payers": 0
+  },
+  {
+   "source": "ig",
+   "visitors": 1,
+   "regs": 1,
+   "converted": 0,
+   "revenue": 0.0,
+   "pending_payers": 0
+  },
+  {
+   "source": "trustpilot",
+   "visitors": 1,
+   "regs": 1,
+   "converted": 0,
+   "revenue": 0.0,
+   "pending_payers": 0
+  }
+ ],
+ "meta_utm_sales_monthly": [],
+ "meta_utm_pending": [
+  {
+   "pending": 2,
+   "amount": 40.0
+  }
+ ],
+ "referral_totals": [
+  {
+   "links": 13815,
+   "active": 13815,
+   "clicks": 274,
+   "regs": 536,
+   "payments": 1,
+   "revenue": 20.0
+  }
+ ],
+ "referral_top": [
+  {
+   "campaign_name": "INCRYPTED",
+   "clicks": 0,
+   "regs": 25,
+   "payments": 1,
+   "revenue": 20.0
+  },
+  {
+   "campaign_name": "06284224",
+   "clicks": 0,
+   "regs": 149,
+   "payments": 0,
+   "revenue": 0.0
+  },
+  {
+   "campaign_name": "25973596",
+   "clicks": 0,
+   "regs": 75,
+   "payments": 0,
+   "revenue": 0.0
+  },
+  {
+   "campaign_name": "00334660",
+   "clicks": 0,
+   "regs": 42,
+   "payments": 0,
+   "revenue": 0.0
+  },
+  {
+   "campaign_name": "14034923",
+   "clicks": 0,
+   "regs": 28,
+   "payments": 0,
+   "revenue": 0.0
+  },
+  {
+   "campaign_name": "19614369",
+   "clicks": 0,
+   "regs": 25,
+   "payments": 0,
+   "revenue": 0.0
+  },
+  {
+   "campaign_name": "67171439",
+   "clicks": 0,
+   "regs": 24,
+   "payments": 0,
+   "revenue": 0.0
+  },
+  {
+   "campaign_name": "13836415",
+   "clicks": 0,
+   "regs": 20,
+   "payments": 0,
+   "revenue": 0.0
+  },
+  {
+   "campaign_name": "21680081",
+   "clicks": 0,
+   "regs": 17,
+   "payments": 0,
+   "revenue": 0.0
+  },
+  {
+   "campaign_name": "42399503",
+   "clicks": 0,
+   "regs": 15,
+   "payments": 0,
+   "revenue": 0.0
+  }
+ ],
+ "promo_usage": [
+  {
+   "uses": 556
+  }
+ ],
+ "attribution_links": [
+  {
+   "kind": "Партнёрская",
+   "category": "referral",
+   "partner": "(все партнёры)",
+   "campaign": "все реферальные ссылки",
+   "clicks": 274,
+   "regs": 536,
+   "payments": 1,
+   "revenue": 20.0,
+   "last_activity": "2026-09-10"
+  },
+  {
+   "kind": "UTM",
+   "category": "cpc",
+   "partner": "(все источники)",
+   "campaign": "вся платная реклама Meta (cpc и paid/fb — один канал)",
+   "clicks": 1004,
+   "regs": 1004,
+   "payments": 0,
+   "revenue": 0.0,
+   "last_activity": "2026-09-26"
+  },
+  {
+   "kind": "UTM",
+   "category": "company_profile",
+   "partner": "trustpilot",
+   "campaign": "domain_click",
+   "clicks": 1,
+   "regs": 1,
+   "payments": 0,
+   "revenue": 0.0,
+   "last_activity": "2026-07-09"
+  },
+  {
+   "kind": "UTM",
+   "category": "social",
+   "partner": "ig",
+   "campaign": "(без кампании)",
+   "clicks": 1,
+   "regs": 1,
+   "payments": 0,
+   "revenue": 0.0,
+   "last_activity": "2026-09-25"
   }
  ],
  "events_weekly": [
@@ -1883,6 +3148,2398 @@
    "feat": "Скачивание share",
    "n": 22,
    "users": 9
+  }
+ ],
+ "pay_attempts_daily": [
+  {
+   "d": "2025-11-28",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 2
+  },
+  {
+   "d": "2025-11-30",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2025-12-01",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 2
+  },
+  {
+   "d": "2025-12-02",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 4
+  },
+  {
+   "d": "2025-12-03",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2025-12-04",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 5
+  },
+  {
+   "d": "2025-12-06",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 5
+  },
+  {
+   "d": "2025-12-07",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2025-12-08",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 3
+  },
+  {
+   "d": "2025-12-10",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2025-12-12",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 0,
+   "failed": 2
+  },
+  {
+   "d": "2025-12-15",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2025-12-16",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2025-12-20",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2025-12-23",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2025-12-25",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2025-12-30",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-01-01",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-03",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-01-08",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-09",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-13",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-01-13",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-01-14",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-01-14",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-01-15",
+   "payment_method": "overpay",
+   "success": 2,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-16",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-01-18",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-01-20",
+   "payment_method": "overpay",
+   "success": 2,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-21",
+   "payment_method": "mono",
+   "success": 3,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-24",
+   "payment_method": "mono",
+   "success": 2,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-24",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-01-26",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-27",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-27",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-28",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-01-28",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-29",
+   "payment_method": "mono",
+   "success": 2,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-29",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-01-30",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-01",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-02-02",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-03",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-03",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-02-04",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-04",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-06",
+   "payment_method": "mono",
+   "success": 2,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-07",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-10",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-11",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-12",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-13",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-02-14",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-15",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-02-15",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-17",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-18",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 0,
+   "failed": 5
+  },
+  {
+   "d": "2026-02-18",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-02-19",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-20",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-21",
+   "payment_method": "mono",
+   "success": 2,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-02-22",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-02-24",
+   "payment_method": "mono",
+   "success": 2,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-24",
+   "payment_method": "overpay",
+   "success": 2,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-25",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-26",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-27",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-28",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-02-28",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-01",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-03-02",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-03",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-04",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-04",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-10",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-10",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-11",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-15",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-15",
+   "payment_method": "overpay",
+   "success": 2,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-16",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-16",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-03-17",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-17",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-03-18",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-19",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-20",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-03-23",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-27",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-29",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-30",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-31",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-31",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-04-02",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-04",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 2
+  },
+  {
+   "d": "2026-04-06",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-13",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-14",
+   "payment_method": "mono",
+   "success": 2,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-14",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-04-16",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-16",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-04-18",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 2,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-18",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-21",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-04-22",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-22",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-04-23",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-24",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-24",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-25",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-25",
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-26",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-27",
+   "payment_method": "mono",
+   "success": 2,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-27",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 2
+  },
+  {
+   "d": "2026-04-28",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-29",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-01",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-05-02",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-03",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-05",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-05",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-05-07",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-05-11",
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-13",
+   "payment_method": "whitepay",
+   "success": 1,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-16",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-17",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-18",
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-19",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-20",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-20",
+   "payment_method": "whitepay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-21",
+   "payment_method": "whitepay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-23",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-25",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-25",
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-26",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-27",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-28",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-29",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-05-30",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-02",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 2,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-03",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-03",
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-05",
+   "payment_method": "whitepay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-06",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-08",
+   "payment_method": "whitepay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-13",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-14",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-14",
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-15",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-16",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-17",
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-22",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-23",
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-29",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-06-29",
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-02",
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-03",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-05",
+   "payment_method": "mono",
+   "success": 2,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-05",
+   "payment_method": "whitepay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-07",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-09",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-09",
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-10",
+   "payment_method": "whitepay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-13",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-16",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 2,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-17",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-18",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-22",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-29",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-07-30",
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-08-01",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-08-03",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-08-04",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-08-07",
+   "payment_method": "whitepay",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-08-09",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-08-11",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-08-24",
+   "payment_method": "stripe",
+   "success": 2,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-08-31",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-09-09",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-09-10",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-09-12",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-09-18",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-09-19",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-09-23",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-09-24",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-09-27",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  }
+ ],
+ "plan_daily": [
+  {
+   "d": "2025-12-10",
+   "plan_name": "Pro",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 23.08
+  },
+  {
+   "d": "2025-12-15",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2025-12-16",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2025-12-20",
+   "plan_name": "Base",
+   "subs_period": "yearly",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-01-01",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-01-08",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-01-09",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-01-15",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-01-15",
+   "plan_name": "Pro",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 45.0
+  },
+  {
+   "d": "2026-01-18",
+   "plan_name": "Pro",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 45.0
+  },
+  {
+   "d": "2026-01-20",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-01-20",
+   "plan_name": "Pro",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 1.0
+  },
+  {
+   "d": "2026-01-21",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 3,
+   "revenue": 60.0
+  },
+  {
+   "d": "2026-01-24",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 2,
+   "revenue": 40.0
+  },
+  {
+   "d": "2026-01-26",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-01-27",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-01-27",
+   "plan_name": "Base",
+   "subs_period": "yearly",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-01-28",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 2,
+   "revenue": 35.0
+  },
+  {
+   "d": "2026-01-29",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 3,
+   "revenue": 60.0
+  },
+  {
+   "d": "2026-01-30",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-02",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-02-03",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 2,
+   "revenue": 40.0
+  },
+  {
+   "d": "2026-02-04",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 2,
+   "revenue": 160.0
+  },
+  {
+   "d": "2026-02-06",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 2,
+   "revenue": 35.0
+  },
+  {
+   "d": "2026-02-07",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-10",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-11",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-12",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 14.0
+  },
+  {
+   "d": "2026-02-14",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-15",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-02-17",
+   "plan_name": "Pro",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 45.0
+  },
+  {
+   "d": "2026-02-19",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-02-20",
+   "plan_name": "Pro",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 25.67
+  },
+  {
+   "d": "2026-02-21",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 2,
+   "revenue": 40.0
+  },
+  {
+   "d": "2026-02-24",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 4,
+   "revenue": 64.0
+  },
+  {
+   "d": "2026-02-28",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-01",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-03",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-04",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-10",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-11",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-15",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 3,
+   "revenue": 60.0
+  },
+  {
+   "d": "2026-03-16",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 10.0
+  },
+  {
+   "d": "2026-03-17",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-19",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-03-27",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-03-29",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-03-30",
+   "plan_name": "Base",
+   "subs_period": "yearly",
+   "sales": 1,
+   "revenue": 112.5
+  },
+  {
+   "d": "2026-04-02",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-04-06",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-04-13",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 10.0
+  },
+  {
+   "d": "2026-04-14",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 2,
+   "revenue": 34.0
+  },
+  {
+   "d": "2026-04-22",
+   "plan_name": "Base",
+   "subs_period": "yearly",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-04-23",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-04-24",
+   "plan_name": "Base",
+   "subs_period": "yearly",
+   "sales": 1,
+   "revenue": 112.5
+  },
+  {
+   "d": "2026-04-25",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 2,
+   "revenue": 40.0
+  },
+  {
+   "d": "2026-04-27",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 2,
+   "revenue": 34.0
+  },
+  {
+   "d": "2026-05-03",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-05-05",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-05-13",
+   "plan_name": "Pro",
+   "subs_period": "yearly",
+   "sales": 1,
+   "revenue": 205.67
+  },
+  {
+   "d": "2026-05-17",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 14.0
+  },
+  {
+   "d": "2026-05-19",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-05-20",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 2,
+   "revenue": 40.0
+  },
+  {
+   "d": "2026-05-21",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-05-25",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-05-27",
+   "plan_name": "Base",
+   "subs_period": "yearly",
+   "sales": 1,
+   "revenue": 112.5
+  },
+  {
+   "d": "2026-05-28",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-05-29",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-06-05",
+   "plan_name": "Base",
+   "subs_period": "yearly",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-06-08",
+   "plan_name": "Base",
+   "subs_period": "yearly",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-06-13",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-06-14",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-06-22",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-07-05",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 3,
+   "revenue": 60.0
+  },
+  {
+   "d": "2026-07-09",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-07-10",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-07-17",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-07-22",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-07-29",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-08-07",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-08-24",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-08-24",
+   "plan_name": "Base",
+   "subs_period": "yearly",
+   "sales": 1,
+   "revenue": 150.0
+  },
+  {
+   "d": "2026-08-31",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-09",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-10",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-12",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 15.0
+  },
+  {
+   "d": "2026-09-18",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-19",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-23",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-24",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-09-27",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  }
+ ],
+ "funnel_by_month": [
+  {
+   "m": "2024-03",
+   "registered": 11,
+   "created": 11,
+   "connected": 5,
+   "paid": 0
+  },
+  {
+   "m": "2024-04",
+   "registered": 178,
+   "created": 178,
+   "connected": 48,
+   "paid": 0
+  },
+  {
+   "m": "2024-05",
+   "registered": 356,
+   "created": 355,
+   "connected": 99,
+   "paid": 4
+  },
+  {
+   "m": "2024-06",
+   "registered": 302,
+   "created": 301,
+   "connected": 60,
+   "paid": 2
+  },
+  {
+   "m": "2024-07",
+   "registered": 244,
+   "created": 243,
+   "connected": 44,
+   "paid": 1
+  },
+  {
+   "m": "2024-08",
+   "registered": 199,
+   "created": 199,
+   "connected": 43,
+   "paid": 2
+  },
+  {
+   "m": "2024-09",
+   "registered": 245,
+   "created": 245,
+   "connected": 71,
+   "paid": 1
+  },
+  {
+   "m": "2024-10",
+   "registered": 116,
+   "created": 116,
+   "connected": 33,
+   "paid": 1
+  },
+  {
+   "m": "2024-11",
+   "registered": 321,
+   "created": 321,
+   "connected": 113,
+   "paid": 1
+  },
+  {
+   "m": "2024-12",
+   "registered": 591,
+   "created": 591,
+   "connected": 105,
+   "paid": 3
+  },
+  {
+   "m": "2025-01",
+   "registered": 1082,
+   "created": 1080,
+   "connected": 186,
+   "paid": 7
+  },
+  {
+   "m": "2025-02",
+   "registered": 566,
+   "created": 566,
+   "connected": 108,
+   "paid": 6
+  },
+  {
+   "m": "2025-03",
+   "registered": 524,
+   "created": 524,
+   "connected": 108,
+   "paid": 6
+  },
+  {
+   "m": "2025-04",
+   "registered": 542,
+   "created": 541,
+   "connected": 88,
+   "paid": 2
+  },
+  {
+   "m": "2025-05",
+   "registered": 420,
+   "created": 420,
+   "connected": 78,
+   "paid": 1
+  },
+  {
+   "m": "2025-06",
+   "registered": 153,
+   "created": 132,
+   "connected": 33,
+   "paid": 2
+  },
+  {
+   "m": "2025-07",
+   "registered": 341,
+   "created": 340,
+   "connected": 68,
+   "paid": 5
+  },
+  {
+   "m": "2025-08",
+   "registered": 210,
+   "created": 210,
+   "connected": 33,
+   "paid": 3
+  },
+  {
+   "m": "2025-09",
+   "registered": 295,
+   "created": 295,
+   "connected": 77,
+   "paid": 2
+  },
+  {
+   "m": "2025-10",
+   "registered": 482,
+   "created": 482,
+   "connected": 131,
+   "paid": 7
+  },
+  {
+   "m": "2025-11",
+   "registered": 554,
+   "created": 462,
+   "connected": 142,
+   "paid": 5
+  },
+  {
+   "m": "2025-12",
+   "registered": 393,
+   "created": 93,
+   "connected": 104,
+   "paid": 4
+  },
+  {
+   "m": "2026-01",
+   "registered": 704,
+   "created": 115,
+   "connected": 159,
+   "paid": 4
+  },
+  {
+   "m": "2026-02",
+   "registered": 567,
+   "created": 66,
+   "connected": 135,
+   "paid": 9
+  },
+  {
+   "m": "2026-03",
+   "registered": 363,
+   "created": 62,
+   "connected": 129,
+   "paid": 3
+  },
+  {
+   "m": "2026-04",
+   "registered": 706,
+   "created": 158,
+   "connected": 157,
+   "paid": 2
+  },
+  {
+   "m": "2026-05",
+   "registered": 608,
+   "created": 119,
+   "connected": 136,
+   "paid": 1
+  },
+  {
+   "m": "2026-06",
+   "registered": 1113,
+   "created": 229,
+   "connected": 223,
+   "paid": 2
+  },
+  {
+   "m": "2026-07",
+   "registered": 933,
+   "created": 222,
+   "connected": 242,
+   "paid": 0
+  },
+  {
+   "m": "2026-08",
+   "registered": 370,
+   "created": 48,
+   "connected": 28,
+   "paid": 2
+  },
+  {
+   "m": "2026-09",
+   "registered": 363,
+   "created": 113,
+   "connected": 10,
+   "paid": 0
+  }
+ ],
+ "mrr_monthly": [
+  {
+   "m": "2025-12",
+   "monthly_subs": 3,
+   "yearly_subs": 1,
+   "mrr": 75.58
+  },
+  {
+   "m": "2026-01",
+   "monthly_subs": 21,
+   "yearly_subs": 2,
+   "mrr": 471.0
+  },
+  {
+   "m": "2026-02",
+   "monthly_subs": 23,
+   "yearly_subs": 2,
+   "mrr": 733.67
+  },
+  {
+   "m": "2026-03",
+   "monthly_subs": 13,
+   "yearly_subs": 3,
+   "mrr": 274.38
+  },
+  {
+   "m": "2026-04",
+   "monthly_subs": 10,
+   "yearly_subs": 5,
+   "mrr": 229.25
+  },
+  {
+   "m": "2026-05",
+   "monthly_subs": 10,
+   "yearly_subs": 7,
+   "mrr": 266.76
+  },
+  {
+   "m": "2026-06",
+   "monthly_subs": 3,
+   "yearly_subs": 9,
+   "mrr": 167.76
+  },
+  {
+   "m": "2026-07",
+   "monthly_subs": 8,
+   "yearly_subs": 9,
+   "mrr": 267.76
+  },
+  {
+   "m": "2026-08",
+   "monthly_subs": 3,
+   "yearly_subs": 10,
+   "mrr": 310.26
+  },
+  {
+   "m": "2026-09",
+   "monthly_subs": 9,
+   "yearly_subs": 10,
+   "mrr": 295.26
+  }
+ ],
+ "renewals_monthly": [
+  {
+   "due_month": "2026-01",
+   "due": 3,
+   "renewed": 1
+  },
+  {
+   "due_month": "2026-02",
+   "due": 21,
+   "renewed": 3
+  },
+  {
+   "due_month": "2026-03",
+   "due": 23,
+   "renewed": 0
+  },
+  {
+   "due_month": "2026-04",
+   "due": 13,
+   "renewed": 2
+  },
+  {
+   "due_month": "2026-05",
+   "due": 10,
+   "renewed": 1
+  },
+  {
+   "due_month": "2026-06",
+   "due": 10,
+   "renewed": 0
+  },
+  {
+   "due_month": "2026-07",
+   "due": 3,
+   "renewed": 2
+  },
+  {
+   "due_month": "2026-08",
+   "due": 8,
+   "renewed": 3
+  },
+  {
+   "due_month": "2026-09",
+   "due": 2,
+   "renewed": 1
+  }
+ ],
+ "cohort_conversion": [
+  {
+   "cohort": "2025-11",
+   "users": 554,
+   "pay7": 0,
+   "pay30": 0,
+   "pay90": 3,
+   "pay_ever": 5
+  },
+  {
+   "cohort": "2025-12",
+   "users": 393,
+   "pay7": 0,
+   "pay30": 0,
+   "pay90": 1,
+   "pay_ever": 4
+  },
+  {
+   "cohort": "2026-01",
+   "users": 704,
+   "pay7": 2,
+   "pay30": 2,
+   "pay90": 3,
+   "pay_ever": 4
+  },
+  {
+   "cohort": "2026-02",
+   "users": 567,
+   "pay7": 3,
+   "pay30": 3,
+   "pay90": 8,
+   "pay_ever": 9
+  },
+  {
+   "cohort": "2026-03",
+   "users": 363,
+   "pay7": 1,
+   "pay30": 1,
+   "pay90": 2,
+   "pay_ever": 3
+  },
+  {
+   "cohort": "2026-04",
+   "users": 706,
+   "pay7": 1,
+   "pay30": 1,
+   "pay90": 2,
+   "pay_ever": 2
+  },
+  {
+   "cohort": "2026-05",
+   "users": 608,
+   "pay7": 1,
+   "pay30": 1,
+   "pay90": 1,
+   "pay_ever": 1
+  },
+  {
+   "cohort": "2026-06",
+   "users": 1113,
+   "pay7": 0,
+   "pay30": 1,
+   "pay90": 2,
+   "pay_ever": 2
+  },
+  {
+   "cohort": "2026-07",
+   "users": 933,
+   "pay7": 0,
+   "pay30": 0,
+   "pay90": 0,
+   "pay_ever": 0
+  },
+  {
+   "cohort": "2026-08",
+   "users": 370,
+   "pay7": 0,
+   "pay30": 0,
+   "pay90": 2,
+   "pay_ever": 2
+  },
+  {
+   "cohort": "2026-09",
+   "users": 363,
+   "pay7": 0,
+   "pay30": 0,
+   "pay90": 0,
+   "pay_ever": 0
+  }
+ ],
+ "time_to_value": [
+  {
+   "med_create_d": 0.0,
+   "med_conn_d": 0.01,
+   "med_sync_d": 0.02,
+   "med_pay_d": 44.5,
+   "activation7_pct": 17.1
+  }
+ ],
+ "stuck_pending": [
+  {
+   "payment_method": "mono",
+   "n": 41,
+   "amount": 1058.42,
+   "oldest": "2026-02-24"
+  },
+  {
+   "payment_method": "whitepay",
+   "n": 11,
+   "amount": 820.0,
+   "oldest": "2026-05-11"
+  },
+  {
+   "payment_method": "overpay",
+   "n": 2,
+   "amount": 40.0,
+   "oldest": "2026-04-18"
+  }
+ ],
+ "funnel": [
+  {
+   "registered": 13852,
+   "created_account": 8839,
+   "connected": 2996,
+   "synced": 301,
+   "paid": 88
   }
  ],
  "ga4_sessions_weekly": [
@@ -39186,3552 +42843,6 @@
    "rage_clicks_pct": 0,
    "error_clicks": 0,
    "quick_backs": 0
-  }
- ],
- "sales_daily": [
-  {
-   "d": "2025-12-10",
-   "sales": 1,
-   "revenue": 23.08
-  },
-  {
-   "d": "2025-12-15",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2025-12-16",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2025-12-20",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-01-01",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-01-08",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-01-09",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-01-15",
-   "sales": 2,
-   "revenue": 65.0
-  },
-  {
-   "d": "2026-01-18",
-   "sales": 1,
-   "revenue": 45.0
-  },
-  {
-   "d": "2026-01-20",
-   "sales": 2,
-   "revenue": 21.0
-  },
-  {
-   "d": "2026-01-21",
-   "sales": 3,
-   "revenue": 60.0
-  },
-  {
-   "d": "2026-01-24",
-   "sales": 2,
-   "revenue": 40.0
-  },
-  {
-   "d": "2026-01-26",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-01-27",
-   "sales": 2,
-   "revenue": 170.0
-  },
-  {
-   "d": "2026-01-28",
-   "sales": 2,
-   "revenue": 35.0
-  },
-  {
-   "d": "2026-01-29",
-   "sales": 3,
-   "revenue": 60.0
-  },
-  {
-   "d": "2026-01-30",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-02",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-02-03",
-   "sales": 2,
-   "revenue": 40.0
-  },
-  {
-   "d": "2026-02-04",
-   "sales": 2,
-   "revenue": 160.0
-  },
-  {
-   "d": "2026-02-06",
-   "sales": 2,
-   "revenue": 35.0
-  },
-  {
-   "d": "2026-02-07",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-10",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-11",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-12",
-   "sales": 1,
-   "revenue": 14.0
-  },
-  {
-   "d": "2026-02-14",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-15",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-02-17",
-   "sales": 1,
-   "revenue": 45.0
-  },
-  {
-   "d": "2026-02-19",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-20",
-   "sales": 1,
-   "revenue": 25.67
-  },
-  {
-   "d": "2026-02-21",
-   "sales": 2,
-   "revenue": 40.0
-  },
-  {
-   "d": "2026-02-24",
-   "sales": 4,
-   "revenue": 64.0
-  },
-  {
-   "d": "2026-02-28",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-01",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-03",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-04",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-10",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-11",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-15",
-   "sales": 3,
-   "revenue": 60.0
-  },
-  {
-   "d": "2026-03-16",
-   "sales": 1,
-   "revenue": 10.0
-  },
-  {
-   "d": "2026-03-17",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-19",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-27",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-03-29",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-03-30",
-   "sales": 1,
-   "revenue": 112.5
-  },
-  {
-   "d": "2026-04-02",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-04-06",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-04-13",
-   "sales": 1,
-   "revenue": 10.0
-  },
-  {
-   "d": "2026-04-14",
-   "sales": 2,
-   "revenue": 34.0
-  },
-  {
-   "d": "2026-04-22",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-04-23",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-04-24",
-   "sales": 1,
-   "revenue": 112.5
-  },
-  {
-   "d": "2026-04-25",
-   "sales": 2,
-   "revenue": 40.0
-  },
-  {
-   "d": "2026-04-27",
-   "sales": 2,
-   "revenue": 34.0
-  },
-  {
-   "d": "2026-05-03",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-05-05",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-05-13",
-   "sales": 1,
-   "revenue": 205.67
-  },
-  {
-   "d": "2026-05-17",
-   "sales": 1,
-   "revenue": 14.0
-  },
-  {
-   "d": "2026-05-19",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-05-20",
-   "sales": 2,
-   "revenue": 40.0
-  },
-  {
-   "d": "2026-05-21",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-05-25",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-05-27",
-   "sales": 1,
-   "revenue": 112.5
-  },
-  {
-   "d": "2026-05-28",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-05-29",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-06-05",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-06-08",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-06-13",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-06-14",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-06-22",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-07-05",
-   "sales": 3,
-   "revenue": 60.0
-  },
-  {
-   "d": "2026-07-09",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-07-10",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-07-17",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-07-22",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-07-29",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-08-07",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-08-24",
-   "sales": 2,
-   "revenue": 170.0
-  },
-  {
-   "d": "2026-08-31",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-09-09",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-09-10",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-09-12",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-09-19",
-   "sales": 1,
-   "revenue": 20.0
-  }
- ],
- "sales_users_daily": [
-  {
-   "d": "2025-12-10",
-   "user_id": 2699
-  },
-  {
-   "d": "2025-12-15",
-   "user_id": 6299
-  },
-  {
-   "d": "2025-12-16",
-   "user_id": 3805
-  },
-  {
-   "d": "2025-12-20",
-   "user_id": 5827
-  },
-  {
-   "d": "2026-01-01",
-   "user_id": 3364
-  },
-  {
-   "d": "2026-01-08",
-   "user_id": 736
-  },
-  {
-   "d": "2026-01-09",
-   "user_id": 8072
-  },
-  {
-   "d": "2026-01-15",
-   "user_id": 1274
-  },
-  {
-   "d": "2026-01-15",
-   "user_id": 573
-  },
-  {
-   "d": "2026-01-18",
-   "user_id": 6299
-  },
-  {
-   "d": "2026-01-20",
-   "user_id": 7634
-  },
-  {
-   "d": "2026-01-20",
-   "user_id": 10115
-  },
-  {
-   "d": "2026-01-21",
-   "user_id": 7393
-  },
-  {
-   "d": "2026-01-21",
-   "user_id": 7135
-  },
-  {
-   "d": "2026-01-21",
-   "user_id": 4444
-  },
-  {
-   "d": "2026-01-24",
-   "user_id": 6491
-  },
-  {
-   "d": "2026-01-24",
-   "user_id": 7323
-  },
-  {
-   "d": "2026-01-26",
-   "user_id": 6684
-  },
-  {
-   "d": "2026-01-27",
-   "user_id": 4590
-  },
-  {
-   "d": "2026-01-27",
-   "user_id": 8328
-  },
-  {
-   "d": "2026-01-28",
-   "user_id": 478
-  },
-  {
-   "d": "2026-01-28",
-   "user_id": 2426
-  },
-  {
-   "d": "2026-01-29",
-   "user_id": 8569
-  },
-  {
-   "d": "2026-01-29",
-   "user_id": 7719
-  },
-  {
-   "d": "2026-01-29",
-   "user_id": 1357
-  },
-  {
-   "d": "2026-01-30",
-   "user_id": 11646
-  },
-  {
-   "d": "2026-02-02",
-   "user_id": 11893
-  },
-  {
-   "d": "2026-02-03",
-   "user_id": 4622
-  },
-  {
-   "d": "2026-02-03",
-   "user_id": 6089
-  },
-  {
-   "d": "2026-02-04",
-   "user_id": 7164
-  },
-  {
-   "d": "2026-02-04",
-   "user_id": 4718
-  },
-  {
-   "d": "2026-02-06",
-   "user_id": 4725
-  },
-  {
-   "d": "2026-02-06",
-   "user_id": 3593
-  },
-  {
-   "d": "2026-02-07",
-   "user_id": 4139
-  },
-  {
-   "d": "2026-02-10",
-   "user_id": 3122
-  },
-  {
-   "d": "2026-02-11",
-   "user_id": 3805
-  },
-  {
-   "d": "2026-02-12",
-   "user_id": 970
-  },
-  {
-   "d": "2026-02-14",
-   "user_id": 12640
-  },
-  {
-   "d": "2026-02-15",
-   "user_id": 573
-  },
-  {
-   "d": "2026-02-17",
-   "user_id": 6299
-  },
-  {
-   "d": "2026-02-19",
-   "user_id": 8305
-  },
-  {
-   "d": "2026-02-20",
-   "user_id": 12927
-  },
-  {
-   "d": "2026-02-21",
-   "user_id": 2728
-  },
-  {
-   "d": "2026-02-21",
-   "user_id": 3237
-  },
-  {
-   "d": "2026-02-24",
-   "user_id": 7429
-  },
-  {
-   "d": "2026-02-24",
-   "user_id": 7206
-  },
-  {
-   "d": "2026-02-24",
-   "user_id": 4663
-  },
-  {
-   "d": "2026-02-24",
-   "user_id": 6464
-  },
-  {
-   "d": "2026-02-28",
-   "user_id": 6617
-  },
-  {
-   "d": "2026-03-01",
-   "user_id": 7719
-  },
-  {
-   "d": "2026-03-03",
-   "user_id": 4074
-  },
-  {
-   "d": "2026-03-04",
-   "user_id": 5034
-  },
-  {
-   "d": "2026-03-10",
-   "user_id": 374
-  },
-  {
-   "d": "2026-03-11",
-   "user_id": 13287
-  },
-  {
-   "d": "2026-03-15",
-   "user_id": 1695
-  },
-  {
-   "d": "2026-03-15",
-   "user_id": 6474
-  },
-  {
-   "d": "2026-03-15",
-   "user_id": 8167
-  },
-  {
-   "d": "2026-03-16",
-   "user_id": 11823
-  },
-  {
-   "d": "2026-03-17",
-   "user_id": 884
-  },
-  {
-   "d": "2026-03-19",
-   "user_id": 8569
-  },
-  {
-   "d": "2026-03-27",
-   "user_id": 11316
-  },
-  {
-   "d": "2026-03-29",
-   "user_id": 12758
-  },
-  {
-   "d": "2026-03-30",
-   "user_id": 12651
-  },
-  {
-   "d": "2026-04-02",
-   "user_id": 13712
-  },
-  {
-   "d": "2026-04-06",
-   "user_id": 4074
-  },
-  {
-   "d": "2026-04-13",
-   "user_id": 8475
-  },
-  {
-   "d": "2026-04-14",
-   "user_id": 13151
-  },
-  {
-   "d": "2026-04-14",
-   "user_id": 6612
-  },
-  {
-   "d": "2026-04-22",
-   "user_id": 3901
-  },
-  {
-   "d": "2026-04-23",
-   "user_id": 1644
-  },
-  {
-   "d": "2026-04-24",
-   "user_id": 6555
-  },
-  {
-   "d": "2026-04-25",
-   "user_id": 6240
-  },
-  {
-   "d": "2026-04-25",
-   "user_id": 3122
-  },
-  {
-   "d": "2026-04-27",
-   "user_id": 8569
-  },
-  {
-   "d": "2026-04-27",
-   "user_id": 3966
-  },
-  {
-   "d": "2026-05-03",
-   "user_id": 13617
-  },
-  {
-   "d": "2026-05-05",
-   "user_id": 6617
-  },
-  {
-   "d": "2026-05-13",
-   "user_id": 4727
-  },
-  {
-   "d": "2026-05-17",
-   "user_id": 13126
-  },
-  {
-   "d": "2026-05-19",
-   "user_id": 9028
-  },
-  {
-   "d": "2026-05-20",
-   "user_id": 8775
-  },
-  {
-   "d": "2026-05-20",
-   "user_id": 6299
-  },
-  {
-   "d": "2026-05-21",
-   "user_id": 3623
-  },
-  {
-   "d": "2026-05-25",
-   "user_id": 478
-  },
-  {
-   "d": "2026-05-27",
-   "user_id": 14630
-  },
-  {
-   "d": "2026-05-28",
-   "user_id": 15585
-  },
-  {
-   "d": "2026-05-29",
-   "user_id": 13151
-  },
-  {
-   "d": "2026-06-05",
-   "user_id": 3917
-  },
-  {
-   "d": "2026-06-08",
-   "user_id": 4074
-  },
-  {
-   "d": "2026-06-13",
-   "user_id": 13128
-  },
-  {
-   "d": "2026-06-14",
-   "user_id": 8796
-  },
-  {
-   "d": "2026-06-22",
-   "user_id": 8305
-  },
-  {
-   "d": "2026-07-05",
-   "user_id": 6617
-  },
-  {
-   "d": "2026-07-05",
-   "user_id": 11722
-  },
-  {
-   "d": "2026-07-05",
-   "user_id": 16529
-  },
-  {
-   "d": "2026-07-09",
-   "user_id": 11823
-  },
-  {
-   "d": "2026-07-10",
-   "user_id": 392
-  },
-  {
-   "d": "2026-07-17",
-   "user_id": 13128
-  },
-  {
-   "d": "2026-07-22",
-   "user_id": 8305
-  },
-  {
-   "d": "2026-07-29",
-   "user_id": 8569
-  },
-  {
-   "d": "2026-08-07",
-   "user_id": 392
-  },
-  {
-   "d": "2026-08-24",
-   "user_id": 3114
-  },
-  {
-   "d": "2026-08-24",
-   "user_id": 8305
-  },
-  {
-   "d": "2026-08-31",
-   "user_id": 8569
-  },
-  {
-   "d": "2026-09-09",
-   "user_id": 17324
-  },
-  {
-   "d": "2026-09-10",
-   "user_id": 5065
-  },
-  {
-   "d": "2026-09-12",
-   "user_id": 7041
-  },
-  {
-   "d": "2026-09-19",
-   "user_id": 2016
-  }
- ],
- "sales_monthly": [
-  {
-   "m": "2025-12",
-   "sales": 4,
-   "revenue": 213.08,
-   "buyers": 4,
-   "avg_check": 53.27
-  },
-  {
-   "m": "2026-01",
-   "sales": 22,
-   "revenue": 596.0,
-   "buyers": 22,
-   "avg_check": 27.09
-  },
-  {
-   "m": "2026-02",
-   "sales": 23,
-   "revenue": 708.67,
-   "buyers": 23,
-   "avg_check": 30.81
-  },
-  {
-   "m": "2026-03",
-   "sales": 14,
-   "revenue": 352.5,
-   "buyers": 14,
-   "avg_check": 25.18
-  },
-  {
-   "m": "2026-04",
-   "sales": 12,
-   "revenue": 435.5,
-   "buyers": 12,
-   "avg_check": 36.29
-  },
-  {
-   "m": "2026-05",
-   "sales": 12,
-   "revenue": 502.17,
-   "buyers": 12,
-   "avg_check": 41.85
-  },
-  {
-   "m": "2026-06",
-   "sales": 5,
-   "revenue": 360.0,
-   "buyers": 5,
-   "avg_check": 72.0
-  },
-  {
-   "m": "2026-07",
-   "sales": 8,
-   "revenue": 160.0,
-   "buyers": 8,
-   "avg_check": 20.0
-  },
-  {
-   "m": "2026-08",
-   "sales": 4,
-   "revenue": 340.0,
-   "buyers": 4,
-   "avg_check": 85.0
-  },
-  {
-   "m": "2026-09",
-   "sales": 4,
-   "revenue": 75.0,
-   "buyers": 4,
-   "avg_check": 18.75
-  }
- ],
- "sales_by_plan": [
-  {
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 92,
-   "revenue": 2115.0
-  },
-  {
-   "plan_name": "Base",
-   "subs_period": "yearly",
-   "sales": 9,
-   "revenue": 1237.5
-  },
-  {
-   "plan_name": "Pro",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 205.67
-  },
-  {
-   "plan_name": "Pro",
-   "subs_period": "monthly",
-   "sales": 6,
-   "revenue": 184.75
-  }
- ],
- "sales_by_method": [
-  {
-   "payment_method": "mono",
-   "attempts": 122,
-   "success": 63,
-   "failed": 15,
-   "pending": 41,
-   "revenue": 1502.67
-  },
-  {
-   "payment_method": "overpay",
-   "attempts": 85,
-   "success": 30,
-   "failed": 53,
-   "pending": 2,
-   "revenue": 1239.58
-  },
-  {
-   "payment_method": "whitepay",
-   "attempts": 20,
-   "success": 8,
-   "failed": 0,
-   "pending": 11,
-   "revenue": 735.67
-  },
-  {
-   "payment_method": "stripe",
-   "attempts": 7,
-   "success": 7,
-   "failed": 0,
-   "pending": 0,
-   "revenue": 265.0
-  }
- ],
- "sales_by_status": [
-  {
-   "status": "success",
-   "n": 108
-  },
-  {
-   "status": "failed",
-   "n": 68
-  },
-  {
-   "status": "pending",
-   "n": 54
-  },
-  {
-   "status": "canceled",
-   "n": 4
-  }
- ],
- "repeat_purchases": [
-  {
-   "purchases": 1,
-   "users": 71
-  },
-  {
-   "purchases": 2,
-   "users": 9
-  },
-  {
-   "purchases": 3,
-   "users": 2
-  },
-  {
-   "purchases": 4,
-   "users": 2
-  },
-  {
-   "purchases": 5,
-   "users": 1
-  }
- ],
- "utm_sources": [
-  {
-   "source": "ovva-meta",
-   "visitors": 869,
-   "regs": 869,
-   "converted": 0,
-   "revenue": 0.0,
-   "pending_payers": 2
-  },
-  {
-   "source": "meta",
-   "visitors": 121,
-   "regs": 121,
-   "converted": 0,
-   "revenue": 0.0,
-   "pending_payers": 0
-  },
-  {
-   "source": "site",
-   "visitors": 24,
-   "regs": 24,
-   "converted": 0,
-   "revenue": 0.0,
-   "pending_payers": 0
-  },
-  {
-   "source": "fb",
-   "visitors": 12,
-   "regs": 12,
-   "converted": 0,
-   "revenue": 0.0,
-   "pending_payers": 0
-  },
-  {
-   "source": "youtube",
-   "visitors": 9,
-   "regs": 9,
-   "converted": 0,
-   "revenue": 0.0,
-   "pending_payers": 0
-  },
-  {
-   "source": "chatgpt.com",
-   "visitors": 2,
-   "regs": 2,
-   "converted": 0,
-   "revenue": 0.0,
-   "pending_payers": 0
-  },
-  {
-   "source": "trustpilot",
-   "visitors": 1,
-   "regs": 1,
-   "converted": 0,
-   "revenue": 0.0,
-   "pending_payers": 0
-  }
- ],
- "meta_utm_sales_monthly": [],
- "meta_utm_pending": [
-  {
-   "pending": 2,
-   "amount": 40.0
-  }
- ],
- "referral_totals": [
-  {
-   "links": 13369,
-   "active": 13369,
-   "clicks": 274,
-   "regs": 527,
-   "payments": 7,
-   "revenue": 198.5
-  }
- ],
- "referral_top": [
-  {
-   "campaign_name": null,
-   "clicks": 13,
-   "regs": 13,
-   "payments": 2,
-   "revenue": 126.5
-  },
-  {
-   "campaign_name": null,
-   "clicks": 14,
-   "regs": 14,
-   "payments": 2,
-   "revenue": 28.0
-  },
-  {
-   "campaign_name": null,
-   "clicks": 41,
-   "regs": 41,
-   "payments": 1,
-   "revenue": 15.0
-  },
-  {
-   "campaign_name": null,
-   "clicks": 1,
-   "regs": 1,
-   "payments": 1,
-   "revenue": 15.0
-  },
-  {
-   "campaign_name": null,
-   "clicks": 20,
-   "regs": 20,
-   "payments": 1,
-   "revenue": 14.0
-  },
-  {
-   "campaign_name": null,
-   "clicks": 0,
-   "regs": 109,
-   "payments": 0,
-   "revenue": 0.0
-  },
-  {
-   "campaign_name": null,
-   "clicks": 0,
-   "regs": 55,
-   "payments": 0,
-   "revenue": 0.0
-  },
-  {
-   "campaign_name": null,
-   "clicks": 0,
-   "regs": 29,
-   "payments": 0,
-   "revenue": 0.0
-  },
-  {
-   "campaign_name": null,
-   "clicks": 27,
-   "regs": 27,
-   "payments": 0,
-   "revenue": 0.0
-  },
-  {
-   "campaign_name": null,
-   "clicks": 25,
-   "regs": 25,
-   "payments": 0,
-   "revenue": 0.0
-  }
- ],
- "promo_usage": [
-  {
-   "uses": 2269
-  }
- ],
- "attribution_links": [
-  {
-   "kind": "Партнёрская",
-   "category": "referral",
-   "partner": "(все партнёры)",
-   "campaign": "все активные реферальные ссылки",
-   "clicks": 274,
-   "regs": 527,
-   "payments": 7,
-   "revenue": 198.5,
-   "last_activity": "2026-04-27"
-  },
-  {
-   "kind": "UTM",
-   "category": "cpc",
-   "partner": "(все источники)",
-   "campaign": "вся платная реклама Meta (cpc и paid/fb — один канал)",
-   "clicks": 1003,
-   "regs": 1003,
-   "payments": 0,
-   "revenue": 0.0,
-   "last_activity": "2026-09-12"
-  },
-  {
-   "kind": "UTM",
-   "category": "company_profile",
-   "partner": "trustpilot",
-   "campaign": "domain_click",
-   "clicks": 1,
-   "regs": 1,
-   "payments": 0,
-   "revenue": 0.0,
-   "last_activity": "2026-07-09"
-  }
- ],
- "pay_attempts_daily": [
-  {
-   "d": "2025-11-28",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 2
-  },
-  {
-   "d": "2025-11-30",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2025-12-01",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 2
-  },
-  {
-   "d": "2025-12-02",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 4
-  },
-  {
-   "d": "2025-12-03",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2025-12-04",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 5
-  },
-  {
-   "d": "2025-12-06",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 5
-  },
-  {
-   "d": "2025-12-07",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2025-12-08",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 4
-  },
-  {
-   "d": "2025-12-10",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2025-12-12",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 0,
-   "failed": 2
-  },
-  {
-   "d": "2025-12-15",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2025-12-16",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2025-12-20",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2025-12-23",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2025-12-25",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2025-12-30",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-01-01",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-03",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-01-08",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-09",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-13",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-01-13",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-01-14",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-01-14",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-01-15",
-   "payment_method": "overpay",
-   "success": 2,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-16",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-01-18",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-01-20",
-   "payment_method": "overpay",
-   "success": 2,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-21",
-   "payment_method": "mono",
-   "success": 3,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-24",
-   "payment_method": "mono",
-   "success": 2,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-24",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-01-26",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-27",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-27",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-28",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-28",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-01-29",
-   "payment_method": "mono",
-   "success": 2,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-29",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-01-30",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-01",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-02-02",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-03",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-03",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-02-04",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-04",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-06",
-   "payment_method": "mono",
-   "success": 2,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-07",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-10",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-11",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-12",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-13",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-02-14",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-15",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-02-15",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-17",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-18",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-02-18",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 0,
-   "failed": 5
-  },
-  {
-   "d": "2026-02-19",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-20",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-21",
-   "payment_method": "mono",
-   "success": 2,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-02-22",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-02-24",
-   "payment_method": "mono",
-   "success": 2,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-24",
-   "payment_method": "overpay",
-   "success": 2,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-25",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-26",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-27",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-28",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-28",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-01",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-03-02",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-03",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-04",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-04",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-10",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-10",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-11",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-15",
-   "payment_method": "overpay",
-   "success": 2,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-15",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-16",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-03-16",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-17",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-17",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-03-18",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-19",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-20",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-03-23",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-27",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-29",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-30",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-31",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-03-31",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-04-02",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-04",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 2
-  },
-  {
-   "d": "2026-04-06",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-13",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-14",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-04-14",
-   "payment_method": "mono",
-   "success": 2,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-16",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-16",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-04-18",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-18",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 2,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-21",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-04-22",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-04-22",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-23",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-24",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-24",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-25",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-25",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-26",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-27",
-   "payment_method": "mono",
-   "success": 2,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-27",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 2
-  },
-  {
-   "d": "2026-04-28",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-04-29",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-01",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-05-02",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-03",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-05",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-05-05",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-07",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-05-11",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-13",
-   "payment_method": "whitepay",
-   "success": 1,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-16",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-17",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-18",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-19",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-20",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-20",
-   "payment_method": "whitepay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-21",
-   "payment_method": "whitepay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-23",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-25",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-25",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-26",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-27",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-28",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-29",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-05-30",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-02",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 2,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-03",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-03",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-05",
-   "payment_method": "whitepay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-06",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-08",
-   "payment_method": "whitepay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-13",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-14",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-14",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-15",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-16",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-17",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-22",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-23",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-29",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-06-29",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-02",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-03",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-05",
-   "payment_method": "mono",
-   "success": 2,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-05",
-   "payment_method": "whitepay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-07",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-09",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-09",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-10",
-   "payment_method": "whitepay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-13",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-16",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 2,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-17",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-18",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-22",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-29",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-07-30",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-08-01",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-08-03",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-08-04",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-08-07",
-   "payment_method": "whitepay",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-08-09",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-08-11",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
-   "failed": 0
-  },
-  {
-   "d": "2026-08-24",
-   "payment_method": "stripe",
-   "success": 2,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-08-31",
-   "payment_method": "stripe",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-09-09",
-   "payment_method": "stripe",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-09-10",
-   "payment_method": "stripe",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-09-12",
-   "payment_method": "stripe",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-09-19",
-   "payment_method": "stripe",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  }
- ],
- "plan_daily": [
-  {
-   "d": "2025-12-10",
-   "plan_name": "Pro",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 23.08
-  },
-  {
-   "d": "2025-12-15",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2025-12-16",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2025-12-20",
-   "plan_name": "Base",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-01-01",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-01-08",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-01-09",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-01-15",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-01-15",
-   "plan_name": "Pro",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 45.0
-  },
-  {
-   "d": "2026-01-18",
-   "plan_name": "Pro",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 45.0
-  },
-  {
-   "d": "2026-01-20",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-01-20",
-   "plan_name": "Pro",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 1.0
-  },
-  {
-   "d": "2026-01-21",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 3,
-   "revenue": 60.0
-  },
-  {
-   "d": "2026-01-24",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 2,
-   "revenue": 40.0
-  },
-  {
-   "d": "2026-01-26",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-01-27",
-   "plan_name": "Base",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-01-27",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-01-28",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 2,
-   "revenue": 35.0
-  },
-  {
-   "d": "2026-01-29",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 3,
-   "revenue": 60.0
-  },
-  {
-   "d": "2026-01-30",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-02",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-02-03",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 2,
-   "revenue": 40.0
-  },
-  {
-   "d": "2026-02-04",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 2,
-   "revenue": 160.0
-  },
-  {
-   "d": "2026-02-06",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 2,
-   "revenue": 35.0
-  },
-  {
-   "d": "2026-02-07",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-10",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-11",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-12",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 14.0
-  },
-  {
-   "d": "2026-02-14",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-15",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-02-17",
-   "plan_name": "Pro",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 45.0
-  },
-  {
-   "d": "2026-02-19",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-02-20",
-   "plan_name": "Pro",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 25.67
-  },
-  {
-   "d": "2026-02-21",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 2,
-   "revenue": 40.0
-  },
-  {
-   "d": "2026-02-24",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 4,
-   "revenue": 64.0
-  },
-  {
-   "d": "2026-02-28",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-01",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-03",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-04",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-10",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-11",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-15",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 3,
-   "revenue": 60.0
-  },
-  {
-   "d": "2026-03-16",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 10.0
-  },
-  {
-   "d": "2026-03-17",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-19",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-03-27",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-03-29",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-03-30",
-   "plan_name": "Base",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 112.5
-  },
-  {
-   "d": "2026-04-02",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-04-06",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-04-13",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 10.0
-  },
-  {
-   "d": "2026-04-14",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 2,
-   "revenue": 34.0
-  },
-  {
-   "d": "2026-04-22",
-   "plan_name": "Base",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-04-23",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-04-24",
-   "plan_name": "Base",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 112.5
-  },
-  {
-   "d": "2026-04-25",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 2,
-   "revenue": 40.0
-  },
-  {
-   "d": "2026-04-27",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 2,
-   "revenue": 34.0
-  },
-  {
-   "d": "2026-05-03",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-05-05",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-05-13",
-   "plan_name": "Pro",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 205.67
-  },
-  {
-   "d": "2026-05-17",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 14.0
-  },
-  {
-   "d": "2026-05-19",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-05-20",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 2,
-   "revenue": 40.0
-  },
-  {
-   "d": "2026-05-21",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-05-25",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-05-27",
-   "plan_name": "Base",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 112.5
-  },
-  {
-   "d": "2026-05-28",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-05-29",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-06-05",
-   "plan_name": "Base",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-06-08",
-   "plan_name": "Base",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-06-13",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-06-14",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-06-22",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-07-05",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 3,
-   "revenue": 60.0
-  },
-  {
-   "d": "2026-07-09",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-07-10",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-07-17",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-07-22",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-07-29",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-08-07",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-08-24",
-   "plan_name": "Base",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
-   "d": "2026-08-24",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-08-31",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-09-09",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-09-10",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  },
-  {
-   "d": "2026-09-12",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 15.0
-  },
-  {
-   "d": "2026-09-19",
-   "plan_name": "Base",
-   "subs_period": "monthly",
-   "sales": 1,
-   "revenue": 20.0
-  }
- ],
- "funnel_by_month": [
-  {
-   "m": "2024-03",
-   "registered": 11,
-   "created": 11,
-   "connected": 5,
-   "paid": 0
-  },
-  {
-   "m": "2024-04",
-   "registered": 178,
-   "created": 178,
-   "connected": 48,
-   "paid": 0
-  },
-  {
-   "m": "2024-05",
-   "registered": 356,
-   "created": 355,
-   "connected": 99,
-   "paid": 4
-  },
-  {
-   "m": "2024-06",
-   "registered": 302,
-   "created": 301,
-   "connected": 60,
-   "paid": 2
-  },
-  {
-   "m": "2024-07",
-   "registered": 244,
-   "created": 243,
-   "connected": 44,
-   "paid": 1
-  },
-  {
-   "m": "2024-08",
-   "registered": 199,
-   "created": 199,
-   "connected": 43,
-   "paid": 2
-  },
-  {
-   "m": "2024-09",
-   "registered": 245,
-   "created": 245,
-   "connected": 71,
-   "paid": 1
-  },
-  {
-   "m": "2024-10",
-   "registered": 116,
-   "created": 116,
-   "connected": 33,
-   "paid": 1
-  },
-  {
-   "m": "2024-11",
-   "registered": 321,
-   "created": 321,
-   "connected": 113,
-   "paid": 1
-  },
-  {
-   "m": "2024-12",
-   "registered": 591,
-   "created": 591,
-   "connected": 105,
-   "paid": 3
-  },
-  {
-   "m": "2025-01",
-   "registered": 1082,
-   "created": 1080,
-   "connected": 186,
-   "paid": 7
-  },
-  {
-   "m": "2025-02",
-   "registered": 566,
-   "created": 566,
-   "connected": 108,
-   "paid": 6
-  },
-  {
-   "m": "2025-03",
-   "registered": 524,
-   "created": 524,
-   "connected": 108,
-   "paid": 6
-  },
-  {
-   "m": "2025-04",
-   "registered": 542,
-   "created": 541,
-   "connected": 88,
-   "paid": 2
-  },
-  {
-   "m": "2025-05",
-   "registered": 420,
-   "created": 420,
-   "connected": 78,
-   "paid": 1
-  },
-  {
-   "m": "2025-06",
-   "registered": 153,
-   "created": 132,
-   "connected": 33,
-   "paid": 2
-  },
-  {
-   "m": "2025-07",
-   "registered": 341,
-   "created": 340,
-   "connected": 68,
-   "paid": 5
-  },
-  {
-   "m": "2025-08",
-   "registered": 210,
-   "created": 210,
-   "connected": 33,
-   "paid": 3
-  },
-  {
-   "m": "2025-09",
-   "registered": 295,
-   "created": 295,
-   "connected": 77,
-   "paid": 2
-  },
-  {
-   "m": "2025-10",
-   "registered": 482,
-   "created": 482,
-   "connected": 131,
-   "paid": 7
-  },
-  {
-   "m": "2025-11",
-   "registered": 554,
-   "created": 462,
-   "connected": 141,
-   "paid": 5
-  },
-  {
-   "m": "2025-12",
-   "registered": 393,
-   "created": 92,
-   "connected": 104,
-   "paid": 4
-  },
-  {
-   "m": "2026-01",
-   "registered": 704,
-   "created": 115,
-   "connected": 159,
-   "paid": 4
-  },
-  {
-   "m": "2026-02",
-   "registered": 567,
-   "created": 66,
-   "connected": 135,
-   "paid": 9
-  },
-  {
-   "m": "2026-03",
-   "registered": 363,
-   "created": 61,
-   "connected": 128,
-   "paid": 2
-  },
-  {
-   "m": "2026-04",
-   "registered": 706,
-   "created": 157,
-   "connected": 157,
-   "paid": 2
-  },
-  {
-   "m": "2026-05",
-   "registered": 608,
-   "created": 119,
-   "connected": 136,
-   "paid": 1
-  },
-  {
-   "m": "2026-06",
-   "registered": 1113,
-   "created": 229,
-   "connected": 223,
-   "paid": 2
-  },
-  {
-   "m": "2026-07",
-   "registered": 933,
-   "created": 221,
-   "connected": 242,
-   "paid": 0
-  },
-  {
-   "m": "2026-08",
-   "registered": 370,
-   "created": 48,
-   "connected": 28,
-   "paid": 0
-  },
-  {
-   "m": "2026-09",
-   "registered": 294,
-   "created": 85,
-   "connected": 8,
-   "paid": 0
-  }
- ],
- "mrr_monthly": [
-  {
-   "m": "2025-12",
-   "monthly_subs": 3,
-   "yearly_subs": 1,
-   "mrr": 75.58
-  },
-  {
-   "m": "2026-01",
-   "monthly_subs": 21,
-   "yearly_subs": 2,
-   "mrr": 471.0
-  },
-  {
-   "m": "2026-02",
-   "monthly_subs": 23,
-   "yearly_subs": 2,
-   "mrr": 733.67
-  },
-  {
-   "m": "2026-03",
-   "monthly_subs": 13,
-   "yearly_subs": 3,
-   "mrr": 274.38
-  },
-  {
-   "m": "2026-04",
-   "monthly_subs": 10,
-   "yearly_subs": 5,
-   "mrr": 229.25
-  },
-  {
-   "m": "2026-05",
-   "monthly_subs": 10,
-   "yearly_subs": 7,
-   "mrr": 266.76
-  },
-  {
-   "m": "2026-06",
-   "monthly_subs": 3,
-   "yearly_subs": 9,
-   "mrr": 167.76
-  },
-  {
-   "m": "2026-07",
-   "monthly_subs": 8,
-   "yearly_subs": 9,
-   "mrr": 267.76
-  },
-  {
-   "m": "2026-08",
-   "monthly_subs": 3,
-   "yearly_subs": 10,
-   "mrr": 310.26
-  },
-  {
-   "m": "2026-09",
-   "monthly_subs": 6,
-   "yearly_subs": 10,
-   "mrr": 235.26
-  }
- ],
- "renewals_monthly": [
-  {
-   "due_month": "2026-01",
-   "due": 3,
-   "renewed": 1
-  },
-  {
-   "due_month": "2026-02",
-   "due": 21,
-   "renewed": 3
-  },
-  {
-   "due_month": "2026-03",
-   "due": 23,
-   "renewed": 0
-  },
-  {
-   "due_month": "2026-04",
-   "due": 13,
-   "renewed": 2
-  },
-  {
-   "due_month": "2026-05",
-   "due": 10,
-   "renewed": 1
-  },
-  {
-   "due_month": "2026-06",
-   "due": 10,
-   "renewed": 0
-  },
-  {
-   "due_month": "2026-07",
-   "due": 3,
-   "renewed": 2
-  },
-  {
-   "due_month": "2026-08",
-   "due": 8,
-   "renewed": 3
-  },
-  {
-   "due_month": "2026-09",
-   "due": 1,
-   "renewed": 0
-  }
- ],
- "cohort_conversion": [
-  {
-   "cohort": "2025-11",
-   "users": 554,
-   "pay7": 0,
-   "pay30": 0,
-   "pay90": 3,
-   "pay_ever": 5
-  },
-  {
-   "cohort": "2025-12",
-   "users": 393,
-   "pay7": 0,
-   "pay30": 0,
-   "pay90": 1,
-   "pay_ever": 4
-  },
-  {
-   "cohort": "2026-01",
-   "users": 704,
-   "pay7": 2,
-   "pay30": 2,
-   "pay90": 3,
-   "pay_ever": 4
-  },
-  {
-   "cohort": "2026-02",
-   "users": 567,
-   "pay7": 3,
-   "pay30": 3,
-   "pay90": 8,
-   "pay_ever": 9
-  },
-  {
-   "cohort": "2026-03",
-   "users": 363,
-   "pay7": 1,
-   "pay30": 1,
-   "pay90": 2,
-   "pay_ever": 2
-  },
-  {
-   "cohort": "2026-04",
-   "users": 706,
-   "pay7": 1,
-   "pay30": 1,
-   "pay90": 2,
-   "pay_ever": 2
-  },
-  {
-   "cohort": "2026-05",
-   "users": 608,
-   "pay7": 1,
-   "pay30": 1,
-   "pay90": 1,
-   "pay_ever": 1
-  },
-  {
-   "cohort": "2026-06",
-   "users": 1113,
-   "pay7": 0,
-   "pay30": 1,
-   "pay90": 2,
-   "pay_ever": 2
-  },
-  {
-   "cohort": "2026-07",
-   "users": 933,
-   "pay7": 0,
-   "pay30": 0,
-   "pay90": 0,
-   "pay_ever": 0
-  },
-  {
-   "cohort": "2026-08",
-   "users": 370,
-   "pay7": 0,
-   "pay30": 0,
-   "pay90": 0,
-   "pay_ever": 0
-  },
-  {
-   "cohort": "2026-09",
-   "users": 294,
-   "pay7": 0,
-   "pay30": 0,
-   "pay90": 0,
-   "pay_ever": 0
-  }
- ],
- "time_to_value": [
-  {
-   "med_create_d": 0.0,
-   "med_conn_d": 0.01,
-   "med_sync_d": 0.02,
-   "med_pay_d": 45.0,
-   "activation7_pct": 16.2
-  }
- ],
- "stuck_pending": [
-  {
-   "payment_method": "mono",
-   "n": 41,
-   "amount": 1058.42,
-   "oldest": "2026-02-24"
-  },
-  {
-   "payment_method": "whitepay",
-   "n": 11,
-   "amount": 820.0,
-   "oldest": "2026-05-11"
-  },
-  {
-   "payment_method": "overpay",
-   "n": 2,
-   "amount": 40.0,
-   "oldest": "2026-04-18"
-  }
- ],
- "funnel": [
-  {
-   "registered": 13783,
-   "created_account": 8806,
-   "connected": 2992,
-   "synced": 297,
-   "paid": 85
   }
  ]
 }

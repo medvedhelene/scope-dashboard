@@ -124,23 +124,32 @@ QUERIES = {
         FROM analytics.user_utm_tracking u
         JOIN analytics.fact_sales_transactions t ON t.user_id = u.user_id AND t.status = 'pending'
         WHERE u.utm_source ILIKE '%ovva%'""",
+    # Рефералки после миграции схемы: ссылки — dim_referral_links, приведённые
+    # юзеры и их оплаты — fact_referral_attribution. Клики пишутся в
+    # referral_clicks, но лог сейчас пустой (баг логирования на стороне
+    # продукта) — пока он пуст, берём старый счётчик из referral_links_
+    # deprecated, чтобы плитка «Кликов по ссылкам» не обнулилась.
     "referral_totals": """
-        SELECT count(*) AS links,
-               count(*) FILTER (WHERE is_active) AS active,
-               sum(clicks_count) AS clicks,
-               sum(registrations_count) AS regs,
-               sum(payments_count) AS payments,
-               round(sum(total_revenue), 2) AS revenue
-        FROM analytics.referral_links""",
+        SELECT (SELECT count(*) FROM analytics.dim_referral_links) AS links,
+               (SELECT count(*) FROM analytics.dim_referral_links WHERE is_active) AS active,
+               CASE WHEN (SELECT count(*) FROM analytics.referral_clicks) > 0
+                    THEN (SELECT count(*) FROM analytics.referral_clicks)
+                    ELSE (SELECT coalesce(sum(clicks_count), 0) FROM analytics.referral_links_deprecated) END AS clicks,
+               (SELECT count(*) FROM analytics.fact_referral_attribution) AS regs,
+               (SELECT coalesce(sum(payments_count), 0) FROM analytics.fact_referral_attribution) AS payments,
+               (SELECT round(coalesce(sum(total_net_revenue), 0), 2) FROM analytics.fact_referral_attribution) AS revenue""",
     "referral_top": """
-        SELECT campaign_name, clicks_count AS clicks,
-               registrations_count AS regs, payments_count AS payments,
-               total_revenue AS revenue
-        FROM analytics.referral_links
-        WHERE registrations_count > 0 OR payments_count > 0
-        ORDER BY total_revenue DESC, registrations_count DESC LIMIT 10""",
+        SELECT coalesce(l.campaign_name, l.ref_code) AS campaign_name,
+               (SELECT count(*) FROM analytics.referral_clicks c WHERE c.referral_link_id = l.referral_link_id) AS clicks,
+               count(a.user_id) AS regs,
+               coalesce(sum(a.payments_count), 0) AS payments,
+               round(coalesce(sum(a.total_net_revenue), 0), 2) AS revenue
+        FROM analytics.dim_referral_links l
+        JOIN analytics.fact_referral_attribution a ON a.referral_link_id = l.referral_link_id
+        GROUP BY l.referral_link_id, l.campaign_name, l.ref_code
+        ORDER BY revenue DESC, regs DESC LIMIT 10""",
     "promo_usage": """
-        SELECT count(*) AS uses FROM analytics.promo_code_usages""",
+        SELECT coalesce(sum(apply_count), 0) AS uses FROM analytics.fact_promo_code_usage""",
     # Каталог трафиковых ссылок: UTM (агрегировано по source+medium+campaign,
     # content/term свёрнуты) + активные партнёрские реферальные ссылки.
     # Партнёр обозначается внутренним ID владельца — без персональных данных.
@@ -167,12 +176,14 @@ QUERIES = {
         FROM analytics.utm_parameters
         WHERE utm_medium = 'cpc' OR (utm_medium = 'paid' AND utm_source ILIKE 'fb')
         UNION ALL
-        SELECT 'Партнёрская', 'referral', '(все партнёры)', 'все активные реферальные ссылки',
-               sum(clicks_count), sum(registrations_count), sum(payments_count),
-               round(sum(coalesce(total_revenue, 0)), 2),
-               max(coalesce(last_payment_at, created_at))::date::text
-        FROM analytics.referral_links
-        WHERE clicks_count > 0 OR registrations_count > 0 OR payments_count > 0
+        SELECT 'Партнёрская', 'referral', '(все партнёры)', 'все реферальные ссылки',
+               CASE WHEN (SELECT count(*) FROM analytics.referral_clicks) > 0
+                    THEN (SELECT count(*) FROM analytics.referral_clicks)
+                    ELSE (SELECT coalesce(sum(clicks_count), 0) FROM analytics.referral_links_deprecated) END,
+               count(*), coalesce(sum(payments_count), 0),
+               round(coalesce(sum(total_net_revenue), 0), 2),
+               max(coalesce(last_payment_at, registered_at))::date::text
+        FROM analytics.fact_referral_attribution
         ORDER BY revenue DESC, regs DESC""",
     # --- Продуктовые события ---
     "events_weekly": """
@@ -370,6 +381,42 @@ QUERIES = {
           (SELECT count(DISTINCT user_id) FROM analytics.journal_sync_events) AS synced,
           (SELECT count(DISTINCT user_id) FROM analytics.fact_sales_transactions WHERE status = 'success') AS paid""",
 }
+
+
+# --- Миграция схемы Metabase (сентябрь 2026) --------------------------------
+# fact_sales_transactions -> fact_sales, но история по mono/overpay/whitepay в
+# новую таблицу ещё не перелита (там пока только Stripe, ~11 оплат; бэкфил
+# запланирован). Поэтому «продажи» = новая fact_sales + строки старой таблицы
+# (_deprecated) только по тем способам оплаты, которых в новой ещё нет. Когда
+# бэкфил дойдёт, старая часть выключится сама (NOT EXISTS), правок не надо.
+# CTE отдаёт колонки в прежних именах (purchase_date, price, subs_period,
+# plan_name), поэтому остальные запросы остались как были.
+# Выручка (price) для успешных — amount_paid (что реально заплатил клиент),
+# для остальных статусов — list_price (сумма, которая «висела»).
+_SALES_CTE = """sales AS (
+    SELECT coalesce(n.paid_date, n.created_at::date) AS purchase_date, n.user_id, n.status,
+           CASE WHEN n.status = 'success' THEN n.amount_paid ELSE n.list_price END AS price,
+           n.payment_method, initcap(n.plan) AS plan_name, n.period AS subs_period,
+           n.utm_source, n.utm_medium, n.utm_campaign
+    FROM analytics.fact_sales n
+    UNION ALL
+    SELECT o.purchase_date, o.user_id, o.status, o.price, o.payment_method,
+           initcap(o.plan_name), o.subs_period, o.utm_source, o.utm_medium, o.utm_campaign
+    FROM analytics.fact_sales_transactions_deprecated o
+    WHERE NOT EXISTS (SELECT 1 FROM analytics.fact_sales n2 WHERE n2.payment_method = o.payment_method)
+)"""
+
+
+def _with_sales(sql):
+    body = sql.strip()
+    if body[:4].upper() == "WITH":
+        return "WITH " + _SALES_CTE + ",\n" + body[4:]
+    return "WITH " + _SALES_CTE + "\n" + body
+
+
+for _k, _sql in list(QUERIES.items()):
+    if "fact_sales_transactions" in _sql:
+        QUERIES[_k] = _with_sales(_sql.replace("analytics.fact_sales_transactions", "sales"))
 
 
 # Начало трекинга GA4 на сайте scope360.io
