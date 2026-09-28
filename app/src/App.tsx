@@ -78,6 +78,7 @@ const TABS = [
   { id: 'ads', label: 'Платный трафик' },
   { id: 'conclusions', label: 'Выводы' },
   { id: 'subscriptions', label: 'Подписки' },
+  { id: 'banners', label: 'Банери' },
 ] as const
 
 const inRange = (d: string, [f, t]: Range) => (!f || d >= f) && (!t || d <= t)
@@ -400,6 +401,9 @@ export default function App() {
   const tv = D.time_to_value[0]
   const cl = D.clarity ?? null
   const clHist: Row[] = D.clarity_history ?? []
+  const banners: Row[] = D.posthog_banners ?? []
+  const bnClicks = banners.reduce((a, b) => a + b.clicks, 0)
+  const bnDismiss = banners.reduce((a, b) => a + b.dismissals, 0)
   const revTotal = D.sales_daily.reduce((a: number, r: Row) => a + r.revenue, 0)
   const salesTotal = D.sales_daily.reduce((a: number, r: Row) => a + r.sales, 0)
   const curMrr = D.mrr_monthly[D.mrr_monthly.length - 1]
@@ -764,7 +768,7 @@ export default function App() {
           </a>
         </div>
 
-        {tab !== 'ads' && (
+        {tab !== 'ads' && tab !== 'banners' && (
           <FilterBar preset={preset} setPreset={setPreset} from={from} setFrom={setFrom} to={to} setTo={setTo}
             right={tab === 'subscriptions' ? <DataSinceTag date="04.09.2026" /> : undefined} />
         )}
@@ -1032,38 +1036,6 @@ export default function App() {
               ) : <EmptyNote />}
             </Card>
           </div>
-        </Section>
-
-        <Section title="Баннеры в приложении" right={<SourceTag source="PostHog" />}>
-          <Card title="Клики и закрытия по баннерам"
-            note="События «баннер показан» пока не отправляются — поэтому CTR (клики / показы) посчитать нельзя, есть только клики и закрытия. Данные за всё время сбора.">
-            {(D.posthog_banners ?? []).length ? (
-              <div className="overflow-x-auto">
-                <table className="w-full text-[12.5px]">
-                  <thead>
-                    <tr className="text-left text-muted-foreground">
-                      <th className="pb-2 pr-3 font-medium">Баннер</th>
-                      <th className="pb-2 pr-3 text-right font-medium">Клики</th>
-                      <th className="pb-2 pr-3 text-right font-medium">Закрыли</th>
-                      <th className="pb-2 pr-3 font-medium">Куда ведёт</th>
-                      <th className="pb-2 font-medium">Период</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {(D.posthog_banners ?? []).map((b: Row) => (
-                      <tr key={b.banner_id} className="border-t border-border">
-                        <td className="py-2 pr-3"><b>{b.header}</b> <span className="text-muted-foreground">#{b.banner_id}</span></td>
-                        <td className="py-2 pr-3 text-right tabular-nums">{fmtN(b.clicks)}</td>
-                        <td className="py-2 pr-3 text-right tabular-nums">{fmtN(b.dismissals)}</td>
-                        <td className="py-2 pr-3 text-muted-foreground">{(b.link ?? '').replace(/^https?:\/\/[^/]+/, '') || '—'}</td>
-                        <td className="py-2 text-muted-foreground">{b.first_seen === b.last_seen ? b.first_seen : b.first_seen + ' — ' + b.last_seen}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : <EmptyNote />}
-          </Card>
         </Section>
 
         <Section title="UX-сигналы" right={<SourceTag source="Clarity" />}>
@@ -1451,6 +1423,49 @@ export default function App() {
               <li key={i} className="rounded-xl border border-border bg-card px-4 py-3">{x}</li>
             ))}
           </ul>
+        </Section>
+        </>)}
+
+        {tab === 'banners' && (<>
+        <Section title="Банери" right={<SourceTag source="PostHog" />}>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+            <Tile label="Баннеров с событиями" value={fmtN(banners.length)} sub="за всё время сбора" />
+            <Tile label="Кликов" value={fmtN(bnClicks)} sub="banner_clicked" />
+            <Tile label="Закрытий" value={fmtN(bnDismiss)} sub="banner_dismissed" />
+            <Tile label="Закрыли / кликнули" value={bnClicks ? comma((bnDismiss / bnClicks).toFixed(1)) + '×' : '—'}
+              sub="чем больше, тем хуже баннер «заходит»" />
+          </div>
+          <div className="mt-3">
+            <Card title="Клики и закрытия по баннерам"
+              note="События «баннер показан» пока не отправляются — поэтому конверсию (клики ÷ показы) посчитать нельзя, есть только клики и закрытия. Данные не зависят от фильтра периода.">
+              {banners.length ? (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-[12.5px]">
+                    <thead>
+                      <tr className="text-left text-muted-foreground">
+                        <th className="pb-2 pr-3 font-medium">Баннер</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Клики</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Закрыли</th>
+                        <th className="pb-2 pr-3 font-medium">Куда ведёт</th>
+                        <th className="pb-2 font-medium">Период</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {banners.map((b: Row) => (
+                        <tr key={b.banner_id} className="border-t border-border">
+                          <td className="py-2 pr-3"><b>{b.header}</b> <span className="text-muted-foreground">#{b.banner_id}</span></td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(b.clicks)}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(b.dismissals)}</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{(b.link ?? '').replace(/^https?:\/\/[^/]+/, '') || '—'}</td>
+                          <td className="py-2 text-muted-foreground">{b.first_seen === b.last_seen ? b.first_seen : b.first_seen + ' — ' + b.last_seen}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : <EmptyNote />}
+            </Card>
+          </div>
         </Section>
         </>)}
 
