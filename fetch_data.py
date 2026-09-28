@@ -185,6 +185,20 @@ QUERIES = {
                max(coalesce(last_payment_at, registered_at))::date::text
         FROM analytics.fact_referral_attribution
         ORDER BY revenue DESC, regs DESC""",
+    # --- Баннеры: справочник + лог показов (dim_banners, fact_banner_views) ---
+    # views_count в dim_banners — все показы; fact_banner_views — строка на
+    # показ (banner_id, user_id, viewed_at), из неё берём уникальных и дни.
+    "banners_meta": """
+        SELECT id AS banner_id, header_text, status, view_type, views_count,
+               start_at::date::text AS start_date, end_at::date::text AS end_date
+        FROM analytics.dim_banners ORDER BY id""",
+    "banner_views_summary": """
+        SELECT banner_id, count(*) AS views, count(DISTINCT user_id) AS unique_users
+        FROM analytics.fact_banner_views GROUP BY 1 ORDER BY 1""",
+    "banner_views_daily": """
+        SELECT banner_id, viewed_at::date::text AS d,
+               count(*) AS views, count(DISTINCT user_id) AS users
+        FROM analytics.fact_banner_views GROUP BY 1, 2 ORDER BY 2, 1""",
     # --- Продуктовые события ---
     "events_weekly": """
         WITH ev AS (
@@ -978,6 +992,7 @@ def fetch_posthog():
     # Баннеры: событий «показан» пока нет (только клик и закрытие), поэтому
     # CTR посчитать нельзя — отдаём клики/закрытия по каждому banner_id.
     banner_rows = {}
+    banner_daily = {}
     for ev_name, field in (("banner_clicked", "clicks"), ("banner_dismissed", "dismissals")):
         for e in posthog.raw_events(ev_name, limit=500):
             pr = e.get("properties") or {}
@@ -993,7 +1008,10 @@ def fetch_posthog():
             ts = e["timestamp"][:10]
             o["first_seen"] = min(o["first_seen"], ts)
             o["last_seen"] = max(o["last_seen"], ts)
+            dd = banner_daily.setdefault((key, ts), {"banner_id": key, "d": ts, "clicks": 0, "dismissals": 0})
+            dd[field] += 1
     posthog_banners = sorted(banner_rows.values(), key=lambda r: r["clicks"] + r["dismissals"], reverse=True)
+    posthog_banner_daily = sorted(banner_daily.values(), key=lambda r: (r["d"], str(r["banner_id"])))
 
     posthog_onboarding_props = {
         "promo_applied": promo_applied,
@@ -1008,6 +1026,7 @@ def fetch_posthog():
         "posthog_trial_by_plan": posthog_trial_by_plan,
         "posthog_onboarding_props": posthog_onboarding_props,
         "posthog_banners": posthog_banners,
+        "posthog_banner_daily": posthog_banner_daily,
     }
 
 
@@ -1111,7 +1130,7 @@ def main():
         print(f"PostHog: ERROR {e}")
         if data_path.exists():
             prev = json.loads(data_path.read_text())
-            for k in ("posthog_funnel", "posthog_events", "posthog_activity", "posthog_trial_by_plan", "posthog_onboarding_props", "posthog_banners"):
+            for k in ("posthog_funnel", "posthog_events", "posthog_activity", "posthog_trial_by_plan", "posthog_onboarding_props", "posthog_banners", "posthog_banner_daily"):
                 out[k] = prev.get(k, [])
 
     try:

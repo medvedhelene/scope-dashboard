@@ -1830,6 +1830,44 @@
    "last_activity": "2026-09-25"
   }
  ],
+ "banners_meta": [
+  {
+   "banner_id": 5,
+   "header_text": "No more data synchronization issues",
+   "status": "active",
+   "view_type": "multiple_times",
+   "views_count": 53,
+   "start_date": "2026-09-22",
+   "end_date": "2026-09-24"
+  }
+ ],
+ "banner_views_summary": [
+  {
+   "banner_id": 5,
+   "views": 53,
+   "unique_users": 53
+  }
+ ],
+ "banner_views_daily": [
+  {
+   "banner_id": 5,
+   "d": "2026-09-22",
+   "views": 44,
+   "users": 44
+  },
+  {
+   "banner_id": 5,
+   "d": "2026-09-23",
+   "views": 6,
+   "users": 6
+  },
+  {
+   "banner_id": 5,
+   "d": "2026-09-24",
+   "views": 3,
+   "users": 3
+  }
+ ],
  "events_weekly": [
   {
    "w": "2024-01-01",
@@ -2949,7 +2987,7 @@
   {
    "w": "2026-09-28",
    "kind": "Ручные позиции",
-   "n": 1
+   "n": 2
   }
  ],
  "sync_by_market": [
@@ -3106,7 +3144,7 @@
   },
   {
    "feat": "Ручные позиции",
-   "n": 564,
+   "n": 565,
    "users": 227
   },
   {
@@ -6133,9 +6171,9 @@
   },
   {
    "w": "2026-09-28",
-   "sessions": 8,
-   "users": 8,
-   "pageviews": 19
+   "sessions": 22,
+   "users": 22,
+   "pageviews": 37
   }
  ],
  "ga4_sessions_monthly": [
@@ -6256,8 +6294,8 @@
   },
   {
    "m": "2026-09",
-   "sessions": 11163,
-   "users": 10396
+   "sessions": 11177,
+   "users": 10410
   }
  ],
  "ga4_app_sessions_weekly": [
@@ -7037,9 +7075,9 @@
   },
   {
    "w": "2026-09-28",
-   "sessions": 4,
-   "users": 4,
-   "pageviews": 45
+   "sessions": 15,
+   "users": 15,
+   "pageviews": 105
   }
  ],
  "ga4_app_sessions_monthly": [
@@ -7190,15 +7228,15 @@
   },
   {
    "m": "2026-09",
-   "sessions": 2287,
-   "users": 1420
+   "sessions": 2298,
+   "users": 1431
   }
  ],
  "ga4_channels": [
   {
    "sessionDefaultChannelGroup": "Direct",
    "sessions": 54304,
-   "totalUsers": 28821,
+   "totalUsers": 28827,
    "engagementRate": 41.2
   },
   {
@@ -7221,7 +7259,7 @@
   },
   {
    "sessionDefaultChannelGroup": "Organic Social",
-   "sessions": 3355,
+   "sessions": 3357,
    "totalUsers": 2436,
    "engagementRate": 53.5
   },
@@ -7233,8 +7271,8 @@
   },
   {
    "sessionDefaultChannelGroup": "Organic Video",
-   "sessions": 2339,
-   "totalUsers": 1358,
+   "sessions": 2341,
+   "totalUsers": 1360,
    "engagementRate": 53.9
   },
   {
@@ -7265,12 +7303,12 @@
  "ga4_top_pages": [
   {
    "pagePath": "/",
-   "screenPageViews": 107985,
-   "totalUsers": 68187
+   "screenPageViews": 107995,
+   "totalUsers": 68193
   },
   {
    "pagePath": "/login/",
-   "screenPageViews": 43276,
+   "screenPageViews": 43282,
    "totalUsers": 18241
   },
   {
@@ -42674,22 +42712,30 @@
    "last_seen": "2026-09-24"
   }
  ],
+ "posthog_banner_daily": [
+  {
+   "banner_id": 5,
+   "d": "2026-09-24",
+   "clicks": 1,
+   "dismissals": 2
+  }
+ ],
  "clarity": {
   "num_days": 3,
-  "sessions": 100,
+  "sessions": 111,
   "bot_sessions": 1,
-  "distinct_users": 96,
-  "pages_per_session": 1.74,
-  "total_time_min": 85,
-  "active_time_min": 27,
-  "avg_scroll_depth": 98.8,
+  "distinct_users": 108,
+  "pages_per_session": 1.51,
+  "total_time_min": 74,
+  "active_time_min": 21,
+  "avg_scroll_depth": 98.7,
   "dead_clicks": {
-   "sessions_pct": 4,
-   "count": 26,
-   "pages": 4
+   "sessions_pct": 5.41,
+   "count": 30,
+   "pages": 6
   },
   "rage_clicks": {
-   "sessions_pct": 1,
+   "sessions_pct": 0.9,
    "count": 5,
    "pages": 1
   },
@@ -42704,9 +42750,9 @@
    "pages": 0
   },
   "script_errors": {
-   "sessions_pct": 1,
-   "count": 5,
-   "pages": 1
+   "sessions_pct": 0,
+   "count": 0,
+   "pages": 0
   },
   "error_clicks": {
    "sessions_pct": 0,
@@ -42716,38 +42762,38 @@
   "top_pages": [
    {
     "url": "https://futures.scope360.io/journal",
-    "visits": 30
+    "visits": 29
    },
    {
     "url": "https://futures.scope360.io/onboarding/billing",
-    "visits": 19
-   },
-   {
-    "url": "https://futures.scope360.io/dashboard",
-    "visits": 17
+    "visits": 18
    },
    {
     "url": "https://futures.scope360.io/settings/plans",
-    "visits": 15
+    "visits": 17
+   },
+   {
+    "url": "https://futures.scope360.io/dashboard",
+    "visits": 16
    },
    {
     "url": "https://futures.scope360.io/settings/profile",
-    "visits": 10
+    "visits": 11
    },
    {
     "url": "https://futures.scope360.io/settings/journal",
-    "visits": 8
+    "visits": 9
    },
    {
     "url": "https://futures.scope360.io/settings/connection-manager",
-    "visits": 7
+    "visits": 8
    },
    {
     "url": "https://futures.scope360.io/daily-stats",
     "visits": 7
    },
    {
-    "url": "https://futures.scope360.io/notes",
+    "url": "https://futures.scope360.io/settings/platform",
     "visits": 6
    },
    {
@@ -42758,7 +42804,7 @@
   "by_device": [
    {
     "name": "PC",
-    "sessions": 87
+    "sessions": 98
    },
    {
     "name": "Mobile",
@@ -42797,16 +42843,16 @@
   },
   {
    "date": "2026-09-28",
-   "sessions": 100,
-   "distinct_users": 96,
-   "avg_scroll_depth": 98.8,
-   "active_time_min": 27,
-   "dead_clicks": 26,
-   "dead_clicks_pct": 4,
+   "sessions": 111,
+   "distinct_users": 108,
+   "avg_scroll_depth": 98.7,
+   "active_time_min": 21,
+   "dead_clicks": 30,
+   "dead_clicks_pct": 5.41,
    "rage_clicks": 5,
-   "rage_clicks_pct": 1,
+   "rage_clicks_pct": 0.9,
    "quick_backs": 0,
-   "script_errors": 5,
+   "script_errors": 0,
    "error_clicks": 0
   }
  ],
@@ -42834,11 +42880,33 @@
    "quick_backs": 0
   },
   {
+   "url": "https://futures.scope360.io/settings/connection-manager",
+   "path": "settings/connection-manager",
+   "sessions": 7,
+   "dead_clicks": 3,
+   "dead_clicks_pct": 14.29,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "error_clicks": 0,
+   "quick_backs": 0
+  },
+  {
    "url": "https://futures.scope360.io/notes/create",
    "path": "notes/create",
-   "sessions": 1,
+   "sessions": 2,
    "dead_clicks": 1,
-   "dead_clicks_pct": 100,
+   "dead_clicks_pct": 50,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "error_clicks": 0,
+   "quick_backs": 0
+  },
+  {
+   "url": "https://futures.scope360.io/settings/journal",
+   "path": "settings/journal",
+   "sessions": 8,
+   "dead_clicks": 1,
+   "dead_clicks_pct": 12.5,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,

@@ -401,9 +401,38 @@ export default function App() {
   const tv = D.time_to_value[0]
   const cl = D.clarity ?? null
   const clHist: Row[] = D.clarity_history ?? []
-  const banners: Row[] = D.posthog_banners ?? []
+  // Баннеры: справочник и показы — из Metabase (dim_banners, fact_banner_views),
+  // клики/закрытия — из PostHog; склеиваем по banner_id.
+  const banners: Row[] = useMemo(() => {
+    const ph = new Map<string, Row>((D.posthog_banners ?? []).map((b: Row) => [String(b.banner_id), b]))
+    const vs = new Map<string, Row>((D.banner_views_summary ?? []).map((b: Row) => [String(b.banner_id), b]))
+    const metas: Row[] = D.banners_meta ?? []
+    const ids = new Set<string>([...metas.map(m => String(m.banner_id)), ...ph.keys()])
+    return [...ids].map(id => {
+      const m = metas.find(x => String(x.banner_id) === id) ?? {}
+      const p = ph.get(id) ?? {}
+      const v = vs.get(id) ?? {}
+      const views = v.views ?? m.views_count ?? 0
+      const clicks = p.clicks ?? 0, dismissals = p.dismissals ?? 0
+      return {
+        banner_id: id, header: m.header_text ?? p.header ?? '(без заголовка)', status: m.status ?? '—',
+        view_type: m.view_type, views, unique_users: v.unique_users ?? 0, clicks, dismissals,
+        ctr: views ? clicks / views * 100 : null, dismiss_rate: views ? dismissals / views * 100 : null,
+        link: p.link, start: m.start_date, end: m.end_date,
+      }
+    }).sort((a, b) => b.views - a.views)
+  }, [D])
+  const bnViews = banners.reduce((a, b) => a + b.views, 0)
+  const bnUsers = banners.reduce((a, b) => a + b.unique_users, 0)
   const bnClicks = banners.reduce((a, b) => a + b.clicks, 0)
   const bnDismiss = banners.reduce((a, b) => a + b.dismissals, 0)
+  const bnDaily = useMemo(() => {
+    const map = new Map<string, Row>()
+    const get = (d: string) => { const o = map.get(d) ?? { d, label: d.slice(8) + '.' + d.slice(5, 7), views: 0, clicks: 0, dismissals: 0 }; map.set(d, o); return o }
+    for (const r of (D.banner_views_daily ?? [])) get(r.d).views += r.views
+    for (const r of (D.posthog_banner_daily ?? [])) { const o = get(r.d); o.clicks += r.clicks; o.dismissals += r.dismissals }
+    return [...map.values()].sort((a, b) => (a.d < b.d ? -1 : 1))
+  }, [D])
   const revTotal = D.sales_daily.reduce((a: number, r: Row) => a + r.revenue, 0)
   const salesTotal = D.sales_daily.reduce((a: number, r: Row) => a + r.sales, 0)
   const curMrr = D.mrr_monthly[D.mrr_monthly.length - 1]
@@ -1427,42 +1456,73 @@ export default function App() {
         </>)}
 
         {tab === 'banners' && (<>
-        <Section title="Банери" right={<SourceTag source="PostHog" />}>
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            <Tile label="Баннеров с событиями" value={fmtN(banners.length)} sub="за всё время сбора" />
-            <Tile label="Кликов" value={fmtN(bnClicks)} sub="banner_clicked" />
-            <Tile label="Закрытий" value={fmtN(bnDismiss)} sub="banner_dismissed" />
-            <Tile label="Закрыли / кликнули" value={bnClicks ? comma((bnDismiss / bnClicks).toFixed(1)) + '×' : '—'}
-              sub="чем больше, тем хуже баннер «заходит»" />
+        <Section title="Банери" right={<><SourceTag source="Metabase" /> <SourceTag source="PostHog" /></>}>
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
+            <Tile label="Показы" value={fmtN(bnViews)} sub="все показы (fact_banner_views)" />
+            <Tile label="Уникальных юзеров" value={fmtN(bnUsers)} sub="видели баннер" />
+            <Tile label="Клики" value={fmtN(bnClicks)} sub="по кнопке баннера" />
+            <Tile label="CTR" value={bnViews ? comma((bnClicks / bnViews * 100).toFixed(1)) + '%' : '—'} sub="клики ÷ показы" />
+            <Tile label="Закрыли" value={bnViews ? comma((bnDismiss / bnViews * 100).toFixed(1)) + '%' : '—'} sub={`${fmtN(bnDismiss)} закрытий ÷ показы`} />
           </div>
-          <div className="mt-3">
-            <Card title="Клики и закрытия по баннерам"
-              note="События «баннер показан» пока не отправляются — поэтому конверсию (клики ÷ показы) посчитать нельзя, есть только клики и закрытия. Данные не зависят от фильтра периода.">
+          <div className="mt-3 grid grid-cols-1 gap-3">
+            <Card title="Баннеры: показы, клики, закрытия"
+              note="Показы — Metabase (dim_banners / fact_banner_views), клики и закрытия — PostHog (banner_clicked / banner_dismissed). Не зависит от фильтра периода."
+              right={<span className="text-[11px] text-muted-foreground">CTR = клики ÷ показы</span>}>
               {banners.length ? (
                 <div className="overflow-x-auto">
                   <table className="w-full text-[12.5px]">
                     <thead>
                       <tr className="text-left text-muted-foreground">
                         <th className="pb-2 pr-3 font-medium">Баннер</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Показы</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Уник.</th>
                         <th className="pb-2 pr-3 text-right font-medium">Клики</th>
+                        <th className="pb-2 pr-3 text-right font-medium">CTR</th>
                         <th className="pb-2 pr-3 text-right font-medium">Закрыли</th>
-                        <th className="pb-2 pr-3 font-medium">Куда ведёт</th>
+                        <th className="pb-2 pr-3 font-medium">Тип показа</th>
                         <th className="pb-2 font-medium">Период</th>
                       </tr>
                     </thead>
                     <tbody>
                       {banners.map((b: Row) => (
                         <tr key={b.banner_id} className="border-t border-border">
-                          <td className="py-2 pr-3"><b>{b.header}</b> <span className="text-muted-foreground">#{b.banner_id}</span></td>
+                          <td className="py-2 pr-3">
+                            <b>{b.header}</b> <span className="text-muted-foreground">#{b.banner_id}</span>
+                            <span className={'ml-1.5 rounded-full px-1.5 py-0.5 text-[10px] font-semibold ' + (b.status === 'active' ? 'bg-emerald-500/10 text-emerald-500' : 'bg-muted text-muted-foreground')}>{b.status}</span>
+                            {b.link && <div className="text-[11px] text-muted-foreground">→ {String(b.link).replace(/^https?:\/\/[^/]+/, '')}</div>}
+                          </td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(b.views)}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(b.unique_users)}</td>
                           <td className="py-2 pr-3 text-right tabular-nums">{fmtN(b.clicks)}</td>
-                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(b.dismissals)}</td>
-                          <td className="py-2 pr-3 text-muted-foreground">{(b.link ?? '').replace(/^https?:\/\/[^/]+/, '') || '—'}</td>
-                          <td className="py-2 text-muted-foreground">{b.first_seen === b.last_seen ? b.first_seen : b.first_seen + ' — ' + b.last_seen}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums"><b>{b.ctr != null ? comma(b.ctr.toFixed(1)) + '%' : '—'}</b></td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(b.dismissals)}{b.dismiss_rate != null && <span className="text-muted-foreground"> · {comma(b.dismiss_rate.toFixed(1))}%</span>}</td>
+                          <td className="py-2 pr-3 text-muted-foreground">{b.view_type === 'one_time' ? 'один раз' : b.view_type === 'multiple_times' ? 'многократно' : '—'}</td>
+                          <td className="py-2 text-muted-foreground">{b.start && b.end ? b.start + ' — ' + b.end : '—'}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
+              ) : <EmptyNote />}
+            </Card>
+            <Card title="По дням" note="Показы приходят из Metabase, клики и закрытия — из PostHog.">
+              {bnDaily.length ? (
+                <>
+                  <BarChart data={bnDaily} xDataKey="label" aspectRatio="16 / 6" margin={{ top: 16, right: 52, bottom: 36, left: 12 }}>
+                    <Grid horizontal />
+                    <YAxis orientation="right" numTicks={4} formatValue={v => fmtN(v)} />
+                    <Bar dataKey="views" fill={C[0]} lineCap={2} />
+                    <Bar dataKey="clicks" fill={GOOD} lineCap={2} />
+                    <Bar dataKey="dismissals" fill={WARN} lineCap={2} />
+                    <BarXAxis showAllLabels />
+                    <ChartTooltip showDatePill={false} rows={(p: Row) => [
+                      { color: C[0], label: 'показы', value: fmtN(p.views) },
+                      { color: GOOD, label: 'клики', value: fmtN(p.clicks) },
+                      { color: WARN, label: 'закрытия', value: fmtN(p.dismissals) },
+                    ]} />
+                  </BarChart>
+                  <Legend items={[{ label: 'показы', color: C[0] }, { label: 'клики', color: GOOD }, { label: 'закрытия', color: WARN }]} />
+                </>
               ) : <EmptyNote />}
             </Card>
           </div>

@@ -29,16 +29,16 @@
  },
  {
   "date": "2026-09-28",
-  "sessions": 100,
-  "distinct_users": 96,
-  "avg_scroll_depth": 98.8,
-  "active_time_min": 27,
-  "dead_clicks": 26,
-  "dead_clicks_pct": 4,
+  "sessions": 111,
+  "distinct_users": 108,
+  "avg_scroll_depth": 98.7,
+  "active_time_min": 21,
+  "dead_clicks": 30,
+  "dead_clicks_pct": 5.41,
   "rage_clicks": 5,
-  "rage_clicks_pct": 1,
+  "rage_clicks_pct": 0.9,
   "quick_backs": 0,
-  "script_errors": 5,
+  "script_errors": 0,
   "error_clicks": 0
  }
 ]
