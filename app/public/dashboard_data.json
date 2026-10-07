@@ -3291,7 +3291,7 @@
   {
    "w": "2026-10-05",
    "kind": "Синк журнала",
-   "n": 52
+   "n": 53
   },
   {
    "w": "2026-10-05",
@@ -3307,7 +3307,7 @@
  "sync_by_market": [
   {
    "market": "fx",
-   "syncs": 1409,
+   "syncs": 1410,
    "users": 251
   },
   {
@@ -3453,7 +3453,7 @@
   },
   {
    "feat": "Синк журнала",
-   "n": 2017,
+   "n": 2018,
    "users": 310
   },
   {
@@ -6608,9 +6608,9 @@
   },
   {
    "w": "2026-10-05",
-   "sessions": 219,
-   "users": 185,
-   "pageviews": 375
+   "sessions": 228,
+   "users": 192,
+   "pageviews": 398
   }
  ],
  "ga4_sessions_monthly": [
@@ -6736,8 +6736,8 @@
   },
   {
    "m": "2026-10",
-   "sessions": 585,
-   "users": 496
+   "sessions": 594,
+   "users": 503
   }
  ],
  "ga4_app_sessions_weekly": [
@@ -7523,9 +7523,9 @@
   },
   {
    "w": "2026-10-05",
-   "sessions": 233,
-   "users": 140,
-   "pageviews": 1414
+   "sessions": 242,
+   "users": 145,
+   "pageviews": 1493
   }
  ],
  "ga4_app_sessions_monthly": [
@@ -7681,15 +7681,15 @@
   },
   {
    "m": "2026-10",
-   "sessions": 510,
-   "users": 311
+   "sessions": 519,
+   "users": 316
   }
  ],
  "ga4_channels": [
   {
    "sessionDefaultChannelGroup": "Direct",
    "sessions": 54952,
-   "totalUsers": 29073,
+   "totalUsers": 29077,
    "engagementRate": 41.0
   },
   {
@@ -7701,8 +7701,8 @@
   {
    "sessionDefaultChannelGroup": "Organic Search",
    "sessions": 19272,
-   "totalUsers": 7007,
-   "engagementRate": 54.3
+   "totalUsers": 7010,
+   "engagementRate": 54.4
   },
   {
    "sessionDefaultChannelGroup": "Paid Social",
@@ -7719,7 +7719,7 @@
   {
    "sessionDefaultChannelGroup": "Unassigned",
    "sessions": 3096,
-   "totalUsers": 2452,
+   "totalUsers": 2453,
    "engagementRate": 38.9
   },
   {
@@ -7762,13 +7762,13 @@
  "ga4_top_pages": [
   {
    "pagePath": "/",
-   "screenPageViews": 108590,
-   "totalUsers": 68444
+   "screenPageViews": 108596,
+   "totalUsers": 68446
   },
   {
    "pagePath": "/login/",
-   "screenPageViews": 43908,
-   "totalUsers": 18388
+   "screenPageViews": 43919,
+   "totalUsers": 18394
   },
   {
    "pagePath": "/login",
@@ -7787,8 +7787,8 @@
   },
   {
    "pagePath": "/tools/position-size-calculator/",
-   "screenPageViews": 3294,
-   "totalUsers": 1847
+   "screenPageViews": 3296,
+   "totalUsers": 1848
   },
   {
    "pagePath": "/settings/profile",
@@ -7802,8 +7802,8 @@
   },
   {
    "pagePath": "/ai-assistant/",
-   "screenPageViews": 1929,
-   "totalUsers": 530
+   "screenPageViews": 1931,
+   "totalUsers": 531
   },
   {
    "pagePath": "/share-chart/crypto/ZC9hhcQ9n64TJ0s/",
@@ -43057,15 +43057,15 @@
  ],
  "clarity": {
   "num_days": 3,
-  "sessions": 207,
-  "bot_sessions": 6,
-  "distinct_users": 195,
-  "pages_per_session": 2.71,
-  "total_time_min": 171,
+  "sessions": 206,
+  "bot_sessions": 5,
+  "distinct_users": 194,
+  "pages_per_session": 2.72,
+  "total_time_min": 172,
   "active_time_min": 67,
   "avg_scroll_depth": 98.5,
   "dead_clicks": {
-   "sessions_pct": 9.18,
+   "sessions_pct": 9.22,
    "count": 70,
    "pages": 35
   },
@@ -43085,12 +43085,12 @@
    "pages": 0
   },
   "script_errors": {
-   "sessions_pct": 0.48,
+   "sessions_pct": 0.49,
    "count": 5,
    "pages": 1
   },
   "error_clicks": {
-   "sessions_pct": 0.48,
+   "sessions_pct": 0.49,
    "count": 1,
    "pages": 1
   },
@@ -43121,7 +43121,7 @@
    },
    {
     "url": "https://futures.scope360.io/onboarding/billing",
-    "visits": 17
+    "visits": 16
    },
    {
     "url": "https://futures.scope360.io/settings/journal",
@@ -43139,7 +43139,7 @@
   "by_device": [
    {
     "name": "PC",
-    "sessions": 196
+    "sessions": 195
    },
    {
     "name": "Mobile",
@@ -43210,12 +43210,12 @@
   },
   {
    "date": "2026-10-07",
-   "sessions": 207,
-   "distinct_users": 195,
+   "sessions": 206,
+   "distinct_users": 194,
    "avg_scroll_depth": 98.5,
    "active_time_min": 67,
    "dead_clicks": 70,
-   "dead_clicks_pct": 9.18,
+   "dead_clicks_pct": 9.22,
    "rage_clicks": 5,
    "rage_clicks_pct": 0.97,
    "quick_backs": 0,
@@ -43291,22 +43291,22 @@
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/settings/billing",
-   "path": "settings/billing",
-   "sessions": 27,
+   "url": "https://futures.scope360.io/settings/notifications",
+   "path": "settings/notifications",
+   "sessions": 8,
    "dead_clicks": 5,
-   "dead_clicks_pct": 14.81,
+   "dead_clicks_pct": 12.5,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/settings/notifications",
-   "path": "settings/notifications",
-   "sessions": 8,
+   "url": "https://futures.scope360.io/settings/billing",
+   "path": "settings/billing",
+   "sessions": 27,
    "dead_clicks": 5,
-   "dead_clicks_pct": 12.5,
+   "dead_clicks_pct": 14.81,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
@@ -43324,17 +43324,6 @@
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/billing/result/active?to=free",
-   "path": "billing/result/active?to=free",
-   "sessions": 5,
-   "dead_clicks": 1,
-   "dead_clicks_pct": 20,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
    "url": "https://futures.scope360.io/journal",
    "path": "journal",
    "sessions": 38,
@@ -43346,8 +43335,8 @@
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/settings/connection-manager?accountId=4438&accountMarket=fx",
-   "path": "settings/connection-manager?accountId=4438&accountMarket=fx",
+   "url": "https://futures.scope360.io/settings/connection-manager?accountId=11375&accountMarket=crypto",
+   "path": "settings/connection-manager?accountId=11375&accountMarket=crypto",
    "sessions": 1,
    "dead_clicks": 1,
    "dead_clicks_pct": 100,
@@ -43355,6 +43344,274 @@
    "rage_clicks_pct": 0,
    "error_clicks": 0,
    "quick_backs": 0
+  },
+  {
+   "url": "https://futures.scope360.io/onboarding/billing?redirect=/journal",
+   "path": "onboarding/billing?redirect=/journal",
+   "sessions": 9,
+   "dead_clicks": 1,
+   "dead_clicks_pct": 11.11,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "error_clicks": 0,
+   "quick_backs": 0
+  }
+ ],
+ "ab_source": "stage",
+ "ab_assignments": [
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
+   "country": "UA",
+   "users": 4
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
+   "country": "PT",
+   "users": 2
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "asia",
+   "country": "FR",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "asia",
+   "country": "PK",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
+   "country": "FR",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "europe",
+   "country": "UA",
+   "users": 4
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "asia",
+   "country": "SG",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "europe",
+   "country": "NL",
+   "users": 3
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "europe",
+   "country": "PT",
+   "users": 2
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "europe",
+   "country": "FR",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "asia",
+   "country": "SG",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "asia",
+   "country": "FR",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "asia",
+   "country": "PK",
+   "users": 1
+  }
+ ],
+ "ab_assignments_daily": [
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "d": "2026-10-06",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "d": "2026-10-06",
+   "users": 3
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "d": "2026-10-06",
+   "users": 5
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "d": "2026-10-07",
+   "users": 8
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "d": "2026-10-07",
+   "users": 2
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "d": "2026-10-07",
+   "users": 4
+  }
+ ],
+ "ab_checkouts": [
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "checkouts": 5,
+   "users": 5,
+   "trial_checkouts": 3
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "checkouts": 3,
+   "users": 3,
+   "trial_checkouts": 3
+  }
+ ],
+ "ab_sales": [
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "status": "success",
+   "invoices": 2,
+   "users": 2,
+   "revenue": 50.0,
+   "net_revenue": 50.0
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "status": "success",
+   "invoices": 1,
+   "users": 1,
+   "revenue": 1.0,
+   "net_revenue": 1.0
+  }
+ ],
+ "ab_sales_by_tier": [
+  {
+   "pricing_type": "ppp",
+   "tier": "tier_2",
+   "status": "success",
+   "invoices": 3,
+   "revenue": 65.0
+  },
+  {
+   "pricing_type": "standard",
+   "tier": "tier_1",
+   "status": "failed",
+   "invoices": 2,
+   "revenue": 0.0
+  },
+  {
+   "pricing_type": "standard",
+   "tier": "tier_1",
+   "status": "success",
+   "invoices": 90,
+   "revenue": 2198.03
+  }
+ ],
+ "trial_by_length": [
+  {
+   "trial_days": 30,
+   "checkouts": 40,
+   "users": 37,
+   "activated": 13,
+   "matured": 2,
+   "paid": 0,
+   "first": "2026-09-03",
+   "last": "2026-10-02"
+  },
+  {
+   "trial_days": 7,
+   "checkouts": 7,
+   "users": 6,
+   "activated": 3,
+   "matured": 0,
+   "paid": 0,
+   "first": "2026-10-02",
+   "last": "2026-10-07"
+  }
+ ],
+ "trial_weekly": [
+  {
+   "w": "2026-08-31",
+   "trial_days": 30,
+   "checkouts": 7,
+   "activated": 2
+  },
+  {
+   "w": "2026-09-07",
+   "trial_days": 30,
+   "checkouts": 13,
+   "activated": 4
+  },
+  {
+   "w": "2026-09-14",
+   "trial_days": 30,
+   "checkouts": 2,
+   "activated": 1
+  },
+  {
+   "w": "2026-09-21",
+   "trial_days": 30,
+   "checkouts": 12,
+   "activated": 1
+  },
+  {
+   "w": "2026-09-28",
+   "trial_days": 30,
+   "checkouts": 6,
+   "activated": 5
+  },
+  {
+   "w": "2026-09-28",
+   "trial_days": 7,
+   "checkouts": 2,
+   "activated": 1
+  },
+  {
+   "w": "2026-10-05",
+   "trial_days": 7,
+   "checkouts": 5,
+   "activated": 2
   }
  ]
 }

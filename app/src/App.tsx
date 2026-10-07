@@ -79,7 +79,55 @@ const TABS = [
   { id: 'conclusions', label: 'Выводы' },
   { id: 'subscriptions', label: 'Подписки' },
   { id: 'banners', label: 'Банери' },
+  { id: 'ab', label: 'А/В тестування' },
 ] as const
+
+
+// ---------- А/В тестирование: статус по ТЗ (ClickUp #86cbd53ta) ----------
+// Статусы — снимок QA-проверки на stage от 07.10.2026; обновляются вручную.
+const AB_STATUS_DATE = '07.10.2026'
+type AbState = 'ok' | 'warn' | 'todo'
+const AB_ITEMS: Array<{ key: string; title: string; what: string; state: AbState; status: string }> = [
+  { key: 'trial_duration_v1', title: 'Trial 7 дней вместо 30', state: 'warn',
+    what: 'Часть юзеров получает 7-дневный trial, часть — 30-дневный.',
+    status: 'Эксперимента нет: 7 дней уже зашито как дефолт для всех, 30-дневной контрольной группы не существует. Это «до/после», а не А/В.' },
+  { key: 'trial_price_geo_v1', title: 'Trial за $1 (не Украина)', state: 'ok',
+    what: 'Не-украинские IP платят $1 за активацию trial; Украина получает бесплатный.',
+    status: 'Механизм работает на stage: UA исключена, остальные видят «Try Base $1.00, 7 days free».' },
+  { key: 'ppp_pricing_geo_v1', title: 'Гео-цены (PPP)', state: 'warn',
+    what: 'Tier 1 — текущая цена, Tier 2 (Польша/СНГ/LatAm) −25%, Tier 3 (Азия/Африка) −45%.',
+    status: 'Месячные цены совпадают с ТЗ; годовые — нет (urgent-дефект). Трекинг гео и мапинг стран работают.' },
+  { key: 'card_precheck', title: 'Предверификация карты ($1 с возвратом)', state: 'todo',
+    what: 'Пробное списание $1 с возвратом при активации бесплатного trial.',
+    status: 'Не сделано: в коде биллинга нет ни SetupIntent, ни payment_method_collection.' },
+  { key: 'annual_default', title: 'Annual по умолчанию на экране тарифов', state: 'todo',
+    what: 'Front + design: годовой тариф выбран по умолчанию.',
+    status: 'Не сделано: на Settings → Plans по умолчанию выбран Monthly.' },
+]
+const AB_DEFECTS: Array<{ p: string; t: string }> = [
+  { p: 'urgent', t: 'Годовые PPP-цены не совпадают с ТЗ: Base tier_3 $830 вместо $83, Base tier_2 $130 вместо $113, Pro tier_3 $255 вместо $250.' },
+  { p: 'high', t: 'CF-IPContinent приоритетнее кода страны — можно получить tier_3 (на stage FR попадает в группу «asia»).' },
+  { p: 'normal', t: 'При выбранном Yearly кнопка Start trial открывает месячный checkout.' },
+  { p: 'low', t: 'Бейдж «Save $90.00» не пересчитывается для PPP-тарифов.' },
+]
+const AB_TIERS = [
+  ['Base / мес', '$20', '$15', '$10'], ['Base / год', '$150', '$113', '$83'],
+  ['Pro / мес', '$45', '$35', '$25'], ['Pro / год', '$450', '$340', '$250'],
+]
+const AB_VARIANT_NAMES: Record<string, string> = { standard: 'standard (контроль)', ppp: 'ppp', paid_1_usd: 'trial за $1' }
+const normCdf = (z: number) => {
+  // аппроксимация erf (Abramowitz–Stegun 7.1.26)
+  const t = 1 / (1 + 0.3275911 * Math.abs(z) / Math.SQRT2)
+  const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-(z * z) / 2)
+  return 0.5 * (1 + (z >= 0 ? y : -y))
+}
+// двусторонний z-тест на разницу долей; null — считать нечего
+const zTestP = (x1: number, n1: number, x2: number, n2: number) => {
+  if (!n1 || !n2) return null
+  const pp = (x1 + x2) / (n1 + n2), se = Math.sqrt(pp * (1 - pp) * (1 / n1 + 1 / n2))
+  if (!se) return null
+  return 2 * (1 - normCdf(Math.abs((x2 / n2 - x1 / n1) / se)))
+}
 
 const inRange = (d: string, [f, t]: Range) => (!f || d >= f) && (!t || d <= t)
 const monthInRange = (m: string, [f, t]: Range) => (!f || m >= f.slice(0, 7)) && (!t || m <= t.slice(0, 7))
@@ -401,6 +449,60 @@ export default function App() {
   const tv = D.time_to_value[0]
   const cl = D.clarity ?? null
   const clHist: Row[] = D.clarity_history ?? []
+  // ---- А/В тестирование ----
+  const abSource: string | null = D.ab_source ?? null
+  const abVariants = useMemo(() => {
+    const assign: Row[] = D.ab_assignments ?? []
+    const checks: Row[] = D.ab_checkouts ?? []
+    const sales: Row[] = D.ab_sales ?? []
+    const map = new Map<string, Row>()
+    const get = (exp: string, v: string) => {
+      const k = exp + '|' + v
+      const o = map.get(k) ?? { exp, variant: v, assigned: 0, checkouts: 0, checkoutUsers: 0, paidUsers: 0, invoices: 0, failed: 0, revenue: 0 }
+      map.set(k, o); return o
+    }
+    for (const r of assign) get(r.experiment_key, r.variant_key).assigned += r.users
+    for (const r of checks) { const o = get(r.experiment_key, r.variant_key); o.checkouts += r.checkouts; o.checkoutUsers += r.users }
+    for (const r of sales) {
+      const o = get(r.experiment_key, r.variant_key)
+      if (r.status === 'success') { o.invoices += r.invoices; o.paidUsers += r.users; o.revenue += r.revenue }
+      else if (r.status === 'failed') o.failed += r.invoices
+    }
+    const byExp = new Map<string, Row[]>()
+    for (const o of map.values()) byExp.set(o.exp, [...(byExp.get(o.exp) ?? []), o])
+    return [...byExp.entries()].map(([exp, vs]) => {
+      vs.sort((a, b) => (a.variant === 'standard' ? -1 : b.variant === 'standard' ? 1 : b.assigned - a.assigned))
+      const ctrl = vs.find(v => v.variant === 'standard')
+      const rows = vs.map(v => {
+        const p = ctrl && v !== ctrl ? zTestP(ctrl.paidUsers, ctrl.assigned, v.paidUsers, v.assigned) : null
+        const small = !ctrl || v === ctrl ? null : Math.min(ctrl.assigned, v.assigned) < 30
+        return { ...v, checkoutRate: v.assigned ? v.checkoutUsers / v.assigned * 100 : null, paidRate: v.assigned ? v.paidUsers / v.assigned * 100 : null,
+          arpu: v.assigned ? v.revenue / v.assigned : null, p, small }
+      })
+      return { exp, rows, hasControl: !!ctrl, total: rows.reduce((a, r) => a + r.assigned, 0) }
+    }).sort((a, b) => b.total - a.total)
+  }, [D])
+  const abUsers = abVariants.reduce((a, e) => Math.max(a, e.total), 0)
+  const abCheckouts = abVariants.reduce((a, e) => a + e.rows.reduce((x, r) => x + r.checkouts, 0), 0)
+  const abInvoices = abVariants.reduce((a, e) => a + e.rows.reduce((x, r) => x + r.invoices, 0), 0)
+  const abGeo = useMemo(() => {
+    const top = abVariants[0]?.exp
+    const map = new Map<string, number>()
+    for (const r of (D.ab_assignments ?? [])) if (r.experiment_key === top) map.set(r.country, (map.get(r.country) ?? 0) + r.users)
+    return [...map.entries()].map(([country, users]) => ({ country, users })).sort((a, b) => b.users - a.users).slice(0, 8)
+  }, [D, abVariants])
+  const trialLen: Row[] = D.trial_by_length ?? []
+  const trial30 = trialLen.find(r => r.trial_days === 30), trial7 = trialLen.find(r => r.trial_days === 7)
+  const trialWeekly = useMemo(() => {
+    const map = new Map<string, Row>()
+    for (const r of (D.trial_weekly ?? [])) {
+      const o = map.get(r.w) ?? { w: r.w, label: r.w.slice(8) + '.' + r.w.slice(5, 7), d30: 0, d7: 0 }
+      if (r.trial_days === 7) o.d7 += r.checkouts; else if (r.trial_days === 30) o.d30 += r.checkouts
+      map.set(r.w, o)
+    }
+    return [...map.values()].sort((a, b) => (a.w < b.w ? -1 : 1))
+  }, [D])
+  const abTierRows: Row[] = D.ab_sales_by_tier ?? []
   // Баннеры: справочник и показы — из Metabase (dim_banners, fact_banner_views),
   // клики/закрытия — из PostHog; склеиваем по banner_id.
   const banners: Row[] = useMemo(() => {
@@ -824,7 +926,7 @@ export default function App() {
           </a>
         </div>
 
-        {tab !== 'ads' && tab !== 'banners' && (
+        {tab !== 'ads' && tab !== 'banners' && tab !== 'ab' && (
           <FilterBar preset={preset} setPreset={setPreset} from={from} setFrom={setFrom} to={to} setTo={setTo}
             right={tab === 'subscriptions' ? <DataSinceTag date="04.09.2026" /> : undefined} />
         )}
@@ -1649,6 +1751,205 @@ export default function App() {
                   <Legend items={[{ label: 'показы', color: C[0] }, { label: 'клики', color: GOOD }, { label: 'закрытия', color: WARN }]} />
                 </>
               ) : <EmptyNote />}
+            </Card>
+          </div>
+        </Section>
+        </>)}
+
+        {tab === 'ab' && (<>
+        <Section title="А/В тестування" right={<><SourceTag source="Metabase" /> <SourceTag source="PostHog" /></>}>
+          {abSource !== 'prod' && (
+            <div className="mb-3 rounded-xl border border-amber-500/60 bg-amber-500/10 px-4 py-3 text-[12.5px] text-amber-500">
+              {abSource === 'stage'
+                ? <>Таблиц экспериментов на проде пока нет — ниже данные <b>STAGE</b> (тестовые аккаунты QA, не живые юзеры). Вкладка переключится на прод автоматически, как только таблицы выкатят.</>
+                : <>Таблиц экспериментов нет ни на проде, ни на stage — показан только статус по ТЗ и анализ длины trial.</>}
+            </div>
+          )}
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+            <Tile label="Экспериментов" value={fmtN(abVariants.length)} sub={abSource ? 'источник: ' + abSource : 'нет данных'} />
+            <Tile label="Юзеров в тесте" value={fmtN(abUsers)} sub="получили variant при регистрации" />
+            <Tile label="Checkout" value={fmtN(abCheckouts)} sub="с атрибуцией эксперимента" />
+            <Tile label="Оплат из экспериментов" value={fmtN(abInvoices)} sub="успешные инвойсы" />
+          </div>
+
+          <div className="mt-3 grid grid-cols-1 gap-3">
+            <Card title="Что тестируем и где мы"
+              note="Статусы — из QA-проверки на stage; обновляются вручную по задаче в ClickUp «A/B Testing» (#86cbd53ta)."
+              right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">статус на {AB_STATUS_DATE}</span>}>
+              <div className="space-y-2.5">
+                {AB_ITEMS.map(it => (
+                  <div key={it.key} className="rounded-lg border border-border bg-background/40 p-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <b className="text-[13px]">{it.title}</b>
+                      <span className={'rounded-full px-2 py-0.5 text-[10px] font-semibold ' + (it.state === 'ok' ? 'bg-emerald-500/10 text-emerald-500' : it.state === 'warn' ? 'bg-amber-500/10 text-amber-500' : 'bg-muted text-muted-foreground')}>
+                        {it.state === 'ok' ? 'работает' : it.state === 'warn' ? 'частично' : 'не сделано'}
+                      </span>
+                      {it.key.endsWith('_v1') && <code className="text-[11px] text-muted-foreground">{it.key}</code>}
+                    </div>
+                    <div className="mt-1 text-[12.5px] text-muted-foreground">{it.what}</div>
+                    <div className="mt-1 text-[12.5px]">{it.status}</div>
+                  </div>
+                ))}
+              </div>
+            </Card>
+
+            {abVariants.length ? abVariants.map(e => (
+              <Card key={e.exp} title={e.exp}
+                note={e.hasControl ? 'Сравнение с контролем (standard) — по доле оплативших от числа назначенных.'
+                  : 'Контрольного варианта нет — сравнивать не с чем, показаны только цифры варианта.'}>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-[12.5px]">
+                    <thead>
+                      <tr className="text-left text-muted-foreground">
+                        <th className="pb-2 pr-3 font-medium">Вариант</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Назначено</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Checkout</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Оплатили</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Выручка</th>
+                        <th className="pb-2 pr-3 text-right font-medium">$ на назначенного</th>
+                        <th className="pb-2 font-medium">Против контроля</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {e.rows.map(r => (
+                        <tr key={r.variant} className="border-t border-border">
+                          <td className="py-2 pr-3"><b>{AB_VARIANT_NAMES[r.variant] ?? r.variant}</b></td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.assigned)}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.checkoutUsers)}<span className="text-muted-foreground"> · {r.checkoutRate != null ? comma(r.checkoutRate.toFixed(0)) + '%' : '—'}</span></td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.paidUsers)}<span className="text-muted-foreground"> · {r.paidRate != null ? comma(r.paidRate.toFixed(0)) + '%' : '—'}</span></td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtM(r.revenue)}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{r.arpu != null ? '$' + comma(r.arpu.toFixed(2)) : '—'}</td>
+                          <td className="py-2 text-muted-foreground">
+                            {r.small === null ? '—' : r.small ? 'мало данных (n<30)' : r.p == null ? '—' : r.p < 0.05 ? 'значимо, p=' + comma(r.p.toFixed(3)) : 'не значимо, p=' + comma(r.p.toFixed(2))}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </Card>
+            )) : null}
+
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+              <Card title="Гео назначений" note="Страна регистрации (signup_country_code) по самому крупному эксперименту.">
+                {abGeo.length ? (
+                  <BarChart data={abGeo} xDataKey="country" orientation="horizontal" aspectRatio="16 / 9" margin={{ top: 8, right: 24, bottom: 8, left: 44 }}>
+                    <Bar dataKey="users" fill={C[2]} lineCap={3} />
+                    <BarYAxis />
+                    <ChartTooltip showDatePill={false} rows={(p: Row) => [{ color: C[2], label: 'юзеров', value: fmtN(p.users) }]} />
+                  </BarChart>
+                ) : <EmptyNote />}
+              </Card>
+              <Card title="Тиры цен (по ТЗ)" note={abTierRows.length ? 'Фактические оплаты по тирам — ниже таблицы.' : undefined}>
+                <table className="w-full text-[12.5px]">
+                  <thead>
+                    <tr className="text-right text-muted-foreground">
+                      <th className="pb-2 pr-3 text-left font-medium">План</th>
+                      <th className="pb-2 pr-3 font-medium">Tier 1 (US/EU/UK)</th>
+                      <th className="pb-2 pr-3 font-medium">Tier 2 (PL/СНГ/LatAm)</th>
+                      <th className="pb-2 font-medium">Tier 3 (Азия/Африка)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {AB_TIERS.map(r => (
+                      <tr key={r[0]} className="border-t border-border text-right tabular-nums">
+                        <td className="py-1.5 pr-3 text-left">{r[0]}</td><td className="py-1.5 pr-3">{r[1]}</td><td className="py-1.5 pr-3">{r[2]}</td><td className="py-1.5">{r[3]}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {abTierRows.filter(r => r.status === 'success').length > 0 && (
+                  <div className="mt-3 space-y-1 text-[12px] text-muted-foreground">
+                    {abTierRows.filter(r => r.status === 'success').map((r, i) => (
+                      <div key={i} className="flex justify-between"><span>{r.pricing_type} · {r.tier}</span><span><b className="text-foreground">{fmtN(r.invoices)}</b> оплат · {fmtM(r.revenue)}</span></div>
+                    ))}
+                  </div>
+                )}
+              </Card>
+            </div>
+
+            <Card title="Trial: 30 дней → 7 дней"
+              note="Живые данные прода (PostHog + Metabase). Это сравнение «до/после», а не А/В: 7-дневный trial стал дефолтом для всех, контрольной группы на 30 днях нет."
+              right={<SourceTag source="PostHog" />}>
+              {trialLen.length ? (
+                <>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-[12.5px]">
+                      <thead>
+                        <tr className="text-left text-muted-foreground">
+                          <th className="pb-2 pr-3 font-medium">Длина trial</th>
+                          <th className="pb-2 pr-3 font-medium">Период checkout</th>
+                          <th className="pb-2 pr-3 text-right font-medium">Checkout</th>
+                          <th className="pb-2 pr-3 text-right font-medium">Активировали</th>
+                          <th className="pb-2 pr-3 text-right font-medium">Дозрели</th>
+                          <th className="pb-2 text-right font-medium">Оплатили после trial</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {trialLen.map(r => (
+                          <tr key={r.trial_days} className="border-t border-border">
+                            <td className="py-2 pr-3"><b>{r.trial_days} дней</b></td>
+                            <td className="py-2 pr-3 text-muted-foreground">{r.first === r.last ? r.first : r.first + ' — ' + r.last}</td>
+                            <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.checkouts)}<span className="text-muted-foreground"> · {fmtN(r.users)} юзеров</span></td>
+                            <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.activated)}<span className="text-muted-foreground"> · {r.checkouts ? comma((r.activated / r.checkouts * 100).toFixed(0)) + '%' : '—'}</span></td>
+                            <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.matured)}</td>
+                            <td className="py-2 text-right tabular-nums">{r.matured ? <>{fmtN(r.paid)}<span className="text-muted-foreground"> · {comma((r.paid / r.matured * 100).toFixed(0))}%</span></> : <span className="text-muted-foreground">ещё рано</span>}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div className="mt-2 text-[11.5px] text-muted-foreground">
+                    «Дозрели» — trial закончился ≥2 дней назад; «оплатили» — успешный инвойс ≥$5 по этой подписке. Свежие trial в конверсию не берём, чтобы не занижать долю.
+                  </div>
+                  {trialWeekly.length > 1 && (
+                    <div className="mt-4">
+                      <div className="mb-1 text-[12.5px] font-semibold">Checkout trial по неделям</div>
+                      <BarChart data={trialWeekly} xDataKey="label" aspectRatio="16 / 6" margin={{ top: 12, right: 40, bottom: 32, left: 8 }}>
+                        <Grid horizontal />
+                        <YAxis orientation="right" numTicks={4} formatValue={v => fmtN(v)} />
+                        <Bar dataKey="d30" fill={C[0]} lineCap={2} />
+                        <Bar dataKey="d7" fill={GOOD} lineCap={2} />
+                        <BarXAxis showAllLabels />
+                        <ChartTooltip showDatePill={false} rows={(p: Row) => [
+                          { color: C[0], label: 'trial 30 дней', value: fmtN(p.d30) },
+                          { color: GOOD, label: 'trial 7 дней', value: fmtN(p.d7) },
+                        ]} />
+                      </BarChart>
+                      <Legend items={[{ label: 'trial 30 дней', color: C[0] }, { label: 'trial 7 дней', color: GOOD }]} />
+                    </div>
+                  )}
+                </>
+              ) : <EmptyNote />}
+            </Card>
+
+            <Card title="Найденные дефекты (QA, stage)" note="Из комментария QA в задаче. Влияют на чистоту результатов — особенно первые два."
+              right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">на {AB_STATUS_DATE}</span>}>
+              <div className="space-y-1.5 text-[12.5px]">
+                {AB_DEFECTS.map((d, i) => (
+                  <div key={i} className="flex items-start gap-2">
+                    <span className={'mt-0.5 shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ' + (d.p === 'urgent' ? 'bg-red-500/10 text-red-500' : d.p === 'high' ? 'bg-amber-500/10 text-amber-500' : d.p === 'normal' ? 'bg-sky-500/10 text-sky-500' : 'bg-muted text-muted-foreground')}>{d.p}</span>
+                    <span>{d.t}</span>
+                  </div>
+                ))}
+              </div>
+            </Card>
+
+            <Card title="Выводы">
+              <ul className="grid gap-2.5 text-[13px] text-muted-foreground">
+                {[
+                  <><b className="text-foreground">Эксперименты ещё не в бою.</b> {abSource === 'prod' ? 'Таблицы уже на проде.' : 'Таблицы экспериментов есть только на stage'}{abSource === 'stage' && <> — всего {fmtN(abUsers)} тестовых юзеров QA, это проверка механики, не результат.</>}</>,
+                  <><b className="text-foreground">Реального сплита пока нет.</b> На stage оба эксперимента стоят на 100% трафика с единственным вариантом весом 100 (у standard вес 0), так что сравнивать не с чем.
+                    Для trial за $1 Украина исключена по дизайну — если её оставить «контролем», это будет не рандомизация, а сравнение разного трафика. Нужен контроль внутри не-UA аудитории.</>,
+                  trial7 && <><b className="text-foreground">7-дневный trial действует с {trial7.first.slice(8)}.{trial7.first.slice(5, 7)}.</b> Checkout→активация: {trial30 ? comma((trial30.activated / trial30.checkouts * 100).toFixed(0)) : '—'}% при 30 днях ({trial30 ? fmtN(trial30.checkouts) : '—'} checkout) против {comma((trial7.activated / trial7.checkouts * 100).toFixed(0))}% при 7 днях ({fmtN(trial7.checkouts)} checkout) — выборка 7-дневных слишком мала для вывода.
+                    Оплат после trial пока нет ни там, ни там ({trial30 ? fmtN(trial30.matured) : 0} дозревших 30-дневных, {fmtN(trial7.matured)} 7-дневных); первые 7-дневные закончатся 09.10 — вернуться к цифрам стоит 14–16.10.</>,
+                  <><b className="text-foreground">Прежде чем доверять результатам PPP, нужно починить годовые цены и приоритет CF-IPContinent</b> — иначе часть юзеров увидит неверный тир или цену, и разница между вариантами будет шумом.</>,
+                ].filter(Boolean).map((x, i) => (
+                  <li key={i} className="rounded-xl border border-border bg-background/40 px-4 py-3">
+                    <span className="mr-2 inline-block rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">вывод от 07.10.2026</span>{x}
+                  </li>
+                ))}
+              </ul>
             </Card>
           </div>
         </Section>

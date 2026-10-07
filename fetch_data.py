@@ -1133,6 +1133,159 @@ def fetch_clarity():
     return {"clarity": snap, "clarity_history": history, "clarity_pages": pages}
 
 
+# --- А/В тестирование -------------------------------------------------------
+# Таблицы экспериментов (fact_experiment_assignments, fact_billing_checkout_
+# started, fact_sale_experiments + billing_* колонки в fact_sales) сначала
+# появились только на STAGE (database 2), на проде (database 3) их ещё нет.
+# Пробуем прод; если там таблиц нет — берём stage и помечаем ab_source='stage',
+# чтобы на дашборде было видно, что это тестовые аккаунты QA, а не живые юзеры.
+# Как только таблицы выкатят на прод, источник переключится сам.
+AB_QUERIES = {
+    "ab_assignments": """
+        SELECT experiment_key, variant_key,
+               coalesce(signup_geo_group, '?') AS geo_group,
+               coalesce(signup_country_code, '?') AS country,
+               count(DISTINCT user_id) AS users
+        FROM analytics.fact_experiment_assignments
+        GROUP BY 1, 2, 3, 4 ORDER BY 1, 2, 5 DESC""",
+    "ab_assignments_daily": """
+        SELECT experiment_key, variant_key, assigned_at::date::text AS d,
+               count(DISTINCT user_id) AS users
+        FROM analytics.fact_experiment_assignments
+        GROUP BY 1, 2, 3 ORDER BY 3, 1, 2""",
+    # Один checkout несёт атрибуцию сразу двух экспериментов (цены и trial) —
+    # разворачиваем в строку на (эксперимент, вариант).
+    "ab_checkouts": """
+        SELECT experiment_key, variant_key, count(*) AS checkouts, count(DISTINCT user_id) AS users,
+               count(*) FILTER (WHERE flow = 'trial') AS trial_checkouts
+        FROM (
+            SELECT metadata->>'pricing_experiment_key' AS experiment_key,
+                   metadata->>'pricing_experiment_variant' AS variant_key, user_id, flow
+            FROM analytics.fact_billing_checkout_started
+            UNION ALL
+            SELECT metadata->>'trial_price_experiment_key',
+                   metadata->>'trial_price_experiment_variant', user_id, flow
+            FROM analytics.fact_billing_checkout_started
+        ) c
+        WHERE experiment_key IS NOT NULL
+        GROUP BY 1, 2 ORDER BY 1, 2""",
+    "ab_sales": """
+        SELECT e.experiment_key, e.variant_key, s.status,
+               count(DISTINCT e.invoice_id) AS invoices, count(DISTINCT e.user_id) AS users,
+               round(coalesce(sum(s.amount_paid), 0), 2) AS revenue,
+               round(coalesce(sum(s.net_revenue), 0), 2) AS net_revenue
+        FROM analytics.fact_sale_experiments e
+        JOIN analytics.fact_sales s ON s.invoice_id = e.invoice_id
+        GROUP BY 1, 2, 3 ORDER BY 1, 2, 3""",
+    "ab_sales_by_tier": """
+        SELECT coalesce(billing_pricing_type, '?') AS pricing_type,
+               coalesce(billing_pricing_tier, '?') AS tier, status,
+               count(*) AS invoices, round(coalesce(sum(amount_paid), 0), 2) AS revenue
+        FROM analytics.fact_sales
+        GROUP BY 1, 2, 3 ORDER BY 1, 2, 3""",
+}
+
+
+def _mb_rows(db, sql):
+    d = request("POST", "/api/dataset", {"database": db, "type": "native", "native": {"query": sql}})
+    if d.get("error"):
+        raise RuntimeError(str(d["error"])[:200])
+    cols = [c["name"] for c in d["data"]["cols"]]
+    return [dict(zip(cols, r)) for r in d["data"]["rows"]]
+
+
+def fetch_ab():
+    source = None
+    for db, label in ((3, "prod"), (2, "stage")):
+        try:
+            _mb_rows(db, "SELECT 1 FROM analytics.fact_experiment_assignments LIMIT 1")
+            source = (db, label)
+            break
+        except Exception:
+            continue
+    out = {"ab_source": source[1] if source else None}
+    for k, sql in AB_QUERIES.items():
+        try:
+            out[k] = _mb_rows(source[0], sql) if source else []
+        except Exception as e:
+            print(f"{k}: ERROR {e}")
+            out[k] = []
+    return out
+
+
+def fetch_trial_length():
+    """Trial 30 -> 7 дней: PostHog trial_checkout_started несёт trial_days,
+    trial_started — checkout_session_id, по нему подцепляем длину триала.
+    Конверсию в оплату считаем только по «созревшим» триалам (триал уже
+    закончился минимум 2 дня назад) — иначе свежие 7-дневные занижают долю.
+    Оплата = успешный инвойс по этой подписке на сумму >= $5 (минус $1-активация)."""
+    import posthog
+    from datetime import timezone
+
+    checkouts = posthog.raw_events("trial_checkout_started", limit=500)
+    started = posthog.raw_events("trial_started", limit=500)
+    days_by_cs = {}
+    co_rows = []
+    for e in checkouts:
+        p = e.get("properties") or {}
+        days_by_cs[p.get("checkout_session_id")] = p.get("trial_days")
+        co_rows.append({"d": e["timestamp"][:10], "trial_days": p.get("trial_days"), "user_id": p.get("user_id")})
+
+    sales = _mb_rows(3, "SELECT subscription_id, paid_at::text AS paid_at, amount_paid FROM analytics.fact_sales WHERE status = 'success'")
+    paid_subs = {}
+    for r in sales:
+        if r["subscription_id"] is not None and (r["amount_paid"] or 0) >= 5:
+            paid_subs.setdefault(r["subscription_id"], r["paid_at"])
+
+    now = datetime.now(timezone.utc)
+    st_rows = []
+    for e in started:
+        p = e.get("properties") or {}
+        ended = p.get("trial_ended_at")
+        matured = False
+        if ended:
+            ended_dt = datetime.fromisoformat(ended.replace("Z", "+00:00"))
+            matured = ended_dt + timedelta(days=2) <= now
+        st_rows.append({
+            "d": e["timestamp"][:10], "trial_days": days_by_cs.get(p.get("checkout_session_id")),
+            "matured": matured, "paid": p.get("subscription_id") in paid_subs,
+        })
+
+    by_len = {}
+    for r in co_rows:
+        o = by_len.setdefault(r["trial_days"], {"trial_days": r["trial_days"], "checkouts": 0, "users": set(), "activated": 0,
+                                                 "matured": 0, "paid": 0, "first": r["d"], "last": r["d"]})
+        o["checkouts"] += 1
+        o["users"].add(r["user_id"])
+        o["first"] = min(o["first"], r["d"])
+        o["last"] = max(o["last"], r["d"])
+    for r in st_rows:
+        o = by_len.get(r["trial_days"])
+        if not o:
+            continue
+        o["activated"] += 1
+        if r["matured"]:
+            o["matured"] += 1
+            o["paid"] += 1 if r["paid"] else 0
+    trial_by_length = sorted(
+        [{**o, "users": len(o["users"])} for o in by_len.values() if o["trial_days"] is not None],
+        key=lambda r: -r["trial_days"])
+
+    weekly = {}
+    for r in co_rows:
+        d = datetime.strptime(r["d"], "%Y-%m-%d").date()
+        w = (d - timedelta(days=d.weekday())).isoformat()
+        o = weekly.setdefault((w, r["trial_days"]), {"w": w, "trial_days": r["trial_days"], "checkouts": 0, "activated": 0})
+        o["checkouts"] += 1
+    for r in st_rows:
+        d = datetime.strptime(r["d"], "%Y-%m-%d").date()
+        w = (d - timedelta(days=d.weekday())).isoformat()
+        o = weekly.setdefault((w, r["trial_days"]), {"w": w, "trial_days": r["trial_days"], "checkouts": 0, "activated": 0})
+        o["activated"] += 1
+    trial_weekly = sorted(weekly.values(), key=lambda r: (r["w"], str(r["trial_days"])))
+    return {"trial_by_length": trial_by_length, "trial_weekly": trial_weekly}
+
+
 def main():
     out = {}
     for name, sql in QUERIES.items():
@@ -1203,6 +1356,28 @@ def main():
             out["clarity"] = prev.get("clarity")
             out["clarity_history"] = prev.get("clarity_history", [])
             out["clarity_pages"] = prev.get("clarity_pages", [])
+
+    try:
+        out.update(fetch_ab())
+        print(f"ab: source={out.get('ab_source')}")
+    except Exception as e:
+        print(f"AB: ERROR {e}")
+        if data_path.exists():
+            prev = json.loads(data_path.read_text())
+            for k in ("ab_source", *AB_QUERIES):
+                if k in prev:
+                    out[k] = prev[k]
+
+    try:
+        out.update(fetch_trial_length())
+        print("trial_by_length:", len(out["trial_by_length"]), "rows")
+    except Exception as e:
+        print(f"Trial length: ERROR {e}")
+        if data_path.exists():
+            prev = json.loads(data_path.read_text())
+            for k in ("trial_by_length", "trial_weekly"):
+                if k in prev:
+                    out[k] = prev[k]
 
     data_path.write_text(json.dumps(out, ensure_ascii=False, indent=1))
 
