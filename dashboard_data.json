@@ -16,11 +16,6 @@
    "revenue": 20.0
   },
   {
-   "d": "2025-12-20",
-   "sales": 1,
-   "revenue": 150.0
-  },
-  {
    "d": "2026-01-01",
    "sales": 1,
    "revenue": 20.0
@@ -464,6 +459,21 @@
    "d": "2026-10-04",
    "sales": 1,
    "revenue": 112.5
+  },
+  {
+   "d": "2026-10-07",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-10-08",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-10-10",
+   "sales": 1,
+   "revenue": 15.0
   }
  ],
  "sales_users_daily": [
@@ -480,10 +490,6 @@
    "user_id": 3805
   },
   {
-   "d": "2025-12-20",
-   "user_id": 5827
-  },
-  {
    "d": "2026-01-01",
    "user_id": 3364
   },
@@ -497,11 +503,11 @@
   },
   {
    "d": "2026-01-15",
-   "user_id": 1274
+   "user_id": 573
   },
   {
    "d": "2026-01-15",
-   "user_id": 573
+   "user_id": 1274
   },
   {
    "d": "2026-01-18",
@@ -517,11 +523,11 @@
   },
   {
    "d": "2026-01-21",
-   "user_id": 7135
+   "user_id": 7393
   },
   {
    "d": "2026-01-21",
-   "user_id": 7393
+   "user_id": 7135
   },
   {
    "d": "2026-01-21",
@@ -529,11 +535,11 @@
   },
   {
    "d": "2026-01-24",
-   "user_id": 7323
+   "user_id": 6491
   },
   {
    "d": "2026-01-24",
-   "user_id": 6491
+   "user_id": 7323
   },
   {
    "d": "2026-01-26",
@@ -549,11 +555,15 @@
   },
   {
    "d": "2026-01-28",
-   "user_id": 2426
+   "user_id": 478
   },
   {
    "d": "2026-01-28",
-   "user_id": 478
+   "user_id": 2426
+  },
+  {
+   "d": "2026-01-29",
+   "user_id": 7719
   },
   {
    "d": "2026-01-29",
@@ -562,10 +572,6 @@
   {
    "d": "2026-01-29",
    "user_id": 1357
-  },
-  {
-   "d": "2026-01-29",
-   "user_id": 7719
   },
   {
    "d": "2026-01-30",
@@ -593,11 +599,11 @@
   },
   {
    "d": "2026-02-06",
-   "user_id": 3593
+   "user_id": 4725
   },
   {
    "d": "2026-02-06",
-   "user_id": 4725
+   "user_id": 3593
   },
   {
    "d": "2026-02-07",
@@ -645,6 +651,10 @@
   },
   {
    "d": "2026-02-24",
+   "user_id": 6464
+  },
+  {
+   "d": "2026-02-24",
    "user_id": 4663
   },
   {
@@ -654,10 +664,6 @@
   {
    "d": "2026-02-24",
    "user_id": 7206
-  },
-  {
-   "d": "2026-02-24",
-   "user_id": 6464
   },
   {
    "d": "2026-02-28",
@@ -685,15 +691,15 @@
   },
   {
    "d": "2026-03-15",
+   "user_id": 6474
+  },
+  {
+   "d": "2026-03-15",
    "user_id": 8167
   },
   {
    "d": "2026-03-15",
    "user_id": 1695
-  },
-  {
-   "d": "2026-03-15",
-   "user_id": 6474
   },
   {
    "d": "2026-03-16",
@@ -789,11 +795,11 @@
   },
   {
    "d": "2026-05-20",
-   "user_id": 6299
+   "user_id": 8775
   },
   {
    "d": "2026-05-20",
-   "user_id": 8775
+   "user_id": 6299
   },
   {
    "d": "2026-05-21",
@@ -837,11 +843,11 @@
   },
   {
    "d": "2026-07-05",
-   "user_id": 11722
+   "user_id": 16529
   },
   {
    "d": "2026-07-05",
-   "user_id": 16529
+   "user_id": 11722
   },
   {
    "d": "2026-07-05",
@@ -938,15 +944,27 @@
   {
    "d": "2026-10-04",
    "user_id": 11791
+  },
+  {
+   "d": "2026-10-07",
+   "user_id": 22089
+  },
+  {
+   "d": "2026-10-08",
+   "user_id": 3669
+  },
+  {
+   "d": "2026-10-10",
+   "user_id": 22128
   }
  ],
  "sales_monthly": [
   {
    "m": "2025-12",
-   "sales": 4,
-   "revenue": 213.08,
-   "buyers": 4,
-   "avg_check": 53.27
+   "sales": 3,
+   "revenue": 63.08,
+   "buyers": 3,
+   "avg_check": 21.03
   },
   {
    "m": "2026-01",
@@ -1013,24 +1031,24 @@
   },
   {
    "m": "2026-10",
-   "sales": 3,
-   "revenue": 147.5,
-   "buyers": 3,
-   "avg_check": 49.17
+   "sales": 6,
+   "revenue": 202.5,
+   "buyers": 6,
+   "avg_check": 33.75
   }
  ],
  "sales_by_plan": [
   {
    "plan_name": "Base",
    "subs_period": "monthly",
-   "sales": 101,
-   "revenue": 2290.0
+   "sales": 104,
+   "revenue": 2345.0
   },
   {
    "plan_name": "Base",
    "subs_period": "yearly",
-   "sales": 10,
-   "revenue": 1350.0
+   "sales": 9,
+   "revenue": 1200.0
   },
   {
    "plan_name": "Pro",
@@ -1056,19 +1074,19 @@
   },
   {
    "payment_method": "overpay",
-   "attempts": 84,
-   "success": 30,
+   "attempts": 83,
+   "success": 29,
    "failed": 52,
    "pending": 2,
-   "revenue": 1239.58
+   "revenue": 1089.58
   },
   {
    "payment_method": "stripe",
-   "attempts": 23,
-   "success": 17,
-   "failed": 6,
+   "attempts": 28,
+   "success": 20,
+   "failed": 8,
    "pending": 0,
-   "revenue": 552.5
+   "revenue": 607.5
   },
   {
    "payment_method": "whitepay",
@@ -1082,11 +1100,11 @@
  "sales_by_status": [
   {
    "status": "success",
-   "n": 118
+   "n": 120
   },
   {
    "status": "failed",
-   "n": 73
+   "n": 75
   },
   {
    "status": "pending",
@@ -1100,7 +1118,7 @@
  "repeat_purchases": [
   {
    "purchases": 1,
-   "users": 79
+   "users": 81
   },
   {
    "purchases": 2,
@@ -1654,25 +1672,25 @@
   },
   {
    "w": "2026-10-05",
-   "regs": 10
+   "regs": 33
   }
  ],
  "users_summary": [
   {
-   "total_users": 13906,
-   "payers": 15,
-   "ltv_total": 552.5,
-   "arppu": 36.83
+   "total_users": 13929,
+   "payers": 18,
+   "ltv_total": 607.5,
+   "arppu": 33.75
   }
  ],
  "plans_current": [
   {
    "plan": "Free",
-   "users": 13398
+   "users": 13417
   },
   {
    "plan": "нет плана",
-   "users": 253
+   "users": 260
   },
   {
    "plan": "Pro",
@@ -1680,13 +1698,13 @@
   },
   {
    "plan": "Base",
-   "users": 65
+   "users": 62
   }
  ],
  "spent_distribution": [
   {
    "bucket": "1-24",
-   "users": 11
+   "users": 14
   },
   {
    "bucket": "100-199",
@@ -1716,16 +1734,16 @@
   },
   {
    "source": "site",
-   "visitors": 32,
-   "regs": 32,
+   "visitors": 34,
+   "regs": 34,
    "converted": 0,
    "revenue": 0.0,
    "pending_payers": 0
   },
   {
    "source": "youtube",
-   "visitors": 19,
-   "regs": 19,
+   "visitors": 22,
+   "regs": 22,
    "converted": 0,
    "revenue": 0.0,
    "pending_payers": 0
@@ -1772,8 +1790,8 @@
  ],
  "referral_totals": [
   {
-   "links": 13875,
-   "active": 13875,
+   "links": 13891,
+   "active": 13891,
    "clicks": 274,
    "regs": 537,
    "payments": 3,
@@ -1907,7 +1925,7 @@
   {
    "era": "post",
    "src": "meta-ads",
-   "n": 52,
+   "n": 53,
    "created7": 14,
    "conn7": 1,
    "manual7": 2,
@@ -1917,12 +1935,12 @@
   {
    "era": "post",
    "src": "other",
-   "n": 269,
-   "created7": 100,
-   "conn7": 6,
-   "manual7": 30,
-   "any7": 35,
-   "sync7": 4
+   "n": 297,
+   "created7": 106,
+   "conn7": 10,
+   "manual7": 31,
+   "any7": 40,
+   "sync7": 6
   },
   {
    "era": "pre",
@@ -2038,33 +2056,33 @@
   },
   {
    "w": "2026-09-28",
-   "n": 15,
-   "conn7": 0,
-   "any7": 1
+   "n": 44,
+   "conn7": 4,
+   "any7": 6
   }
  ],
  "onboarding_paths": [
   {
    "path": "manual",
-   "chosen": 196,
-   "step1": 113,
-   "step2": 35,
-   "step3": 31
+   "chosen": 206,
+   "step1": 118,
+   "step2": 38,
+   "step3": 34
   },
   {
    "path": "auto",
    "chosen": 33,
    "step1": 15,
-   "step2": 9,
-   "step3": 8
+   "step2": 10,
+   "step3": 9
   }
  ],
  "connection_attempts": [
   {
    "result": "success",
    "error_code": "",
-   "attempts": 36,
-   "users": 14
+   "attempts": 37,
+   "users": 15
   },
   {
    "result": "failed",
@@ -2565,13 +2583,13 @@
   },
   {
    "w": "2025-12-22",
-   "kind": "Подключение аккаунта",
-   "n": 28
+   "kind": "Заметки",
+   "n": 12
   },
   {
    "w": "2025-12-22",
-   "kind": "Заметки",
-   "n": 12
+   "kind": "Подключение аккаунта",
+   "n": 28
   },
   {
    "w": "2025-12-29",
@@ -2625,18 +2643,13 @@
   },
   {
    "w": "2026-02-02",
-   "kind": "Подключение аккаунта",
-   "n": 61
-  },
-  {
-   "w": "2026-02-02",
    "kind": "Заметки",
    "n": 13
   },
   {
-   "w": "2026-02-09",
-   "kind": "Заметки",
-   "n": 12
+   "w": "2026-02-02",
+   "kind": "Подключение аккаунта",
+   "n": 61
   },
   {
    "w": "2026-02-09",
@@ -2644,9 +2657,9 @@
    "n": 53
   },
   {
-   "w": "2026-02-16",
-   "kind": "Подключение аккаунта",
-   "n": 57
+   "w": "2026-02-09",
+   "kind": "Заметки",
+   "n": 12
   },
   {
    "w": "2026-02-16",
@@ -2654,14 +2667,19 @@
    "n": 20
   },
   {
-   "w": "2026-02-23",
+   "w": "2026-02-16",
    "kind": "Подключение аккаунта",
-   "n": 55
+   "n": 57
   },
   {
    "w": "2026-02-23",
    "kind": "Заметки",
    "n": 11
+  },
+  {
+   "w": "2026-02-23",
+   "kind": "Подключение аккаунта",
+   "n": 55
   },
   {
    "w": "2026-03-02",
@@ -2705,18 +2723,13 @@
   },
   {
    "w": "2026-03-30",
-   "kind": "Заметки",
-   "n": 9
-  },
-  {
-   "w": "2026-03-30",
    "kind": "Подключение аккаунта",
    "n": 73
   },
   {
-   "w": "2026-04-06",
+   "w": "2026-03-30",
    "kind": "Заметки",
-   "n": 11
+   "n": 9
   },
   {
    "w": "2026-04-06",
@@ -2724,14 +2737,19 @@
    "n": 50
   },
   {
-   "w": "2026-04-13",
-   "kind": "Подключение аккаунта",
-   "n": 69
+   "w": "2026-04-06",
+   "kind": "Заметки",
+   "n": 11
   },
   {
    "w": "2026-04-13",
    "kind": "Заметки",
    "n": 4
+  },
+  {
+   "w": "2026-04-13",
+   "kind": "Подключение аккаунта",
+   "n": 69
   },
   {
    "w": "2026-04-20",
@@ -2765,18 +2783,13 @@
   },
   {
    "w": "2026-05-11",
-   "kind": "Заметки",
-   "n": 19
-  },
-  {
-   "w": "2026-05-11",
    "kind": "Подключение аккаунта",
    "n": 46
   },
   {
-   "w": "2026-05-18",
+   "w": "2026-05-11",
    "kind": "Заметки",
-   "n": 13
+   "n": 19
   },
   {
    "w": "2026-05-18",
@@ -2784,9 +2797,9 @@
    "n": 22
   },
   {
-   "w": "2026-05-25",
+   "w": "2026-05-18",
    "kind": "Заметки",
-   "n": 3
+   "n": 13
   },
   {
    "w": "2026-05-25",
@@ -2794,9 +2807,9 @@
    "n": 63
   },
   {
-   "w": "2026-06-01",
+   "w": "2026-05-25",
    "kind": "Заметки",
-   "n": 9
+   "n": 3
   },
   {
    "w": "2026-06-01",
@@ -2804,14 +2817,29 @@
    "n": 193
   },
   {
-   "w": "2026-06-08",
+   "w": "2026-06-01",
    "kind": "Заметки",
-   "n": 11
+   "n": 9
   },
   {
    "w": "2026-06-08",
    "kind": "Подключение аккаунта",
    "n": 57
+  },
+  {
+   "w": "2026-06-08",
+   "kind": "Заметки",
+   "n": 11
+  },
+  {
+   "w": "2026-06-15",
+   "kind": "Подключение аккаунта",
+   "n": 51
+  },
+  {
+   "w": "2026-06-15",
+   "kind": "Синк журнала",
+   "n": 171
   },
   {
    "w": "2026-06-15",
@@ -2824,14 +2852,9 @@
    "n": 124
   },
   {
-   "w": "2026-06-15",
+   "w": "2026-06-22",
    "kind": "Подключение аккаунта",
-   "n": 51
-  },
-  {
-   "w": "2026-06-15",
-   "kind": "Синк журнала",
-   "n": 171
+   "n": 48
   },
   {
    "w": "2026-06-22",
@@ -2845,11 +2868,6 @@
   },
   {
    "w": "2026-06-22",
-   "kind": "Подключение аккаунта",
-   "n": 48
-  },
-  {
-   "w": "2026-06-22",
    "kind": "Ручные позиции",
    "n": 40
   },
@@ -2857,16 +2875,6 @@
    "w": "2026-06-29",
    "kind": "Ручные позиции",
    "n": 65
-  },
-  {
-   "w": "2026-06-29",
-   "kind": "AI-запросы",
-   "n": 19
-  },
-  {
-   "w": "2026-06-29",
-   "kind": "Заметки",
-   "n": 4
   },
   {
    "w": "2026-06-29",
@@ -2880,23 +2888,18 @@
   },
   {
    "w": "2026-06-29",
+   "kind": "Заметки",
+   "n": 4
+  },
+  {
+   "w": "2026-06-29",
    "kind": "Экспорт XLSX",
    "n": 11
   },
   {
-   "w": "2026-07-06",
-   "kind": "Синк журнала",
-   "n": 385
-  },
-  {
-   "w": "2026-07-06",
+   "w": "2026-06-29",
    "kind": "AI-запросы",
-   "n": 61
-  },
-  {
-   "w": "2026-07-06",
-   "kind": "Ручные позиции",
-   "n": 75
+   "n": 19
   },
   {
    "w": "2026-07-06",
@@ -2910,13 +2913,28 @@
   },
   {
    "w": "2026-07-06",
+   "kind": "Ручные позиции",
+   "n": 75
+  },
+  {
+   "w": "2026-07-06",
    "kind": "Экспорт XLSX",
    "n": 48
   },
   {
-   "w": "2026-07-13",
-   "kind": "Ручные позиции",
+   "w": "2026-07-06",
+   "kind": "Синк журнала",
+   "n": 385
+  },
+  {
+   "w": "2026-07-06",
+   "kind": "AI-запросы",
    "n": 61
+  },
+  {
+   "w": "2026-07-13",
+   "kind": "Синк журнала",
+   "n": 197
   },
   {
    "w": "2026-07-13",
@@ -2925,8 +2943,8 @@
   },
   {
    "w": "2026-07-13",
-   "kind": "Подключение аккаунта",
-   "n": 67
+   "kind": "Ручные позиции",
+   "n": 61
   },
   {
    "w": "2026-07-13",
@@ -2935,18 +2953,18 @@
   },
   {
    "w": "2026-07-13",
+   "kind": "Подключение аккаунта",
+   "n": 67
+  },
+  {
+   "w": "2026-07-13",
    "kind": "AI-запросы",
    "n": 42
   },
   {
-   "w": "2026-07-13",
-   "kind": "Синк журнала",
-   "n": 197
-  },
-  {
    "w": "2026-07-20",
-   "kind": "Подключение аккаунта",
-   "n": 82
+   "kind": "AI-запросы",
+   "n": 35
   },
   {
    "w": "2026-07-20",
@@ -2955,8 +2973,8 @@
   },
   {
    "w": "2026-07-20",
-   "kind": "AI-запросы",
-   "n": 35
+   "kind": "Синк журнала",
+   "n": 199
   },
   {
    "w": "2026-07-20",
@@ -2970,28 +2988,13 @@
   },
   {
    "w": "2026-07-20",
-   "kind": "Синк журнала",
-   "n": 199
-  },
-  {
-   "w": "2026-07-27",
-   "kind": "AI-запросы",
-   "n": 30
-  },
-  {
-   "w": "2026-07-27",
-   "kind": "Экспорт XLSX",
-   "n": 7
+   "kind": "Подключение аккаунта",
+   "n": 82
   },
   {
    "w": "2026-07-27",
    "kind": "Заметки",
    "n": 30
-  },
-  {
-   "w": "2026-07-27",
-   "kind": "Подключение аккаунта",
-   "n": 31
   },
   {
    "w": "2026-07-27",
@@ -3004,19 +3007,29 @@
    "n": 85
   },
   {
+   "w": "2026-07-27",
+   "kind": "Экспорт XLSX",
+   "n": 7
+  },
+  {
+   "w": "2026-07-27",
+   "kind": "AI-запросы",
+   "n": 30
+  },
+  {
+   "w": "2026-07-27",
+   "kind": "Подключение аккаунта",
+   "n": 31
+  },
+  {
    "w": "2026-08-03",
-   "kind": "Заметки",
-   "n": 17
+   "kind": "AI-запросы",
+   "n": 16
   },
   {
    "w": "2026-08-03",
    "kind": "Ручные позиции",
    "n": 21
-  },
-  {
-   "w": "2026-08-03",
-   "kind": "Синк журнала",
-   "n": 65
   },
   {
    "w": "2026-08-03",
@@ -3030,8 +3043,13 @@
   },
   {
    "w": "2026-08-03",
-   "kind": "AI-запросы",
-   "n": 16
+   "kind": "Синк журнала",
+   "n": 65
+  },
+  {
+   "w": "2026-08-03",
+   "kind": "Заметки",
+   "n": 17
   },
   {
    "w": "2026-08-10",
@@ -3065,13 +3083,23 @@
   },
   {
    "w": "2026-08-17",
-   "kind": "AI-запросы",
-   "n": 9
+   "kind": "Заметки",
+   "n": 6
   },
   {
    "w": "2026-08-17",
    "kind": "Ручные позиции",
    "n": 15
+  },
+  {
+   "w": "2026-08-17",
+   "kind": "AI-запросы",
+   "n": 9
+  },
+  {
+   "w": "2026-08-17",
+   "kind": "Подключение аккаунта",
+   "n": 20
   },
   {
    "w": "2026-08-17",
@@ -3084,19 +3112,14 @@
    "n": 68
   },
   {
-   "w": "2026-08-17",
-   "kind": "Заметки",
-   "n": 6
-  },
-  {
-   "w": "2026-08-17",
-   "kind": "Подключение аккаунта",
-   "n": 20
+   "w": "2026-08-24",
+   "kind": "Экспорт XLSX",
+   "n": 5
   },
   {
    "w": "2026-08-24",
-   "kind": "AI-запросы",
-   "n": 17
+   "kind": "Синк журнала",
+   "n": 70
   },
   {
    "w": "2026-08-24",
@@ -3115,23 +3138,8 @@
   },
   {
    "w": "2026-08-24",
-   "kind": "Экспорт XLSX",
-   "n": 5
-  },
-  {
-   "w": "2026-08-24",
-   "kind": "Синк журнала",
-   "n": 70
-  },
-  {
-   "w": "2026-08-31",
    "kind": "AI-запросы",
-   "n": 36
-  },
-  {
-   "w": "2026-08-31",
-   "kind": "Синк журнала",
-   "n": 90
+   "n": 17
   },
   {
    "w": "2026-08-31",
@@ -3140,8 +3148,13 @@
   },
   {
    "w": "2026-08-31",
-   "kind": "Ручные позиции",
-   "n": 48
+   "kind": "AI-запросы",
+   "n": 36
+  },
+  {
+   "w": "2026-08-31",
+   "kind": "Заметки",
+   "n": 30
   },
   {
    "w": "2026-08-31",
@@ -3150,23 +3163,18 @@
   },
   {
    "w": "2026-08-31",
-   "kind": "Заметки",
-   "n": 30
-  },
-  {
-   "w": "2026-09-07",
-   "kind": "AI-запросы",
+   "kind": "Ручные позиции",
    "n": 48
   },
   {
-   "w": "2026-09-07",
-   "kind": "Ручные позиции",
-   "n": 26
+   "w": "2026-08-31",
+   "kind": "Синк журнала",
+   "n": 90
   },
   {
    "w": "2026-09-07",
-   "kind": "Синк журнала",
-   "n": 84
+   "kind": "Подключение аккаунта",
+   "n": 9
   },
   {
    "w": "2026-09-07",
@@ -3175,28 +3183,28 @@
   },
   {
    "w": "2026-09-07",
+   "kind": "AI-запросы",
+   "n": 48
+  },
+  {
+   "w": "2026-09-07",
+   "kind": "Синк журнала",
+   "n": 84
+  },
+  {
+   "w": "2026-09-07",
    "kind": "Заметки",
    "n": 5
   },
   {
    "w": "2026-09-07",
-   "kind": "Подключение аккаунта",
-   "n": 9
-  },
-  {
-   "w": "2026-09-14",
-   "kind": "Заметки",
-   "n": 19
+   "kind": "Ручные позиции",
+   "n": 26
   },
   {
    "w": "2026-09-14",
    "kind": "Подключение аккаунта",
    "n": 15
-  },
-  {
-   "w": "2026-09-14",
-   "kind": "Экспорт XLSX",
-   "n": 5
   },
   {
    "w": "2026-09-14",
@@ -3210,8 +3218,18 @@
   },
   {
    "w": "2026-09-14",
+   "kind": "Экспорт XLSX",
+   "n": 5
+  },
+  {
+   "w": "2026-09-14",
    "kind": "AI-запросы",
    "n": 33
+  },
+  {
+   "w": "2026-09-14",
+   "kind": "Заметки",
+   "n": 19
   },
   {
    "w": "2026-09-21",
@@ -3220,8 +3238,8 @@
   },
   {
    "w": "2026-09-21",
-   "kind": "Ручные позиции",
-   "n": 50
+   "kind": "Синк журнала",
+   "n": 80
   },
   {
    "w": "2026-09-21",
@@ -3230,8 +3248,13 @@
   },
   {
    "w": "2026-09-21",
-   "kind": "Синк журнала",
-   "n": 80
+   "kind": "AI-запросы",
+   "n": 44
+  },
+  {
+   "w": "2026-09-21",
+   "kind": "Ручные позиции",
+   "n": 50
   },
   {
    "w": "2026-09-21",
@@ -3239,9 +3262,19 @@
    "n": 8
   },
   {
-   "w": "2026-09-21",
+   "w": "2026-09-28",
    "kind": "AI-запросы",
-   "n": 44
+   "n": 9
+  },
+  {
+   "w": "2026-09-28",
+   "kind": "Заметки",
+   "n": 12
+  },
+  {
+   "w": "2026-09-28",
+   "kind": "Экспорт XLSX",
+   "n": 10
   },
   {
    "w": "2026-09-28",
@@ -3255,71 +3288,61 @@
   },
   {
    "w": "2026-09-28",
-   "kind": "Заметки",
-   "n": 12
-  },
-  {
-   "w": "2026-09-28",
    "kind": "Ручные позиции",
    "n": 28
   },
   {
-   "w": "2026-09-28",
-   "kind": "AI-запросы",
-   "n": 9
-  },
-  {
-   "w": "2026-09-28",
-   "kind": "Экспорт XLSX",
-   "n": 10
-  },
-  {
    "w": "2026-10-05",
-   "kind": "Заметки",
-   "n": 13
-  },
-  {
-   "w": "2026-10-05",
-   "kind": "AI-запросы",
-   "n": 2
-  },
-  {
-   "w": "2026-10-05",
-   "kind": "Экспорт XLSX",
-   "n": 1
+   "kind": "Ручные позиции",
+   "n": 21
   },
   {
    "w": "2026-10-05",
    "kind": "Синк журнала",
-   "n": 53
+   "n": 75
   },
   {
    "w": "2026-10-05",
-   "kind": "Ручные позиции",
-   "n": 11
+   "kind": "Заметки",
+   "n": 17
+  },
+  {
+   "w": "2026-10-05",
+   "kind": "AI-запросы",
+   "n": 5
   },
   {
    "w": "2026-10-05",
    "kind": "Подключение аккаунта",
-   "n": 11
+   "n": 19
+  },
+  {
+   "w": "2026-10-05",
+   "kind": "Экспорт XLSX",
+   "n": 5
+  },
+  {
+   "w": "2026-10-12",
+   "kind": "Ручные позиции",
+   "n": 1
   }
  ],
  "sync_by_market": [
   {
    "market": "fx",
-   "syncs": 1410,
+   "syncs": 1421,
    "users": 251
   },
   {
    "market": "crypto",
-   "syncs": 608,
-   "users": 67
+   "syncs": 619,
+   "users": 68
   }
  ],
  "connections_by_provider": [
   {
    "provider": "metatrader5",
-   "connections": 3042,
+   "connections": 3048,
    "users": 1769
   },
   {
@@ -3334,7 +3357,7 @@
   },
   {
    "provider": "okx",
-   "connections": 169,
+   "connections": 170,
    "users": 136
   },
   {
@@ -3359,8 +3382,8 @@
   },
   {
    "provider": "mexc",
-   "connections": 22,
-   "users": 17
+   "connections": 23,
+   "users": 18
   },
   {
    "provider": "orderly_perptools",
@@ -3431,20 +3454,20 @@
   },
   {
    "m": "2026-10",
-   "notes": 16,
-   "users": 8
+   "notes": 20,
+   "users": 11
   }
  ],
  "feature_events_summary": [
   {
    "feat": "Создание торг. аккаунта",
-   "n": 9852,
-   "users": 8865
+   "n": 9863,
+   "users": 8873
   },
   {
    "feat": "Подключение аккаунта",
-   "n": 5146,
-   "users": 3002
+   "n": 5154,
+   "users": 3003
   },
   {
    "feat": "Применение промокода",
@@ -3453,33 +3476,33 @@
   },
   {
    "feat": "Синк журнала",
-   "n": 2018,
-   "users": 310
+   "n": 2040,
+   "users": 311
   },
   {
    "feat": "Заметки: создание",
-   "n": 615,
-   "users": 230
+   "n": 619,
+   "users": 232
   },
   {
    "feat": "Ручные позиции",
-   "n": 602,
-   "users": 241
+   "n": 613,
+   "users": 248
   },
   {
    "feat": "Управление виджетами",
-   "n": 424,
-   "users": 167
+   "n": 432,
+   "users": 171
   },
   {
    "feat": "AI-запросы",
-   "n": 412,
-   "users": 89
+   "n": 415,
+   "users": 90
   },
   {
    "feat": "Экспорт XLSX",
-   "n": 225,
-   "users": 105
+   "n": 229,
+   "users": 107
   },
   {
    "feat": "Заметки: теги",
@@ -3493,18 +3516,18 @@
   },
   {
    "feat": "Шеринг дневной статистики",
-   "n": 107,
+   "n": 110,
    "users": 26
   },
   {
    "feat": "Копирование ссылки share",
-   "n": 59,
+   "n": 60,
    "users": 10
   },
   {
    "feat": "Скачивание share",
-   "n": 22,
-   "users": 9
+   "n": 23,
+   "users": 10
   }
  ],
  "pay_attempts_daily": [
@@ -3595,13 +3618,6 @@
   {
    "d": "2025-12-16",
    "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2025-12-20",
-   "payment_method": "overpay",
    "success": 1,
    "pending": 0,
    "failed": 0
@@ -4851,6 +4867,41 @@
    "success": 1,
    "pending": 0,
    "failed": 0
+  },
+  {
+   "d": "2026-10-07",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-10-08",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-10-09",
+   "payment_method": "stripe",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-10-10",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-10-11",
+   "payment_method": "stripe",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
   }
  ],
  "plan_daily": [
@@ -4874,13 +4925,6 @@
    "subs_period": "monthly",
    "sales": 1,
    "revenue": 20.0
-  },
-  {
-   "d": "2025-12-20",
-   "plan_name": "Base",
-   "subs_period": "yearly",
-   "sales": 1,
-   "revenue": 150.0
   },
   {
    "d": "2026-01-01",
@@ -5532,6 +5576,27 @@
    "subs_period": "yearly",
    "sales": 1,
    "revenue": 112.5
+  },
+  {
+   "d": "2026-10-07",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-10-08",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
+  },
+  {
+   "d": "2026-10-10",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 15.0
   }
  ],
  "funnel_by_month": [
@@ -5610,7 +5675,7 @@
    "registered": 1082,
    "created": 1080,
    "connected": 186,
-   "paid": 7
+   "paid": 8
   },
   {
    "m": "2025-02",
@@ -5638,7 +5703,7 @@
    "registered": 420,
    "created": 420,
    "connected": 78,
-   "paid": 1
+   "paid": 0
   },
   {
    "m": "2025-06",
@@ -5699,7 +5764,7 @@
   {
    "m": "2026-02",
    "registered": 567,
-   "created": 68,
+   "created": 69,
    "connected": 135,
    "paid": 10
   },
@@ -5750,13 +5815,13 @@
    "registered": 383,
    "created": 126,
    "connected": 11,
-   "paid": 1
+   "paid": 3
   },
   {
    "m": "2026-10",
-   "registered": 34,
-   "created": 8,
-   "connected": 4,
+   "registered": 57,
+   "created": 19,
+   "connected": 5,
    "paid": 0
   }
  ],
@@ -5764,68 +5829,68 @@
   {
    "m": "2025-12",
    "monthly_subs": 3,
-   "yearly_subs": 1,
-   "mrr": 75.58
+   "yearly_subs": 0,
+   "mrr": 63.08
   },
   {
    "m": "2026-01",
    "monthly_subs": 21,
-   "yearly_subs": 2,
-   "mrr": 471.0
+   "yearly_subs": 1,
+   "mrr": 458.5
   },
   {
    "m": "2026-02",
    "monthly_subs": 23,
-   "yearly_subs": 2,
-   "mrr": 733.67
+   "yearly_subs": 1,
+   "mrr": 721.17
   },
   {
    "m": "2026-03",
    "monthly_subs": 13,
-   "yearly_subs": 3,
-   "mrr": 274.38
+   "yearly_subs": 2,
+   "mrr": 261.88
   },
   {
    "m": "2026-04",
    "monthly_subs": 10,
-   "yearly_subs": 5,
-   "mrr": 229.25
+   "yearly_subs": 4,
+   "mrr": 216.75
   },
   {
    "m": "2026-05",
    "monthly_subs": 10,
-   "yearly_subs": 7,
-   "mrr": 266.76
+   "yearly_subs": 6,
+   "mrr": 254.26
   },
   {
    "m": "2026-06",
    "monthly_subs": 3,
-   "yearly_subs": 9,
-   "mrr": 167.76
+   "yearly_subs": 8,
+   "mrr": 155.26
   },
   {
    "m": "2026-07",
    "monthly_subs": 8,
-   "yearly_subs": 9,
-   "mrr": 267.76
+   "yearly_subs": 8,
+   "mrr": 255.26
   },
   {
    "m": "2026-08",
    "monthly_subs": 3,
-   "yearly_subs": 10,
-   "mrr": 310.26
+   "yearly_subs": 9,
+   "mrr": 297.76
   },
   {
    "m": "2026-09",
    "monthly_subs": 11,
-   "yearly_subs": 10,
-   "mrr": 335.26
+   "yearly_subs": 9,
+   "mrr": 322.76
   },
   {
    "m": "2026-10",
    "monthly_subs": 13,
-   "yearly_subs": 11,
-   "mrr": 379.64
+   "yearly_subs": 10,
+   "mrr": 367.14
   }
  ],
  "renewals_monthly": [
@@ -5873,6 +5938,11 @@
    "due_month": "2026-09",
    "due": 3,
    "renewed": 2
+  },
+  {
+   "due_month": "2026-10",
+   "due": 3,
+   "renewed": 0
   }
  ],
  "cohort_conversion": [
@@ -5960,13 +6030,13 @@
    "cohort": "2026-09",
    "users": 383,
    "pay7": 0,
-   "pay30": 1,
-   "pay90": 1,
-   "pay_ever": 1
+   "pay30": 3,
+   "pay90": 3,
+   "pay_ever": 3
   },
   {
    "cohort": "2026-10",
-   "users": 34,
+   "users": 57,
    "pay7": 0,
    "pay30": 0,
    "pay90": 0,
@@ -5978,8 +6048,8 @@
    "med_create_d": 0.0,
    "med_conn_d": 0.01,
    "med_sync_d": 0.02,
-   "med_pay_d": 45.0,
-   "activation7_pct": 15.8
+   "med_pay_d": 44.0,
+   "activation7_pct": 14.5
   }
  ],
  "stuck_pending": [
@@ -6004,11 +6074,11 @@
  ],
  "funnel": [
   {
-   "registered": 13906,
-   "created_account": 8865,
-   "connected": 3002,
-   "synced": 310,
-   "paid": 93
+   "registered": 13929,
+   "created_account": 8873,
+   "connected": 3003,
+   "synced": 311,
+   "paid": 95
   }
  ],
  "ga4_sessions_weekly": [
@@ -6608,9 +6678,9 @@
   },
   {
    "w": "2026-10-05",
-   "sessions": 228,
-   "users": 192,
-   "pageviews": 398
+   "sessions": 655,
+   "users": 538,
+   "pageviews": 1088
   }
  ],
  "ga4_sessions_monthly": [
@@ -6736,8 +6806,8 @@
   },
   {
    "m": "2026-10",
-   "sessions": 594,
-   "users": 503
+   "sessions": 1021,
+   "users": 849
   }
  ],
  "ga4_app_sessions_weekly": [
@@ -7523,9 +7593,9 @@
   },
   {
    "w": "2026-10-05",
-   "sessions": 242,
-   "users": 145,
-   "pageviews": 1493
+   "sessions": 574,
+   "users": 316,
+   "pageviews": 2943
   }
  ],
  "ga4_app_sessions_monthly": [
@@ -7681,15 +7751,15 @@
   },
   {
    "m": "2026-10",
-   "sessions": 519,
-   "users": 316
+   "sessions": 851,
+   "users": 487
   }
  ],
  "ga4_channels": [
   {
    "sessionDefaultChannelGroup": "Direct",
-   "sessions": 54952,
-   "totalUsers": 29077,
+   "sessions": 55174,
+   "totalUsers": 29156,
    "engagementRate": 41.0
   },
   {
@@ -7700,39 +7770,39 @@
   },
   {
    "sessionDefaultChannelGroup": "Organic Search",
-   "sessions": 19272,
-   "totalUsers": 7010,
-   "engagementRate": 54.4
+   "sessions": 19437,
+   "totalUsers": 7051,
+   "engagementRate": 54.1
   },
   {
    "sessionDefaultChannelGroup": "Paid Social",
    "sessions": 16565,
-   "totalUsers": 15575,
+   "totalUsers": 15577,
    "engagementRate": 24.9
   },
   {
    "sessionDefaultChannelGroup": "Organic Social",
-   "sessions": 3362,
-   "totalUsers": 2441,
+   "sessions": 3365,
+   "totalUsers": 2443,
    "engagementRate": 53.5
   },
   {
    "sessionDefaultChannelGroup": "Unassigned",
-   "sessions": 3096,
-   "totalUsers": 2453,
-   "engagementRate": 38.9
+   "sessions": 3122,
+   "totalUsers": 2464,
+   "engagementRate": 39.1
   },
   {
    "sessionDefaultChannelGroup": "Organic Video",
-   "sessions": 2376,
-   "totalUsers": 1378,
-   "engagementRate": 53.7
+   "sessions": 2434,
+   "totalUsers": 1429,
+   "engagementRate": 53.6
   },
   {
    "sessionDefaultChannelGroup": "Referral",
-   "sessions": 2098,
-   "totalUsers": 694,
-   "engagementRate": 59.9
+   "sessions": 2116,
+   "totalUsers": 698,
+   "engagementRate": 59.8
   },
   {
    "sessionDefaultChannelGroup": "Display",
@@ -7742,15 +7812,9 @@
   },
   {
    "sessionDefaultChannelGroup": "AI Assistant",
-   "sessions": 45,
-   "totalUsers": 32,
-   "engagementRate": 53.3
-  },
-  {
-   "sessionDefaultChannelGroup": "Cross-network",
-   "sessions": 1,
-   "totalUsers": 1,
-   "engagementRate": 100.0
+   "sessions": 47,
+   "totalUsers": 33,
+   "engagementRate": 53.2
   },
   {
    "sessionDefaultChannelGroup": "Organic Shopping",
@@ -7762,13 +7826,13 @@
  "ga4_top_pages": [
   {
    "pagePath": "/",
-   "screenPageViews": 108596,
-   "totalUsers": 68446
+   "screenPageViews": 108905,
+   "totalUsers": 68580
   },
   {
    "pagePath": "/login/",
-   "screenPageViews": 43919,
-   "totalUsers": 18394
+   "screenPageViews": 44155,
+   "totalUsers": 18438
   },
   {
    "pagePath": "/login",
@@ -7782,13 +7846,13 @@
   },
   {
    "pagePath": "/pricing/",
-   "screenPageViews": 5835,
-   "totalUsers": 4125
+   "screenPageViews": 5856,
+   "totalUsers": 4132
   },
   {
    "pagePath": "/tools/position-size-calculator/",
-   "screenPageViews": 3296,
-   "totalUsers": 1848
+   "screenPageViews": 3313,
+   "totalUsers": 1861
   },
   {
    "pagePath": "/settings/profile",
@@ -7802,12 +7866,12 @@
   },
   {
    "pagePath": "/ai-assistant/",
-   "screenPageViews": 1931,
-   "totalUsers": 531
+   "screenPageViews": 1946,
+   "totalUsers": 543
   },
   {
    "pagePath": "/share-chart/crypto/ZC9hhcQ9n64TJ0s/",
-   "screenPageViews": 1245,
+   "screenPageViews": 1251,
    "totalUsers": 1057
   }
  ],
@@ -7816,8 +7880,8 @@
    "sessionSource": "(direct)",
    "sessionMedium": "(none)",
    "sessionCampaignName": "(не указано)",
-   "sessions": 54864,
-   "totalUsers": 29043
+   "sessions": 55174,
+   "totalUsers": 29156
   },
   {
    "sessionSource": "ovva-meta",
@@ -7837,8 +7901,8 @@
    "sessionSource": "google",
    "sessionMedium": "organic",
    "sessionCampaignName": "(не указано)",
-   "sessions": 18279,
-   "totalUsers": 6481
+   "sessions": 18438,
+   "totalUsers": 6531
   },
   {
    "sessionSource": "x",
@@ -7865,8 +7929,8 @@
    "sessionSource": "youtube.com",
    "sessionMedium": "referral",
    "sessionCampaignName": "(не указано)",
-   "sessions": 1833,
-   "totalUsers": 1034
+   "sessions": 1837,
+   "totalUsers": 1036
   },
   {
    "sessionSource": "l.instagram.com",
@@ -7914,8 +7978,8 @@
    "sessionSource": "youtube",
    "sessionMedium": "Vlog Man",
    "sessionCampaignName": "vlog_to_scope",
-   "sessions": 309,
-   "totalUsers": 232
+   "sessions": 329,
+   "totalUsers": 244
   },
   {
    "sessionSource": "meta",
@@ -7928,15 +7992,15 @@
    "sessionSource": "bing",
    "sessionMedium": "organic",
    "sessionCampaignName": "(не указано)",
-   "sessions": 431,
-   "totalUsers": 222
+   "sessions": 438,
+   "totalUsers": 225
   },
   {
    "sessionSource": "(not set)",
    "sessionMedium": "(not set)",
    "sessionCampaignName": "(не указано)",
-   "sessions": 216,
-   "totalUsers": 210
+   "sessions": 217,
+   "totalUsers": 211
   }
  ],
  "meta_spend_weekly": [
@@ -42068,127 +42132,127 @@
    {
     "age": "18-24",
     "gender": "Женщины",
-    "spend": 10.56,
-    "impressions": 38713,
-    "clicks": 512
+    "spend": 8.47,
+    "impressions": 31560,
+    "clicks": 431
    },
    {
     "age": "18-24",
     "gender": "Мужчины",
-    "spend": 26.35,
-    "impressions": 82745,
-    "clicks": 1148
+    "spend": 20.46,
+    "impressions": 67397,
+    "clicks": 940
    },
    {
     "age": "18-24",
     "gender": "Не указан",
-    "spend": 0.23,
-    "impressions": 645,
-    "clicks": 10
-   },
-   {
-    "age": "25-34",
-    "gender": "Женщины",
-    "spend": 12.17,
-    "impressions": 34666,
-    "clicks": 791
-   },
-   {
-    "age": "25-34",
-    "gender": "Мужчины",
-    "spend": 24.61,
-    "impressions": 67472,
-    "clicks": 1256
-   },
-   {
-    "age": "25-34",
-    "gender": "Не указан",
-    "spend": 0.17,
-    "impressions": 389,
-    "clicks": 6
-   },
-   {
-    "age": "35-44",
-    "gender": "Женщины",
-    "spend": 7.48,
-    "impressions": 16108,
-    "clicks": 529
-   },
-   {
-    "age": "35-44",
-    "gender": "Мужчины",
-    "spend": 14.61,
-    "impressions": 34985,
-    "clicks": 859
-   },
-   {
-    "age": "35-44",
-    "gender": "Не указан",
-    "spend": 0.08,
-    "impressions": 189,
+    "spend": 0.21,
+    "impressions": 545,
     "clicks": 7
    },
    {
+    "age": "25-34",
+    "gender": "Женщины",
+    "spend": 9.82,
+    "impressions": 27191,
+    "clicks": 666
+   },
+   {
+    "age": "25-34",
+    "gender": "Мужчины",
+    "spend": 18.73,
+    "impressions": 51983,
+    "clicks": 1037
+   },
+   {
+    "age": "25-34",
+    "gender": "Не указан",
+    "spend": 0.14,
+    "impressions": 313,
+    "clicks": 5
+   },
+   {
+    "age": "35-44",
+    "gender": "Женщины",
+    "spend": 5.54,
+    "impressions": 12642,
+    "clicks": 447
+   },
+   {
+    "age": "35-44",
+    "gender": "Мужчины",
+    "spend": 11.04,
+    "impressions": 26710,
+    "clicks": 712
+   },
+   {
+    "age": "35-44",
+    "gender": "Не указан",
+    "spend": 0.06,
+    "impressions": 159,
+    "clicks": 6
+   },
+   {
     "age": "45-54",
     "gender": "Женщины",
-    "spend": 3.44,
-    "impressions": 8023,
-    "clicks": 214
+    "spend": 2.64,
+    "impressions": 6448,
+    "clicks": 177
    },
    {
     "age": "45-54",
     "gender": "Мужчины",
-    "spend": 8.13,
-    "impressions": 19061,
-    "clicks": 460
+    "spend": 6.26,
+    "impressions": 14903,
+    "clicks": 381
    },
    {
     "age": "45-54",
     "gender": "Не указан",
     "spend": 0.01,
-    "impressions": 104,
+    "impressions": 87,
     "clicks": 2
    },
    {
     "age": "55-64",
     "gender": "Женщины",
-    "spend": 2.69,
-    "impressions": 7883,
-    "clicks": 211
+    "spend": 2.1,
+    "impressions": 6515,
+    "clicks": 185
    },
    {
     "age": "55-64",
     "gender": "Мужчины",
-    "spend": 4.7,
-    "impressions": 12245,
-    "clicks": 290
+    "spend": 3.82,
+    "impressions": 9799,
+    "clicks": 242
    },
    {
     "age": "55-64",
     "gender": "Не указан",
     "spend": 0.01,
-    "impressions": 55,
+    "impressions": 46,
     "clicks": 5
    },
    {
     "age": "65+",
     "gender": "Женщины",
-    "spend": 3.05,
-    "impressions": 7331,
-    "clicks": 217
+    "spend": 1.91,
+    "impressions": 5760,
+    "clicks": 157
    },
    {
     "age": "65+",
     "gender": "Мужчины",
-    "spend": 4.16,
-    "impressions": 10432,
-    "clicks": 249
+    "spend": 2.69,
+    "impressions": 8137,
+    "clicks": 198
    },
    {
     "age": "65+",
     "gender": "Не указан",
-    "spend": 0.04,
-    "impressions": 80,
+    "spend": 0.02,
+    "impressions": 72,
     "clicks": 4
    },
    {
@@ -42210,9 +42274,9 @@
    {
     "age": "18-24",
     "gender": "Мужчины",
-    "spend": 279.06,
-    "impressions": 678965,
-    "clicks": 11279
+    "spend": 258.94,
+    "impressions": 630327,
+    "clicks": 10904
    },
    {
     "age": "18-24",
@@ -42231,9 +42295,9 @@
    {
     "age": "25-34",
     "gender": "Мужчины",
-    "spend": 481.42,
-    "impressions": 805038,
-    "clicks": 14819
+    "spend": 418.91,
+    "impressions": 682982,
+    "clicks": 13513
    },
    {
     "age": "25-34",
@@ -42252,9 +42316,9 @@
    {
     "age": "35-44",
     "gender": "Мужчины",
-    "spend": 199.48,
-    "impressions": 304933,
-    "clicks": 9202
+    "spend": 183.04,
+    "impressions": 282013,
+    "clicks": 8788
    },
    {
     "age": "35-44",
@@ -42336,8 +42400,8 @@
    {
     "age": "Unknown",
     "gender": "Мужчины",
-    "spend": 0.01,
-    "impressions": 37,
+    "spend": 0.0,
+    "impressions": 24,
     "clicks": 0
    },
    {
@@ -42501,275 +42565,280 @@
  "posthog_funnel": [
   {
    "name": "Зарегистрировался",
-   "count": 340,
+   "count": 314,
    "median_conversion_sec": null
   },
   {
    "name": "Открыл раздел приложения",
-   "count": 191,
-   "median_conversion_sec": 47.6489999294281
+   "count": 176,
+   "median_conversion_sec": 55.905500054359436
   },
   {
    "name": "Открыл сделку",
-   "count": 56,
-   "median_conversion_sec": 911.2080000638962
+   "count": 48,
+   "median_conversion_sec": 453.1744999885559
   }
  ],
  "posthog_events": [
   {
    "event": "settings_tab_selected",
    "name": "Открыл вкладку настроек",
-   "count": 1562.0
-  },
-  {
-   "event": "$dead_click",
-   "name": "Мёртвый клик (без реакции интерфейса)",
-   "count": 1035.0
+   "count": 1473.0
   },
   {
    "event": "date_range_selected",
    "name": "Выбрал диапазон дат",
-   "count": 954.0
+   "count": 871.0
   },
   {
    "event": "manual_journal_empty_state_shown",
    "name": "Увидел пустой ручной журнал",
-   "count": 870.0
+   "count": 869.0
+  },
+  {
+   "event": "$dead_click",
+   "name": "Мёртвый клик (без реакции интерфейса)",
+   "count": 785.0
   },
   {
    "event": "journal_view_mode_changed",
    "name": "Сменил режим просмотра журнала",
-   "count": 583.0
+   "count": 574.0
   },
   {
    "event": "trade_opened",
    "name": "Открыл сделку",
-   "count": 527.0
+   "count": 530.0
   },
   {
    "event": "$identify",
    "name": "Зарегистрировался",
-   "count": 469.0
-  },
-  {
-   "event": "journal_mode_switched",
-   "name": "Переключил режим журнала",
-   "count": 410.0
+   "count": 429.0
   },
   {
    "event": "trading_account_add_clicked",
    "name": "Клик «подключить аккаунт»",
-   "count": 390.0
+   "count": 396.0
   },
   {
-   "event": "calendar_month_navigated",
-   "name": "Пролистал месяц в календаре",
-   "count": 307.0
-  },
-  {
-   "event": "user_signed_up",
-   "name": "Зарегистрировался (форма)",
-   "count": 291.0
-  },
-  {
-   "event": "onboarding_started",
-   "name": "Начал онбординг",
-   "count": 291.0
+   "event": "journal_mode_switched",
+   "name": "Переключил режим журнала",
+   "count": 359.0
   },
   {
    "event": "dashboard_widget_view_toggled",
    "name": "Переключил вид виджета",
-   "count": 281.0
+   "count": 294.0
+  },
+  {
+   "event": "user_signed_up",
+   "name": "Зарегистрировался (форма)",
+   "count": 258.0
+  },
+  {
+   "event": "onboarding_started",
+   "name": "Начал онбординг",
+   "count": 258.0
   },
   {
    "event": "onboarding_resumed",
    "name": "Вернулся в онбординг",
-   "count": 278.0
-  },
-  {
-   "event": "promo_code_resolved",
-   "name": "Промокод обработан",
-   "count": 222.0
-  },
-  {
-   "event": "data_refreshed",
-   "name": "Обновил данные вручную",
-   "count": 221.0
+   "count": 249.0
   },
   {
    "event": "journal_summary_toggled",
    "name": "Показал/скрыл summary журнала",
-   "count": 219.0
+   "count": 236.0
   },
   {
-   "event": "workspace_switched",
-   "name": "Переключил workspace",
-   "count": 202.0
+   "event": "data_refreshed",
+   "name": "Обновил данные вручную",
+   "count": 209.0
+  },
+  {
+   "event": "promo_code_resolved",
+   "name": "Промокод обработан",
+   "count": 201.0
   },
   {
    "event": "demo_gated_feature_blocked",
    "name": "Уткнулся в фичу, закрытую в демо",
-   "count": 202.0
-  },
-  {
-   "event": "$dead_swipe",
-   "name": "Мёртвый свайп (без реакции интерфейса)",
-   "count": 199.0
-  },
-  {
-   "event": "onboarding_path_selected",
-   "name": "Выбрал ветку онбординга",
-   "count": 193.0
-  },
-  {
-   "event": "demo_mode_clicked",
-   "name": "Клик «демо-режим»",
-   "count": 186.0
-  },
-  {
-   "event": "demo_mode_entered",
-   "name": "Вошёл в демо-режим",
-   "count": 183.0
-  },
-  {
-   "event": "connect_api_modal_shown",
-   "name": "Увидел модалку «подключить API»",
-   "count": 182.0
+   "count": 200.0
   },
   {
    "event": "trade_detail_block_added",
    "name": "Добавил блок в детали сделки",
-   "count": 173.0
+   "count": 199.0
+  },
+  {
+   "event": "workspace_switched",
+   "name": "Переключил workspace",
+   "count": 190.0
+  },
+  {
+   "event": "$dead_swipe",
+   "name": "Мёртвый свайп (без реакции интерфейса)",
+   "count": 188.0
+  },
+  {
+   "event": "connect_api_modal_shown",
+   "name": "Увидел модалку «подключить API»",
+   "count": 180.0
   },
   {
    "event": "content_shared",
    "name": "Поделился контентом",
+   "count": 177.0
+  },
+  {
+   "event": "onboarding_path_selected",
+   "name": "Выбрал ветку онбординга",
+   "count": 175.0
+  },
+  {
+   "event": "demo_mode_entered",
+   "name": "Вошёл в демо-режим",
    "count": 168.0
+  },
+  {
+   "event": "demo_mode_clicked",
+   "name": "Клик «демо-режим»",
+   "count": 167.0
   },
   {
    "event": "connect_api_modal_cta_clicked",
    "name": "Клик в модалке «подключить API»",
-   "count": 168.0
-  },
-  {
-   "event": "ai_chat_opened",
-   "name": "Открыл AI-чат",
-   "count": 150.0
+   "count": 165.0
   },
   {
    "event": "manual_trade_added",
    "name": "Добавил сделку вручную",
-   "count": 147.0
+   "count": 154.0
   },
   {
    "event": "dashboard_widgets_managed",
    "name": "Настроил набор виджетов",
-   "count": 146.0
+   "count": 140.0
   },
   {
    "event": "demo_banner_exit_clicked",
    "name": "Закрыл баннер демо-режима",
-   "count": 146.0
-  },
-  {
-   "event": "dashboard_layout_toggled",
-   "name": "Изменил layout дашборда",
-   "count": 143.0
-  },
-  {
-   "event": "ai_message_sent",
-   "name": "Отправил сообщение AI",
-   "count": 127.0
-  },
-  {
-   "event": "manual_account_created",
-   "name": "Создал ручной аккаунт",
-   "count": 120.0
+   "count": 139.0
   },
   {
    "event": "risk_rule_updated",
    "name": "Обновил risk-правило",
-   "count": 114.0
+   "count": 132.0
+  },
+  {
+   "event": "ai_chat_opened",
+   "name": "Открыл AI-чат",
+   "count": 129.0
+  },
+  {
+   "event": "item_favorited",
+   "name": "Добавил в избранное",
+   "count": 128.0
+  },
+  {
+   "event": "dashboard_layout_toggled",
+   "name": "Изменил layout дашборда",
+   "count": 119.0
+  },
+  {
+   "event": "manual_account_created",
+   "name": "Создал ручной аккаунт",
+   "count": 118.0
   },
   {
    "event": "manual_trade_creation_started",
    "name": "Начал создание сделки",
+   "count": 116.0
+  },
+  {
+   "event": "calendar_month_navigated",
+   "name": "Пролистал месяц в календаре",
    "count": 113.0
   },
   {
    "event": "nav_recommendation_selected",
    "name": "Выбрал рекомендацию в навигации",
-   "count": 101.0
+   "count": 104.0
+  },
+  {
+   "event": "ai_message_sent",
+   "name": "Отправил сообщение AI",
+   "count": 97.0
   },
   {
    "event": "connection_manager_opened",
    "name": "Открыл Connection Manager",
-   "count": 95.0
+   "count": 92.0
   },
   {
    "event": "profile_field_updated",
    "name": "Изменил поле профиля",
-   "count": 90.0
-  },
-  {
-   "event": "journal_filters_opened",
-   "name": "Открыл фильтры журнала",
-   "count": 89.0
+   "count": 84.0
   },
   {
    "event": "calendar_day_viewed",
    "name": "Открыл день в календаре",
-   "count": 84.0
+   "count": 76.0
   },
   {
    "event": "connection_attempt_observed",
    "name": "Наблюдение за попыткой подключения",
-   "count": 75.0
+   "count": 69.0
   },
   {
-   "event": "item_favorited",
-   "name": "Добавил в избранное",
-   "count": 71.0
+   "event": "journal_filters_opened",
+   "name": "Открыл фильтры журнала",
+   "count": 64.0
   },
   {
    "event": "note_created",
    "name": "Создал заметку",
-   "count": 60.0
+   "count": 62.0
   },
   {
    "event": "plan_change_clicked",
    "name": "Клик «сменить план»",
-   "count": 55.0
+   "count": 50.0
   },
   {
    "event": "connection_attempt_started",
    "name": "Начал попытку подключения",
-   "count": 52.0
-  },
-  {
-   "event": "platform_setting_updated",
-   "name": "Изменил настройку платформы",
    "count": 48.0
   },
   {
    "event": "connection_attempt_result",
    "name": "Результат попытки подключения",
-   "count": 48.0
+   "count": 43.0
   },
   {
-   "event": "trial_checkout_started",
-   "name": "Начал оформление trial/оплаты",
-   "count": 40.0
+   "event": "platform_setting_updated",
+   "name": "Изменил настройку платформы",
+   "count": 39.0
   },
   {
    "event": "note_block_added",
    "name": "Добавил блок в заметку",
-   "count": 34.0
+   "count": 38.0
   },
   {
    "event": "settings_empty_state_cta_clicked",
    "name": "Клик по пустому состоянию настроек",
-   "count": 34.0
+   "count": 33.0
+  },
+  {
+   "event": "manual_onboarding_completed",
+   "name": "Завершил ручной онбординг",
+   "count": 33.0
+  },
+  {
+   "event": "trial_checkout_started",
+   "name": "Начал оформление trial/оплаты",
+   "count": 32.0
   },
   {
    "event": "onboarding_insight_next_clicked",
@@ -42777,39 +42846,24 @@
    "count": 32.0
   },
   {
-   "event": "manual_onboarding_completed",
-   "name": "Завершил ручной онбординг",
-   "count": 31.0
+   "event": "trade_detail_column_added",
+   "name": "Добавил колонку в детали сделки",
+   "count": 29.0
   },
   {
    "event": "api_connect_cta_clicked",
    "name": "Клик «подключить API»",
-   "count": 25.0
-  },
-  {
-   "event": "trade_detail_column_added",
-   "name": "Добавил колонку в детали сделки",
-   "count": 21.0
+   "count": 24.0
   },
   {
    "event": "journal_column_added",
    "name": "Добавил колонку журнала",
-   "count": 19.0
-  },
-  {
-   "event": "external_auth_credentials_managed",
-   "name": "Управлял внешними credentials",
-   "count": 18.0
+   "count": 22.0
   },
   {
    "event": "trade_template_selected",
    "name": "Выбрал шаблон сделки",
    "count": 18.0
-  },
-  {
-   "event": "portfolio_created",
-   "name": "Создал портфель",
-   "count": 17.0
   },
   {
    "event": "nav_recommendation_dismissed",
@@ -42822,48 +42876,48 @@
    "count": 15.0
   },
   {
-   "event": "trial_started",
-   "name": "Trial активирован",
+   "event": "portfolio_created",
+   "name": "Создал портфель",
    "count": 14.0
+  },
+  {
+   "event": "external_auth_credentials_managed",
+   "name": "Управлял внешними credentials",
+   "count": 14.0
+  },
+  {
+   "event": "subscription_cancelled",
+   "name": "Подписка отменена",
+   "count": 13.0
   },
   {
    "event": "account_connected",
    "name": "Аккаунт подключён",
-   "count": 14.0
+   "count": 13.0
   },
   {
    "event": "account_deletion_requested",
    "name": "Запросил удаление аккаунта",
-   "count": 13.0
-  },
-  {
-   "event": "account_deletion_flow_started",
-   "name": "Начал удаление аккаунта",
-   "count": 13.0
+   "count": 11.0
   },
   {
    "event": "dashboard_widget_settings_opened",
    "name": "Открыл настройки виджета",
+   "count": 11.0
+  },
+  {
+   "event": "account_deletion_flow_started",
+   "name": "Начал удаление аккаунта",
+   "count": 11.0
+  },
+  {
+   "event": "trial_started",
+   "name": "Trial активирован",
    "count": 10.0
   },
   {
    "event": "onboarding_completed",
    "name": "Онбординг завершён",
-   "count": 10.0
-  },
-  {
-   "event": "subscription_cancelled",
-   "name": "Подписка отменена",
-   "count": 9.0
-  },
-  {
-   "event": "account_deletion_verification_requested",
-   "name": "Подтвердил причину удаления",
-   "count": 9.0
-  },
-  {
-   "event": "first_value_shown",
-   "name": "Показана первая ценность",
    "count": 9.0
   },
   {
@@ -42877,19 +42931,24 @@
    "count": 8.0
   },
   {
-   "event": "connection_retry_started",
-   "name": "Повторил попытку подключения",
+   "event": "account_deletion_verification_requested",
+   "name": "Подтвердил причину удаления",
+   "count": 8.0
+  },
+  {
+   "event": "first_value_shown",
+   "name": "Показана первая ценность",
    "count": 8.0
   },
   {
    "event": "purchase_base",
    "name": "Купил Base (Stripe)",
-   "count": 6.0
+   "count": 7.0
   },
   {
    "event": "connection_manager_retained",
    "name": "Остался в Connection Manager",
-   "count": 6.0
+   "count": 7.0
   },
   {
    "event": "note_tag_created",
@@ -42902,29 +42961,29 @@
    "count": 5.0
   },
   {
+   "event": "cancellation_continued",
+   "name": "Продолжил отмену",
+   "count": 5.0
+  },
+  {
+   "event": "cancellation_reason_submitted",
+   "name": "Указал причину отмены",
+   "count": 5.0
+  },
+  {
    "event": "promocode_activated",
    "name": "Активировал промокод",
    "count": 5.0
   },
   {
-   "event": "cancellation_continued",
-   "name": "Продолжил отмену",
-   "count": 4.0
-  },
-  {
-   "event": "cancellation_reason_submitted",
-   "name": "Указал причину отмены",
-   "count": 4.0
+   "event": "connection_retry_started",
+   "name": "Повторил попытку подключения",
+   "count": 5.0
   },
   {
    "event": "banner_dismissed",
    "name": "Закрыл баннер",
    "count": 3.0
-  },
-  {
-   "event": "referral_link_copied",
-   "name": "Скопировал реферальную ссылку",
-   "count": 1.0
   },
   {
    "event": "trade_template_saved",
@@ -42935,6 +42994,11 @@
    "event": "banner_clicked",
    "name": "Клик по баннеру",
    "count": 1.0
+  },
+  {
+   "event": "referral_link_copied",
+   "name": "Скопировал реферальную ссылку",
+   "count": 0.0
   },
   {
    "event": "cancellation_support_clicked",
@@ -42973,9 +43037,9 @@
   }
  ],
  "posthog_activity": {
-  "dau": 9,
-  "wau": 69,
-  "mau": 273
+  "dau": 1,
+  "wau": 52,
+  "mau": 231
  },
  "posthog_trial_by_plan": [
   {
@@ -43013,9 +43077,9 @@
  ],
  "posthog_onboarding_props": {
   "promo_applied": 14,
-  "promo_skipped": 251,
+  "promo_skipped": 263,
   "path_split": {
-   "manual": 196,
+   "manual": 206,
    "auto": 33
   }
  },
@@ -43057,22 +43121,22 @@
  ],
  "clarity": {
   "num_days": 3,
-  "sessions": 206,
-  "bot_sessions": 5,
-  "distinct_users": 194,
-  "pages_per_session": 2.72,
-  "total_time_min": 172,
-  "active_time_min": 67,
-  "avg_scroll_depth": 98.5,
+  "sessions": 68,
+  "bot_sessions": 0,
+  "distinct_users": 66,
+  "pages_per_session": 2.32,
+  "total_time_min": 140,
+  "active_time_min": 51,
+  "avg_scroll_depth": 99.5,
   "dead_clicks": {
-   "sessions_pct": 9.22,
-   "count": 70,
-   "pages": 35
+   "sessions_pct": 8.82,
+   "count": 23,
+   "pages": 6
   },
   "rage_clicks": {
-   "sessions_pct": 0.97,
-   "count": 5,
-   "pages": 2
+   "sessions_pct": 0,
+   "count": 0,
+   "pages": 0
   },
   "quick_backs": {
    "sessions_pct": 0,
@@ -43085,69 +43149,65 @@
    "pages": 0
   },
   "script_errors": {
-   "sessions_pct": 0.49,
+   "sessions_pct": 1.47,
    "count": 5,
    "pages": 1
   },
   "error_clicks": {
-   "sessions_pct": 0.49,
-   "count": 1,
-   "pages": 1
+   "sessions_pct": 0,
+   "count": 0,
+   "pages": 0
   },
   "top_pages": [
    {
     "url": "https://futures.scope360.io/settings/connection-manager",
-    "visits": 54
+    "visits": 18
    },
    {
     "url": "https://futures.scope360.io/journal",
-    "visits": 40
-   },
-   {
-    "url": "https://futures.scope360.io/settings/billing",
-    "visits": 27
-   },
-   {
-    "url": "https://futures.scope360.io/settings/plans",
-    "visits": 26
-   },
-   {
-    "url": "https://futures.scope360.io/settings/profile",
-    "visits": 24
+    "visits": 11
    },
    {
     "url": "https://futures.scope360.io/dashboard",
-    "visits": 23
+    "visits": 7
    },
    {
-    "url": "https://futures.scope360.io/onboarding/billing",
-    "visits": 16
+    "url": "https://futures.scope360.io/settings/plans",
+    "visits": 7
+   },
+   {
+    "url": "https://futures.scope360.io/settings/profile",
+    "visits": 6
+   },
+   {
+    "url": "https://futures.scope360.io/settings/billing",
+    "visits": 5
+   },
+   {
+    "url": "https://futures.scope360.io/daily-stats",
+    "visits": 4
    },
    {
     "url": "https://futures.scope360.io/settings/journal",
-    "visits": 16
+    "visits": 4
    },
    {
     "url": "https://futures.scope360.io/calendar",
-    "visits": 12
+    "visits": 3
    },
    {
     "url": "https://futures.scope360.io/notes",
-    "visits": 12
+    "visits": 3
    }
   ],
   "by_device": [
    {
     "name": "PC",
-    "sessions": 195
+    "sessions": 64
    },
    {
     "name": "Mobile",
-    "sessions": 10
-   },
-   {
-    "name": "Tablet",
-    "sessions": 1
+    "sessions": 4
    }
   ]
  },
@@ -43221,92 +43281,51 @@
    "quick_backs": 0,
    "script_errors": 5,
    "error_clicks": 1
+  },
+  {
+   "date": "2026-10-12",
+   "sessions": 68,
+   "distinct_users": 66,
+   "avg_scroll_depth": 99.5,
+   "active_time_min": 51,
+   "dead_clicks": 23,
+   "dead_clicks_pct": 8.82,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "quick_backs": 0,
+   "script_errors": 5,
+   "error_clicks": 0
   }
  ],
  "clarity_pages": [
   {
-   "url": "https://futures.scope360.io/settings/customize-data-period",
-   "path": "settings/customize-data-period",
-   "sessions": 12,
-   "dead_clicks": 7,
-   "dead_clicks_pct": 8.33,
-   "rage_clicks": 4,
-   "rage_clicks_pct": 8.33,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/settings/plans",
-   "path": "settings/plans",
-   "sessions": 26,
-   "dead_clicks": 9,
-   "dead_clicks_pct": 11.54,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/settings/connection-manager?accountId=11378&accountMarket=crypto",
-   "path": "settings/connection-manager?accountId=11378&accountMarket=crypto",
-   "sessions": 1,
-   "dead_clicks": 8,
-   "dead_clicks_pct": 100,
-   "rage_clicks": 1,
-   "rage_clicks_pct": 100,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
    "url": "https://futures.scope360.io/settings/connection-manager",
    "path": "settings/connection-manager",
-   "sessions": 27,
-   "dead_clicks": 7,
-   "dead_clicks_pct": 14.81,
+   "sessions": 10,
+   "dead_clicks": 14,
+   "dead_clicks_pct": 20,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/settings/connection-manager?accountId=11376&accountMarket=crypto",
-   "path": "settings/connection-manager?accountId=11376&accountMarket=crypto",
-   "sessions": 1,
-   "dead_clicks": 7,
-   "dead_clicks_pct": 100,
+   "url": "https://futures.scope360.io/settings/connection-manager?accountId=4562&accountMarket=fx",
+   "path": "settings/connection-manager?accountId=4562&accountMarket=fx",
+   "sessions": 2,
+   "dead_clicks": 4,
+   "dead_clicks_pct": 50,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/settings/risk-management",
-   "path": "settings/risk-management",
-   "sessions": 8,
-   "dead_clicks": 6,
-   "dead_clicks_pct": 12.5,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/settings/notifications",
-   "path": "settings/notifications",
-   "sessions": 8,
-   "dead_clicks": 5,
-   "dead_clicks_pct": 12.5,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/settings/billing",
-   "path": "settings/billing",
-   "sessions": 27,
-   "dead_clicks": 5,
-   "dead_clicks_pct": 14.81,
+   "url": "https://futures.scope360.io/settings/connection-manager?accountId=4559&accountMarket=fx",
+   "path": "settings/connection-manager?accountId=4559&accountMarket=fx",
+   "sessions": 3,
+   "dead_clicks": 2,
+   "dead_clicks_pct": 33.33,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
@@ -43315,42 +43334,20 @@
   {
    "url": "https://futures.scope360.io/settings/profile",
    "path": "settings/profile",
-   "sessions": 24,
-   "dead_clicks": 4,
-   "dead_clicks_pct": 12.5,
+   "sessions": 6,
+   "dead_clicks": 2,
+   "dead_clicks_pct": 16.67,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/journal",
-   "path": "journal",
-   "sessions": 38,
-   "dead_clicks": 0,
-   "dead_clicks_pct": 0,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 1,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/settings/connection-manager?accountId=11375&accountMarket=crypto",
-   "path": "settings/connection-manager?accountId=11375&accountMarket=crypto",
+   "url": "https://futures.scope360.io/settings/connection-manager?accountId=1399&accountMarket=crypto",
+   "path": "settings/connection-manager?accountId=1399&accountMarket=crypto",
    "sessions": 1,
    "dead_clicks": 1,
    "dead_clicks_pct": 100,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/onboarding/billing?redirect=/journal",
-   "path": "onboarding/billing?redirect=/journal",
-   "sessions": 9,
-   "dead_clicks": 1,
-   "dead_clicks_pct": 11.11,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
@@ -43363,15 +43360,22 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "geo_group": "europe",
-   "country": "UA",
-   "users": 4
+   "country": "FR",
+   "users": 5
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "geo_group": "europe",
    "country": "PT",
-   "users": 2
+   "users": 5
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
+   "country": "UA",
+   "users": 5
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
@@ -43389,13 +43393,6 @@
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "ppp",
-   "geo_group": "europe",
-   "country": "FR",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
    "geo_group": "europe",
    "country": "UA",
@@ -43404,9 +43401,30 @@
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
+   "geo_group": "europe",
+   "country": "FR",
+   "users": 2
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
    "geo_group": "asia",
    "country": "SG",
    "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "europe",
+   "country": "FR",
+   "users": 7
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "europe",
+   "country": "PT",
+   "users": 5
   },
   {
    "experiment_key": "trial_price_geo_v1",
@@ -43418,20 +43436,6 @@
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
-   "geo_group": "europe",
-   "country": "PT",
-   "users": 2
-  },
-  {
-   "experiment_key": "trial_price_geo_v1",
-   "variant_key": "paid_1_usd",
-   "geo_group": "europe",
-   "country": "FR",
-   "users": 1
-  },
-  {
-   "experiment_key": "trial_price_geo_v1",
-   "variant_key": "paid_1_usd",
    "geo_group": "asia",
    "country": "SG",
    "users": 1
@@ -43440,14 +43444,14 @@
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
    "geo_group": "asia",
-   "country": "FR",
+   "country": "PK",
    "users": 1
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
    "geo_group": "asia",
-   "country": "PK",
+   "country": "FR",
    "users": 1
   }
  ],
@@ -43474,7 +43478,7 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "d": "2026-10-07",
-   "users": 8
+   "users": 11
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
@@ -43486,23 +43490,41 @@
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
    "d": "2026-10-07",
-   "users": 4
+   "users": 7
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "d": "2026-10-08",
+   "users": 5
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "d": "2026-10-08",
+   "users": 2
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "d": "2026-10-08",
+   "users": 6
   }
  ],
  "ab_checkouts": [
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
-   "checkouts": 5,
-   "users": 5,
-   "trial_checkouts": 3
+   "checkouts": 9,
+   "users": 7,
+   "trial_checkouts": 7
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
-   "checkouts": 3,
-   "users": 3,
-   "trial_checkouts": 3
+   "checkouts": 7,
+   "users": 5,
+   "trial_checkouts": 7
   }
  ],
  "ab_sales": [
@@ -43510,19 +43532,19 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "status": "success",
-   "invoices": 2,
-   "users": 2,
-   "revenue": 50.0,
-   "net_revenue": 50.0
+   "invoices": 3,
+   "users": 3,
+   "revenue": 51.0,
+   "net_revenue": 51.0
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
    "status": "success",
-   "invoices": 1,
-   "users": 1,
-   "revenue": 1.0,
-   "net_revenue": 1.0
+   "invoices": 2,
+   "users": 2,
+   "revenue": 2.0,
+   "net_revenue": 2.0
   }
  ],
  "ab_sales_by_tier": [
@@ -43544,8 +43566,8 @@
    "pricing_type": "standard",
    "tier": "tier_1",
    "status": "success",
-   "invoices": 90,
-   "revenue": 2198.03
+   "invoices": 102,
+   "revenue": 2444.03
   }
  ],
  "trial_by_length": [
@@ -43554,8 +43576,8 @@
    "checkouts": 40,
    "users": 37,
    "activated": 13,
-   "matured": 2,
-   "paid": 0,
+   "matured": 5,
+   "paid": 1,
    "first": "2026-09-03",
    "last": "2026-10-02"
   },
@@ -43564,7 +43586,7 @@
    "checkouts": 7,
    "users": 6,
    "activated": 3,
-   "matured": 0,
+   "matured": 1,
    "paid": 0,
    "first": "2026-10-02",
    "last": "2026-10-07"
