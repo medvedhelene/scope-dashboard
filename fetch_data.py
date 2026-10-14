@@ -1177,6 +1177,13 @@ AB_QUERIES = {
         FROM analytics.fact_sale_experiments e
         JOIN analytics.fact_sales s ON s.invoice_id = e.invoice_id
         GROUP BY 1, 2, 3 ORDER BY 1, 2, 3""",
+    # Фактические цены, с которыми юзеры реально пришли в checkout, по тирам —
+    # чтобы дашборд сам сверял их с ТЗ (годовые PPP-цены были урgent-дефектом).
+    "ab_checkout_prices": """
+        SELECT coalesce(metadata->>'billing_pricing_tier', '?') AS tier, plan_code, period,
+               amount_cents, count(*) AS checkouts
+        FROM analytics.fact_billing_checkout_started
+        GROUP BY 1, 2, 3, 4 ORDER BY 1, 2, 3, 4""",
     "ab_sales_by_tier": """
         SELECT coalesce(billing_pricing_type, '?') AS pricing_type,
                coalesce(billing_pricing_tier, '?') AS tier, status,

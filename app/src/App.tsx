@@ -85,7 +85,13 @@ const TABS = [
 
 // ---------- А/В тестирование: статус по ТЗ (ClickUp #86cbd53ta) ----------
 // Статусы — снимок QA-проверки на stage от 07.10.2026; обновляются вручную.
-const AB_STATUS_DATE = '07.10.2026'
+const AB_STATUS_DATE = '07.10.2026'   // дата QA-проверки на stage
+const AB_EXPECTED_CENTS: Record<string, number> = {
+  'tier_1|base|month': 2000, 'tier_2|base|month': 1500, 'tier_3|base|month': 1000,
+  'tier_1|base|year': 15000, 'tier_2|base|year': 11300, 'tier_3|base|year': 8300,
+  'tier_1|pro|month': 4500, 'tier_2|pro|month': 3500, 'tier_3|pro|month': 2500,
+  'tier_1|pro|year': 45000, 'tier_2|pro|year': 34000, 'tier_3|pro|year': 25000,
+}
 type AbState = 'ok' | 'warn' | 'todo'
 const AB_ITEMS: Array<{ key: string; title: string; what: string; state: AbState; status: string }> = [
   { key: 'trial_duration_v1', title: 'Trial 7 дней вместо 30', state: 'warn',
@@ -503,6 +509,17 @@ export default function App() {
     return [...map.values()].sort((a, b) => (a.w < b.w ? -1 : 1))
   }, [D])
   const abTierRows: Row[] = D.ab_sales_by_tier ?? []
+  const abPrices: Row[] = D.ab_checkout_prices ?? []
+  const abPriceRows = abPrices.map(r => {
+    const exp = AB_EXPECTED_CENTS[`${r.tier}|${r.plan_code}|${r.period}`]
+    return { ...r, expected: exp ?? null, ok: exp == null ? null : exp === r.amount_cents }
+  })
+  const abPriceBad = abPriceRows.filter(r => r.ok === false)
+  const abFirstDay: string | null = (D.ab_assignments_daily ?? []).reduce((m: string | null, r: Row) => (!m || r.d < m ? r.d : m), null)
+  const abAssignRows: Row[] = D.ab_assignments ?? []
+  const abCountry = (exp: string, c: string) => abAssignRows.filter(r => r.experiment_key === exp && r.country === c).reduce((a, r) => a + r.users, 0)
+  const abUaPpp = abCountry('ppp_pricing_geo_v1', 'UA'), abUaTrial = abCountry('trial_price_geo_v1', 'UA')
+  const abNoControl = abVariants.length > 0 && abVariants.every(e => !e.hasControl)
   // Баннеры: справочник и показы — из Metabase (dim_banners, fact_banner_views),
   // клики/закрытия — из PostHog; склеиваем по banner_id.
   const banners: Row[] = useMemo(() => {
@@ -1767,14 +1784,14 @@ export default function App() {
           )}
           <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
             <Tile label="Экспериментов" value={fmtN(abVariants.length)} sub={abSource ? 'источник: ' + abSource : 'нет данных'} />
-            <Tile label="Юзеров в тесте" value={fmtN(abUsers)} sub="получили variant при регистрации" />
+            <Tile label="Юзеров в тесте" value={fmtN(abUsers)} sub={abFirstDay ? 'с ' + abFirstDay.slice(8) + '.' + abFirstDay.slice(5, 7) + ' · variant при регистрации' : 'получили variant при регистрации'} />
             <Tile label="Checkout" value={fmtN(abCheckouts)} sub="с атрибуцией эксперимента" />
             <Tile label="Оплат из экспериментов" value={fmtN(abInvoices)} sub="успешные инвойсы" />
           </div>
 
           <div className="mt-3 grid grid-cols-1 gap-3">
             <Card title="Что тестируем и где мы"
-              note="Статусы — из QA-проверки на stage; обновляются вручную по задаче в ClickUp «A/B Testing» (#86cbd53ta)."
+              note="Статусы — из QA-проверки на stage (07.10); обновляются вручную по задаче в ClickUp «A/B Testing» (#86cbd53ta). Живые факты с прода — в блоках ниже."
               right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">статус на {AB_STATUS_DATE}</span>}>
               <div className="space-y-2.5">
                 {AB_ITEMS.map(it => (
@@ -1830,6 +1847,12 @@ export default function App() {
               </Card>
             )) : null}
 
+            {abNoControl && abSource === 'prod' && (
+              <div className="rounded-xl border border-red-500/50 bg-red-500/10 px-4 py-3 text-[12.5px] text-red-500">
+                <b>Контрольной группы нет.</b> У обоих экспериментов на проде единственный вариант (ppp / paid_1_usd), вес контроля standard — 0: все подходящие юзеры получают изменение.
+                Это раскатка, а не А/В: честно сравнить варианты между собой не получится — только «до/после» и против тех, кто в эксперимент не попал (например, Украина в trial-эксперименте).
+              </div>
+            )}
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <Card title="Гео назначений" note="Страна регистрации (signup_country_code) по самому крупному эксперименту.">
                 {abGeo.length ? (
@@ -1867,6 +1890,37 @@ export default function App() {
                 )}
               </Card>
             </div>
+
+            <Card title="Цены в checkout: факт vs ТЗ"
+              note="Какую цену юзер реально увидел при оформлении, по тирам. Сверяется с таблицей тиров из ТЗ — так сразу видно, починены ли годовые PPP-цены.">
+              {abPriceRows.length ? (
+                <>
+                  <table className="w-full text-[12.5px]">
+                    <thead>
+                      <tr className="text-left text-muted-foreground">
+                        <th className="pb-2 pr-3 font-medium">Тир</th><th className="pb-2 pr-3 font-medium">План</th><th className="pb-2 pr-3 font-medium">Период</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Цена в checkout</th><th className="pb-2 pr-3 text-right font-medium">По ТЗ</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Checkout</th><th className="pb-2 font-medium">Итог</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {abPriceRows.map((r, i) => (
+                        <tr key={i} className="border-t border-border">
+                          <td className="py-1.5 pr-3">{r.tier}</td><td className="py-1.5 pr-3">{r.plan_code}</td><td className="py-1.5 pr-3">{r.period === 'month' ? 'мес' : r.period === 'year' ? 'год' : r.period}</td>
+                          <td className="py-1.5 pr-3 text-right tabular-nums">${comma((r.amount_cents / 100).toFixed(2))}</td>
+                          <td className="py-1.5 pr-3 text-right tabular-nums text-muted-foreground">{r.expected != null ? '$' + comma((r.expected / 100).toFixed(2)) : '—'}</td>
+                          <td className="py-1.5 pr-3 text-right tabular-nums">{fmtN(r.checkouts)}</td>
+                          <td className={'py-1.5 font-semibold ' + (r.ok === false ? 'text-red-500' : r.ok ? 'text-emerald-500' : 'text-muted-foreground')}>{r.ok === false ? 'не совпадает' : r.ok ? 'совпадает' : 'нет эталона'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                  <div className="mt-2 text-[11.5px] text-muted-foreground">
+                    {abPriceRows.every(r => r.period === 'month') ? 'Годовых checkout пока нет — главный дефект QA (годовые PPP-цены) на проде ещё не проверить.' : ''}
+                  </div>
+                </>
+              ) : <EmptyNote />}
+            </Card>
 
             <Card title="Trial: 30 дней → 7 дней"
               note="Живые данные прода (PostHog + Metabase). Это сравнение «до/после», а не А/В: 7-дневный trial стал дефолтом для всех, контрольной группы на 30 днях нет."
@@ -1923,7 +1977,7 @@ export default function App() {
               ) : <EmptyNote />}
             </Card>
 
-            <Card title="Найденные дефекты (QA, stage)" note="Из комментария QA в задаче. Влияют на чистоту результатов — особенно первые два."
+            <Card title="Найденные дефекты (QA, stage)" note="Из комментария QA в задаче — проверка была на stage 07.10. На проде заново не проверялись (кроме цен — см. таблицу выше). Влияют на чистоту результатов, особенно первые два."
               right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">на {AB_STATUS_DATE}</span>}>
               <div className="space-y-1.5 text-[12.5px]">
                 {AB_DEFECTS.map((d, i) => (
@@ -1938,15 +1992,17 @@ export default function App() {
             <Card title="Выводы">
               <ul className="grid gap-2.5 text-[13px] text-muted-foreground">
                 {[
-                  <><b className="text-foreground">Эксперименты ещё не в бою.</b> {abSource === 'prod' ? 'Таблицы уже на проде.' : 'Таблицы экспериментов есть только на stage'}{abSource === 'stage' && <> — всего {fmtN(abUsers)} тестовых юзеров QA, это проверка механики, не результат.</>}</>,
-                  <><b className="text-foreground">Реального сплита пока нет.</b> На stage оба эксперимента стоят на 100% трафика с единственным вариантом весом 100 (у standard вес 0), так что сравнивать не с чем.
-                    Для trial за $1 Украина исключена по дизайну — если её оставить «контролем», это будет не рандомизация, а сравнение разного трафика. Нужен контроль внутри не-UA аудитории.</>,
-                  trial7 && <><b className="text-foreground">7-дневный trial действует с {trial7.first.slice(8)}.{trial7.first.slice(5, 7)}.</b> Checkout→активация: {trial30 ? comma((trial30.activated / trial30.checkouts * 100).toFixed(0)) : '—'}% при 30 днях ({trial30 ? fmtN(trial30.checkouts) : '—'} checkout) против {comma((trial7.activated / trial7.checkouts * 100).toFixed(0))}% при 7 днях ({fmtN(trial7.checkouts)} checkout) — выборка 7-дневных слишком мала для вывода.
-                    Оплат после trial пока нет ни там, ни там ({trial30 ? fmtN(trial30.matured) : 0} дозревших 30-дневных, {fmtN(trial7.matured)} 7-дневных); первые 7-дневные закончатся 09.10 — вернуться к цифрам стоит 14–16.10.</>,
-                  <><b className="text-foreground">Прежде чем доверять результатам PPP, нужно починить годовые цены и приоритет CF-IPContinent</b> — иначе часть юзеров увидит неверный тир или цену, и разница между вариантами будет шумом.</>,
+                  abSource === 'prod'
+                    ? <><b className="text-foreground">Эксперименты на проде запущены{abFirstDay ? ' с ' + abFirstDay.slice(8) + '.' + abFirstDay.slice(5, 7) : ''}, но выборка пока ничтожна:</b> {fmtN(abUsers)} юзеров в тесте, {fmtN(abCheckouts)} checkout, {fmtN(abInvoices)} оплат из экспериментов. Любые проценты по вариантам сейчас — шум; смотреть имеет смысл, когда наберётся хотя бы по 30 юзеров на вариант.</>
+                    : <><b className="text-foreground">Эксперименты ещё не в бою.</b> Таблицы есть только на stage — {fmtN(abUsers)} тестовых юзеров QA, это проверка механики, не результат.</>,
+                  abNoControl && <><b className="text-foreground">Контрольной группы нет — это раскатка, а не А/В.</b> Единственный вариант в каждом эксперименте получает 100% подходящих юзеров, у standard вес 0. Чтобы получить честный результат, нужен контроль внутри той же аудитории (например, 50/50 между standard и ppp / $1-trial). Украина в trial за $1 исключена по дизайну, поэтому её нельзя считать контролем — это другой трафик.</>,
+                  abSource === 'prod' && abUaTrial === 0 && abUaPpp > 0 && <><b className="text-foreground">Исключение Украины из trial за $1 работает на проде:</b> {fmtN(abUaPpp)} украинских юзеров попали в ценовой эксперимент и ни один — в trial-эксперимент.</>,
+                  abPriceBad.length > 0 && <><b className="text-foreground">Цены в checkout не совпадают с ТЗ</b> у {fmtN(abPriceBad.reduce((a, r) => a + r.checkouts, 0))} checkout — смотри таблицу «Цены в checkout». Пока это так, результат PPP-теста нельзя интерпретировать.</>,
+                  trial7 && <><b className="text-foreground">7-дневный trial:</b> checkout→активация {trial30 ? comma((trial30.activated / trial30.checkouts * 100).toFixed(0)) : '—'}% при 30 днях ({trial30 ? fmtN(trial30.checkouts) : '—'} checkout) против {comma((trial7.activated / trial7.checkouts * 100).toFixed(0))}% при 7 днях ({fmtN(trial7.checkouts)} checkout).
+                    Оплатили после trial: {trial30 ? fmtN(trial30.paid) : 0} из {trial30 ? fmtN(trial30.matured) : 0} дозревших при 30 днях, {fmtN(trial7.paid)} из {fmtN(trial7.matured)} при 7 днях — по 7-дневным данных для вывода пока мало; это «до/после», не А/В.</>,
                 ].filter(Boolean).map((x, i) => (
                   <li key={i} className="rounded-xl border border-border bg-background/40 px-4 py-3">
-                    <span className="mr-2 inline-block rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">вывод от 07.10.2026</span>{x}
+                    <span className="mr-2 inline-block rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">вывод от 14.10.2026</span>{x}
                   </li>
                 ))}
               </ul>
