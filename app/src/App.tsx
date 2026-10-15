@@ -1851,10 +1851,10 @@ export default function App() {
               const sigAny = (e.pPaid != null && e.pPaid < 0.05) || (e.pCheckout != null && e.pCheckout < 0.05)
               const better = e.c.arpu != null && e.t.arpu != null ? e.t.arpu - e.c.arpu : null
               const verdict = !e.hasControl || better == null
-                ? { label: 'Waiting for control data', text: 'text-muted-foreground', box: 'border-dashed border-border' }
-                : sigAny && better > 0 ? { label: 'Success — A/B is better', text: 'text-emerald-500', box: 'border-emerald-500/40 bg-emerald-500/5' }
-                : sigAny && better < 0 ? { label: 'Not working — A/B is worse', text: 'text-red-500', box: 'border-red-500/40 bg-red-500/5' }
-                : { label: 'No clear result yet', text: 'text-amber-500', box: 'border-amber-500/40 bg-amber-500/5' }
+                ? { label: 'Waiting', text: 'bg-muted text-muted-foreground', box: 'border-border' }
+                : sigAny && better > 0 ? { label: 'Success', text: 'bg-emerald-500/10 text-emerald-500', box: 'border-emerald-500/40' }
+                : sigAny && better < 0 ? { label: 'Not working', text: 'bg-red-500/10 text-red-500', box: 'border-red-500/40' }
+                : { label: 'No clear result', text: 'bg-amber-500/10 text-amber-500', box: 'border-amber-500/40' }
               return (
                 <Card key={e.exp} title={meta?.title ?? e.exp}
                   right={<span className={'rounded-full px-2 py-0.5 text-[10.5px] font-semibold ' + state.c}>{state.t}</span>}>
@@ -1865,7 +1865,7 @@ export default function App() {
                   <div className={'mt-3 rounded-xl border px-4 py-3 ' + verdict.box}>
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                       <span className="text-[11.5px] font-semibold uppercase tracking-wide text-muted-foreground">Result</span>
-                      <span className={'text-[20px] font-semibold leading-tight ' + verdict.text}>{verdict.label}</span>
+                      <span className={'rounded-full px-2 py-0.5 text-[10.5px] font-semibold ' + verdict.text}>{verdict.label}</span>
                     </div>
                     <div className="mt-3 grid grid-cols-3 gap-3">
                       <Stat label="Checkout" value={<>{dPp(e.c.checkoutRate, e.t.checkoutRate)}{chip(sig(e.pCheckout))}</>} />
