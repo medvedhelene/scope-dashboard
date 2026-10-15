@@ -186,7 +186,7 @@ function DataSinceTag({ date }: { date: string }) {
   )
 }
 
-function Tile({ label, value, sub }: { label: string; value: ReactNode; sub?: ReactNode }) {
+function Tile({ label, value, sub }: { label: ReactNode; value: ReactNode; sub?: ReactNode }) {
   return (
     <div className="rounded-xl border border-border bg-card text-card-foreground px-4 py-3">
       <div className="text-[13px] text-muted-foreground">{label}</div>
@@ -1808,9 +1808,13 @@ export default function App() {
             </div>
           )}
           <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-            <Tile label="Юзеров в тесте" value={fmtN(abUsers)} sub={abFirstDay ? 'с ' + abFirstDay.slice(8) + '.' + abFirstDay.slice(5, 7) + ' · variant при регистрации' : 'получили variant при регистрации'} />
-            <Tile label="Checkout" value={fmtN(abCheckouts)} sub="с атрибуцией эксперимента" />
-            <Tile label="Оплат из экспериментов" value={fmtN(abInvoices)} sub="успешные инвойсы" />
+            <Tile
+              label={<span className="flex flex-wrap items-center gap-2">Users in test
+                {abFirstDay && <span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">from {abFirstDay.slice(8)}.{abFirstDay.slice(5, 7)}</span>}
+              </span>}
+              value={fmtN(abUsers)} />
+            <Tile label="Checkouts from A/B" value={fmtN(abCheckouts)} />
+            <Tile label="Successful payments" value={fmtN(abInvoices)} />
           </div>
 
           <div className="mt-3 grid grid-cols-1 gap-3">
