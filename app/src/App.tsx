@@ -513,14 +513,13 @@ export default function App() {
   const abAssignRows: Row[] = D.ab_assignments ?? []
   const abCountry = (exp: string, c: string) => abAssignRows.filter(r => r.experiment_key === exp && r.country === c).reduce((a, r) => a + r.users, 0)
   const abUaPpp = abCountry('ppp_pricing_geo_v1', 'UA'), abUaTrial = abCountry('trial_price_geo_v1', 'UA')
-  const abNoControl = abVariants.length > 0 && abVariants.every(e => !e.hasControl)
   const abYearlySeen = abPriceRows.some(r => r.period === 'year')
   const abProdChecks: Array<{ s: 'bug' | 'ok' | 'warn' | 'na'; t: string }> = [
     abPriceRows.length === 0
       ? { s: 'na', t: 'Цены в checkout: checkout ещё не было — сверять не с чем.' }
       : abPriceBad.length > 0
         ? { s: 'bug', t: 'Цены в checkout не совпадают с ТЗ: ' + abPriceBad.map(r => `${r.tier} ${r.plan_code}/${r.period} — $${(r.amount_cents / 100).toFixed(0)} вместо $${(r.expected / 100).toFixed(0)}`).join('; ') + '.' }
-        : { s: 'ok', t: `Цены в checkout совпадают с ТЗ (${abPriceRows.length} комбинаций тир/план/период).` },
+        : { s: 'ok', t: `Цены в checkout совпадают с ТЗ (комбинаций тир/план/период: ${abPriceRows.length}).` },
     abUaTrial > 0
       ? { s: 'bug', t: `Украина попала в trial за $1: ${fmtN(abUaTrial)} юзеров — по ТЗ она исключена.` }
       : { s: 'ok', t: 'Украина не попадает в trial за $1 (исключение работает).' },
@@ -528,9 +527,6 @@ export default function App() {
       ? { s: 'ok', t: 'Годовые checkout есть, цены сверены выше.' }
       : { s: 'na', t: 'Годовые PPP-цены (главный QA-дефект на stage) и «Yearly открывает месячный checkout»: на проде не проверить — годовых checkout ещё не было.' },
     { s: 'na', t: 'CF-IPContinent приоритетнее кода страны: по данным не видно — нужен тест с VPN/IP из пограничной страны.' },
-    abNoControl
-      ? { s: 'warn', t: 'Нет контрольной группы: у standard вес 0, весь трафик идёт в тестовый вариант. Это не ошибка кода, но А/В-сравнение невозможно.' }
-      : { s: 'ok', t: 'Контрольная группа есть.' },
   ]
   // Баннеры: справочник и показы — из Metabase (dim_banners, fact_banner_views),
   // клики/закрытия — из PostHog; склеиваем по banner_id.
@@ -1794,38 +1790,16 @@ export default function App() {
                 : <>Таблиц экспериментов нет ни на проде, ни на stage — показан только статус по ТЗ и анализ длины trial.</>}
             </div>
           )}
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            <Tile label="Экспериментов" value={fmtN(abVariants.length)} sub={abSource ? 'источник: ' + abSource : 'нет данных'} />
+          <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
             <Tile label="Юзеров в тесте" value={fmtN(abUsers)} sub={abFirstDay ? 'с ' + abFirstDay.slice(8) + '.' + abFirstDay.slice(5, 7) + ' · variant при регистрации' : 'получили variant при регистрации'} />
             <Tile label="Checkout" value={fmtN(abCheckouts)} sub="с атрибуцией эксперимента" />
             <Tile label="Оплат из экспериментов" value={fmtN(abInvoices)} sub="успешные инвойсы" />
           </div>
 
           <div className="mt-3 grid grid-cols-1 gap-3">
-            <Card title="Что тестируем и где мы"
-              note="Статусы — из QA-проверки на stage (07.10); обновляются вручную по задаче в ClickUp «A/B Testing» (#86cbd53ta). Живые факты с прода — в блоках ниже."
-              right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">статус на {AB_STATUS_DATE}</span>}>
-              <div className="space-y-2.5">
-                {AB_ITEMS.map(it => (
-                  <div key={it.key} className="rounded-lg border border-border bg-background/40 p-3">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <b className="text-[13px]">{it.title}</b>
-                      <span className={'rounded-full px-2 py-0.5 text-[10px] font-semibold ' + (it.state === 'ok' ? 'bg-emerald-500/10 text-emerald-500' : it.state === 'warn' ? 'bg-amber-500/10 text-amber-500' : 'bg-muted text-muted-foreground')}>
-                        {it.state === 'ok' ? 'работает' : it.state === 'warn' ? 'частично' : 'не сделано'}
-                      </span>
-                      {it.key.endsWith('_v1') && <code className="text-[11px] text-muted-foreground">{it.key}</code>}
-                    </div>
-                    <div className="mt-1 text-[12.5px] text-muted-foreground">{it.what}</div>
-                    <div className="mt-1 text-[12.5px]">{it.status}</div>
-                  </div>
-                ))}
-              </div>
-            </Card>
-
             {abVariants.length ? abVariants.map(e => (
-              <Card key={e.exp} title={e.exp}
-                note={e.hasControl ? 'Сравнение с контролем (standard) — по доле оплативших от числа назначенных.'
-                  : 'Контрольного варианта нет — сравнивать не с чем, показаны только цифры варианта.'}>
+              <Card key={e.exp} title={(AB_ITEMS.find(x => x.key === e.exp)?.title ?? e.exp) + ' · ' + e.exp}
+                note={(AB_ITEMS.find(x => x.key === e.exp)?.what ?? '') + (e.hasControl ? ' Сравнение с контролем (standard) — по доле оплативших от числа назначенных.' : '')}>
                 <div className="overflow-x-auto">
                   <table className="w-full text-[12.5px]">
                     <thead>
@@ -1836,7 +1810,7 @@ export default function App() {
                         <th className="pb-2 pr-3 text-right font-medium">Оплатили</th>
                         <th className="pb-2 pr-3 text-right font-medium">Выручка</th>
                         <th className="pb-2 pr-3 text-right font-medium">$ на назначенного</th>
-                        <th className="pb-2 font-medium">Против контроля</th>
+                        {e.hasControl && <th className="pb-2 font-medium">Против контроля</th>}
                       </tr>
                     </thead>
                     <tbody>
@@ -1848,9 +1822,9 @@ export default function App() {
                           <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.paidUsers)}<span className="text-muted-foreground"> · {r.paidRate != null ? comma(r.paidRate.toFixed(0)) + '%' : '—'}</span></td>
                           <td className="py-2 pr-3 text-right tabular-nums">{fmtM(r.revenue)}</td>
                           <td className="py-2 pr-3 text-right tabular-nums">{r.arpu != null ? '$' + comma(r.arpu.toFixed(2)) : '—'}</td>
-                          <td className="py-2 text-muted-foreground">
+                          {e.hasControl && <td className="py-2 text-muted-foreground">
                             {r.small === null ? '—' : r.small ? 'мало данных (n<30)' : r.p == null ? '—' : r.p < 0.05 ? 'значимо, p=' + comma(r.p.toFixed(3)) : 'не значимо, p=' + comma(r.p.toFixed(2))}
-                          </td>
+                          </td>}
                         </tr>
                       ))}
                     </tbody>
@@ -1859,12 +1833,6 @@ export default function App() {
               </Card>
             )) : null}
 
-            {abNoControl && abSource === 'prod' && (
-              <div className="rounded-xl border border-red-500/50 bg-red-500/10 px-4 py-3 text-[12.5px] text-red-500">
-                <b>Контрольной группы нет.</b> У обоих экспериментов на проде единственный вариант (ppp / paid_1_usd), вес контроля standard — 0: все подходящие юзеры получают изменение.
-                Это раскатка, а не А/В: честно сравнить варианты между собой не получится — только «до/после» и против тех, кто в эксперимент не попал (например, Украина в trial-эксперименте).
-              </div>
-            )}
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <Card title="Гео назначений" note="Страна регистрации (signup_country_code) по самому крупному эксперименту.">
                 {abGeo.length ? (
@@ -2016,7 +1984,6 @@ export default function App() {
                   abSource === 'prod'
                     ? <><b className="text-foreground">Эксперименты на проде запущены{abFirstDay ? ' с ' + abFirstDay.slice(8) + '.' + abFirstDay.slice(5, 7) : ''}, но выборка пока ничтожна:</b> {fmtN(abUsers)} юзеров в тесте, {fmtN(abCheckouts)} checkout, {fmtN(abInvoices)} оплат из экспериментов. Любые проценты по вариантам сейчас — шум; смотреть имеет смысл, когда наберётся хотя бы по 30 юзеров на вариант.</>
                     : <><b className="text-foreground">Эксперименты ещё не в бою.</b> Таблицы есть только на stage — {fmtN(abUsers)} тестовых юзеров QA, это проверка механики, не результат.</>,
-                  abNoControl && <><b className="text-foreground">Контрольной группы нет — это раскатка, а не А/В.</b> Единственный вариант в каждом эксперименте получает 100% подходящих юзеров, у standard вес 0. Чтобы получить честный результат, нужен контроль внутри той же аудитории (например, 50/50 между standard и ppp / $1-trial). Украина в trial за $1 исключена по дизайну, поэтому её нельзя считать контролем — это другой трафик.</>,
                   abSource === 'prod' && abUaTrial === 0 && abUaPpp > 0 && <><b className="text-foreground">Исключение Украины из trial за $1 работает на проде:</b> {fmtN(abUaPpp)} украинских юзеров попали в ценовой эксперимент и ни один — в trial-эксперимент.</>,
                   abPriceBad.length > 0 && <><b className="text-foreground">Цены в checkout не совпадают с ТЗ</b> у {fmtN(abPriceBad.reduce((a, r) => a + r.checkouts, 0))} checkout — смотри таблицу «Цены в checkout». Пока это так, результат PPP-теста нельзя интерпретировать.</>,
                   trial7 && <><b className="text-foreground">7-дневный trial:</b> checkout→активация {trial30 ? comma((trial30.activated / trial30.checkouts * 100).toFixed(0)) : '—'}% при 30 днях ({trial30 ? fmtN(trial30.checkouts) : '—'} checkout) против {comma((trial7.activated / trial7.checkouts * 100).toFixed(0))}% при 7 днях ({fmtN(trial7.checkouts)} checkout).
@@ -2027,6 +1994,26 @@ export default function App() {
                   </li>
                 ))}
               </ul>
+            </Card>
+
+            <Card title="Что тестируем и где мы"
+              note="Статусы — из QA-проверки на stage (07.10); обновляются вручную по задаче в ClickUp «A/B Testing» (#86cbd53ta). Живые факты с прода — в блоках выше."
+              right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">статус на {AB_STATUS_DATE}</span>}>
+              <div className="space-y-2.5">
+                {AB_ITEMS.map(it => (
+                  <div key={it.key} className="rounded-lg border border-border bg-background/40 p-3">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <b className="text-[13px]">{it.title}</b>
+                      <span className={'rounded-full px-2 py-0.5 text-[10px] font-semibold ' + (it.state === 'ok' ? 'bg-emerald-500/10 text-emerald-500' : it.state === 'warn' ? 'bg-amber-500/10 text-amber-500' : 'bg-muted text-muted-foreground')}>
+                        {it.state === 'ok' ? 'работает' : it.state === 'warn' ? 'частично' : 'не сделано'}
+                      </span>
+                      {it.key.endsWith('_v1') && <code className="text-[11px] text-muted-foreground">{it.key}</code>}
+                    </div>
+                    <div className="mt-1 text-[12.5px] text-muted-foreground">{it.what}</div>
+                    <div className="mt-1 text-[12.5px]">{it.status}</div>
+                  </div>
+                ))}
+              </div>
             </Card>
           </div>
         </Section>
