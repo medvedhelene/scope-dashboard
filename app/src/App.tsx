@@ -1817,7 +1817,9 @@ export default function App() {
           <div className="mt-3 grid grid-cols-1 gap-3">
             {abCompare.map((e: Row) => {
               const meta = AB_ITEMS.find(x => x.key === e.exp)
-              const testName = AB_VARIANT_NAMES[e.testVar] ?? e.testVar
+              const isPpp = e.exp.startsWith('ppp')
+              const ctrlName = isPpp ? 'Regular prices' : 'Free trial'
+              const testName = isPpp ? 'A/B prices' : '$1 trial'
               const sig = (pv: number | null) => pv == null ? null : pv < 0.05
               const state = !e.hasControl ? { t: 'ждём контроль', c: 'bg-amber-500/10 text-amber-500' }
                 : { t: 'идёт сбор', c: 'bg-emerald-500/10 text-emerald-500' }
@@ -1829,10 +1831,10 @@ export default function App() {
                   {sub != null && <div className="text-[11px] text-muted-foreground">{sub}</div>}
                 </div>
               )
-              const Side = ({ title, tag, o }: { title: string; tag: string; o: Row }) => (
+              const Side = ({ title, o }: { title: string; o: Row }) => (
                 <div className="rounded-xl border border-border bg-background/40 p-4">
                   <div className="flex items-baseline justify-between gap-2">
-                    <div><b className="text-[14px]">{title}</b>{tag !== title && <span className="ml-1.5 text-[11px] text-muted-foreground">{tag}</span>}</div>
+                    <div><b className="text-[14px]">{title}</b></div>
                     <div className="text-[12px] tabular-nums text-muted-foreground"><b className="text-[15px] text-foreground">{fmtN(o.assigned)}</b> юзеров</div>
                   </div>
                   <div className="mt-4 grid grid-cols-3 gap-3">
@@ -1846,19 +1848,29 @@ export default function App() {
               const dUsd = e.c.arpu == null || e.t.arpu == null ? '—' : (e.t.arpu - e.c.arpu >= 0 ? '+' : '−') + '$' + comma(Math.abs(e.t.arpu - e.c.arpu).toFixed(2))
               const chip = (v: boolean | null) => v == null ? null
                 : <span className={'ml-1.5 rounded-full px-1.5 py-0.5 text-[10px] font-semibold ' + (v ? 'bg-emerald-500/10 text-emerald-500' : 'bg-muted text-muted-foreground')}>{v ? 'значимо' : 'шум'}</span>
+              const sigAny = (e.pPaid != null && e.pPaid < 0.05) || (e.pCheckout != null && e.pCheckout < 0.05)
+              const better = e.c.arpu != null && e.t.arpu != null ? e.t.arpu - e.c.arpu : null
+              const verdict = !e.hasControl || better == null
+                ? { label: 'Waiting for control data', text: 'text-muted-foreground', box: 'border-dashed border-border' }
+                : sigAny && better > 0 ? { label: 'Success — A/B is better', text: 'text-emerald-500', box: 'border-emerald-500/40 bg-emerald-500/5' }
+                : sigAny && better < 0 ? { label: 'Not working — A/B is worse', text: 'text-red-500', box: 'border-red-500/40 bg-red-500/5' }
+                : { label: 'No clear result yet', text: 'text-amber-500', box: 'border-amber-500/40 bg-amber-500/5' }
               return (
                 <Card key={e.exp} title={meta?.title ?? e.exp}
                   right={<span className={'rounded-full px-2 py-0.5 text-[10.5px] font-semibold ' + state.c}>{state.t}</span>}>
                   <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
-                    <Side title="Контроль" tag="standard" o={e.c} />
-                    <Side title={testName} tag={e.testVar} o={e.t} />
+                    <Side title={ctrlName} o={e.c} />
+                    <Side title={testName} o={e.t} />
                   </div>
-                  <div className="mt-3 rounded-xl border border-dashed border-border px-4 py-3">
-                    <div className="mb-2 text-[11.5px] font-semibold uppercase tracking-wide text-muted-foreground">Разница: тест минус контроль</div>
-                    <div className="grid grid-cols-3 gap-3">
-                      <Stat big label="Checkout" value={<>{dPp(e.c.checkoutRate, e.t.checkoutRate)}{chip(sig(e.pCheckout))}</>} />
-                      <Stat big label="Оплата" value={<>{dPp(e.c.paidRate, e.t.paidRate)}{chip(sig(e.pPaid))}</>} />
-                      <Stat big label="$ на юзера" value={dUsd} sub="главная метрика" />
+                  <div className={'mt-3 rounded-xl border px-4 py-3 ' + verdict.box}>
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <span className="text-[11.5px] font-semibold uppercase tracking-wide text-muted-foreground">Result</span>
+                      <span className={'text-[20px] font-semibold leading-tight ' + verdict.text}>{verdict.label}</span>
+                    </div>
+                    <div className="mt-3 grid grid-cols-3 gap-3">
+                      <Stat label="Checkout" value={<>{dPp(e.c.checkoutRate, e.t.checkoutRate)}{chip(sig(e.pCheckout))}</>} />
+                      <Stat label="Payment" value={<>{dPp(e.c.paidRate, e.t.paidRate)}{chip(sig(e.pPaid))}</>} />
+                      <Stat label="$ per user" value={dUsd} />
                     </div>
                   </div>
                   {meta?.what && <div className="mt-3 text-[11.5px] text-muted-foreground">{meta.what}</div>}
