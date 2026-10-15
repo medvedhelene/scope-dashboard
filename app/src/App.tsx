@@ -111,6 +111,7 @@ const AB_TIERS = [
   ['Base / мес', '$20', '$15', '$10'], ['Base / год', '$150', '$113', '$83'],
   ['Pro / мес', '$45', '$35', '$25'], ['Pro / год', '$450', '$340', '$250'],
 ]
+const AB_TARGET_N = 300   // юзеров на вариант, чтобы заметить рост checkout ~20% → 30%
 const AB_VARIANT_NAMES: Record<string, string> = { standard: 'standard (контроль)', ppp: 'ppp', paid_1_usd: 'trial за $1' }
 const normCdf = (z: number) => {
   // аппроксимация erf (Abramowitz–Stegun 7.1.26)
@@ -482,29 +483,32 @@ export default function App() {
   // Чистое сравнение: только юзеры, назначенные после того, как у standard появился вес.
   // До этого момента все получали изменение (раскатка) — их в сравнение не берём.
   const abCompare = useMemo(() => {
-    const rows: Row[] = D.ab_cohorts ?? []
-    if (!rows.length) return abVariants
-    const exps = [...new Set(rows.map(r => r.experiment_key))]
-    return exps.map(exp => {
-      const mine = rows.filter(r => r.experiment_key === exp)
+    const cohortRows: Row[] = D.ab_cohorts ?? abVariants.flatMap(e => e.rows.map((r: Row) => ({
+      experiment_key: e.exp, variant_key: r.variant, cohort: e.hasControl ? 'test' : 'rollout', cutoff: null,
+      assigned: r.assigned, checkout_users: r.checkoutUsers, paid_users: r.paidUsers, revenue: r.revenue,
+    })))
+    const zero = { assigned: 0, checkoutUsers: 0, paidUsers: 0, revenue: 0 }
+    const side = (r?: Row) => {
+      const o = r ? { assigned: r.assigned, checkoutUsers: r.checkout_users, paidUsers: r.paid_users, revenue: r.revenue } : zero
+      return { ...o, checkoutRate: o.assigned ? o.checkoutUsers / o.assigned * 100 : null, paidRate: o.assigned ? o.paidUsers / o.assigned * 100 : null,
+        arpu: o.assigned ? o.revenue / o.assigned : null }
+    }
+    return [...new Set(cohortRows.map(r => r.experiment_key))].map(exp => {
+      const mine = cohortRows.filter(r => r.experiment_key === exp)
       const test = mine.filter(r => r.cohort === 'test')
       const rollout = mine.filter(r => r.cohort === 'rollout')
-      const hasControl = test.some(r => r.variant_key === 'standard')
-      const src = hasControl ? test : mine
-      const vs = src.map(r => ({ variant: r.variant_key, assigned: r.assigned, checkoutUsers: r.checkout_users, paidUsers: r.paid_users, revenue: r.revenue }))
-      vs.sort((a, b) => (a.variant === 'standard' ? -1 : b.variant === 'standard' ? 1 : b.assigned - a.assigned))
-      const ctrl = vs.find(v => v.variant === 'standard')
-      const out = vs.map(v => {
-        const isTest = ctrl && v !== ctrl
-        return { ...v, checkoutRate: v.assigned ? v.checkoutUsers / v.assigned * 100 : null, paidRate: v.assigned ? v.paidUsers / v.assigned * 100 : null,
-          arpu: v.assigned ? v.revenue / v.assigned : null,
-          p: isTest ? zTestP(ctrl!.paidUsers, ctrl!.assigned, v.paidUsers, v.assigned) : null,
-          pCheckout: isTest ? zTestP(ctrl!.checkoutUsers, ctrl!.assigned, v.checkoutUsers, v.assigned) : null,
-          small: isTest ? Math.min(ctrl!.assigned, v.assigned) < 30 : null }
-      })
-      return { exp, rows: out, hasControl, total: out.reduce((a, r) => a + r.assigned, 0),
-        cutoff: hasControl ? String(test[0]?.cutoff ?? '') : '', rollout: hasControl ? rollout.reduce((a, r) => a + r.assigned, 0) : 0 }
-    }).sort((a, b) => b.total - a.total)
+      const testVar: string = mine.find(r => r.variant_key !== 'standard')?.variant_key ?? ''
+      const c = side(test.find(r => r.variant_key === 'standard'))
+      const t = side(test.find(r => r.variant_key === testVar))
+      const pair = c.assigned > 0 && t.assigned > 0
+      return {
+        exp, testVar, c, t, hasControl: c.assigned > 0, cutoff: String(test[0]?.cutoff ?? ''),
+        rollout: rollout.reduce((a, r) => a + r.assigned, 0),
+        small: !pair || Math.min(c.assigned, t.assigned) < 30,
+        pPaid: pair ? zTestP(c.paidUsers, c.assigned, t.paidUsers, t.assigned) : null,
+        pCheckout: pair ? zTestP(c.checkoutUsers, c.assigned, t.checkoutUsers, t.assigned) : null,
+      }
+    })
   }, [D, abVariants])
   const abUsers = abVariants.reduce((a, e) => Math.max(a, e.total), 0)
   const abCheckouts = abVariants.reduce((a, e) => a + e.rows.reduce((x, r) => x + r.checkouts, 0), 0)
@@ -1810,48 +1814,86 @@ export default function App() {
           </div>
 
           <div className="mt-3 grid grid-cols-1 gap-3">
-            {abCompare.length ? abCompare.map((e: Row) => (
-              <Card key={e.exp} title={(AB_ITEMS.find(x => x.key === e.exp)?.title ?? e.exp) + ' · ' + e.exp}
-                note={(AB_ITEMS.find(x => x.key === e.exp)?.what ?? '') + (e.hasControl
-                  ? ` Контроль (standard) включён с ${e.cutoff.slice(8, 10)}.${e.cutoff.slice(5, 7)} ${e.cutoff.slice(11, 16)} UTC — сравниваем только юзеров, назначенных после этого${e.rollout ? `; ещё ${e.rollout} юзеров раньше получали изменение без контроля, в сравнение не входят` : ''}.`
-                  : '')}>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-[12.5px]">
-                    <thead>
-                      <tr className="text-left text-muted-foreground">
-                        <th className="pb-2 pr-3 font-medium">Вариант</th>
-                        <th className="pb-2 pr-3 text-right font-medium">Назначено</th>
-                        <th className="pb-2 pr-3 text-right font-medium">Checkout</th>
-                        <th className="pb-2 pr-3 text-right font-medium">Оплатили</th>
-                        <th className="pb-2 pr-3 text-right font-medium">Выручка</th>
-                        <th className="pb-2 pr-3 text-right font-medium">$ на назначенного</th>
-                        {e.hasControl && <th className="pb-2 font-medium">Против контроля</th>}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {e.rows.map((r: Row) => (
-                        <tr key={r.variant} className="border-t border-border">
-                          <td className="py-2 pr-3"><b>{AB_VARIANT_NAMES[r.variant] ?? r.variant}</b></td>
-                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.assigned)}</td>
-                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.checkoutUsers)}<span className="text-muted-foreground"> · {r.checkoutRate != null ? comma(r.checkoutRate.toFixed(0)) + '%' : '—'}</span></td>
-                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.paidUsers)}<span className="text-muted-foreground"> · {r.paidRate != null ? comma(r.paidRate.toFixed(0)) + '%' : '—'}</span></td>
-                          <td className="py-2 pr-3 text-right tabular-nums">{fmtM(r.revenue)}</td>
-                          <td className="py-2 pr-3 text-right tabular-nums">{r.arpu != null ? '$' + comma(r.arpu.toFixed(2)) : '—'}</td>
-                          {e.hasControl && <td className="py-2 text-muted-foreground">
-                            {r.small === null ? '—' : r.small ? 'мало данных (n<30 на вариант)' : (
-                              <>
-                                <div>оплата: {r.p == null ? '—' : r.p < 0.05 ? 'значимо, p=' + comma(r.p.toFixed(3)) : 'не значимо, p=' + comma(r.p.toFixed(2))}</div>
-                                <div>checkout: {r.pCheckout == null ? '—' : r.pCheckout < 0.05 ? 'значимо, p=' + comma(r.pCheckout.toFixed(3)) : 'не значимо, p=' + comma(r.pCheckout.toFixed(2))}</div>
-                              </>
-                            )}
-                          </td>}
+            {abCompare.map((e: Row) => {
+              const meta = AB_ITEMS.find(x => x.key === e.exp)
+              const pTxt = (pv: number | null) => e.small || pv == null ? '—' : (pv < 0.05 ? 'значимо' : 'не значимо') + ', p=' + comma(pv.toFixed(pv < 0.05 ? 3 : 2))
+              const diffPp = (a: number | null, b: number | null) => a == null || b == null ? '—' : (b - a >= 0 ? '+' : '') + comma((b - a).toFixed(1)) + ' п.п.'
+              const diffUsd = e.c.arpu == null || e.t.arpu == null ? '—' : (e.t.arpu - e.c.arpu >= 0 ? '+' : '−') + '$' + comma(Math.abs(e.t.arpu - e.c.arpu).toFixed(2))
+              const state = !e.hasControl ? { t: 'ждём контроль', c: 'bg-amber-500/10 text-amber-500' }
+                : e.small ? { t: 'мало данных', c: 'bg-sky-500/10 text-sky-500' } : { t: 'можно смотреть', c: 'bg-emerald-500/10 text-emerald-500' }
+              const bar = (n: number, color: string) => (
+                <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted"><div className={'h-full rounded-full ' + color} style={{ width: Math.min(100, n / AB_TARGET_N * 100) + '%' }} /></div>
+              )
+              const cell = (o: Row, kind: 'checkout' | 'paid') => {
+                const n = kind === 'checkout' ? o.checkoutUsers : o.paidUsers, r = kind === 'checkout' ? o.checkoutRate : o.paidRate
+                return <>{fmtN(n)}<span className="text-muted-foreground"> · {r != null ? comma(r.toFixed(1)) + '%' : '—'}</span></>
+              }
+              return (
+                <Card key={e.exp} title={'Сравнение: ' + (meta?.title ?? e.exp)}
+                  note={'Контроль (standard) против варианта «' + (AB_VARIANT_NAMES[e.testVar] ?? e.testVar) + '». ' + (meta?.what ?? '')}
+                  right={<span className={'rounded-full px-2 py-0.5 text-[10.5px] font-semibold ' + state.c}>{state.t}</span>}>
+                  <div className="mb-3 rounded-lg border border-border bg-background/40 px-3 py-2 text-[12px] text-muted-foreground">
+                    {e.hasControl
+                      ? <>Контроль включён с {e.cutoff.slice(8, 10)}.{e.cutoff.slice(5, 7)} {e.cutoff.slice(11, 16)} UTC — в сравнении только юзеры, назначенные после этого.</>
+                      : <>Контроль ещё не появился: у standard пока нет ни одного нового юзера. Счёт начнётся с первого юзера в контроле.</>}
+                    {e.rollout > 0 && <> {fmtN(e.rollout)} юзеров раньше получили изменение без контроля — в сравнение не входят.</>}
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 text-[11.5px] text-muted-foreground">
+                    <div><div className="mb-1 flex justify-between"><span>Контроль</span><span className="tabular-nums">{fmtN(e.c.assigned)} / {AB_TARGET_N}</span></div>{bar(e.c.assigned, 'bg-slate-400')}</div>
+                    <div><div className="mb-1 flex justify-between"><span>{AB_VARIANT_NAMES[e.testVar] ?? e.testVar}</span><span className="tabular-nums">{fmtN(e.t.assigned)} / {AB_TARGET_N}</span></div>{bar(e.t.assigned, 'bg-emerald-500')}</div>
+                  </div>
+                  <div className="mb-3 mt-1 text-[11px] text-muted-foreground">Цель — около {AB_TARGET_N} юзеров на вариант, чтобы увидеть рост checkout с 20% до 30%. Для оплат нужны тысячи — там смотрим только направление.</div>
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-[12.5px]">
+                      <thead>
+                        <tr className="text-left text-muted-foreground">
+                          <th className="pb-2 pr-3 font-medium">Метрика</th>
+                          <th className="pb-2 pr-3 text-right font-medium">Контроль</th>
+                          <th className="pb-2 pr-3 text-right font-medium">{AB_VARIANT_NAMES[e.testVar] ?? e.testVar}</th>
+                          <th className="pb-2 pr-3 text-right font-medium">Разница</th>
+                          <th className="pb-2 font-medium">Значимость</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </Card>
-            )) : null}
+                      </thead>
+                      <tbody>
+                        <tr className="border-t border-border">
+                          <td className="py-2 pr-3">Назначено юзеров</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(e.c.assigned)}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtN(e.t.assigned)}</td>
+                          <td className="py-2 pr-3 text-right text-muted-foreground">—</td><td className="py-2 text-muted-foreground">—</td>
+                        </tr>
+                        <tr className="border-t border-border">
+                          <td className="py-2 pr-3">Дошли до checkout</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{cell(e.c, 'checkout')}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{cell(e.t, 'checkout')}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{diffPp(e.c.checkoutRate, e.t.checkoutRate)}</td>
+                          <td className="py-2 text-muted-foreground">{pTxt(e.pCheckout)}</td>
+                        </tr>
+                        <tr className="border-t border-border">
+                          <td className="py-2 pr-3">Оплатили (≥ $5)</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{cell(e.c, 'paid')}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{cell(e.t, 'paid')}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{diffPp(e.c.paidRate, e.t.paidRate)}</td>
+                          <td className="py-2 text-muted-foreground">{pTxt(e.pPaid)}</td>
+                        </tr>
+                        <tr className="border-t border-border">
+                          <td className="py-2 pr-3">Выручка</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtM(e.c.revenue)}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{fmtM(e.t.revenue)}</td>
+                          <td className="py-2 pr-3 text-right text-muted-foreground">—</td><td className="py-2 text-muted-foreground">—</td>
+                        </tr>
+                        <tr className="border-t border-border">
+                          <td className="py-2 pr-3"><b>$ на назначенного</b></td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{e.c.arpu != null ? '$' + comma(e.c.arpu.toFixed(2)) : '—'}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{e.t.arpu != null ? '$' + comma(e.t.arpu.toFixed(2)) : '—'}</td>
+                          <td className="py-2 pr-3 text-right tabular-nums">{diffUsd}</td>
+                          <td className="py-2 text-muted-foreground">главная метрика: PPP режет цену, важен итог на юзера</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </Card>
+              )
+            })}
 
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
               <Card title="Гео назначений" note="Страна регистрации (signup_country_code) по самому крупному эксперименту.">
