@@ -85,7 +85,6 @@ const TABS = [
 
 // ---------- А/В тестирование: статус по ТЗ (ClickUp #86cbd53ta) ----------
 // Статусы — снимок QA-проверки на stage от 07.10.2026; обновляются вручную.
-const AB_STATUS_DATE = '07.10.2026'   // дата QA-проверки на stage
 const AB_EXPECTED_CENTS: Record<string, number> = {
   'tier_1|base|month': 2000, 'tier_2|base|month': 1500, 'tier_3|base|month': 1000,
   'tier_1|base|year': 15000, 'tier_2|base|year': 11300, 'tier_3|base|year': 8300,
@@ -503,6 +502,7 @@ export default function App() {
       }
     })
   }, [D, abVariants])
+  const abConclDate = (updatedAt ?? new Date(__BUILT_AT__)).toLocaleDateString('ru-RU')
   const abUsers = abVariants.reduce((a, e) => Math.max(a, e.total), 0)
   const abCheckouts = abVariants.reduce((a, e) => a + e.rows.reduce((x, r) => x + r.checkouts, 0), 0)
   const abInvoices = abVariants.reduce((a, e) => a + e.rows.reduce((x, r) => x + r.invoices, 0), 0)
@@ -1897,10 +1897,10 @@ export default function App() {
               )
             })}
 
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+            <div className="grid grid-cols-1 gap-3">
               <Card title="A/B Geo">
                 {abGeo.length ? (
-                  <BarChart data={abGeo} xDataKey="country" orientation="horizontal" aspectRatio="16 / 9" margin={{ top: 8, right: 24, bottom: 8, left: 44 }}>
+                  <BarChart data={abGeo} xDataKey="country" orientation="horizontal" aspectRatio="4 / 1" margin={{ top: 8, right: 24, bottom: 8, left: 44 }}>
                     <Bar dataKey="users" fill={C[2]} lineCap={3} />
                     <BarYAxis />
                     <ChartTooltip showDatePill={false} rows={(p: Row) => [{ color: C[2], label: 'юзеров', value: fmtN(p.users) }]} />
@@ -1940,6 +1940,7 @@ export default function App() {
               </Card>
             </div>
 
+            <div className="grid grid-cols-1 items-start gap-3 md:grid-cols-2">
             <Card title="Баги на проде" note="Автопроверка по данным прода из Metabase — пересчитывается при каждом обновлении. Показываем только то, что видно в данных; UI-баги (кнопки, бейджи) отсюда не увидеть."
               right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">{abSource === 'prod' ? 'данные прода' : 'прод ещё без данных'}</span>}>
               {abSource === 'prod' ? (
@@ -1960,42 +1961,27 @@ export default function App() {
                 </div>
               ) : <EmptyNote />}
             </Card>
-
-            <Card title="Выводы">
+            <Card title="Выводы" right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">на {abConclDate}</span>}>
               <ul className="grid gap-2.5 text-[13px] text-muted-foreground">
                 {[
                   abSource === 'prod'
-                    ? <><b className="text-foreground">Эксперименты на проде запущены{abFirstDay ? ' с ' + abFirstDay.slice(8) + '.' + abFirstDay.slice(5, 7) : ''}, но выборка пока ничтожна:</b> {fmtN(abUsers)} юзеров в тесте, {fmtN(abCheckouts)} checkout, {fmtN(abInvoices)} оплат из экспериментов. Любые проценты по вариантам сейчас — шум; смотреть имеет смысл, когда наберётся хотя бы по 30 юзеров на вариант.</>
+                    ? <><b className="text-foreground">Эксперименты на проде{abFirstDay ? ' с ' + abFirstDay.slice(8) + '.' + abFirstDay.slice(5, 7) : ''}:</b> {fmtN(abUsers)} юзеров в тесте, {fmtN(abCheckouts)} checkout, {fmtN(abInvoices)} оплат. Выборка пока маленькая — проценты по вариантам ещё шум.</>
                     : <><b className="text-foreground">Эксперименты ещё не в бою.</b> Таблицы есть только на stage — {fmtN(abUsers)} тестовых юзеров QA, это проверка механики, не результат.</>,
-                  abSource === 'prod' && abUaTrial === 0 && abUaPpp > 0 && <><b className="text-foreground">Исключение Украины из trial за $1 работает на проде:</b> {fmtN(abUaPpp)} украинских юзеров попали в ценовой эксперимент и ни один — в trial-эксперимент.</>,
-                  abPriceBad.length > 0 && <><b className="text-foreground">Цены в checkout не совпадают с ТЗ</b> у {fmtN(abPriceBad.reduce((a, r) => a + r.checkouts, 0))} checkout — смотри таблицу «Цены в checkout». Пока это так, результат PPP-теста нельзя интерпретировать.</>,
+                  ...abCompare.map((e: Row) => {
+                    const name = e.exp.startsWith('ppp') ? 'Гео-цены (PPP)' : 'Trial за $1'
+                    if (!e.hasControl) return <><b className="text-foreground">{name}:</b> контрольной группы с данными ещё нет — сравнение недоступно.</>
+                    const d = e.c.arpu != null && e.t.arpu != null ? e.t.arpu - e.c.arpu : null
+                    const sg = (e.pPaid != null && e.pPaid < 0.05) || (e.pCheckout != null && e.pCheckout < 0.05)
+                    return <><b className="text-foreground">{name}:</b> {d == null ? 'данных для сравнения нет' : `A/B даёт $${comma(e.t.arpu.toFixed(2))} на юзера против $${comma(e.c.arpu.toFixed(2))} у контроля`}; {sg ? 'различие значимо' : 'значимого различия пока нет'}.</>
+                  }),
+                  abSource === 'prod' && abUaTrial === 0 && abUaPpp > 0 && <><b className="text-foreground">Украина не попадает в trial за $1</b> — исключение работает: {fmtN(abUaPpp)} украинских юзеров только в ценовом эксперименте.</>,
+                  abPriceBad.length > 0 && <><b className="text-foreground">Цены в checkout не совпадают с ТЗ</b> у {fmtN(abPriceBad.reduce((a, r) => a + r.checkouts, 0))} checkout — результат PPP-теста нельзя интерпретировать, пока это так.</>,
                 ].filter(Boolean).map((x, i) => (
-                  <li key={i} className="rounded-xl border border-border bg-background/40 px-4 py-3">
-                    <span className="mr-2 inline-block rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">вывод от 14.10.2026</span>{x}
-                  </li>
+                  <li key={i} className="rounded-xl border border-border bg-background/40 px-4 py-3">{x}</li>
                 ))}
               </ul>
             </Card>
-
-            <Card title="Что тестируем и где мы"
-              note="Статусы — из QA-проверки на stage (07.10); обновляются вручную по задаче в ClickUp «A/B Testing» (#86cbd53ta). Живые факты с прода — в блоках выше."
-              right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">статус на {AB_STATUS_DATE}</span>}>
-              <div className="space-y-2.5">
-                {AB_ITEMS.map(it => (
-                  <div key={it.key} className="rounded-lg border border-border bg-background/40 p-3">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <b className="text-[13px]">{it.title}</b>
-                      <span className={'rounded-full px-2 py-0.5 text-[10px] font-semibold ' + (it.state === 'ok' ? 'bg-emerald-500/10 text-emerald-500' : it.state === 'warn' ? 'bg-amber-500/10 text-amber-500' : 'bg-muted text-muted-foreground')}>
-                        {it.state === 'ok' ? 'работает' : it.state === 'warn' ? 'частично' : 'не сделано'}
-                      </span>
-                      {it.key.endsWith('_v1') && <code className="text-[11px] text-muted-foreground">{it.key}</code>}
-                    </div>
-                    <div className="mt-1 text-[12.5px] text-muted-foreground">{it.what}</div>
-                    <div className="mt-1 text-[12.5px]">{it.status}</div>
-                  </div>
-                ))}
-              </div>
-            </Card>
+            </div>
           </div>
         </Section>
         </>)}
