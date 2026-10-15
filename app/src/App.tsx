@@ -110,12 +110,6 @@ const AB_ITEMS: Array<{ key: string; title: string; what: string; state: AbState
     what: 'Front + design: годовой тариф выбран по умолчанию.',
     status: 'Не сделано: на Settings → Plans по умолчанию выбран Monthly.' },
 ]
-const AB_DEFECTS: Array<{ p: string; t: string }> = [
-  { p: 'urgent', t: 'Годовые PPP-цены не совпадают с ТЗ: Base tier_3 $830 вместо $83, Base tier_2 $130 вместо $113, Pro tier_3 $255 вместо $250.' },
-  { p: 'high', t: 'CF-IPContinent приоритетнее кода страны — можно получить tier_3 (на stage FR попадает в группу «asia»).' },
-  { p: 'normal', t: 'При выбранном Yearly кнопка Start trial открывает месячный checkout.' },
-  { p: 'low', t: 'Бейдж «Save $90.00» не пересчитывается для PPP-тарифов.' },
-]
 const AB_TIERS = [
   ['Base / мес', '$20', '$15', '$10'], ['Base / год', '$150', '$113', '$83'],
   ['Pro / мес', '$45', '$35', '$25'], ['Pro / год', '$450', '$340', '$250'],
@@ -520,6 +514,24 @@ export default function App() {
   const abCountry = (exp: string, c: string) => abAssignRows.filter(r => r.experiment_key === exp && r.country === c).reduce((a, r) => a + r.users, 0)
   const abUaPpp = abCountry('ppp_pricing_geo_v1', 'UA'), abUaTrial = abCountry('trial_price_geo_v1', 'UA')
   const abNoControl = abVariants.length > 0 && abVariants.every(e => !e.hasControl)
+  const abYearlySeen = abPriceRows.some(r => r.period === 'year')
+  const abProdChecks: Array<{ s: 'bug' | 'ok' | 'warn' | 'na'; t: string }> = [
+    abPriceRows.length === 0
+      ? { s: 'na', t: 'Цены в checkout: checkout ещё не было — сверять не с чем.' }
+      : abPriceBad.length > 0
+        ? { s: 'bug', t: 'Цены в checkout не совпадают с ТЗ: ' + abPriceBad.map(r => `${r.tier} ${r.plan_code}/${r.period} — $${(r.amount_cents / 100).toFixed(0)} вместо $${(r.expected / 100).toFixed(0)}`).join('; ') + '.' }
+        : { s: 'ok', t: `Цены в checkout совпадают с ТЗ (${abPriceRows.length} комбинаций тир/план/период).` },
+    abUaTrial > 0
+      ? { s: 'bug', t: `Украина попала в trial за $1: ${fmtN(abUaTrial)} юзеров — по ТЗ она исключена.` }
+      : { s: 'ok', t: 'Украина не попадает в trial за $1 (исключение работает).' },
+    abYearlySeen
+      ? { s: 'ok', t: 'Годовые checkout есть, цены сверены выше.' }
+      : { s: 'na', t: 'Годовые PPP-цены (главный QA-дефект на stage) и «Yearly открывает месячный checkout»: на проде не проверить — годовых checkout ещё не было.' },
+    { s: 'na', t: 'CF-IPContinent приоритетнее кода страны: по данным не видно — нужен тест с VPN/IP из пограничной страны.' },
+    abNoControl
+      ? { s: 'warn', t: 'Нет контрольной группы: у standard вес 0, весь трафик идёт в тестовый вариант. Это не ошибка кода, но А/В-сравнение невозможно.' }
+      : { s: 'ok', t: 'Контрольная группа есть.' },
+  ]
   // Баннеры: справочник и показы — из Metabase (dim_banners, fact_banner_views),
   // клики/закрытия — из PostHog; склеиваем по banner_id.
   const banners: Row[] = useMemo(() => {
@@ -1977,16 +1989,25 @@ export default function App() {
               ) : <EmptyNote />}
             </Card>
 
-            <Card title="Найденные дефекты (QA, stage)" note="Из комментария QA в задаче — проверка была на stage 07.10. На проде заново не проверялись (кроме цен — см. таблицу выше). Влияют на чистоту результатов, особенно первые два."
-              right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">на {AB_STATUS_DATE}</span>}>
-              <div className="space-y-1.5 text-[12.5px]">
-                {AB_DEFECTS.map((d, i) => (
-                  <div key={i} className="flex items-start gap-2">
-                    <span className={'mt-0.5 shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ' + (d.p === 'urgent' ? 'bg-red-500/10 text-red-500' : d.p === 'high' ? 'bg-amber-500/10 text-amber-500' : d.p === 'normal' ? 'bg-sky-500/10 text-sky-500' : 'bg-muted text-muted-foreground')}>{d.p}</span>
-                    <span>{d.t}</span>
-                  </div>
-                ))}
-              </div>
+            <Card title="Баги на проде" note="Автопроверка по данным прода из Metabase — пересчитывается при каждом обновлении. Показываем только то, что видно в данных; UI-баги (кнопки, бейджи) отсюда не увидеть."
+              right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">{abSource === 'prod' ? 'данные прода' : 'прод ещё без данных'}</span>}>
+              {abSource === 'prod' ? (
+                <div className="space-y-1.5 text-[12.5px]">
+                  {abProdChecks.map((c, i) => (
+                    <div key={i} className="flex items-start gap-2">
+                      <span className={'mt-0.5 shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase ' + (c.s === 'bug' ? 'bg-red-500/10 text-red-500' : c.s === 'ok' ? 'bg-emerald-500/10 text-emerald-500' : c.s === 'warn' ? 'bg-amber-500/10 text-amber-500' : 'bg-muted text-muted-foreground')}>
+                        {c.s === 'bug' ? 'баг' : c.s === 'ok' ? 'ок' : c.s === 'warn' ? 'внимание' : 'не видно'}
+                      </span>
+                      <span>{c.t}</span>
+                    </div>
+                  ))}
+                  {!abProdChecks.some(c => c.s === 'bug') && (
+                    <div className="mt-2 rounded-xl border border-border bg-background/40 px-3 py-2 text-muted-foreground">
+                      <b className="text-foreground">Багов на проде по данным не найдено.</b> QA-дефекты со stage (годовые PPP-цены, CF-IPContinent, Yearly → monthly checkout, бейдж Save) на проде в данных не подтвердились — но годовые цены проверить пока не на чем: годовых checkout нет.
+                    </div>
+                  )}
+                </div>
+              ) : <EmptyNote />}
             </Card>
 
             <Card title="Выводы">
