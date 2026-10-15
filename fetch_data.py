@@ -1217,6 +1217,33 @@ AB_QUERIES = {
                    WHERE s.user_id = a.user_id AND s.status = 'success'
                      AND s.paid_at >= a.assigned_at)), 0), 2) AS revenue
         FROM a GROUP BY 1, 2, 3 ORDER BY 1, 3, 2""",
+    # Тариф × гео: сколько юзеров дошло до checkout и сколько оплатило, по тиру цены,
+    # плану, периоду и стране регистрации (страна — из назначения в эксперимент).
+    "ab_tariff_geo": """
+        WITH uc AS (
+            SELECT user_id, max(signup_country_code) AS country
+            FROM analytics.fact_experiment_assignments GROUP BY 1
+        )
+        SELECT kind, tier, plan, period, country, count(DISTINCT user_id) AS users, count(*) AS n
+        FROM (
+            SELECT 'checkout' AS kind,
+                   coalesce(c.metadata->>'billing_pricing_tier', '?') AS tier,
+                   c.plan_code AS plan,
+                   CASE WHEN c.period IN ('monthly','month') THEN 'month'
+                        WHEN c.period IN ('yearly','year','annual') THEN 'year' ELSE c.period END AS period,
+                   coalesce(uc.country, '?') AS country, c.user_id
+            FROM analytics.fact_billing_checkout_started c
+            LEFT JOIN uc ON uc.user_id = c.user_id
+            UNION ALL
+            SELECT 'paid', coalesce(s.billing_pricing_tier, '?'), s.plan,
+                   CASE WHEN s.period IN ('monthly','month') THEN 'month'
+                        WHEN s.period IN ('yearly','year','annual') THEN 'year' ELSE s.period END,
+                   coalesce(uc.country, '?'), s.user_id
+            FROM analytics.fact_sales s
+            JOIN uc ON uc.user_id = s.user_id
+            WHERE s.status = 'success' AND s.amount_paid >= 5
+        ) t
+        GROUP BY 1, 2, 3, 4, 5 ORDER BY 1, 2, 3, 4, 5""",
     "ab_sales_by_tier": """
         SELECT coalesce(billing_pricing_type, '?') AS pricing_type,
                coalesce(billing_pricing_tier, '?') AS tier, status,

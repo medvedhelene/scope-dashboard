@@ -107,10 +107,6 @@ const AB_ITEMS: Array<{ key: string; title: string; what: string; state: AbState
     what: 'Front + design: годовой тариф выбран по умолчанию.',
     status: 'Не сделано: на Settings → Plans по умолчанию выбран Monthly.' },
 ]
-const AB_TIERS = [
-  ['Base / мес', '$20', '$15', '$10'], ['Base / год', '$150', '$113', '$83'],
-  ['Pro / мес', '$45', '$35', '$25'], ['Pro / год', '$450', '$340', '$250'],
-]
 const AB_VARIANT_NAMES: Record<string, string> = { standard: 'standard (контроль)', ppp: 'ppp', paid_1_usd: 'trial за $1' }
 const normCdf = (z: number) => {
   // аппроксимация erf (Abramowitz–Stegun 7.1.26)
@@ -516,7 +512,30 @@ export default function App() {
     for (const r of (D.ab_assignments ?? [])) if (r.experiment_key === top) map.set(r.country, (map.get(r.country) ?? 0) + r.users)
     return [...map.entries()].map(([country, users]) => ({ country, users })).sort((a, b) => b.users - a.users).slice(0, 8)
   }, [D, abVariants])
-  const abTierRows: Row[] = D.ab_sales_by_tier ?? []
+  const abTariffGeo = useMemo(() => {
+    const src: Row[] = D.ab_tariff_geo ?? []
+    const cell = new Map<string, { checkout: number; paid: number }>()
+    const totals = new Map<string, number>()
+    for (const r of src) {
+      const k = `${r.tier}|${r.plan}|${r.period}|${r.country}`
+      const o = cell.get(k) ?? { checkout: 0, paid: 0 }
+      if (r.kind === 'paid') o.paid += r.n; else o.checkout += r.n
+      cell.set(k, o)
+      totals.set(r.country, (totals.get(r.country) ?? 0) + r.n)
+    }
+    const countries = [...totals.entries()].sort((a, b) => (a[0] === '?' ? 1 : b[0] === '?' ? -1 : b[1] - a[1])).map(([c]) => c)
+    const rows: Array<{ key: string; plan: string; period: string; tier: string; price: number; byCountry: Record<string, { checkout: number; paid: number }>; total: { checkout: number; paid: number } }> = []
+    for (const plan of ['base', 'pro']) for (const period of ['month', 'year']) for (const tier of ['tier_1', 'tier_2', 'tier_3']) {
+      const byCountry: Record<string, { checkout: number; paid: number }> = {}
+      const total = { checkout: 0, paid: 0 }
+      for (const c of countries) {
+        const v = cell.get(`${tier}|${plan}|${period}|${c}`)
+        if (v) { byCountry[c] = v; total.checkout += v.checkout; total.paid += v.paid }
+      }
+      rows.push({ key: `${plan}|${period}|${tier}`, plan, period, tier, price: AB_EXPECTED_CENTS[`${tier}|${plan}|${period}`] / 100, byCountry, total })
+    }
+    return { countries, rows }
+  }, [D])
   const abPrices: Row[] = D.ab_checkout_prices ?? []
   const abPriceRows = abPrices.map(r => {
     const exp = AB_EXPECTED_CENTS[`${r.tier}|${r.plan_code}|${r.period}`]
@@ -1878,8 +1897,8 @@ export default function App() {
               )
             })}
 
-            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-              <Card title="Гео назначений" note="Страна регистрации (signup_country_code) по самому крупному эксперименту.">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+              <Card title="A/B Geo">
                 {abGeo.length ? (
                   <BarChart data={abGeo} xDataKey="country" orientation="horizontal" aspectRatio="16 / 9" margin={{ top: 8, right: 24, bottom: 8, left: 44 }}>
                     <Bar dataKey="users" fill={C[2]} lineCap={3} />
@@ -1888,31 +1907,36 @@ export default function App() {
                   </BarChart>
                 ) : <EmptyNote />}
               </Card>
-              <Card title="Тиры цен (по ТЗ)" note={abTierRows.length ? 'Фактические оплаты по тирам — ниже таблицы.' : undefined}>
-                <table className="w-full text-[12.5px]">
-                  <thead>
-                    <tr className="text-right text-muted-foreground">
-                      <th className="pb-2 pr-3 text-left font-medium">План</th>
-                      <th className="pb-2 pr-3 font-medium">Tier 1 (US/EU/UK)</th>
-                      <th className="pb-2 pr-3 font-medium">Tier 2 (PL/СНГ/LatAm)</th>
-                      <th className="pb-2 font-medium">Tier 3 (Азия/Африка)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {AB_TIERS.map(r => (
-                      <tr key={r[0]} className="border-t border-border text-right tabular-nums">
-                        <td className="py-1.5 pr-3 text-left">{r[0]}</td><td className="py-1.5 pr-3">{r[1]}</td><td className="py-1.5 pr-3">{r[2]}</td><td className="py-1.5">{r[3]}</td>
+              <Card title="Тарифы по гео" note="Checkout (и оплаты) по тарифу, цене и стране регистрации.">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-[12.5px]">
+                    <thead>
+                      <tr className="text-left text-muted-foreground">
+                        <th className="pb-2 pr-3 font-medium">Тариф</th>
+                        <th className="pb-2 pr-3 font-medium">Период</th>
+                        <th className="pb-2 pr-3 font-medium">Тир</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Цена</th>
+                        {abTariffGeo.countries.map(c => <th key={c} className="pb-2 pr-3 text-right font-medium">{c === '?' ? 'вне теста' : c}</th>)}
+                        <th className="pb-2 text-right font-medium">Всего</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-                {abTierRows.filter(r => r.status === 'success').length > 0 && (
-                  <div className="mt-3 space-y-1 text-[12px] text-muted-foreground">
-                    {abTierRows.filter(r => r.status === 'success').map((r, i) => (
-                      <div key={i} className="flex justify-between"><span>{r.pricing_type} · {r.tier}</span><span><b className="text-foreground">{fmtN(r.invoices)}</b> оплат · {fmtM(r.revenue)}</span></div>
-                    ))}
-                  </div>
-                )}
+                    </thead>
+                    <tbody>
+                      {abTariffGeo.rows.map(r => (
+                        <tr key={r.key} className={'border-t border-border ' + (r.total.checkout || r.total.paid ? '' : 'text-muted-foreground/60')}>
+                          <td className="py-1.5 pr-3">{r.plan === 'base' ? 'Base' : 'Pro'}</td>
+                          <td className="py-1.5 pr-3">{r.period === 'month' ? 'мес' : 'год'}</td>
+                          <td className="py-1.5 pr-3">{r.tier.replace('tier_', 'Tier ')}</td>
+                          <td className="py-1.5 pr-3 text-right tabular-nums">${fmtN(r.price)}</td>
+                          {abTariffGeo.countries.map(c => {
+                            const v = r.byCountry[c]
+                            return <td key={c} className="py-1.5 pr-3 text-right tabular-nums">{v ? <>{fmtN(v.checkout)}{v.paid > 0 && <span className="text-emerald-500"> · {fmtN(v.paid)} paid</span>}</> : '—'}</td>
+                          })}
+                          <td className="py-1.5 text-right tabular-nums">{r.total.checkout || r.total.paid ? <>{fmtN(r.total.checkout)}{r.total.paid > 0 && <span className="text-emerald-500"> · {fmtN(r.total.paid)} paid</span>}</> : '—'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </Card>
             </div>
 
