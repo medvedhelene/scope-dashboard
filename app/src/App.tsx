@@ -479,6 +479,33 @@ export default function App() {
       return { exp, rows, hasControl: !!ctrl, total: rows.reduce((a, r) => a + r.assigned, 0) }
     }).sort((a, b) => b.total - a.total)
   }, [D])
+  // Чистое сравнение: только юзеры, назначенные после того, как у standard появился вес.
+  // До этого момента все получали изменение (раскатка) — их в сравнение не берём.
+  const abCompare = useMemo(() => {
+    const rows: Row[] = D.ab_cohorts ?? []
+    if (!rows.length) return abVariants
+    const exps = [...new Set(rows.map(r => r.experiment_key))]
+    return exps.map(exp => {
+      const mine = rows.filter(r => r.experiment_key === exp)
+      const test = mine.filter(r => r.cohort === 'test')
+      const rollout = mine.filter(r => r.cohort === 'rollout')
+      const hasControl = test.some(r => r.variant_key === 'standard')
+      const src = hasControl ? test : mine
+      const vs = src.map(r => ({ variant: r.variant_key, assigned: r.assigned, checkoutUsers: r.checkout_users, paidUsers: r.paid_users, revenue: r.revenue }))
+      vs.sort((a, b) => (a.variant === 'standard' ? -1 : b.variant === 'standard' ? 1 : b.assigned - a.assigned))
+      const ctrl = vs.find(v => v.variant === 'standard')
+      const out = vs.map(v => {
+        const isTest = ctrl && v !== ctrl
+        return { ...v, checkoutRate: v.assigned ? v.checkoutUsers / v.assigned * 100 : null, paidRate: v.assigned ? v.paidUsers / v.assigned * 100 : null,
+          arpu: v.assigned ? v.revenue / v.assigned : null,
+          p: isTest ? zTestP(ctrl!.paidUsers, ctrl!.assigned, v.paidUsers, v.assigned) : null,
+          pCheckout: isTest ? zTestP(ctrl!.checkoutUsers, ctrl!.assigned, v.checkoutUsers, v.assigned) : null,
+          small: isTest ? Math.min(ctrl!.assigned, v.assigned) < 30 : null }
+      })
+      return { exp, rows: out, hasControl, total: out.reduce((a, r) => a + r.assigned, 0),
+        cutoff: hasControl ? String(test[0]?.cutoff ?? '') : '', rollout: hasControl ? rollout.reduce((a, r) => a + r.assigned, 0) : 0 }
+    }).sort((a, b) => b.total - a.total)
+  }, [D, abVariants])
   const abUsers = abVariants.reduce((a, e) => Math.max(a, e.total), 0)
   const abCheckouts = abVariants.reduce((a, e) => a + e.rows.reduce((x, r) => x + r.checkouts, 0), 0)
   const abInvoices = abVariants.reduce((a, e) => a + e.rows.reduce((x, r) => x + r.invoices, 0), 0)
@@ -1783,9 +1810,11 @@ export default function App() {
           </div>
 
           <div className="mt-3 grid grid-cols-1 gap-3">
-            {abVariants.length ? abVariants.map(e => (
+            {abCompare.length ? abCompare.map((e: Row) => (
               <Card key={e.exp} title={(AB_ITEMS.find(x => x.key === e.exp)?.title ?? e.exp) + ' · ' + e.exp}
-                note={(AB_ITEMS.find(x => x.key === e.exp)?.what ?? '') + (e.hasControl ? ' Сравнение с контролем (standard) — по доле оплативших от числа назначенных.' : '')}>
+                note={(AB_ITEMS.find(x => x.key === e.exp)?.what ?? '') + (e.hasControl
+                  ? ` Контроль (standard) включён с ${e.cutoff.slice(8, 10)}.${e.cutoff.slice(5, 7)} ${e.cutoff.slice(11, 16)} UTC — сравниваем только юзеров, назначенных после этого${e.rollout ? `; ещё ${e.rollout} юзеров раньше получали изменение без контроля, в сравнение не входят` : ''}.`
+                  : '')}>
                 <div className="overflow-x-auto">
                   <table className="w-full text-[12.5px]">
                     <thead>
@@ -1800,7 +1829,7 @@ export default function App() {
                       </tr>
                     </thead>
                     <tbody>
-                      {e.rows.map(r => (
+                      {e.rows.map((r: Row) => (
                         <tr key={r.variant} className="border-t border-border">
                           <td className="py-2 pr-3"><b>{AB_VARIANT_NAMES[r.variant] ?? r.variant}</b></td>
                           <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.assigned)}</td>
@@ -1809,7 +1838,12 @@ export default function App() {
                           <td className="py-2 pr-3 text-right tabular-nums">{fmtM(r.revenue)}</td>
                           <td className="py-2 pr-3 text-right tabular-nums">{r.arpu != null ? '$' + comma(r.arpu.toFixed(2)) : '—'}</td>
                           {e.hasControl && <td className="py-2 text-muted-foreground">
-                            {r.small === null ? '—' : r.small ? 'мало данных (n<30)' : r.p == null ? '—' : r.p < 0.05 ? 'значимо, p=' + comma(r.p.toFixed(3)) : 'не значимо, p=' + comma(r.p.toFixed(2))}
+                            {r.small === null ? '—' : r.small ? 'мало данных (n<30 на вариант)' : (
+                              <>
+                                <div>оплата: {r.p == null ? '—' : r.p < 0.05 ? 'значимо, p=' + comma(r.p.toFixed(3)) : 'не значимо, p=' + comma(r.p.toFixed(2))}</div>
+                                <div>checkout: {r.pCheckout == null ? '—' : r.pCheckout < 0.05 ? 'значимо, p=' + comma(r.pCheckout.toFixed(3)) : 'не значимо, p=' + comma(r.pCheckout.toFixed(2))}</div>
+                              </>
+                            )}
                           </td>}
                         </tr>
                       ))}

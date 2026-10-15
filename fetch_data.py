@@ -1184,6 +1184,39 @@ AB_QUERIES = {
                amount_cents, count(*) AS checkouts
         FROM analytics.fact_billing_checkout_started
         GROUP BY 1, 2, 3, 4 ORDER BY 1, 2, 3, 4""",
+    # Чистое сравнение: когорта «test» = юзеры, получившие вариант с момента, как
+    # у standard появился ненулевой вес (первое назначение standard). Всё, что
+    # было раньше — «rollout»: там все получали изменение, сравнивать не с чем.
+    "ab_cohorts": """
+        WITH cut AS (
+            SELECT experiment_key, min(assigned_at) AS cutoff
+            FROM analytics.fact_experiment_assignments
+            WHERE variant_key = 'standard' GROUP BY 1
+        ), a AS (
+            SELECT DISTINCT ON (f.user_id, f.experiment_key)
+                   f.user_id, f.experiment_key, f.variant_key, f.assigned_at,
+                   CASE WHEN c.cutoff IS NOT NULL AND f.assigned_at >= c.cutoff
+                        THEN 'test' ELSE 'rollout' END AS cohort,
+                   c.cutoff
+            FROM analytics.fact_experiment_assignments f
+            LEFT JOIN cut c USING (experiment_key)
+            ORDER BY f.user_id, f.experiment_key, f.assigned_at
+        )
+        SELECT a.experiment_key, a.variant_key, a.cohort,
+               min(a.cutoff)::text AS cutoff,
+               count(*) AS assigned,
+               count(*) FILTER (WHERE EXISTS (
+                   SELECT 1 FROM analytics.fact_billing_checkout_started k
+                   WHERE k.user_id = a.user_id)) AS checkout_users,
+               count(*) FILTER (WHERE EXISTS (
+                   SELECT 1 FROM analytics.fact_sales s
+                   WHERE s.user_id = a.user_id AND s.status = 'success'
+                     AND s.amount_paid >= 5 AND s.paid_at >= a.assigned_at)) AS paid_users,
+               round(coalesce(sum((
+                   SELECT sum(s.amount_paid) FROM analytics.fact_sales s
+                   WHERE s.user_id = a.user_id AND s.status = 'success'
+                     AND s.paid_at >= a.assigned_at)), 0), 2) AS revenue
+        FROM a GROUP BY 1, 2, 3 ORDER BY 1, 3, 2""",
     "ab_sales_by_tier": """
         SELECT coalesce(billing_pricing_type, '?') AS pricing_type,
                coalesce(billing_pricing_tier, '?') AS tier, status,
