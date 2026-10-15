@@ -1871,37 +1871,6 @@ export default function App() {
               </Card>
             </div>
 
-            <Card title="Цены в checkout: факт vs ТЗ"
-              note="Какую цену юзер реально увидел при оформлении, по тирам. Сверяется с таблицей тиров из ТЗ — так сразу видно, починены ли годовые PPP-цены.">
-              {abPriceRows.length ? (
-                <>
-                  <table className="w-full text-[12.5px]">
-                    <thead>
-                      <tr className="text-left text-muted-foreground">
-                        <th className="pb-2 pr-3 font-medium">Тир</th><th className="pb-2 pr-3 font-medium">План</th><th className="pb-2 pr-3 font-medium">Период</th>
-                        <th className="pb-2 pr-3 text-right font-medium">Цена в checkout</th><th className="pb-2 pr-3 text-right font-medium">По ТЗ</th>
-                        <th className="pb-2 pr-3 text-right font-medium">Checkout</th><th className="pb-2 font-medium">Итог</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {abPriceRows.map((r, i) => (
-                        <tr key={i} className="border-t border-border">
-                          <td className="py-1.5 pr-3">{r.tier}</td><td className="py-1.5 pr-3">{r.plan_code}</td><td className="py-1.5 pr-3">{r.period === 'month' ? 'мес' : r.period === 'year' ? 'год' : r.period}</td>
-                          <td className="py-1.5 pr-3 text-right tabular-nums">${comma((r.amount_cents / 100).toFixed(2))}</td>
-                          <td className="py-1.5 pr-3 text-right tabular-nums text-muted-foreground">{r.expected != null ? '$' + comma((r.expected / 100).toFixed(2)) : '—'}</td>
-                          <td className="py-1.5 pr-3 text-right tabular-nums">{fmtN(r.checkouts)}</td>
-                          <td className={'py-1.5 font-semibold ' + (r.ok === false ? 'text-red-500' : r.ok ? 'text-emerald-500' : 'text-muted-foreground')}>{r.ok === false ? 'не совпадает' : r.ok ? 'совпадает' : 'нет эталона'}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                  <div className="mt-2 text-[11.5px] text-muted-foreground">
-                    {abPriceRows.every(r => r.period === 'month') ? 'Годовых checkout пока нет — главный дефект QA (годовые PPP-цены) на проде ещё не проверить.' : ''}
-                  </div>
-                </>
-              ) : <EmptyNote />}
-            </Card>
-
             <Card title="Trial: 30 дней → 7 дней"
               note="Живые данные прода (PostHog + Metabase). Это сравнение «до/после», а не А/В: 7-дневный trial стал дефолтом для всех, контрольной группы на 30 днях нет."
               right={<SourceTag source="PostHog" />}>
