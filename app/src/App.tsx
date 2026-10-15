@@ -94,9 +94,6 @@ const AB_EXPECTED_CENTS: Record<string, number> = {
 }
 type AbState = 'ok' | 'warn' | 'todo'
 const AB_ITEMS: Array<{ key: string; title: string; what: string; state: AbState; status: string }> = [
-  { key: 'trial_duration_v1', title: 'Trial 7 дней вместо 30', state: 'warn',
-    what: 'Часть юзеров получает 7-дневный trial, часть — 30-дневный.',
-    status: 'Эксперимента нет: 7 дней уже зашито как дефолт для всех, 30-дневной контрольной группы не существует. Это «до/после», а не А/В.' },
   { key: 'trial_price_geo_v1', title: 'Trial за $1 (не Украина)', state: 'ok',
     what: 'Не-украинские IP платят $1 за активацию trial; Украина получает бесплатный.',
     status: 'Механизм работает на stage: UA исключена, остальные видят «Try Base $1.00, 7 days free».' },
@@ -491,17 +488,6 @@ export default function App() {
     for (const r of (D.ab_assignments ?? [])) if (r.experiment_key === top) map.set(r.country, (map.get(r.country) ?? 0) + r.users)
     return [...map.entries()].map(([country, users]) => ({ country, users })).sort((a, b) => b.users - a.users).slice(0, 8)
   }, [D, abVariants])
-  const trialLen: Row[] = D.trial_by_length ?? []
-  const trial30 = trialLen.find(r => r.trial_days === 30), trial7 = trialLen.find(r => r.trial_days === 7)
-  const trialWeekly = useMemo(() => {
-    const map = new Map<string, Row>()
-    for (const r of (D.trial_weekly ?? [])) {
-      const o = map.get(r.w) ?? { w: r.w, label: r.w.slice(8) + '.' + r.w.slice(5, 7), d30: 0, d7: 0 }
-      if (r.trial_days === 7) o.d7 += r.checkouts; else if (r.trial_days === 30) o.d30 += r.checkouts
-      map.set(r.w, o)
-    }
-    return [...map.values()].sort((a, b) => (a.w < b.w ? -1 : 1))
-  }, [D])
   const abTierRows: Row[] = D.ab_sales_by_tier ?? []
   const abPrices: Row[] = D.ab_checkout_prices ?? []
   const abPriceRows = abPrices.map(r => {
@@ -1871,61 +1857,6 @@ export default function App() {
               </Card>
             </div>
 
-            <Card title="Trial: 30 дней → 7 дней"
-              note="Живые данные прода (PostHog + Metabase). Это сравнение «до/после», а не А/В: 7-дневный trial стал дефолтом для всех, контрольной группы на 30 днях нет."
-              right={<SourceTag source="PostHog" />}>
-              {trialLen.length ? (
-                <>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-[12.5px]">
-                      <thead>
-                        <tr className="text-left text-muted-foreground">
-                          <th className="pb-2 pr-3 font-medium">Длина trial</th>
-                          <th className="pb-2 pr-3 font-medium">Период checkout</th>
-                          <th className="pb-2 pr-3 text-right font-medium">Checkout</th>
-                          <th className="pb-2 pr-3 text-right font-medium">Активировали</th>
-                          <th className="pb-2 pr-3 text-right font-medium">Дозрели</th>
-                          <th className="pb-2 text-right font-medium">Оплатили после trial</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {trialLen.map(r => (
-                          <tr key={r.trial_days} className="border-t border-border">
-                            <td className="py-2 pr-3"><b>{r.trial_days} дней</b></td>
-                            <td className="py-2 pr-3 text-muted-foreground">{r.first === r.last ? r.first : r.first + ' — ' + r.last}</td>
-                            <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.checkouts)}<span className="text-muted-foreground"> · {fmtN(r.users)} юзеров</span></td>
-                            <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.activated)}<span className="text-muted-foreground"> · {r.checkouts ? comma((r.activated / r.checkouts * 100).toFixed(0)) + '%' : '—'}</span></td>
-                            <td className="py-2 pr-3 text-right tabular-nums">{fmtN(r.matured)}</td>
-                            <td className="py-2 text-right tabular-nums">{r.matured ? <>{fmtN(r.paid)}<span className="text-muted-foreground"> · {comma((r.paid / r.matured * 100).toFixed(0))}%</span></> : <span className="text-muted-foreground">ещё рано</span>}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                  <div className="mt-2 text-[11.5px] text-muted-foreground">
-                    «Дозрели» — trial закончился ≥2 дней назад; «оплатили» — успешный инвойс ≥$5 по этой подписке. Свежие trial в конверсию не берём, чтобы не занижать долю.
-                  </div>
-                  {trialWeekly.length > 1 && (
-                    <div className="mt-4">
-                      <div className="mb-1 text-[12.5px] font-semibold">Checkout trial по неделям</div>
-                      <BarChart data={trialWeekly} xDataKey="label" aspectRatio="16 / 6" margin={{ top: 12, right: 40, bottom: 32, left: 8 }}>
-                        <Grid horizontal />
-                        <YAxis orientation="right" numTicks={4} formatValue={v => fmtN(v)} />
-                        <Bar dataKey="d30" fill={C[0]} lineCap={2} />
-                        <Bar dataKey="d7" fill={GOOD} lineCap={2} />
-                        <BarXAxis showAllLabels />
-                        <ChartTooltip showDatePill={false} rows={(p: Row) => [
-                          { color: C[0], label: 'trial 30 дней', value: fmtN(p.d30) },
-                          { color: GOOD, label: 'trial 7 дней', value: fmtN(p.d7) },
-                        ]} />
-                      </BarChart>
-                      <Legend items={[{ label: 'trial 30 дней', color: C[0] }, { label: 'trial 7 дней', color: GOOD }]} />
-                    </div>
-                  )}
-                </>
-              ) : <EmptyNote />}
-            </Card>
-
             <Card title="Баги на проде" note="Автопроверка по данным прода из Metabase — пересчитывается при каждом обновлении. Показываем только то, что видно в данных; UI-баги (кнопки, бейджи) отсюда не увидеть."
               right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">{abSource === 'prod' ? 'данные прода' : 'прод ещё без данных'}</span>}>
               {abSource === 'prod' ? (
@@ -1955,8 +1886,6 @@ export default function App() {
                     : <><b className="text-foreground">Эксперименты ещё не в бою.</b> Таблицы есть только на stage — {fmtN(abUsers)} тестовых юзеров QA, это проверка механики, не результат.</>,
                   abSource === 'prod' && abUaTrial === 0 && abUaPpp > 0 && <><b className="text-foreground">Исключение Украины из trial за $1 работает на проде:</b> {fmtN(abUaPpp)} украинских юзеров попали в ценовой эксперимент и ни один — в trial-эксперимент.</>,
                   abPriceBad.length > 0 && <><b className="text-foreground">Цены в checkout не совпадают с ТЗ</b> у {fmtN(abPriceBad.reduce((a, r) => a + r.checkouts, 0))} checkout — смотри таблицу «Цены в checkout». Пока это так, результат PPP-теста нельзя интерпретировать.</>,
-                  trial7 && <><b className="text-foreground">7-дневный trial:</b> checkout→активация {trial30 ? comma((trial30.activated / trial30.checkouts * 100).toFixed(0)) : '—'}% при 30 днях ({trial30 ? fmtN(trial30.checkouts) : '—'} checkout) против {comma((trial7.activated / trial7.checkouts * 100).toFixed(0))}% при 7 днях ({fmtN(trial7.checkouts)} checkout).
-                    Оплатили после trial: {trial30 ? fmtN(trial30.paid) : 0} из {trial30 ? fmtN(trial30.matured) : 0} дозревших при 30 днях, {fmtN(trial7.paid)} из {fmtN(trial7.matured)} при 7 днях — по 7-дневным данных для вывода пока мало; это «до/после», не А/В.</>,
                 ].filter(Boolean).map((x, i) => (
                   <li key={i} className="rounded-xl border border-border bg-background/40 px-4 py-3">
                     <span className="mr-2 inline-block rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">вывод от 14.10.2026</span>{x}
