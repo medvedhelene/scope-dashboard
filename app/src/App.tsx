@@ -1953,11 +1953,6 @@ export default function App() {
                       <span>{c.t}</span>
                     </div>
                   ))}
-                  {!abProdChecks.some(c => c.s === 'bug') && (
-                    <div className="mt-2 rounded-xl border border-border bg-background/40 px-3 py-2 text-muted-foreground">
-                      <b className="text-foreground">Багов на проде по данным не найдено.</b> QA-дефекты со stage (годовые PPP-цены, CF-IPContinent, Yearly → monthly checkout, бейдж Save) на проде в данных не подтвердились — но годовые цены проверить пока не на чем: годовых checkout нет.
-                    </div>
-                  )}
                 </div>
               ) : <EmptyNote />}
             </Card>
