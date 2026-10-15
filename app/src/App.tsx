@@ -111,7 +111,6 @@ const AB_TIERS = [
   ['Base / мес', '$20', '$15', '$10'], ['Base / год', '$150', '$113', '$83'],
   ['Pro / мес', '$45', '$35', '$25'], ['Pro / год', '$450', '$340', '$250'],
 ]
-const AB_TARGET_N = 300   // юзеров на вариант, чтобы заметить рост checkout ~20% → 30%
 const AB_VARIANT_NAMES: Record<string, string> = { standard: 'standard (контроль)', ppp: 'ppp', paid_1_usd: 'trial за $1' }
 const normCdf = (z: number) => {
   // аппроксимация erf (Abramowitz–Stegun 7.1.26)
@@ -480,31 +479,29 @@ export default function App() {
       return { exp, rows, hasControl: !!ctrl, total: rows.reduce((a, r) => a + r.assigned, 0) }
     }).sort((a, b) => b.total - a.total)
   }, [D])
-  // Чистое сравнение: только юзеры, назначенные после того, как у standard появился вес.
-  // До этого момента все получали изменение (раскатка) — их в сравнение не берём.
+  // Сравнение контроль vs тест: в тест входят все юзеры варианта, включая назначенных до появления контроля.
   const abCompare = useMemo(() => {
     const cohortRows: Row[] = D.ab_cohorts ?? abVariants.flatMap(e => e.rows.map((r: Row) => ({
       experiment_key: e.exp, variant_key: r.variant, cohort: e.hasControl ? 'test' : 'rollout', cutoff: null,
       assigned: r.assigned, checkout_users: r.checkoutUsers, paid_users: r.paidUsers, revenue: r.revenue,
     })))
     const zero = { assigned: 0, checkoutUsers: 0, paidUsers: 0, revenue: 0 }
-    const side = (r?: Row) => {
-      const o = r ? { assigned: r.assigned, checkoutUsers: r.checkout_users, paidUsers: r.paid_users, revenue: r.revenue } : zero
+    const side = (rs: Row[]) => {
+      const o = rs.reduce((a, r) => ({ assigned: a.assigned + r.assigned, checkoutUsers: a.checkoutUsers + r.checkout_users,
+        paidUsers: a.paidUsers + r.paid_users, revenue: a.revenue + r.revenue }), zero)
       return { ...o, checkoutRate: o.assigned ? o.checkoutUsers / o.assigned * 100 : null, paidRate: o.assigned ? o.paidUsers / o.assigned * 100 : null,
         arpu: o.assigned ? o.revenue / o.assigned : null }
     }
     return [...new Set(cohortRows.map(r => r.experiment_key))].map(exp => {
       const mine = cohortRows.filter(r => r.experiment_key === exp)
       const test = mine.filter(r => r.cohort === 'test')
-      const rollout = mine.filter(r => r.cohort === 'rollout')
       const testVar: string = mine.find(r => r.variant_key !== 'standard')?.variant_key ?? ''
-      const c = side(test.find(r => r.variant_key === 'standard'))
-      const t = side(test.find(r => r.variant_key === testVar))
+      const c = side(mine.filter(r => r.variant_key === 'standard'))
+      const t = side(mine.filter(r => r.variant_key === testVar))
       const pair = c.assigned > 0 && t.assigned > 0
       return {
         exp, testVar, c, t, hasControl: c.assigned > 0, cutoff: String(test[0]?.cutoff ?? ''),
-        rollout: rollout.reduce((a, r) => a + r.assigned, 0),
-        small: !pair || Math.min(c.assigned, t.assigned) < 30,
+        small: !pair,
         pPaid: pair ? zTestP(c.paidUsers, c.assigned, t.paidUsers, t.assigned) : null,
         pCheckout: pair ? zTestP(c.checkoutUsers, c.assigned, t.checkoutUsers, t.assigned) : null,
       }
@@ -1821,9 +1818,9 @@ export default function App() {
             {abCompare.map((e: Row) => {
               const meta = AB_ITEMS.find(x => x.key === e.exp)
               const testName = AB_VARIANT_NAMES[e.testVar] ?? e.testVar
-              const sig = (pv: number | null) => e.small || pv == null ? null : pv < 0.05
+              const sig = (pv: number | null) => pv == null ? null : pv < 0.05
               const state = !e.hasControl ? { t: 'ждём контроль', c: 'bg-amber-500/10 text-amber-500' }
-                : e.small ? { t: 'мало данных', c: 'bg-sky-500/10 text-sky-500' } : { t: 'можно смотреть', c: 'bg-emerald-500/10 text-emerald-500' }
+                : { t: 'идёт сбор', c: 'bg-emerald-500/10 text-emerald-500' }
               const pct = (r: number | null) => r == null ? '—' : comma(r.toFixed(1)) + '%'
               const Stat = ({ label, value, sub, big }: { label: string; value: ReactNode; sub?: ReactNode; big?: boolean }) => (
                 <div>
@@ -1832,14 +1829,11 @@ export default function App() {
                   {sub != null && <div className="text-[11px] text-muted-foreground">{sub}</div>}
                 </div>
               )
-              const Side = ({ title, tag, o, color }: { title: string; tag: string; o: Row; color: string }) => (
+              const Side = ({ title, tag, o }: { title: string; tag: string; o: Row }) => (
                 <div className="rounded-xl border border-border bg-background/40 p-4">
                   <div className="flex items-baseline justify-between gap-2">
                     <div><b className="text-[14px]">{title}</b>{tag !== title && <span className="ml-1.5 text-[11px] text-muted-foreground">{tag}</span>}</div>
-                    <div className="text-[12px] tabular-nums text-muted-foreground"><b className="text-[15px] text-foreground">{fmtN(o.assigned)}</b> из {AB_TARGET_N} юзеров</div>
-                  </div>
-                  <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                    <div className={'h-full rounded-full ' + color} style={{ width: Math.min(100, o.assigned / AB_TARGET_N * 100) + '%' }} />
+                    <div className="text-[12px] tabular-nums text-muted-foreground"><b className="text-[15px] text-foreground">{fmtN(o.assigned)}</b> юзеров</div>
                   </div>
                   <div className="mt-4 grid grid-cols-3 gap-3">
                     <Stat label="Дошли до checkout" value={pct(o.checkoutRate)} sub={fmtN(o.checkoutUsers) + ' юзеров'} />
@@ -1854,17 +1848,10 @@ export default function App() {
                 : <span className={'ml-1.5 rounded-full px-1.5 py-0.5 text-[10px] font-semibold ' + (v ? 'bg-emerald-500/10 text-emerald-500' : 'bg-muted text-muted-foreground')}>{v ? 'значимо' : 'шум'}</span>
               return (
                 <Card key={e.exp} title={meta?.title ?? e.exp}
-                  note={meta?.what}
                   right={<span className={'rounded-full px-2 py-0.5 text-[10.5px] font-semibold ' + state.c}>{state.t}</span>}>
-                  <div className="text-[12.5px] text-muted-foreground">
-                    {e.hasControl
-                      ? <>Контроль включён с {e.cutoff.slice(8, 10)}.{e.cutoff.slice(5, 7)} {e.cutoff.slice(11, 16)} UTC — считаем только юзеров, назначенных после этого.</>
-                      : <>Контроль ещё не появился — счёт начнётся с первого юзера в standard.</>}
-                    {e.rollout > 0 && <> {fmtN(e.rollout)} юзеров получили изменение раньше, без контроля, — в сравнение не входят.</>}
-                  </div>
                   <div className="mt-3 grid grid-cols-1 gap-3 md:grid-cols-2">
-                    <Side title="Контроль" tag="standard" o={e.c} color="bg-slate-400" />
-                    <Side title={testName} tag={e.testVar} o={e.t} color="bg-emerald-500" />
+                    <Side title="Контроль" tag="standard" o={e.c} />
+                    <Side title={testName} tag={e.testVar} o={e.t} />
                   </div>
                   <div className="mt-3 rounded-xl border border-dashed border-border px-4 py-3">
                     <div className="mb-2 text-[11.5px] font-semibold uppercase tracking-wide text-muted-foreground">Разница: тест минус контроль</div>
@@ -1874,9 +1861,7 @@ export default function App() {
                       <Stat big label="$ на юзера" value={dUsd} sub="главная метрика" />
                     </div>
                   </div>
-                  <div className="mt-3 text-[11.5px] text-muted-foreground">
-                    Цель — около {AB_TARGET_N} юзеров на вариант, чтобы увидеть рост checkout с 20% до 30%. Оплаты на таком трафике покажут только направление. «Значимо» появляется, когда в каждом варианте не меньше 30 юзеров.
-                  </div>
+                  {meta?.what && <div className="mt-3 text-[11.5px] text-muted-foreground">{meta.what}</div>}
                 </Card>
               )
             })}
