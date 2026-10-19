@@ -463,8 +463,8 @@ export default function App() {
     const byExp = new Map<string, Row[]>()
     for (const o of map.values()) byExp.set(o.exp, [...(byExp.get(o.exp) ?? []), o])
     return [...byExp.entries()].map(([exp, vs]) => {
-      vs.sort((a, b) => (a.variant === 'standard' ? -1 : b.variant === 'standard' ? 1 : b.assigned - a.assigned))
-      const ctrl = vs.find(v => v.variant === 'standard')
+      vs.sort((a, b) => (a.variant === 'standard' || a.variant === 'free' ? -1 : b.variant === 'standard' || b.variant === 'free' ? 1 : b.assigned - a.assigned))
+      const ctrl = vs.find(v => v.variant === 'standard' || v.variant === 'free')
       const rows = vs.map(v => {
         const p = ctrl && v !== ctrl ? zTestP(ctrl.paidUsers, ctrl.assigned, v.paidUsers, v.assigned) : null
         const small = !ctrl || v === ctrl ? null : Math.min(ctrl.assigned, v.assigned) < 30
@@ -490,8 +490,9 @@ export default function App() {
     return [...new Set(cohortRows.map(r => r.experiment_key))].map(exp => {
       const mine = cohortRows.filter(r => r.experiment_key === exp)
       const test = mine.filter(r => r.cohort === 'test')
-      const testVar: string = mine.find(r => r.variant_key !== 'standard')?.variant_key ?? ''
-      const c = side(mine.filter(r => r.variant_key === 'standard'))
+      const isCtrl = (v: string) => v === 'standard' || v === 'free'
+      const testVar: string = mine.find(r => !isCtrl(r.variant_key))?.variant_key ?? ''
+      const c = side(mine.filter(r => isCtrl(r.variant_key)))
       const t = side(mine.filter(r => r.variant_key === testVar))
       const pair = c.assigned > 0 && t.assigned > 0
       return {

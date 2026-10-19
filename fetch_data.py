@@ -1191,7 +1191,7 @@ AB_QUERIES = {
         WITH cut AS (
             SELECT experiment_key, min(assigned_at) AS cutoff
             FROM analytics.fact_experiment_assignments
-            WHERE variant_key = 'standard' GROUP BY 1
+            WHERE variant_key IN ('standard', 'free') GROUP BY 1
         ), a AS (
             SELECT DISTINCT ON (f.user_id, f.experiment_key)
                    f.user_id, f.experiment_key, f.variant_key, f.assigned_at,

@@ -99,16 +99,30 @@
  },
  {
   "date": "2026-10-15",
-  "sessions": 217,
-  "distinct_users": 202,
-  "avg_scroll_depth": 94.3,
-  "active_time_min": 48,
-  "dead_clicks": 56,
-  "dead_clicks_pct": 10.6,
+  "sessions": 210,
+  "distinct_users": 198,
+  "avg_scroll_depth": 94.0,
+  "active_time_min": 43,
+  "dead_clicks": 32,
+  "dead_clicks_pct": 9.52,
   "rage_clicks": 0,
   "rage_clicks_pct": 0,
   "quick_backs": 0,
   "script_errors": 0,
+  "error_clicks": 0
+ },
+ {
+  "date": "2026-10-19",
+  "sessions": 213,
+  "distinct_users": 210,
+  "avg_scroll_depth": 97.5,
+  "active_time_min": 45,
+  "dead_clicks": 50,
+  "dead_clicks_pct": 5.16,
+  "rage_clicks": 1,
+  "rage_clicks_pct": 0.47,
+  "quick_backs": 1,
+  "script_errors": 6,
   "error_clicks": 0
  }
 ]
