@@ -504,6 +504,40 @@ export default function App() {
     })
   }, [D, abVariants])
   const abConclDate = (updatedAt ?? new Date(__BUILT_AT__)).toLocaleDateString('ru-RU')
+  // Данные для вкладки «Выводы»
+  const cx = useMemo(() => {
+    const regsW: Row[] = [...(D.registrations_weekly ?? [])].sort((a, b) => (a.w < b.w ? -1 : 1))
+    const closed = regsW.slice(0, -1)   // последняя неделя неполная
+    const avg = (rs: Row[]) => rs.length ? Math.round(rs.reduce((a, r) => a + r.regs, 0) / rs.length) : 0
+    const recent = avg(closed.slice(-4)), before = avg(closed.slice(-12, -4))
+    const mrr: Row[] = D.mrr_monthly ?? []
+    const peak = mrr.reduce((m: Row | null, r: Row) => (!m || r.mrr > m.mrr ? r : m), null)
+    const cur = mrr[mrr.length - 1]
+    const low = mrr.filter(r => peak && r.m > peak.m).reduce((m: Row | null, r: Row) => (!m || r.mrr < m.mrr ? r : m), null)
+    const byPlan: Row[] = D.sales_by_plan ?? []
+    const totalRev = byPlan.reduce((a, r) => a + r.revenue, 0)
+    const baseRev = byPlan.filter(r => r.plan_name === 'Base').reduce((a, r) => a + r.revenue, 0)
+    const f = (D.funnel ?? [])[0] ?? {}
+    const ttv = (D.time_to_value ?? [])[0] ?? {}
+    const utmRegs = (D.utm_sources ?? []).reduce((a: number, r: Row) => a + r.regs, 0)
+    const ref = (D.referral_totals ?? [])[0] ?? {}
+    // Meta: что было за последние 14 дней
+    const since = shiftDays(TODAY, -14)
+    const geo = new Map<string, Row>()
+    for (const r of (D.meta_geo ?? [])) {
+      if (r.date < since) continue
+      const o = geo.get(r.country) ?? { country: r.country, spend: 0, clicks: 0, regs: 0 }
+      o.spend += r.spend; o.clicks += r.clicks; o.regs += r.regs; geo.set(r.country, o)
+    }
+    const geoRows = [...geo.values()].sort((a, b) => b.spend - a.spend)
+    const mSpend = geoRows.reduce((a, r) => a + r.spend, 0), mRegs = geoRows.reduce((a, r) => a + r.regs, 0), mClicks = geoRows.reduce((a, r) => a + r.clicks, 0)
+    const NORTH_AFRICA = ['DZ', 'MA', 'LY', 'TN', 'MR', 'SO', 'EG']
+    const naSpend = geoRows.filter(r => NORTH_AFRICA.includes(r.country)).reduce((a, r) => a + r.spend, 0)
+    const dn = (c: string) => { try { return new Intl.DisplayNames(['ru'], { type: 'region' }).of(c) ?? c } catch { return c } }
+    return { recent, before, peak, cur, low, baseShare: totalRev ? baseRev / totalRev * 100 : 0, f, ttv,
+      utmShare: f.registered ? utmRegs / f.registered * 100 : 0, ref, mSpend, mRegs, mClicks, naShare: mSpend ? naSpend / mSpend * 100 : 0,
+      topGeo: geoRows.slice(0, 2).map(r => dn(r.country)).join(' и ') }
+  }, [D])
   const abUsers = abVariants.reduce((a, e) => Math.max(a, e.total), 0)
   const abCheckouts = abVariants.reduce((a, e) => a + e.rows.reduce((x, r) => x + r.checkouts, 0), 0)
   const abInvoices = abVariants.reduce((a, e) => a + e.rows.reduce((x, r) => x + r.invoices, 0), 0)
@@ -1738,18 +1772,16 @@ export default function App() {
         </>)}
 
         {tab === 'conclusions' && (<>
-        <Section title="Выводы">
+        <Section title="Выводы" right={<span className="rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">на {abConclDate}</span>}>
           <ul className="grid gap-2.5 text-sm text-muted-foreground">
             {[
-              <><span className="mr-2 inline-block rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">вывод от 28.09.2026</span>
-                <b className="text-foreground">Новый онбординг (с {ONBOARDING_V2_LABEL}) увёл людей в ручной журнал: «подключение» рухнуло, но не потому, что подключение сломалось.</b>{' '}
+              <><b className="text-foreground">Новый онбординг (с {ONBOARDING_V2_LABEL}) увёл людей в ручной журнал: «подключение» рухнуло, но не потому, что подключение сломалось.</b>{' '}
                 Метрика «подключил брокера за 7 дней» упала у органики с {comma(eraTable[1].other.pre.toFixed(0))}% до {comma(eraTable[1].other.post.toFixed(0))}%, а «подключил или ручная позиция» — с {comma(eraTable[3].other.pre.toFixed(0))}% до {comma(eraTable[3].other.post.toFixed(0))}%.
                 Причина — выбор пути: {obChosen ? comma(((obManual?.chosen ?? 0) / obChosen * 100).toFixed(0)) : '—'}% берут ручной журнал.
                 Среди выбравших автоподключение до конца доходят {obAuto ? fmtN(obAuto.step2) : '—'} из {obAuto ? fmtN(obAuto.chosen) : '—'} — на уровне прежних ~19%.
                 Реальная активация просела ({comma(eraTable[3].other.post.toFixed(0))}% против {comma(eraTable[3].other.pre.toFixed(0))}%): ручной путь пока не дожимает — до конца доходит лишь {obManual && obManual.chosen ? comma((obManual.step3 / obManual.chosen * 100).toFixed(0)) : '—'}%.
                 Скорость первого шага, наоборот, выросла: путь выбирают за полминуты, ручной аккаунт создают за ~1,5 мин.</>,
-              connAttempts.some((r: Row) => r.result !== 'success') && <><span className="mr-2 inline-block rounded-full border border-border px-2 py-0.5 text-[10.5px] font-semibold text-foreground">вывод от 28.09.2026</span>
-                <b className="text-foreground">Треть попыток подключения брокера заканчивается ошибкой</b> ({connAttempts.filter((r: Row) => r.result !== 'success').map((r: Row) => `${r.error_code || 'ошибка'} — ${fmtN(r.attempts)}`).join(', ')} против {fmtN(connAttempts.filter((r: Row) => r.result === 'success').reduce((a: number, r: Row) => a + r.attempts, 0))} успешных).
+              connAttempts.some((r: Row) => r.result !== 'success') && <><b className="text-foreground">Треть попыток подключения брокера заканчивается ошибкой</b> ({connAttempts.filter((r: Row) => r.result !== 'success').map((r: Row) => `${r.error_code || 'ошибка'} — ${fmtN(r.attempts)}`).join(', ')} против {fmtN(connAttempts.filter((r: Row) => r.result === 'success').reduce((a: number, r: Row) => a + r.attempts, 0))} успешных).
                 Это самый короткий путь поднять «подключение»: разобрать причину ошибки и понятнее показывать её пользователю.</>,
               onboardingResumed > 0 && <><b className="text-foreground">Онбординг редко проходят с одного захода:</b> ещё {fmtN(onboardingResumed)} человек
                 за тот же период (PostHog, 30 дней) вернулись в онбординг повторно — это не отдельный шаг воронки, а сигнал, что часть выбравших ветку
@@ -1758,16 +1790,24 @@ export default function App() {
                 оформление (PostHog, 30 дней) не дошли до активации — объём пока небольшой, но стоит проверить этот шаг отдельно.</>,
               <><b className="text-foreground">Платёжка теряет деньги: у overpay {Math.round(ovAll.failed / ovAll.attempts * 100)}% попыток заканчиваются отказом.</b> Починка
                 overpay — самый быстрый способ поднять выручку без роста трафика; плюс {fmtM(pendingTotal)} висит в pending.</>,
-              <><b className="text-foreground">Рост регистраций не конвертируется в деньги.</b> Регистрации на максимумах (200–370 в неделю),
-                а MRR упал с пика $734 (февраль) до {fmtM(curMrr.mrr)}. Конверсия в оплату — 0,7% за всю историю.</>,
+              cx.mSpend > 20 && <><b className="text-foreground">Реклама Meta сейчас почти не приводит регистраций.</b> За последние 14 дней потрачено {fmtM(cx.mSpend)}, кликов {fmtN(cx.mClicks)}, регистраций — {fmtN(cx.mRegs)}{cx.mRegs ? ` (≈ ${fmtM(cx.mSpend / cx.mRegs)} за регистрацию)` : ''}.
+                {cx.naShare >= 50 && <> {Math.round(cx.naShare)}% бюджета ушло на страны Северной Африки ({cx.topGeo}): клики там дешёвые, но люди не регистрируются.</>}{' '}
+                Летом при другом гео регистрация стоила $2–4. Решение — вернуть бюджет в страны, которые давали регистрации, и оптимизировать на событие регистрации.</>,
+              <><b className="text-foreground">Регистрации упали:</b> за последние 4 полные недели в среднем {fmtN(cx.recent)} в неделю против {fmtN(cx.before)} за 8 недель до этого.
+                Вероятная причина — рекламный трафик: он на паузе или идёт в страны, которые не регистрируются. Конверсия в оплату за всю историю — {cx.f.registered ? comma((cx.f.paid / cx.f.registered * 100).toFixed(1)) : '—'}%.</>,
+              cx.peak && cx.cur && <><b className="text-foreground">MRR восстанавливается, но ещё ниже февральского пика:</b> {fmtM(cx.cur.mrr)} сейчас против {fmtM(cx.peak.mrr)} ({cx.peak.m.slice(5, 7)}.{cx.peak.m.slice(0, 4)})
+                {cx.low ? <>, минимум {fmtM(cx.low.mrr)} ({cx.low.m.slice(5, 7)}.{cx.low.m.slice(0, 4)})</> : null}. Рост идёт за счёт подписчиков, которых привели летом.</>,
               <><b className="text-foreground">Продлеваемость месячных подписок — {renDue ? Math.round(renOk / renDue * 100) : 0}%.</b> Практически
                 все платящие уходят после первого месяца; удержание подписчиков — проблема №1 монетизации.</>,
-              <><b className="text-foreground">Деньги приносит Base-тариф (88% выручки).</b> Pro покупают единицы — либо он недопродан
+              <><b className="text-foreground">Деньги приносит Base-тариф ({Math.round(cx.baseShare)}% выручки).</b> Pro покупают единицы — либо он недопродан
                 в продукте, либо его ценность не видна.</>,
               <><b className="text-foreground">Продукт цепляет мгновенно, а платят через полтора месяца:</b> подключение аккаунта — медиана
-                14 минут после регистрации, первая оплата — 44,5 дня. Разрыв воронки — между «создал аккаунт» и «подключил» (теряем две трети).</>,
-              <><b className="text-foreground">Атрибуция почти слепая:</b> UTM у 5,5% пользователей; рефералка: 13 тысяч ссылок → 274 клика → 7 оплат.
-                Ядро продукта — форекс на MetaTrader 5.</>,
+                {cx.ttv.med_conn_d != null ? ` ${Math.max(1, Math.round(cx.ttv.med_conn_d * 24 * 60))} мин` : ''} после регистрации, первая оплата — {cx.ttv.med_pay_d != null ? comma(String(cx.ttv.med_pay_d)) : '—'} дн. Разрыв воронки — между «создал аккаунт» и «подключил»
+                (теряем {cx.f.created_account ? Math.round((1 - cx.f.connected / cx.f.created_account) * 100) : '—'}%).</>,
+              <><b className="text-foreground">Атрибуция почти слепая:</b> UTM есть лишь у {comma(cx.utmShare.toFixed(1))}% пользователей; рефералка: {fmtN(cx.ref.links ?? 0)} ссылок → {fmtN(cx.ref.clicks ?? 0)} кликов → {fmtN(cx.ref.payments ?? 0)} оплат.
+                В GA4 нет событий регистрации и оплаты, поэтому каналы по конверсии там не сравнить.</>,
+              abSource === 'prod' && <><b className="text-foreground">А/В-тесты (PPP и trial за $1):</b> {fmtN(abUsers)} юзеров, {fmtN(abInvoices)} оплат из экспериментов. Контрольные группы уже набираются, но различий между вариантами пока нет — вывод рано.
+                Подробности — на вкладке «А/В тестування».</>,
             ].filter(Boolean).map((x, i) => (
               <li key={i} className="rounded-xl border border-border bg-card px-4 py-3">{x}</li>
             ))}
