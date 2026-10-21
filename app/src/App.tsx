@@ -1522,6 +1522,40 @@ export default function App() {
               ) : <EmptyNote />}
             </Card>
 
+            <Card title="Страны: расходы и регистрации" note="Топ-12 по расходам за выбранный период. Красным — потратили $20+ и ни одной регистрации.">
+              {adsGeo.filter((r: Row) => r.spend > 0).length ? (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-[12.5px]">
+                    <thead>
+                      <tr className="text-left text-muted-foreground">
+                        <th className="pb-2 pr-3 font-medium">Страна</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Расходы</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Клики</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Регистрации</th>
+                        <th className="pb-2 text-right font-medium">$ за регистрацию</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {adsGeo.filter((r: Row) => r.spend > 0).slice(0, 12).map((r: Row) => {
+                        let name = r.country
+                        try { name = new Intl.DisplayNames(['ru'], { type: 'region' }).of(r.country) ?? r.country } catch { /* оставляем код */ }
+                        const bad = r.spend >= 20 && r.regs === 0
+                        return (
+                          <tr key={r.country} className={'border-t border-border ' + (bad ? 'text-red-500' : '')}>
+                            <td className="py-1.5 pr-3">{name}</td>
+                            <td className="py-1.5 pr-3 text-right tabular-nums">{fmtM(r.spend)}</td>
+                            <td className="py-1.5 pr-3 text-right tabular-nums">{fmtN(r.clicks)}</td>
+                            <td className="py-1.5 pr-3 text-right tabular-nums">{fmtN(r.regs)}</td>
+                            <td className="py-1.5 text-right tabular-nums">{r.regs ? fmtM(r.spend / r.regs) : '—'}</td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              ) : <EmptyNote />}
+            </Card>
+
             <Card title="Плейсменты" note="Расходы за выбранный период, по платформам.">
               {adsPlacement.filter((r: Row) => r.spend > 0).length ? (
                 <BarChart key={adsRkey} data={adsPlacement.filter((r: Row) => r.spend > 0)} xDataKey="platform" orientation="horizontal"

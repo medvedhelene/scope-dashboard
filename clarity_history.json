@@ -124,5 +124,19 @@
   "quick_backs": 1,
   "script_errors": 6,
   "error_clicks": 0
+ },
+ {
+  "date": "2026-10-21",
+  "sessions": 234,
+  "distinct_users": 219,
+  "avg_scroll_depth": 98.0,
+  "active_time_min": 50,
+  "dead_clicks": 48,
+  "dead_clicks_pct": 8.55,
+  "rage_clicks": 0,
+  "rage_clicks_pct": 0,
+  "quick_backs": 0,
+  "script_errors": 6,
+  "error_clicks": 0
  }
 ]
