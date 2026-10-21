@@ -392,7 +392,7 @@ export default function App() {
   const [updatedAt, setUpdatedAt] = useState<Date | null>(null)
   const [refreshing, setRefreshing] = useState(false)
   const [refreshErr, setRefreshErr] = useState<string | null>(null)
-  const [preset, setPreset] = useState('all')
+  const [preset, setPreset] = useState('90')
 
   const refresh = async () => {
     setRefreshing(true); setRefreshErr(null)
@@ -426,7 +426,7 @@ export default function App() {
 
   // Платный трафик по умолчанию смотрим за текущий месяц — отдельно от
   // глобального фильтра периода, чтобы не менять дефолт для других разделов.
-  const [adsPreset, setAdsPreset] = useState('month')
+  const [adsPreset, setAdsPreset] = useState('90')
   const [adsFrom, setAdsFrom] = useState(MIN_DATE)
   const [adsTo, setAdsTo] = useState(TODAY)
   const adsRange = useMemo((): Range => {
