@@ -1911,9 +1911,10 @@ export default function App() {
           <div className="mt-3 grid grid-cols-1 gap-3">
             {abCompare.map((e: Row) => {
               const meta = AB_ITEMS.find(x => x.key === e.exp)
-              const isPpp = e.exp.startsWith('ppp')
-              const ctrlName = isPpp ? 'Regular prices' : 'Free trial'
-              const testName = isPpp ? 'A/B prices' : '$1 trial'
+              const names: Record<string, [string, string]> = {
+                ppp_pricing_geo_v1: ['Regular prices', 'A/B prices'], trial_price_geo_v1: ['Free trial', '$1 trial'],
+              }
+              const [ctrlName, testName] = names[e.exp] ?? ['Control', e.testVar || 'Test']
               const sig = (pv: number | null) => pv == null ? null : pv < 0.05
               const state = !e.hasControl ? { t: 'ждём контроль', c: 'bg-amber-500/10 text-amber-500' }
                 : { t: 'идёт сбор', c: 'bg-emerald-500/10 text-emerald-500' }
@@ -2038,7 +2039,7 @@ export default function App() {
                     ? <><b className="text-foreground">Эксперименты на проде{abFirstDay ? ' с ' + abFirstDay.slice(8) + '.' + abFirstDay.slice(5, 7) : ''}:</b> {fmtN(abUsers)} юзеров в тесте, {fmtN(abCheckouts)} checkout, {fmtN(abInvoices)} оплат. Выборка пока маленькая — проценты по вариантам ещё шум.</>
                     : <><b className="text-foreground">Эксперименты ещё не в бою.</b> Таблицы есть только на stage — {fmtN(abUsers)} тестовых юзеров QA, это проверка механики, не результат.</>,
                   ...abCompare.map((e: Row) => {
-                    const name = e.exp.startsWith('ppp') ? 'Гео-цены (PPP)' : 'Trial за $1'
+                    const name = e.exp.startsWith('ppp') ? 'Гео-цены (PPP)' : e.exp.startsWith('trial_price') ? 'Trial за $1' : e.exp
                     if (!e.hasControl) return <><b className="text-foreground">{name}:</b> контрольной группы с данными ещё нет — сравнение недоступно.</>
                     const d = e.c.arpu != null && e.t.arpu != null ? e.t.arpu - e.c.arpu : null
                     const sg = (e.pPaid != null && e.pPaid < 0.05) || (e.pCheckout != null && e.pCheckout < 0.05)
