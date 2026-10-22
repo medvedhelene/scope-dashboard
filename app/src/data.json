@@ -1716,12 +1716,12 @@
   },
   {
    "w": "2026-10-19",
-   "regs": 20
+   "regs": 22
   }
  ],
  "users_summary": [
   {
-   "total_users": 13998,
+   "total_users": 14000,
    "payers": 20,
    "ltv_total": 668.5,
    "arppu": 33.43
@@ -1730,15 +1730,15 @@
  "plans_current": [
   {
    "plan": "Free",
-   "users": 13456
+   "users": 13488
   },
   {
    "plan": "нет плана",
-   "users": 295
+   "users": 296
   },
   {
    "plan": "Pro",
-   "users": 186
+   "users": 155
   },
   {
    "plan": "Base",
@@ -1806,8 +1806,8 @@
   },
   {
    "source": "(не задан)",
-   "visitors": 8,
-   "regs": 8,
+   "visitors": 9,
+   "regs": 9,
    "converted": 0,
    "revenue": 0.0,
    "pending_payers": 0
@@ -1846,9 +1846,9 @@
  ],
  "referral_totals": [
   {
-   "links": 13962,
-   "active": 13962,
-   "clicks": 23,
+   "links": 13965,
+   "active": 13965,
+   "clicks": 24,
    "regs": 546,
    "payments": 3,
    "revenue": 55.0
@@ -1928,7 +1928,7 @@
  ],
  "promo_usage": [
   {
-   "uses": 570
+   "uses": 572
   }
  ],
  "attribution_links": [
@@ -1937,7 +1937,7 @@
    "category": "referral",
    "partner": "(все партнёры)",
    "campaign": "все реферальные ссылки",
-   "clicks": 23,
+   "clicks": 24,
    "regs": 546,
    "payments": 3,
    "revenue": 55.0,
@@ -1991,8 +1991,8 @@
   {
    "era": "post",
    "src": "other",
-   "n": 351,
-   "created7": 122,
+   "n": 358,
+   "created7": 124,
    "conn7": 11,
    "manual7": 39,
    "any7": 49,
@@ -2124,7 +2124,7 @@
   },
   {
    "w": "2026-10-12",
-   "n": 21,
+   "n": 28,
    "conn7": 0,
    "any7": 1
   }
@@ -2132,7 +2132,7 @@
  "onboarding_paths": [
   {
    "path": "manual",
-   "chosen": 237,
+   "chosen": 238,
    "step1": 131,
    "step2": 42,
    "step3": 38
@@ -3438,35 +3438,35 @@
   {
    "w": "2026-10-19",
    "kind": "Ручные позиции",
-   "n": 17
+   "n": 20
   },
   {
    "w": "2026-10-19",
    "kind": "Синк журнала",
-   "n": 7
+   "n": 12
   },
   {
    "w": "2026-10-19",
    "kind": "Подключение аккаунта",
-   "n": 8
+   "n": 9
   }
  ],
  "sync_by_market": [
   {
    "market": "fx",
-   "syncs": 1428,
-   "users": 251
+   "syncs": 1430,
+   "users": 252
   },
   {
    "market": "crypto",
-   "syncs": 637,
-   "users": 70
+   "syncs": 640,
+   "users": 71
   }
  ],
  "connections_by_provider": [
   {
    "provider": "metatrader5",
-   "connections": 3054,
+   "connections": 3055,
    "users": 1770
   },
   {
@@ -3595,28 +3595,28 @@
  "feature_events_summary": [
   {
    "feat": "Создание торг. аккаунта",
-   "n": 9899,
-   "users": 8895
+   "n": 9903,
+   "users": 8897
   },
   {
    "feat": "Подключение аккаунта",
-   "n": 5170,
+   "n": 5171,
    "users": 3004
   },
   {
    "feat": "Применение промокода",
-   "n": 2903,
-   "users": 2543
+   "n": 2904,
+   "users": 2544
   },
   {
    "feat": "Синк журнала",
-   "n": 2065,
-   "users": 313
+   "n": 2070,
+   "users": 315
   },
   {
    "feat": "Ручные позиции",
-   "n": 679,
-   "users": 257
+   "n": 682,
+   "users": 258
   },
   {
    "feat": "Заметки: создание",
@@ -3625,7 +3625,7 @@
   },
   {
    "feat": "Управление виджетами",
-   "n": 447,
+   "n": 448,
    "users": 178
   },
   {
@@ -6009,7 +6009,7 @@
   },
   {
    "m": "2026-10",
-   "registered": 126,
+   "registered": 128,
    "created": 35,
    "connected": 5,
    "paid": 1
@@ -6226,7 +6226,7 @@
   },
   {
    "cohort": "2026-10",
-   "users": 126,
+   "users": 128,
    "pay7": 1,
    "pay30": 1,
    "pay90": 1,
@@ -6239,7 +6239,7 @@
    "med_conn_d": 0.01,
    "med_sync_d": 0.02,
    "med_pay_d": 43.0,
-   "activation7_pct": 10.3
+   "activation7_pct": 10.0
   }
  ],
  "stuck_pending": [
@@ -6264,10 +6264,10 @@
  ],
  "funnel": [
   {
-   "registered": 13998,
-   "created_account": 8895,
+   "registered": 14000,
+   "created_account": 8897,
    "connected": 3004,
-   "synced": 313,
+   "synced": 315,
    "paid": 97
   }
  ],
@@ -6880,9 +6880,9 @@
   },
   {
    "w": "2026-10-19",
-   "sessions": 3384,
-   "users": 3249,
-   "pageviews": 4980
+   "sessions": 5012,
+   "users": 4772,
+   "pageviews": 7266
   }
  ],
  "ga4_sessions_monthly": [
@@ -7008,8 +7008,8 @@
   },
   {
    "m": "2026-10",
-   "sessions": 13749,
-   "users": 13051
+   "sessions": 15377,
+   "users": 14574
   }
  ],
  "ga4_app_sessions_weekly": [
@@ -7807,9 +7807,9 @@
   },
   {
    "w": "2026-10-19",
-   "sessions": 223,
-   "users": 132,
-   "pageviews": 1399
+   "sessions": 344,
+   "users": 203,
+   "pageviews": 2044
   }
  ],
  "ga4_app_sessions_monthly": [
@@ -7965,34 +7965,34 @@
   },
   {
    "m": "2026-10",
-   "sessions": 1654,
-   "users": 964
+   "sessions": 1775,
+   "users": 1035
   }
  ],
  "ga4_channels": [
   {
    "sessionDefaultChannelGroup": "Direct",
-   "sessions": 55785,
-   "totalUsers": 29497,
+   "sessions": 55849,
+   "totalUsers": 29532,
    "engagementRate": 41.0
   },
   {
    "sessionDefaultChannelGroup": "Paid Social",
-   "sessions": 27955,
-   "totalUsers": 26489,
-   "engagementRate": 26.3
+   "sessions": 29465,
+   "totalUsers": 27708,
+   "engagementRate": 25.9
   },
   {
    "sessionDefaultChannelGroup": "Paid Other",
    "sessions": 23469,
-   "totalUsers": 20949,
+   "totalUsers": 20950,
    "engagementRate": 31.3
   },
   {
    "sessionDefaultChannelGroup": "Organic Search",
-   "sessions": 19580,
-   "totalUsers": 7139,
-   "engagementRate": 54.1
+   "sessions": 19599,
+   "totalUsers": 7148,
+   "engagementRate": 54.2
   },
   {
    "sessionDefaultChannelGroup": "Organic Social",
@@ -8002,8 +8002,8 @@
   },
   {
    "sessionDefaultChannelGroup": "Unassigned",
-   "sessions": 3187,
-   "totalUsers": 2510,
+   "sessions": 3191,
+   "totalUsers": 2513,
    "engagementRate": 38.7
   },
   {
@@ -8014,7 +8014,7 @@
   },
   {
    "sessionDefaultChannelGroup": "Referral",
-   "sessions": 2154,
+   "sessions": 2159,
    "totalUsers": 703,
    "engagementRate": 59.9
   },
@@ -8046,13 +8046,13 @@
  "ga4_top_pages": [
   {
    "pagePath": "/",
-   "screenPageViews": 125934,
-   "totalUsers": 79603
+   "screenPageViews": 127953,
+   "totalUsers": 80756
   },
   {
    "pagePath": "/login/",
-   "screenPageViews": 45085,
-   "totalUsers": 18831
+   "screenPageViews": 45203,
+   "totalUsers": 18864
   },
   {
    "pagePath": "/login",
@@ -8066,13 +8066,13 @@
   },
   {
    "pagePath": "/pricing/",
-   "screenPageViews": 5904,
+   "screenPageViews": 5906,
    "totalUsers": 4150
   },
   {
    "pagePath": "/tools/position-size-calculator/",
-   "screenPageViews": 3398,
-   "totalUsers": 1907
+   "screenPageViews": 3407,
+   "totalUsers": 1912
   },
   {
    "pagePath": "/settings/profile",
@@ -8086,13 +8086,13 @@
   },
   {
    "pagePath": "/ai-assistant/",
-   "screenPageViews": 2143,
-   "totalUsers": 574
+   "screenPageViews": 2153,
+   "totalUsers": 578
   },
   {
    "pagePath": "/socials/",
-   "screenPageViews": 1325,
-   "totalUsers": 449
+   "screenPageViews": 1437,
+   "totalUsers": 453
   }
  ],
  "ga4_utm_campaigns": [
@@ -8100,43 +8100,43 @@
    "sessionSource": "(direct)",
    "sessionMedium": "(none)",
    "sessionCampaignName": "(не указано)",
-   "sessions": 55785,
-   "totalUsers": 29492
+   "sessions": 55849,
+   "totalUsers": 29518
   },
   {
    "sessionSource": "ovva-meta",
    "sessionMedium": "cpc",
    "sessionCampaignName": "все кампании — см. «Платный трафик (Meta Ads)» выше",
-   "sessions": 16002,
-   "totalUsers": 14812
+   "sessions": 16003,
+   "totalUsers": 14813
   },
   {
    "sessionSource": "meta",
    "sessionMedium": "cpc",
    "sessionCampaignName": "Ad_reg_2",
-   "sessions": 12232,
-   "totalUsers": 11789
+   "sessions": 12632,
+   "totalUsers": 12157
   },
   {
    "sessionSource": "meta",
    "sessionMedium": "cpc",
    "sessionCampaignName": "Ad_reg_3",
-   "sessions": 7167,
-   "totalUsers": 6997
+   "sessions": 7982,
+   "totalUsers": 7759
   },
   {
    "sessionSource": "google",
    "sessionMedium": "organic",
    "sessionCampaignName": "(не указано)",
-   "sessions": 18574,
-   "totalUsers": 6617
+   "sessions": 18587,
+   "totalUsers": 6623
   },
   {
    "sessionSource": "meta",
    "sessionMedium": "cpc",
    "sessionCampaignName": "Ad_reg_brokers_4",
-   "sessions": 5174,
-   "totalUsers": 4822
+   "sessions": 5425,
+   "totalUsers": 5044
   },
   {
    "sessionSource": "x",
@@ -8149,8 +8149,8 @@
    "sessionSource": "meta",
    "sessionMedium": "cpc",
    "sessionCampaignName": "Ad_reg_forex_3",
-   "sessions": 1469,
-   "totalUsers": 1423
+   "sessions": 1476,
+   "totalUsers": 1429
   },
   {
    "sessionSource": "youtube.com",
@@ -8177,8 +8177,8 @@
    "sessionSource": "m.facebook.com",
    "sessionMedium": "referral",
    "sessionCampaignName": "(не указано)",
-   "sessions": 546,
-   "totalUsers": 546
+   "sessions": 547,
+   "totalUsers": 547
   },
   {
    "sessionSource": "ig",
@@ -8202,17 +8202,17 @@
    "totalUsers": 248
   },
   {
-   "sessionSource": "bing",
-   "sessionMedium": "organic",
-   "sessionCampaignName": "(не указано)",
-   "sessions": 444,
-   "totalUsers": 229
-  },
-  {
    "sessionSource": "(not set)",
    "sessionMedium": "(not set)",
    "sessionCampaignName": "(не указано)",
-   "sessions": 235,
+   "sessions": 236,
+   "totalUsers": 230
+  },
+  {
+   "sessionSource": "bing",
+   "sessionMedium": "organic",
+   "sessionCampaignName": "(не указано)",
+   "sessions": 445,
    "totalUsers": 229
   },
   {
@@ -8442,9 +8442,9 @@
   },
   {
    "w": "2026-10-19",
-   "spend": 94.46,
-   "impressions": 569646,
-   "clicks": 11902,
+   "spend": 144.94,
+   "impressions": 817250,
+   "clicks": 18507,
    "regs": 0,
    "leads": 0
   }
@@ -8508,9 +8508,9 @@
   },
   {
    "m": "2026-10",
-   "spend": 344.08,
-   "impressions": 1811302,
-   "clicks": 49280,
+   "spend": 394.56,
+   "impressions": 2058906,
+   "clicks": 55885,
    "regs": 3,
    "leads": 0
   }
@@ -8521,9 +8521,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.1,
+   "impressions": 56,
+   "clicks": 7,
    "regs": 0,
    "leads": 0
   },
@@ -8532,9 +8532,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.09,
+   "impressions": 21,
+   "clicks": 6,
    "regs": 0,
    "leads": 0
   },
@@ -8554,9 +8554,9 @@
    "ad_id": "120251314120140272",
    "ad_name": "cb35",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.94,
+   "impressions": 250,
+   "clicks": 51,
    "regs": 0,
    "leads": 0
   },
@@ -8587,9 +8587,9 @@
    "ad_id": "120251314120120272",
    "ad_name": "cb34",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 5.17,
+   "impressions": 2079,
+   "clicks": 97,
    "regs": 0,
    "leads": 0
   },
@@ -8598,9 +8598,9 @@
    "ad_id": "120251314120140272",
    "ad_name": "cb35",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.5,
+   "impressions": 123,
+   "clicks": 10,
    "regs": 0,
    "leads": 0
   },
@@ -8609,9 +8609,9 @@
    "ad_id": "120251314120120272",
    "ad_name": "cb34",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.47,
+   "impressions": 3308,
+   "clicks": 42,
    "regs": 2,
    "leads": 0
   },
@@ -8620,9 +8620,9 @@
    "ad_id": "120251314120140272",
    "ad_name": "cb35",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.09,
+   "impressions": 50,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -8642,9 +8642,9 @@
    "ad_id": "120251314120120272",
    "ad_name": "cb34",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 13.75,
+   "impressions": 5975,
+   "clicks": 87,
    "regs": 6,
    "leads": 0
   },
@@ -8664,9 +8664,9 @@
    "ad_id": "120251314120120272",
    "ad_name": "cb34",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 14.84,
+   "impressions": 5949,
+   "clicks": 119,
    "regs": 4,
    "leads": 0
   },
@@ -8686,9 +8686,9 @@
    "ad_id": "120251314120140272",
    "ad_name": "cb35",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.38,
+   "impressions": 438,
+   "clicks": 6,
    "regs": 0,
    "leads": 0
   },
@@ -8697,9 +8697,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 5.96,
+   "impressions": 1177,
+   "clicks": 158,
    "regs": 0,
    "leads": 0
   },
@@ -8708,9 +8708,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.54,
+   "impressions": 192,
+   "clicks": 8,
    "regs": 0,
    "leads": 0
   },
@@ -8719,9 +8719,9 @@
    "ad_id": "120251314120120272",
    "ad_name": "cb34",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.87,
+   "impressions": 2781,
+   "clicks": 65,
    "regs": 0,
    "leads": 0
   },
@@ -8730,9 +8730,9 @@
    "ad_id": "120251314120130272",
    "ad_name": "cb32",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.29,
+   "impressions": 149,
+   "clicks": 5,
    "regs": 0,
    "leads": 0
   },
@@ -8741,9 +8741,9 @@
    "ad_id": "120251314120140272",
    "ad_name": "cb35",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.43,
+   "impressions": 1744,
+   "clicks": 168,
    "regs": 1,
    "leads": 0
   },
@@ -8752,9 +8752,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.8,
+   "impressions": 330,
+   "clicks": 25,
    "regs": 0,
    "leads": 0
   },
@@ -8763,9 +8763,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.44,
+   "impressions": 260,
+   "clicks": 19,
    "regs": 0,
    "leads": 0
   },
@@ -8774,9 +8774,9 @@
    "ad_id": "120251314120130272",
    "ad_name": "cb32",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.13,
+   "impressions": 334,
+   "clicks": 33,
    "regs": 0,
    "leads": 0
   },
@@ -8785,9 +8785,9 @@
    "ad_id": "120251314120140272",
    "ad_name": "cb35",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.14,
+   "impressions": 74,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -8796,9 +8796,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.89,
+   "impressions": 5255,
+   "clicks": 279,
    "regs": 7,
    "leads": 0
   },
@@ -8807,9 +8807,9 @@
    "ad_id": "120251314120140272",
    "ad_name": "cb35",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.38,
+   "impressions": 126,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -8829,9 +8829,9 @@
    "ad_id": "120251482106080272",
    "ad_name": "br11",
    "campaign_name": "OVVA | PUR | MOF | WW",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.14,
+   "impressions": 289,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -8840,9 +8840,9 @@
    "ad_id": "120251482106090272",
    "ad_name": "br12",
    "campaign_name": "OVVA | PUR | MOF | WW",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.19,
+   "impressions": 56,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -8851,9 +8851,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 15.59,
+   "impressions": 6368,
+   "clicks": 401,
    "regs": 11,
    "leads": 3
   },
@@ -8862,9 +8862,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 16.22,
+   "impressions": 4768,
+   "clicks": 462,
    "regs": 13,
    "leads": 6
   },
@@ -8873,9 +8873,9 @@
    "ad_id": "120251314120130272",
    "ad_name": "cb32",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.08,
+   "impressions": 77,
+   "clicks": 4,
    "regs": 0,
    "leads": 0
   },
@@ -8884,9 +8884,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.94,
+   "impressions": 2662,
+   "clicks": 405,
    "regs": 6,
    "leads": 1
   },
@@ -8895,9 +8895,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.81,
+   "impressions": 247,
+   "clicks": 40,
    "regs": 0,
    "leads": 0
   },
@@ -8906,9 +8906,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.74,
+   "impressions": 2203,
+   "clicks": 92,
    "regs": 0,
    "leads": 0
   },
@@ -8917,9 +8917,9 @@
    "ad_id": "120251541777510272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.31,
+   "impressions": 1414,
+   "clicks": 43,
    "regs": 0,
    "leads": 0
   },
@@ -8928,9 +8928,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.62,
+   "impressions": 2035,
+   "clicks": 46,
    "regs": 0,
    "leads": 0
   },
@@ -8939,9 +8939,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.26,
+   "impressions": 197,
+   "clicks": 8,
    "regs": 0,
    "leads": 1
   },
@@ -8950,9 +8950,9 @@
    "ad_id": "120251542201950272",
    "ad_name": "lead_video_2",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.02,
+   "impressions": 13,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -8961,8 +8961,8 @@
    "ad_id": "120251542210180272",
    "ad_name": "lead_video_3",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
+   "spend": 0.01,
+   "impressions": 10,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -8972,9 +8972,9 @@
    "ad_id": "120251542217650272",
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.69,
+   "impressions": 3929,
+   "clicks": 113,
    "regs": 0,
    "leads": 1
   },
@@ -8983,9 +8983,9 @@
    "ad_id": "120251542289520272",
    "ad_name": "sales_video_2",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.04,
+   "impressions": 31,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -8994,9 +8994,9 @@
    "ad_id": "120251542289530272",
    "ad_name": "sales_video_4",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.84,
+   "impressions": 304,
+   "clicks": 51,
    "regs": 0,
    "leads": 0
   },
@@ -9005,9 +9005,9 @@
    "ad_id": "120251542289540272",
    "ad_name": "sales_video_3",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.46,
+   "impressions": 132,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -9017,8 +9017,8 @@
    "ad_name": "sales_video_1",
    "campaign_name": "Sales_video_subs",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 19,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -9027,9 +9027,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.66,
+   "impressions": 2816,
+   "clicks": 240,
    "regs": 0,
    "leads": 0
   },
@@ -9038,9 +9038,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.49,
+   "impressions": 192,
+   "clicks": 29,
    "regs": 0,
    "leads": 0
   },
@@ -9049,9 +9049,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.44,
+   "impressions": 17754,
+   "clicks": 640,
    "regs": 0,
    "leads": 0
   },
@@ -9060,9 +9060,9 @@
    "ad_id": "120251541777510272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.11,
+   "impressions": 4579,
+   "clicks": 174,
    "regs": 0,
    "leads": 0
   },
@@ -9071,9 +9071,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.08,
+   "impressions": 8836,
+   "clicks": 383,
    "regs": 0,
    "leads": 0
   },
@@ -9082,9 +9082,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.92,
+   "impressions": 8144,
+   "clicks": 438,
    "regs": 0,
    "leads": 0
   },
@@ -9093,9 +9093,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.22,
+   "impressions": 1619,
+   "clicks": 160,
    "regs": 1,
    "leads": 34
   },
@@ -9104,9 +9104,9 @@
    "ad_id": "120251542201950272",
    "ad_name": "lead_video_2",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.65,
+   "impressions": 436,
+   "clicks": 20,
    "regs": 0,
    "leads": 3
   },
@@ -9115,9 +9115,9 @@
    "ad_id": "120251542210180272",
    "ad_name": "lead_video_3",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.41,
+   "impressions": 240,
+   "clicks": 15,
    "regs": 0,
    "leads": 2
   },
@@ -9126,9 +9126,9 @@
    "ad_id": "120251542217650272",
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.69,
+   "impressions": 1280,
+   "clicks": 53,
    "regs": 0,
    "leads": 8
   },
@@ -9137,9 +9137,9 @@
    "ad_id": "120251542289520272",
    "ad_name": "sales_video_2",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.98,
+   "impressions": 3159,
+   "clicks": 210,
    "regs": 20,
    "leads": 0
   },
@@ -9148,9 +9148,9 @@
    "ad_id": "120251542289530272",
    "ad_name": "sales_video_4",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.15,
+   "impressions": 977,
+   "clicks": 140,
    "regs": 0,
    "leads": 0
   },
@@ -9159,9 +9159,9 @@
    "ad_id": "120251542289540272",
    "ad_name": "sales_video_3",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.51,
+   "impressions": 376,
+   "clicks": 24,
    "regs": 3,
    "leads": 0
   },
@@ -9170,9 +9170,9 @@
    "ad_id": "120251542289550272",
    "ad_name": "sales_video_1",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.93,
+   "impressions": 317,
+   "clicks": 44,
    "regs": 0,
    "leads": 0
   },
@@ -9181,9 +9181,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.98,
+   "impressions": 1783,
+   "clicks": 147,
    "regs": 0,
    "leads": 0
   },
@@ -9192,9 +9192,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.16,
+   "impressions": 1558,
+   "clicks": 122,
    "regs": 0,
    "leads": 0
   },
@@ -9203,9 +9203,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.56,
+   "impressions": 37254,
+   "clicks": 1971,
    "regs": 0,
    "leads": 0
   },
@@ -9225,9 +9225,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.26,
+   "impressions": 1229,
+   "clicks": 71,
    "regs": 0,
    "leads": 0
   },
@@ -9236,9 +9236,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.81,
+   "impressions": 12395,
+   "clicks": 531,
    "regs": 0,
    "leads": 0
   },
@@ -9247,9 +9247,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.56,
+   "impressions": 7239,
+   "clicks": 539,
    "regs": 3,
    "leads": 120
   },
@@ -9258,9 +9258,9 @@
    "ad_id": "120251542201950272",
    "ad_name": "lead_video_2",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.13,
+   "impressions": 137,
+   "clicks": 9,
    "regs": 0,
    "leads": 1
   },
@@ -9269,9 +9269,9 @@
    "ad_id": "120251542210180272",
    "ad_name": "lead_video_3",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.1,
+   "impressions": 72,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -9280,9 +9280,9 @@
    "ad_id": "120251542217650272",
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.83,
+   "impressions": 501,
+   "clicks": 47,
    "regs": 0,
    "leads": 4
   },
@@ -9291,9 +9291,9 @@
    "ad_id": "120251542289530272",
    "ad_name": "sales_video_4",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 5.89,
+   "impressions": 2602,
+   "clicks": 270,
    "regs": 2,
    "leads": 0
   },
@@ -9302,9 +9302,9 @@
    "ad_id": "120251542289540272",
    "ad_name": "sales_video_3",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.03,
+   "impressions": 1726,
+   "clicks": 64,
    "regs": 1,
    "leads": 0
   },
@@ -9313,9 +9313,9 @@
    "ad_id": "120251542289550272",
    "ad_name": "sales_video_1",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.09,
+   "impressions": 622,
+   "clicks": 110,
    "regs": 0,
    "leads": 0
   },
@@ -9324,9 +9324,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.77,
+   "impressions": 2189,
+   "clicks": 99,
    "regs": 0,
    "leads": 0
   },
@@ -9335,9 +9335,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 5.59,
+   "impressions": 2062,
+   "clicks": 120,
    "regs": 0,
    "leads": 0
   },
@@ -9346,9 +9346,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.61,
+   "impressions": 36254,
+   "clicks": 2011,
    "regs": 0,
    "leads": 0
   },
@@ -9357,9 +9357,9 @@
    "ad_id": "120251541777510272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.01,
+   "impressions": 54,
+   "clicks": 4,
    "regs": 0,
    "leads": 0
   },
@@ -9368,9 +9368,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.12,
+   "impressions": 370,
+   "clicks": 15,
    "regs": 0,
    "leads": 0
   },
@@ -9379,9 +9379,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.53,
+   "impressions": 4918,
+   "clicks": 287,
    "regs": 0,
    "leads": 0
   },
@@ -9390,9 +9390,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.02,
+   "impressions": 9708,
+   "clicks": 589,
    "regs": 8,
    "leads": 125
   },
@@ -9401,9 +9401,9 @@
    "ad_id": "120251542201950272",
    "ad_name": "lead_video_2",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.02,
+   "impressions": 16,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -9423,9 +9423,9 @@
    "ad_id": "120251542217650272",
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.17,
+   "impressions": 172,
+   "clicks": 14,
    "regs": 0,
    "leads": 0
   },
@@ -9434,9 +9434,9 @@
    "ad_id": "120251542289530272",
    "ad_name": "sales_video_4",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.0,
+   "impressions": 2106,
+   "clicks": 90,
    "regs": 3,
    "leads": 0
   },
@@ -9445,9 +9445,9 @@
    "ad_id": "120251542289540272",
    "ad_name": "sales_video_3",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 5.28,
+   "impressions": 5992,
+   "clicks": 125,
    "regs": 10,
    "leads": 0
   },
@@ -9456,9 +9456,9 @@
    "ad_id": "120251542289550272",
    "ad_name": "sales_video_1",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.77,
+   "impressions": 613,
+   "clicks": 68,
    "regs": 0,
    "leads": 0
   },
@@ -9467,9 +9467,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.92,
+   "impressions": 4783,
+   "clicks": 270,
    "regs": 0,
    "leads": 0
   },
@@ -9478,9 +9478,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.44,
+   "impressions": 582,
+   "clicks": 36,
    "regs": 0,
    "leads": 0
   },
@@ -9489,9 +9489,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.07,
+   "impressions": 53203,
+   "clicks": 2048,
    "regs": 0,
    "leads": 0
   },
@@ -9511,9 +9511,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.51,
+   "impressions": 7293,
+   "clicks": 331,
    "regs": 0,
    "leads": 0
   },
@@ -9522,9 +9522,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.81,
+   "impressions": 12652,
+   "clicks": 814,
    "regs": 7,
    "leads": 162
   },
@@ -9545,8 +9545,8 @@
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 9,
+   "clicks": 2,
    "regs": 0,
    "leads": 1
   },
@@ -9555,9 +9555,9 @@
    "ad_id": "120251542289530272",
    "ad_name": "sales_video_4",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.0,
+   "impressions": 1952,
+   "clicks": 50,
    "regs": 5,
    "leads": 0
   },
@@ -9566,9 +9566,9 @@
    "ad_id": "120251542289540272",
    "ad_name": "sales_video_3",
    "campaign_name": "Sales_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.23,
+   "impressions": 1551,
+   "clicks": 36,
    "regs": 4,
    "leads": 0
   },
@@ -9577,9 +9577,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.5,
+   "impressions": 5137,
+   "clicks": 151,
    "regs": 0,
    "leads": 0
   },
@@ -9588,9 +9588,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.82,
+   "impressions": 412,
+   "clicks": 9,
    "regs": 0,
    "leads": 0
   },
@@ -9599,9 +9599,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.08,
+   "impressions": 43173,
+   "clicks": 1357,
    "regs": 0,
    "leads": 0
   },
@@ -9621,9 +9621,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.13,
+   "impressions": 11963,
+   "clicks": 452,
    "regs": 0,
    "leads": 0
   },
@@ -9632,9 +9632,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.94,
+   "impressions": 11439,
+   "clicks": 693,
    "regs": 5,
    "leads": 149
   },
@@ -9643,9 +9643,9 @@
    "ad_id": "120251542217650272",
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.01,
+   "impressions": 18,
+   "clicks": 6,
    "regs": 0,
    "leads": 1
   },
@@ -9666,8 +9666,8 @@
    "ad_name": "Ad_4_forex",
    "campaign_name": "Ad_reg_forex_3",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 124,
+   "clicks": 7,
    "regs": 0,
    "leads": 0
   },
@@ -9676,9 +9676,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.56,
+   "impressions": 2362,
+   "clicks": 48,
    "regs": 0,
    "leads": 0
   },
@@ -9687,9 +9687,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.62,
+   "impressions": 4509,
+   "clicks": 64,
    "regs": 0,
    "leads": 0
   },
@@ -9698,9 +9698,9 @@
    "ad_id": "120251599858850272",
    "ad_name": "Ad_2_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.89,
+   "impressions": 3362,
+   "clicks": 69,
    "regs": 0,
    "leads": 0
   },
@@ -9709,9 +9709,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.13,
+   "impressions": 1167,
+   "clicks": 35,
    "regs": 0,
    "leads": 0
   },
@@ -9721,8 +9721,8 @@
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 106,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -9731,9 +9731,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.39,
+   "impressions": 1830,
+   "clicks": 51,
    "regs": 0,
    "leads": 0
   },
@@ -9742,9 +9742,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.6,
+   "impressions": 11173,
+   "clicks": 206,
    "regs": 0,
    "leads": 0
   },
@@ -9753,9 +9753,9 @@
    "ad_id": "120251600142580272",
    "ad_name": "Ad_6_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.06,
+   "impressions": 808,
+   "clicks": 13,
    "regs": 0,
    "leads": 0
   },
@@ -9764,9 +9764,9 @@
    "ad_id": "120251600142590272",
    "ad_name": "Ad_2_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.02,
+   "impressions": 352,
+   "clicks": 6,
    "regs": 0,
    "leads": 0
   },
@@ -9775,9 +9775,9 @@
    "ad_id": "120251600142600272",
    "ad_name": "Ad_1_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.02,
+   "impressions": 363,
+   "clicks": 6,
    "regs": 0,
    "leads": 0
   },
@@ -9786,9 +9786,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.68,
+   "impressions": 13961,
+   "clicks": 205,
    "regs": 1,
    "leads": 0
   },
@@ -9797,9 +9797,9 @@
    "ad_id": "120251600142620272",
    "ad_name": "Ad_3_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.11,
+   "impressions": 725,
+   "clicks": 10,
    "regs": 0,
    "leads": 0
   },
@@ -9808,9 +9808,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.27,
+   "impressions": 1814,
+   "clicks": 19,
    "regs": 0,
    "leads": 0
   },
@@ -9819,9 +9819,9 @@
    "ad_id": "120251600142640272",
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.58,
+   "impressions": 2117,
+   "clicks": 36,
    "regs": 0,
    "leads": 0
   },
@@ -9830,9 +9830,9 @@
    "ad_id": "120251600142650272",
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.14,
+   "impressions": 793,
+   "clicks": 21,
    "regs": 0,
    "leads": 0
   },
@@ -9841,9 +9841,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.38,
+   "impressions": 8071,
+   "clicks": 134,
    "regs": 0,
    "leads": 0
   },
@@ -9852,9 +9852,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.18,
+   "impressions": 58,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -9863,9 +9863,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.59,
+   "impressions": 70582,
+   "clicks": 2384,
    "regs": 0,
    "leads": 0
   },
@@ -9885,9 +9885,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.27,
+   "impressions": 2500,
+   "clicks": 65,
    "regs": 0,
    "leads": 0
   },
@@ -9896,9 +9896,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.18,
+   "impressions": 9620,
+   "clicks": 544,
    "regs": 3,
    "leads": 106
   },
@@ -9918,9 +9918,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.48,
+   "impressions": 2956,
+   "clicks": 33,
    "regs": 0,
    "leads": 0
   },
@@ -9929,9 +9929,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.43,
+   "impressions": 10693,
+   "clicks": 199,
    "regs": 0,
    "leads": 0
   },
@@ -9941,8 +9941,8 @@
    "ad_name": "Ad_2_forex",
    "campaign_name": "Ad_reg_forex_3",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 397,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -9951,9 +9951,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.92,
+   "impressions": 5146,
+   "clicks": 44,
    "regs": 0,
    "leads": 0
   },
@@ -9963,7 +9963,7 @@
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
    "spend": 0.0,
-   "impressions": 0,
+   "impressions": 25,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -9973,9 +9973,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 5.47,
+   "impressions": 29030,
+   "clicks": 275,
    "regs": 0,
    "leads": 0
   },
@@ -9984,9 +9984,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.71,
+   "impressions": 3946,
+   "clicks": 37,
    "regs": 0,
    "leads": 0
   },
@@ -9995,9 +9995,9 @@
    "ad_id": "120251600142580272",
    "ad_name": "Ad_6_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.07,
+   "impressions": 383,
+   "clicks": 9,
    "regs": 0,
    "leads": 0
   },
@@ -10006,9 +10006,9 @@
    "ad_id": "120251600142590272",
    "ad_name": "Ad_2_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.59,
+   "impressions": 3086,
+   "clicks": 29,
    "regs": 0,
    "leads": 0
   },
@@ -10017,9 +10017,9 @@
    "ad_id": "120251600142600272",
    "ad_name": "Ad_1_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.05,
+   "impressions": 4668,
+   "clicks": 45,
    "regs": 0,
    "leads": 0
   },
@@ -10028,9 +10028,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.03,
+   "impressions": 10092,
+   "clicks": 181,
    "regs": 0,
    "leads": 0
   },
@@ -10039,9 +10039,9 @@
    "ad_id": "120251600142620272",
    "ad_name": "Ad_3_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.32,
+   "impressions": 1243,
+   "clicks": 18,
    "regs": 0,
    "leads": 0
   },
@@ -10050,9 +10050,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.94,
+   "impressions": 4387,
+   "clicks": 44,
    "regs": 0,
    "leads": 0
   },
@@ -10061,9 +10061,9 @@
    "ad_id": "120251600142640272",
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.77,
+   "impressions": 10756,
+   "clicks": 157,
    "regs": 0,
    "leads": 0
   },
@@ -10072,9 +10072,9 @@
    "ad_id": "120251600142650272",
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.22,
+   "impressions": 887,
+   "clicks": 11,
    "regs": 0,
    "leads": 0
   },
@@ -10083,9 +10083,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.77,
+   "impressions": 5844,
+   "clicks": 77,
    "regs": 0,
    "leads": 0
   },
@@ -10094,9 +10094,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.19,
+   "impressions": 78,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -10105,9 +10105,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.7,
+   "impressions": 44277,
+   "clicks": 2071,
    "regs": 0,
    "leads": 0
   },
@@ -10116,9 +10116,9 @@
    "ad_id": "120251541777510272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.04,
+   "impressions": 296,
+   "clicks": 24,
    "regs": 0,
    "leads": 0
   },
@@ -10127,9 +10127,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.09,
+   "impressions": 154,
+   "clicks": 16,
    "regs": 0,
    "leads": 0
   },
@@ -10138,9 +10138,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.01,
+   "impressions": 19,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -10149,9 +10149,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.89,
+   "impressions": 11885,
+   "clicks": 592,
    "regs": 2,
    "leads": 115
   },
@@ -10160,9 +10160,9 @@
    "ad_id": "120251542201950272",
    "ad_name": "lead_video_2",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.06,
+   "impressions": 55,
+   "clicks": 8,
    "regs": 0,
    "leads": 1
   },
@@ -10171,9 +10171,9 @@
    "ad_id": "120251542210180272",
    "ad_name": "lead_video_3",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.01,
+   "impressions": 10,
+   "clicks": 3,
    "regs": 0,
    "leads": 1
   },
@@ -10182,9 +10182,9 @@
    "ad_id": "120251542217650272",
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.05,
+   "impressions": 41,
+   "clicks": 7,
    "regs": 0,
    "leads": 1
   },
@@ -10193,9 +10193,9 @@
    "ad_id": "120251599858800272",
    "ad_name": "Ad_4_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.3,
+   "impressions": 2337,
+   "clicks": 18,
    "regs": 0,
    "leads": 0
   },
@@ -10204,9 +10204,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.03,
+   "impressions": 186,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -10215,9 +10215,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.52,
+   "impressions": 14908,
+   "clicks": 105,
    "regs": 0,
    "leads": 0
   },
@@ -10226,9 +10226,9 @@
    "ad_id": "120251599858850272",
    "ad_name": "Ad_2_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.06,
+   "impressions": 422,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -10237,9 +10237,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.03,
+   "impressions": 230,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -10259,9 +10259,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.03,
+   "impressions": 3276,
+   "clicks": 47,
    "regs": 0,
    "leads": 0
   },
@@ -10270,9 +10270,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.42,
+   "impressions": 24190,
+   "clicks": 228,
    "regs": 0,
    "leads": 0
   },
@@ -10304,7 +10304,7 @@
    "ad_name": "Ad_1_brokers",
    "campaign_name": "Ad_reg_brokers_4",
    "spend": 0.0,
-   "impressions": 0,
+   "impressions": 2,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -10314,9 +10314,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.93,
+   "impressions": 27861,
+   "clicks": 440,
    "regs": 0,
    "leads": 0
   },
@@ -10325,9 +10325,9 @@
    "ad_id": "120251600142620272",
    "ad_name": "Ad_3_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.13,
+   "impressions": 419,
+   "clicks": 5,
    "regs": 0,
    "leads": 0
   },
@@ -10336,9 +10336,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.21,
+   "impressions": 1143,
+   "clicks": 9,
    "regs": 0,
    "leads": 0
   },
@@ -10347,9 +10347,9 @@
    "ad_id": "120251600142640272",
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.64,
+   "impressions": 3119,
+   "clicks": 46,
    "regs": 0,
    "leads": 0
   },
@@ -10358,9 +10358,9 @@
    "ad_id": "120251600142650272",
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.09,
+   "impressions": 231,
+   "clicks": 13,
    "regs": 0,
    "leads": 0
   },
@@ -10369,9 +10369,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 11.77,
+   "impressions": 9360,
+   "clicks": 141,
    "regs": 0,
    "leads": 0
   },
@@ -10380,9 +10380,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.97,
+   "impressions": 42913,
+   "clicks": 2799,
    "regs": 0,
    "leads": 0
   },
@@ -10391,9 +10391,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.04,
+   "impressions": 164,
+   "clicks": 12,
    "regs": 0,
    "leads": 0
   },
@@ -10402,9 +10402,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.27,
+   "impressions": 1444,
+   "clicks": 57,
    "regs": 0,
    "leads": 0
   },
@@ -10413,9 +10413,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.14,
+   "impressions": 14735,
+   "clicks": 666,
    "regs": 8,
    "leads": 112
   },
@@ -10424,8 +10424,8 @@
    "ad_id": "120251542201950272",
    "ad_name": "lead_video_2",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
+   "spend": 0.02,
+   "impressions": 13,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -10446,9 +10446,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.07,
+   "impressions": 586,
+   "clicks": 5,
    "regs": 0,
    "leads": 0
   },
@@ -10457,9 +10457,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.87,
+   "impressions": 49066,
+   "clicks": 412,
    "regs": 0,
    "leads": 0
   },
@@ -10479,9 +10479,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.05,
+   "impressions": 497,
+   "clicks": 6,
    "regs": 0,
    "leads": 0
   },
@@ -10490,9 +10490,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.25,
+   "impressions": 6112,
+   "clicks": 81,
    "regs": 0,
    "leads": 0
   },
@@ -10501,9 +10501,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.92,
+   "impressions": 6433,
+   "clicks": 54,
    "regs": 0,
    "leads": 0
   },
@@ -10523,9 +10523,9 @@
    "ad_id": "120251600142600272",
    "ad_name": "Ad_1_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.08,
+   "impressions": 331,
+   "clicks": 5,
    "regs": 0,
    "leads": 0
   },
@@ -10534,9 +10534,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.83,
+   "impressions": 52137,
+   "clicks": 707,
    "regs": 0,
    "leads": 0
   },
@@ -10545,9 +10545,9 @@
    "ad_id": "120251600142620272",
    "ad_name": "Ad_3_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.01,
+   "impressions": 40,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -10556,9 +10556,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.05,
+   "impressions": 259,
+   "clicks": 4,
    "regs": 0,
    "leads": 0
   },
@@ -10567,9 +10567,9 @@
    "ad_id": "120251600142640272",
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.65,
+   "impressions": 3414,
+   "clicks": 37,
    "regs": 0,
    "leads": 0
   },
@@ -10578,9 +10578,9 @@
    "ad_id": "120251600142650272",
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.1,
+   "impressions": 436,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -10589,9 +10589,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.79,
+   "impressions": 1995,
+   "clicks": 32,
    "regs": 0,
    "leads": 0
   },
@@ -10600,9 +10600,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.29,
+   "impressions": 138,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -10611,9 +10611,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.52,
+   "impressions": 42570,
+   "clicks": 2153,
    "regs": 0,
    "leads": 0
   },
@@ -10622,9 +10622,9 @@
    "ad_id": "120251541777510272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.07,
+   "impressions": 2328,
+   "clicks": 242,
    "regs": 0,
    "leads": 0
   },
@@ -10633,9 +10633,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.2,
+   "impressions": 6231,
+   "clicks": 442,
    "regs": 0,
    "leads": 0
   },
@@ -10644,9 +10644,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 11.66,
+   "impressions": 16392,
+   "clicks": 873,
    "regs": 12,
    "leads": 169
   },
@@ -10655,8 +10655,8 @@
    "ad_id": "120251542210180272",
    "ad_name": "lead_video_3",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
+   "spend": 0.03,
+   "impressions": 25,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -10666,9 +10666,9 @@
    "ad_id": "120251542217650272",
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.01,
+   "impressions": 11,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -10688,9 +10688,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.67,
+   "impressions": 70984,
+   "clicks": 583,
    "regs": 0,
    "leads": 0
   },
@@ -10700,8 +10700,8 @@
    "ad_name": "Ad_2_forex",
    "campaign_name": "Ad_reg_forex_3",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 40,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -10710,9 +10710,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.1,
+   "impressions": 476,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -10732,9 +10732,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.33,
+   "impressions": 5588,
+   "clicks": 81,
    "regs": 0,
    "leads": 0
   },
@@ -10743,9 +10743,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.6,
+   "impressions": 3764,
+   "clicks": 29,
    "regs": 0,
    "leads": 0
   },
@@ -10754,9 +10754,9 @@
    "ad_id": "120251600142580272",
    "ad_name": "Ad_6_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.11,
+   "impressions": 575,
+   "clicks": 8,
    "regs": 0,
    "leads": 0
   },
@@ -10765,9 +10765,9 @@
    "ad_id": "120251600142600272",
    "ad_name": "Ad_1_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.15,
+   "impressions": 1196,
+   "clicks": 9,
    "regs": 0,
    "leads": 0
   },
@@ -10776,9 +10776,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 12.49,
+   "impressions": 52505,
+   "clicks": 785,
    "regs": 1,
    "leads": 0
   },
@@ -10787,9 +10787,9 @@
    "ad_id": "120251600142640272",
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.1,
+   "impressions": 419,
+   "clicks": 12,
    "regs": 0,
    "leads": 0
   },
@@ -10798,9 +10798,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.92,
+   "impressions": 3293,
+   "clicks": 80,
    "regs": 0,
    "leads": 0
   },
@@ -10809,9 +10809,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.37,
+   "impressions": 787,
+   "clicks": 15,
    "regs": 0,
    "leads": 0
   },
@@ -10820,9 +10820,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.99,
+   "impressions": 4818,
+   "clicks": 258,
    "regs": 0,
    "leads": 0
   },
@@ -10831,9 +10831,9 @@
    "ad_id": "120251541777510272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.85,
+   "impressions": 12019,
+   "clicks": 707,
    "regs": 0,
    "leads": 0
   },
@@ -10842,9 +10842,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.36,
+   "impressions": 10433,
+   "clicks": 939,
    "regs": 0,
    "leads": 0
   },
@@ -10853,9 +10853,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.74,
+   "impressions": 8158,
+   "clicks": 414,
    "regs": 0,
    "leads": 0
   },
@@ -10864,9 +10864,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.86,
+   "impressions": 12211,
+   "clicks": 595,
    "regs": 7,
    "leads": 110
   },
@@ -10875,8 +10875,8 @@
    "ad_id": "120251542201950272",
    "ad_name": "lead_video_2",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
+   "spend": 0.03,
+   "impressions": 25,
    "clicks": 0,
    "regs": 0,
    "leads": 1
@@ -10886,9 +10886,9 @@
    "ad_id": "120251542217650272",
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.04,
+   "impressions": 60,
+   "clicks": 4,
    "regs": 0,
    "leads": 0
   },
@@ -10897,9 +10897,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.17,
+   "impressions": 801,
+   "clicks": 7,
    "regs": 0,
    "leads": 0
   },
@@ -10908,9 +10908,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 5.43,
+   "impressions": 38589,
+   "clicks": 316,
    "regs": 0,
    "leads": 0
   },
@@ -10919,9 +10919,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.76,
+   "impressions": 5541,
+   "clicks": 51,
    "regs": 0,
    "leads": 0
   },
@@ -10930,9 +10930,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.12,
+   "impressions": 1126,
+   "clicks": 11,
    "regs": 0,
    "leads": 0
   },
@@ -10941,9 +10941,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.85,
+   "impressions": 6777,
+   "clicks": 110,
    "regs": 0,
    "leads": 0
   },
@@ -10952,9 +10952,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.82,
+   "impressions": 5387,
+   "clicks": 65,
    "regs": 0,
    "leads": 0
   },
@@ -10963,9 +10963,9 @@
    "ad_id": "120251600142590272",
    "ad_name": "Ad_2_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.03,
+   "impressions": 132,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -10974,9 +10974,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.6,
+   "impressions": 43514,
+   "clicks": 666,
    "regs": 0,
    "leads": 0
   },
@@ -10985,9 +10985,9 @@
    "ad_id": "120251600142620272",
    "ad_name": "Ad_3_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.04,
+   "impressions": 370,
+   "clicks": 5,
    "regs": 0,
    "leads": 0
   },
@@ -10996,9 +10996,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.33,
+   "impressions": 2102,
+   "clicks": 19,
    "regs": 0,
    "leads": 0
   },
@@ -11007,9 +11007,9 @@
    "ad_id": "120251600142640272",
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.23,
+   "impressions": 987,
+   "clicks": 9,
    "regs": 0,
    "leads": 0
   },
@@ -11018,9 +11018,9 @@
    "ad_id": "120251600142650272",
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.01,
+   "impressions": 135,
+   "clicks": 9,
    "regs": 0,
    "leads": 0
   },
@@ -11029,9 +11029,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.75,
+   "impressions": 3752,
+   "clicks": 79,
    "regs": 0,
    "leads": 0
   },
@@ -11040,9 +11040,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.82,
+   "impressions": 1249,
+   "clicks": 22,
    "regs": 0,
    "leads": 0
   },
@@ -11051,9 +11051,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.38,
+   "impressions": 1601,
+   "clicks": 84,
    "regs": 0,
    "leads": 0
   },
@@ -11062,9 +11062,9 @@
    "ad_id": "120251541777510272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.11,
+   "impressions": 4622,
+   "clicks": 284,
    "regs": 0,
    "leads": 0
   },
@@ -11073,9 +11073,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.14,
+   "impressions": 30122,
+   "clicks": 2563,
    "regs": 0,
    "leads": 0
   },
@@ -11084,9 +11084,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.08,
+   "impressions": 6143,
+   "clicks": 209,
    "regs": 0,
    "leads": 0
   },
@@ -11095,9 +11095,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.89,
+   "impressions": 15653,
+   "clicks": 730,
    "regs": 6,
    "leads": 135
   },
@@ -11106,8 +11106,8 @@
    "ad_id": "120251542210180272",
    "ad_name": "lead_video_3",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
+   "spend": 0.02,
+   "impressions": 12,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -11117,9 +11117,9 @@
    "ad_id": "120251599858800272",
    "ad_name": "Ad_4_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.58,
+   "impressions": 3956,
+   "clicks": 24,
    "regs": 0,
    "leads": 0
   },
@@ -11139,9 +11139,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.54,
+   "impressions": 55225,
+   "clicks": 407,
    "regs": 0,
    "leads": 0
   },
@@ -11150,9 +11150,9 @@
    "ad_id": "120251599858850272",
    "ad_name": "Ad_2_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.19,
+   "impressions": 1141,
+   "clicks": 7,
    "regs": 0,
    "leads": 0
   },
@@ -11161,9 +11161,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.96,
+   "impressions": 6460,
+   "clicks": 34,
    "regs": 0,
    "leads": 0
   },
@@ -11172,9 +11172,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.85,
+   "impressions": 11539,
+   "clicks": 169,
    "regs": 0,
    "leads": 1
   },
@@ -11194,9 +11194,9 @@
    "ad_id": "120251600142580272",
    "ad_name": "Ad_6_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.05,
+   "impressions": 453,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -11205,9 +11205,9 @@
    "ad_id": "120251600142590272",
    "ad_name": "Ad_2_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.04,
+   "impressions": 88,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -11216,9 +11216,9 @@
    "ad_id": "120251600142600272",
    "ad_name": "Ad_1_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.74,
+   "impressions": 4262,
+   "clicks": 44,
    "regs": 0,
    "leads": 0
   },
@@ -11227,9 +11227,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.34,
+   "impressions": 44338,
+   "clicks": 648,
    "regs": 0,
    "leads": 0
   },
@@ -11238,9 +11238,9 @@
    "ad_id": "120251600142620272",
    "ad_name": "Ad_3_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.32,
+   "impressions": 2187,
+   "clicks": 19,
    "regs": 0,
    "leads": 0
   },
@@ -11249,9 +11249,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.04,
+   "impressions": 185,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -11261,8 +11261,8 @@
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 106,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -11271,9 +11271,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.85,
+   "impressions": 2014,
+   "clicks": 66,
    "regs": 0,
    "leads": 0
   },
@@ -11282,9 +11282,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.28,
+   "impressions": 234,
+   "clicks": 7,
    "regs": 0,
    "leads": 0
   },
@@ -11293,9 +11293,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.06,
+   "impressions": 278,
+   "clicks": 16,
    "regs": 0,
    "leads": 0
   },
@@ -11305,7 +11305,7 @@
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_2",
    "spend": 0.0,
-   "impressions": 0,
+   "impressions": 21,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -11315,9 +11315,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.26,
+   "impressions": 10764,
+   "clicks": 852,
    "regs": 0,
    "leads": 0
   },
@@ -11326,9 +11326,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.16,
+   "impressions": 521,
+   "clicks": 35,
    "regs": 0,
    "leads": 0
   },
@@ -11337,9 +11337,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.32,
+   "impressions": 4229,
+   "clicks": 204,
    "regs": 0,
    "leads": 37
   },
@@ -11348,8 +11348,8 @@
    "ad_id": "120251542201950272",
    "ad_name": "lead_video_2",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
+   "spend": 0.04,
+   "impressions": 15,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -11359,8 +11359,8 @@
    "ad_id": "120251542217650272",
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
+   "spend": 0.02,
+   "impressions": 7,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -11381,9 +11381,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.65,
+   "impressions": 25774,
+   "clicks": 209,
    "regs": 0,
    "leads": 0
   },
@@ -11392,9 +11392,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.02,
+   "impressions": 192,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -11403,9 +11403,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.1,
+   "impressions": 818,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -11414,9 +11414,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.31,
+   "impressions": 1003,
+   "clicks": 22,
    "regs": 0,
    "leads": 0
   },
@@ -11436,9 +11436,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.35,
+   "impressions": 19450,
+   "clicks": 302,
    "regs": 0,
    "leads": 0
   },
@@ -11448,8 +11448,8 @@
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 110,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -11458,9 +11458,9 @@
    "ad_id": "120251600142650272",
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.08,
+   "impressions": 344,
+   "clicks": 5,
    "regs": 0,
    "leads": 0
   },
@@ -11469,9 +11469,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.12,
+   "impressions": 3919,
+   "clicks": 121,
    "regs": 0,
    "leads": 0
   },
@@ -11480,9 +11480,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.92,
+   "impressions": 2772,
+   "clicks": 272,
    "regs": 0,
    "leads": 0
   },
@@ -11491,9 +11491,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.5,
+   "impressions": 26621,
+   "clicks": 2339,
    "regs": 0,
    "leads": 0
   },
@@ -11502,9 +11502,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.62,
+   "impressions": 11662,
+   "clicks": 549,
    "regs": 14,
    "leads": 100
   },
@@ -11514,8 +11514,8 @@
    "ad_name": "lead_video_2",
    "campaign_name": "Leads_video_subs",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 9,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -11524,9 +11524,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.51,
+   "impressions": 4025,
+   "clicks": 33,
    "regs": 0,
    "leads": 0
   },
@@ -11535,9 +11535,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.19,
+   "impressions": 46941,
+   "clicks": 462,
    "regs": 0,
    "leads": 0
   },
@@ -11546,9 +11546,9 @@
    "ad_id": "120251600142590272",
    "ad_name": "Ad_2_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.87,
+   "impressions": 11037,
+   "clicks": 117,
    "regs": 0,
    "leads": 0
   },
@@ -11557,9 +11557,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.48,
+   "impressions": 33680,
+   "clicks": 491,
    "regs": 0,
    "leads": 0
   },
@@ -11568,9 +11568,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 13.72,
+   "impressions": 5748,
+   "clicks": 188,
    "regs": 0,
    "leads": 0
   },
@@ -11580,8 +11580,8 @@
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 8,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -11590,9 +11590,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.13,
+   "impressions": 35835,
+   "clicks": 2989,
    "regs": 0,
    "leads": 0
   },
@@ -11601,9 +11601,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.07,
+   "impressions": 159,
+   "clicks": 11,
    "regs": 0,
    "leads": 0
   },
@@ -11612,9 +11612,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.45,
+   "impressions": 9544,
+   "clicks": 466,
    "regs": 1,
    "leads": 84
   },
@@ -11624,7 +11624,7 @@
    "ad_name": "lead_video_3",
    "campaign_name": "Leads_video_subs",
    "spend": 0.0,
-   "impressions": 0,
+   "impressions": 14,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -11634,8 +11634,8 @@
    "ad_id": "120251542217650272",
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
+   "spend": 0.01,
+   "impressions": 5,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -11645,9 +11645,9 @@
    "ad_id": "120251599858800272",
    "ad_name": "Ad_4_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.16,
+   "impressions": 8158,
+   "clicks": 83,
    "regs": 0,
    "leads": 0
   },
@@ -11656,9 +11656,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 5.98,
+   "impressions": 38671,
+   "clicks": 366,
    "regs": 0,
    "leads": 0
   },
@@ -11667,9 +11667,9 @@
    "ad_id": "120251599858850272",
    "ad_name": "Ad_2_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.73,
+   "impressions": 4770,
+   "clicks": 47,
    "regs": 0,
    "leads": 0
   },
@@ -11678,9 +11678,9 @@
    "ad_id": "120251600142580272",
    "ad_name": "Ad_6_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.75,
+   "impressions": 4265,
+   "clicks": 43,
    "regs": 0,
    "leads": 0
   },
@@ -11689,9 +11689,9 @@
    "ad_id": "120251600142590272",
    "ad_name": "Ad_2_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.2,
+   "impressions": 759,
+   "clicks": 10,
    "regs": 0,
    "leads": 0
   },
@@ -11700,9 +11700,9 @@
    "ad_id": "120251600142600272",
    "ad_name": "Ad_1_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.55,
+   "impressions": 16281,
+   "clicks": 236,
    "regs": 0,
    "leads": 0
   },
@@ -11711,9 +11711,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.21,
+   "impressions": 18857,
+   "clicks": 335,
    "regs": 0,
    "leads": 0
   },
@@ -11788,9 +11788,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.65,
+   "impressions": 747,
+   "clicks": 72,
    "regs": 0,
    "leads": 0
   },
@@ -11799,9 +11799,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.67,
+   "impressions": 20183,
+   "clicks": 469,
    "regs": 0,
    "leads": 0
   },
@@ -11810,9 +11810,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.0,
+   "impressions": 5363,
+   "clicks": 172,
    "regs": 1,
    "leads": 26
   },
@@ -11821,9 +11821,9 @@
    "ad_id": "120251542210180272",
    "ad_name": "lead_video_3",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.07,
+   "impressions": 75,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -11832,9 +11832,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 5.22,
+   "impressions": 19255,
+   "clicks": 172,
    "regs": 0,
    "leads": 0
   },
@@ -11843,9 +11843,9 @@
    "ad_id": "120251600142590272",
    "ad_name": "Ad_2_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 5.95,
+   "impressions": 25236,
+   "clicks": 282,
    "regs": 0,
    "leads": 0
   },
@@ -11854,9 +11854,9 @@
    "ad_id": "120251313545540272",
    "ad_name": "cb27",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 12.26,
+   "impressions": 2567,
+   "clicks": 292,
    "regs": 0,
    "leads": 0
   },
@@ -11865,9 +11865,9 @@
    "ad_id": "120251314120110272",
    "ad_name": "cb33",
    "campaign_name": "Ad_registration_1",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.55,
+   "impressions": 640,
+   "clicks": 64,
    "regs": 0,
    "leads": 0
   },
@@ -11876,9 +11876,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 15.68,
+   "impressions": 46737,
+   "clicks": 1964,
    "regs": 0,
    "leads": 0
   },
@@ -11887,9 +11887,9 @@
    "ad_id": "120251541777510272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.64,
+   "impressions": 3156,
+   "clicks": 59,
    "regs": 0,
    "leads": 0
   },
@@ -11898,9 +11898,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.84,
+   "impressions": 1798,
+   "clicks": 87,
    "regs": 0,
    "leads": 0
   },
@@ -11909,9 +11909,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 16.28,
+   "impressions": 14096,
+   "clicks": 685,
    "regs": 10,
    "leads": 137
   },
@@ -11920,9 +11920,9 @@
    "ad_id": "120251542201950272",
    "ad_name": "lead_video_2",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.01,
+   "impressions": 5,
+   "clicks": 3,
    "regs": 0,
    "leads": 1
   },
@@ -11931,9 +11931,9 @@
    "ad_id": "120251542210180272",
    "ad_name": "lead_video_3",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.12,
+   "impressions": 90,
+   "clicks": 7,
    "regs": 0,
    "leads": 2
   },
@@ -11942,9 +11942,9 @@
    "ad_id": "120251542217650272",
    "ad_name": "lead_video_4",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.04,
+   "impressions": 23,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -11953,9 +11953,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.45,
+   "impressions": 51434,
+   "clicks": 529,
    "regs": 0,
    "leads": 0
   },
@@ -11964,9 +11964,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.87,
+   "impressions": 8282,
+   "clicks": 80,
    "regs": 0,
    "leads": 0
   },
@@ -11986,9 +11986,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.36,
+   "impressions": 12267,
+   "clicks": 109,
    "regs": 0,
    "leads": 0
   },
@@ -11997,9 +11997,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.01,
+   "impressions": 9416,
+   "clicks": 96,
    "regs": 0,
    "leads": 0
   },
@@ -12008,9 +12008,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.46,
+   "impressions": 889,
+   "clicks": 18,
    "regs": 0,
    "leads": 0
   },
@@ -12019,9 +12019,9 @@
    "ad_id": "120251600142580272",
    "ad_name": "Ad_6_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.07,
+   "impressions": 19595,
+   "clicks": 187,
    "regs": 0,
    "leads": 0
   },
@@ -12030,9 +12030,9 @@
    "ad_id": "120251600142590272",
    "ad_name": "Ad_2_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 13.43,
+   "impressions": 64710,
+   "clicks": 817,
    "regs": 0,
    "leads": 0
   },
@@ -12041,9 +12041,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.01,
+   "impressions": 40,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -12052,9 +12052,9 @@
    "ad_id": "120251600142650272",
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.81,
+   "impressions": 2717,
+   "clicks": 50,
    "regs": 0,
    "leads": 0
   },
@@ -12074,9 +12074,9 @@
    "ad_id": "120251541710930272",
    "ad_name": "Ad_reg_1",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.52,
+   "impressions": 2422,
+   "clicks": 71,
    "regs": 0,
    "leads": 0
   },
@@ -12096,9 +12096,9 @@
    "ad_id": "120251541807240272",
    "ad_name": "Ad_reg_4",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.54,
+   "impressions": 6059,
+   "clicks": 172,
    "regs": 0,
    "leads": 0
   },
@@ -12107,9 +12107,9 @@
    "ad_id": "120251542144610272",
    "ad_name": "lead_video_1",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.17,
+   "impressions": 2636,
+   "clicks": 121,
    "regs": 2,
    "leads": 21
   },
@@ -12118,9 +12118,9 @@
    "ad_id": "120251542210180272",
    "ad_name": "lead_video_3",
    "campaign_name": "Leads_video_subs",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.23,
+   "impressions": 154,
+   "clicks": 9,
    "regs": 0,
    "leads": 1
   },
@@ -12129,9 +12129,9 @@
    "ad_id": "120251599858800272",
    "ad_name": "Ad_4_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.93,
+   "impressions": 5969,
+   "clicks": 42,
    "regs": 0,
    "leads": 0
   },
@@ -12140,9 +12140,9 @@
    "ad_id": "120251599858830272",
    "ad_name": "Ad_1_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.23,
+   "impressions": 6500,
+   "clicks": 61,
    "regs": 0,
    "leads": 0
   },
@@ -12173,9 +12173,9 @@
    "ad_id": "120251600142580272",
    "ad_name": "Ad_6_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.33,
+   "impressions": 3029,
+   "clicks": 28,
    "regs": 0,
    "leads": 0
   },
@@ -12184,9 +12184,9 @@
    "ad_id": "120251600142590272",
    "ad_name": "Ad_2_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.06,
+   "impressions": 434,
+   "clicks": 5,
    "regs": 0,
    "leads": 0
   },
@@ -12195,9 +12195,9 @@
    "ad_id": "120251600142600272",
    "ad_name": "Ad_1_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.97,
+   "impressions": 4457,
+   "clicks": 43,
    "regs": 0,
    "leads": 0
   },
@@ -12206,9 +12206,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.87,
+   "impressions": 24677,
+   "clicks": 1805,
    "regs": 0,
    "leads": 0
   },
@@ -12217,9 +12217,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.2,
+   "impressions": 11095,
+   "clicks": 164,
    "regs": 0,
    "leads": 0
   },
@@ -12239,9 +12239,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.27,
+   "impressions": 2013,
+   "clicks": 24,
    "regs": 0,
    "leads": 0
   },
@@ -12250,9 +12250,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.71,
+   "impressions": 7981,
+   "clicks": 131,
    "regs": 0,
    "leads": 0
   },
@@ -12261,9 +12261,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.7,
+   "impressions": 17934,
+   "clicks": 259,
    "regs": 0,
    "leads": 0
   },
@@ -12272,9 +12272,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 5.16,
+   "impressions": 27428,
+   "clicks": 437,
    "regs": 0,
    "leads": 0
   },
@@ -12283,9 +12283,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.51,
+   "impressions": 23517,
+   "clicks": 324,
    "regs": 0,
    "leads": 0
   },
@@ -12295,8 +12295,8 @@
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 186,
+   "clicks": 5,
    "regs": 0,
    "leads": 0
   },
@@ -12306,8 +12306,8 @@
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 104,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -12316,9 +12316,9 @@
    "ad_id": "120252328495670272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.76,
+   "impressions": 2927,
+   "clicks": 164,
    "regs": 0,
    "leads": 0
   },
@@ -12327,9 +12327,9 @@
    "ad_id": "120252328495680272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.93,
+   "impressions": 10613,
+   "clicks": 829,
    "regs": 0,
    "leads": 0
   },
@@ -12338,9 +12338,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 16.78,
+   "impressions": 41135,
+   "clicks": 3462,
    "regs": 0,
    "leads": 0
   },
@@ -12349,9 +12349,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.89,
+   "impressions": 9816,
+   "clicks": 146,
    "regs": 0,
    "leads": 0
   },
@@ -12360,9 +12360,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.83,
+   "impressions": 15005,
+   "clicks": 222,
    "regs": 0,
    "leads": 0
   },
@@ -12371,9 +12371,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.6,
+   "impressions": 9337,
+   "clicks": 114,
    "regs": 0,
    "leads": 0
   },
@@ -12382,9 +12382,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.84,
+   "impressions": 41177,
+   "clicks": 587,
    "regs": 0,
    "leads": 0
   },
@@ -12393,9 +12393,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.03,
+   "impressions": 14649,
+   "clicks": 220,
    "regs": 0,
    "leads": 0
   },
@@ -12404,9 +12404,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.79,
+   "impressions": 10096,
+   "clicks": 170,
    "regs": 0,
    "leads": 0
   },
@@ -12415,9 +12415,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 12.57,
+   "impressions": 94269,
+   "clicks": 1220,
    "regs": 0,
    "leads": 0
   },
@@ -12426,9 +12426,9 @@
    "ad_id": "120251600142640272",
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.03,
+   "impressions": 16024,
+   "clicks": 226,
    "regs": 0,
    "leads": 0
   },
@@ -12437,9 +12437,9 @@
    "ad_id": "120251600142650272",
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.04,
+   "impressions": 666,
+   "clicks": 6,
    "regs": 0,
    "leads": 0
   },
@@ -12448,9 +12448,9 @@
    "ad_id": "120252328495670272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.37,
+   "impressions": 13561,
+   "clicks": 989,
    "regs": 0,
    "leads": 0
   },
@@ -12459,9 +12459,9 @@
    "ad_id": "120252328495680272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.79,
+   "impressions": 13036,
+   "clicks": 1568,
    "regs": 1,
    "leads": 0
   },
@@ -12470,9 +12470,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 15.85,
+   "impressions": 36611,
+   "clicks": 3245,
    "regs": 0,
    "leads": 0
   },
@@ -12481,9 +12481,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.56,
+   "impressions": 2932,
+   "clicks": 55,
    "regs": 0,
    "leads": 0
   },
@@ -12492,9 +12492,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.17,
+   "impressions": 20943,
+   "clicks": 315,
    "regs": 0,
    "leads": 0
   },
@@ -12503,9 +12503,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.17,
+   "impressions": 13684,
+   "clicks": 199,
    "regs": 0,
    "leads": 0
   },
@@ -12514,9 +12514,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.65,
+   "impressions": 19868,
+   "clicks": 352,
    "regs": 1,
    "leads": 0
   },
@@ -12525,9 +12525,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.77,
+   "impressions": 39772,
+   "clicks": 656,
    "regs": 0,
    "leads": 0
   },
@@ -12536,9 +12536,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.63,
+   "impressions": 14330,
+   "clicks": 287,
    "regs": 0,
    "leads": 0
   },
@@ -12547,9 +12547,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 14.0,
+   "impressions": 127137,
+   "clicks": 1563,
    "regs": 0,
    "leads": 0
   },
@@ -12558,9 +12558,9 @@
    "ad_id": "120251600142640272",
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.15,
+   "impressions": 824,
+   "clicks": 20,
    "regs": 0,
    "leads": 0
   },
@@ -12570,8 +12570,8 @@
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 90,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -12580,9 +12580,9 @@
    "ad_id": "120252328495670272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.31,
+   "impressions": 4930,
+   "clicks": 327,
    "regs": 0,
    "leads": 0
   },
@@ -12591,9 +12591,9 @@
    "ad_id": "120252328495680272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.37,
+   "impressions": 27994,
+   "clicks": 2231,
    "regs": 0,
    "leads": 0
   },
@@ -12602,9 +12602,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 16.86,
+   "impressions": 61393,
+   "clicks": 3916,
    "regs": 0,
    "leads": 0
   },
@@ -12613,9 +12613,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.2,
+   "impressions": 941,
+   "clicks": 15,
    "regs": 0,
    "leads": 0
   },
@@ -12624,9 +12624,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.29,
+   "impressions": 6637,
+   "clicks": 116,
    "regs": 0,
    "leads": 0
   },
@@ -12635,9 +12635,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.87,
+   "impressions": 4914,
+   "clicks": 87,
    "regs": 0,
    "leads": 0
   },
@@ -12646,9 +12646,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.26,
+   "impressions": 16460,
+   "clicks": 282,
    "regs": 0,
    "leads": 0
   },
@@ -12657,9 +12657,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 11.66,
+   "impressions": 63961,
+   "clicks": 952,
    "regs": 0,
    "leads": 0
   },
@@ -12668,9 +12668,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.37,
+   "impressions": 16957,
+   "clicks": 316,
    "regs": 0,
    "leads": 0
   },
@@ -12679,9 +12679,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 13.63,
+   "impressions": 117559,
+   "clicks": 1532,
    "regs": 0,
    "leads": 0
   },
@@ -12690,9 +12690,9 @@
    "ad_id": "120251600142640272",
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.34,
+   "impressions": 2339,
+   "clicks": 32,
    "regs": 0,
    "leads": 0
   },
@@ -12701,9 +12701,9 @@
    "ad_id": "120252328495670272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.53,
+   "impressions": 1243,
+   "clicks": 122,
    "regs": 0,
    "leads": 0
   },
@@ -12712,9 +12712,9 @@
    "ad_id": "120252328495680272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.74,
+   "impressions": 23090,
+   "clicks": 1905,
    "regs": 0,
    "leads": 0
   },
@@ -12723,9 +12723,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.87,
+   "impressions": 37758,
+   "clicks": 1758,
    "regs": 0,
    "leads": 0
   },
@@ -12734,9 +12734,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.09,
+   "impressions": 241,
+   "clicks": 10,
    "regs": 0,
    "leads": 0
   },
@@ -12745,9 +12745,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.76,
+   "impressions": 3966,
+   "clicks": 62,
    "regs": 0,
    "leads": 0
   },
@@ -12756,9 +12756,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.97,
+   "impressions": 5158,
+   "clicks": 71,
    "regs": 0,
    "leads": 0
   },
@@ -12767,9 +12767,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.96,
+   "impressions": 26663,
+   "clicks": 425,
    "regs": 0,
    "leads": 0
   },
@@ -12778,9 +12778,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 4.42,
+   "impressions": 20413,
+   "clicks": 392,
    "regs": 1,
    "leads": 0
   },
@@ -12789,9 +12789,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.89,
+   "impressions": 9343,
+   "clicks": 198,
    "regs": 0,
    "leads": 0
   },
@@ -12800,9 +12800,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.01,
+   "impressions": 74545,
+   "clicks": 970,
    "regs": 0,
    "leads": 0
   },
@@ -12811,9 +12811,9 @@
    "ad_id": "120251600142640272",
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.08,
+   "impressions": 517,
+   "clicks": 10,
    "regs": 0,
    "leads": 0
   },
@@ -12833,9 +12833,9 @@
    "ad_id": "120252328495670272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.52,
+   "impressions": 4247,
+   "clicks": 371,
    "regs": 0,
    "leads": 0
   },
@@ -12844,9 +12844,9 @@
    "ad_id": "120252328495680272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.99,
+   "impressions": 26790,
+   "clicks": 1510,
    "regs": 0,
    "leads": 0
   },
@@ -12855,9 +12855,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 11.49,
+   "impressions": 62560,
+   "clicks": 1989,
    "regs": 0,
    "leads": 0
   },
@@ -12866,9 +12866,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.04,
+   "impressions": 100,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
@@ -12877,9 +12877,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.24,
+   "impressions": 876,
+   "clicks": 12,
    "regs": 0,
    "leads": 0
   },
@@ -12888,9 +12888,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.17,
+   "impressions": 4736,
+   "clicks": 95,
    "regs": 0,
    "leads": 0
   },
@@ -12899,9 +12899,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.15,
+   "impressions": 37295,
+   "clicks": 603,
    "regs": 0,
    "leads": 0
   },
@@ -12910,9 +12910,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.92,
+   "impressions": 11995,
+   "clicks": 217,
    "regs": 0,
    "leads": 0
   },
@@ -12921,9 +12921,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 2.33,
+   "impressions": 11299,
+   "clicks": 221,
    "regs": 0,
    "leads": 0
   },
@@ -12932,9 +12932,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.96,
+   "impressions": 56975,
+   "clicks": 683,
    "regs": 0,
    "leads": 0
   },
@@ -12943,9 +12943,9 @@
    "ad_id": "120251600142640272",
    "ad_name": "Ad_4_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.06,
+   "impressions": 99,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -12954,9 +12954,9 @@
    "ad_id": "120252328495670272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.45,
+   "impressions": 16129,
+   "clicks": 717,
    "regs": 0,
    "leads": 0
   },
@@ -12965,9 +12965,9 @@
    "ad_id": "120252328495680272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.65,
+   "impressions": 54834,
+   "clicks": 1491,
    "regs": 0,
    "leads": 0
   },
@@ -12976,9 +12976,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 9.18,
+   "impressions": 51350,
+   "clicks": 1486,
    "regs": 0,
    "leads": 0
   },
@@ -12988,8 +12988,8 @@
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
    "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "impressions": 11,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -12998,9 +12998,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.02,
+   "impressions": 173,
+   "clicks": 5,
    "regs": 0,
    "leads": 0
   },
@@ -13009,9 +13009,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.59,
+   "impressions": 48227,
+   "clicks": 753,
    "regs": 0,
    "leads": 0
   },
@@ -13020,9 +13020,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.95,
+   "impressions": 3706,
+   "clicks": 58,
    "regs": 0,
    "leads": 0
   },
@@ -13031,9 +13031,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.2,
+   "impressions": 5914,
+   "clicks": 95,
    "regs": 0,
    "leads": 0
   },
@@ -13042,9 +13042,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 8.74,
+   "impressions": 67227,
+   "clicks": 886,
    "regs": 0,
    "leads": 0
   },
@@ -13053,9 +13053,9 @@
    "ad_id": "120251600142650272",
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.01,
+   "impressions": 5574,
+   "clicks": 79,
    "regs": 0,
    "leads": 0
   },
@@ -13064,9 +13064,9 @@
    "ad_id": "120252328495670272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.86,
+   "impressions": 10987,
+   "clicks": 353,
    "regs": 0,
    "leads": 0
   },
@@ -13075,9 +13075,9 @@
    "ad_id": "120252328495680272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.23,
+   "impressions": 48542,
+   "clicks": 964,
    "regs": 0,
    "leads": 0
   },
@@ -13086,9 +13086,9 @@
    "ad_id": "120251541791620272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_2",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 10.42,
+   "impressions": 45975,
+   "clicks": 1639,
    "regs": 0,
    "leads": 0
   },
@@ -13097,9 +13097,9 @@
    "ad_id": "120251599858810272",
    "ad_name": "Ad_3_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.26,
+   "impressions": 760,
+   "clicks": 28,
    "regs": 0,
    "leads": 0
   },
@@ -13108,9 +13108,9 @@
    "ad_id": "120251600011560272",
    "ad_name": "Ad_5_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 5,
-   "clicks": 0,
+   "spend": 0.01,
+   "impressions": 102,
+   "clicks": 5,
    "regs": 0,
    "leads": 0
   },
@@ -13119,9 +13119,9 @@
    "ad_id": "120251600053410272",
    "ad_name": "Ad_6_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.12,
+   "impressions": 229,
+   "clicks": 8,
    "regs": 0,
    "leads": 0
   },
@@ -13130,9 +13130,9 @@
    "ad_id": "120251600072020272",
    "ad_name": "Ad_7_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 7.53,
+   "impressions": 40641,
+   "clicks": 589,
    "regs": 0,
    "leads": 0
   },
@@ -13141,9 +13141,9 @@
    "ad_id": "120251600090640272",
    "ad_name": "Ad_8_forex",
    "campaign_name": "Ad_reg_forex_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 0.54,
+   "impressions": 1614,
+   "clicks": 38,
    "regs": 0,
    "leads": 0
   },
@@ -13152,9 +13152,9 @@
    "ad_id": "120251600142610272",
    "ad_name": "Ad_8_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 1.55,
+   "impressions": 6875,
+   "clicks": 134,
    "regs": 0,
    "leads": 0
   },
@@ -13163,9 +13163,9 @@
    "ad_id": "120251600142630272",
    "ad_name": "Ad_7_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 6.85,
+   "impressions": 50329,
+   "clicks": 668,
    "regs": 0,
    "leads": 0
   },
@@ -13174,9 +13174,9 @@
    "ad_id": "120251600142650272",
    "ad_name": "Ad_5_brokers",
    "campaign_name": "Ad_reg_brokers_4",
-   "spend": 0.04,
-   "impressions": 138,
-   "clicks": 0,
+   "spend": 0.31,
+   "impressions": 1424,
+   "clicks": 36,
    "regs": 0,
    "leads": 0
   },
@@ -13185,9 +13185,9 @@
    "ad_id": "120252328495670272",
    "ad_name": "Ad_reg_3",
    "campaign_name": "Ad_reg_3",
-   "spend": 0.0,
-   "impressions": 0,
-   "clicks": 0,
+   "spend": 3.63,
+   "impressions": 18870,
+   "clicks": 629,
    "regs": 0,
    "leads": 0
   },
@@ -13196,9 +13196,108 @@
    "ad_id": "120252328495680272",
    "ad_name": "Ad_reg_2",
    "campaign_name": "Ad_reg_3",
+   "spend": 7.2,
+   "impressions": 41392,
+   "clicks": 1033,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "ad_id": "120251541791620272",
+   "ad_name": "Ad_reg_3",
+   "campaign_name": "Ad_reg_2",
+   "spend": 6.18,
+   "impressions": 18207,
+   "clicks": 1060,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "ad_id": "120251599858810272",
+   "ad_name": "Ad_3_forex",
+   "campaign_name": "Ad_reg_forex_3",
+   "spend": 0.06,
+   "impressions": 79,
+   "clicks": 4,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "ad_id": "120251600053410272",
+   "ad_name": "Ad_6_forex",
+   "campaign_name": "Ad_reg_forex_3",
    "spend": 0.0,
-   "impressions": 0,
+   "impressions": 24,
    "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "ad_id": "120251600072020272",
+   "ad_name": "Ad_7_forex",
+   "campaign_name": "Ad_reg_forex_3",
+   "spend": 5.91,
+   "impressions": 30806,
+   "clicks": 527,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "ad_id": "120251600142610272",
+   "ad_name": "Ad_8_brokers",
+   "campaign_name": "Ad_reg_brokers_4",
+   "spend": 0.38,
+   "impressions": 1524,
+   "clicks": 34,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "ad_id": "120251600142630272",
+   "ad_name": "Ad_7_brokers",
+   "campaign_name": "Ad_reg_brokers_4",
+   "spend": 5.13,
+   "impressions": 36874,
+   "clicks": 495,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "ad_id": "120251600142650272",
+   "ad_name": "Ad_5_brokers",
+   "campaign_name": "Ad_reg_brokers_4",
+   "spend": 0.02,
+   "impressions": 126,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "ad_id": "120252328495670272",
+   "ad_name": "Ad_reg_3",
+   "campaign_name": "Ad_reg_3",
+   "spend": 0.63,
+   "impressions": 2228,
+   "clicks": 91,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "ad_id": "120252328495680272",
+   "ad_name": "Ad_reg_2",
+   "campaign_name": "Ad_reg_3",
+   "spend": 5.09,
+   "impressions": 21061,
+   "clicks": 791,
    "regs": 0,
    "leads": 0
   }
@@ -13223,25 +13322,25 @@
   "120251542289530272": null,
   "120251542289540272": null,
   "120251542289550272": null,
-  "120251541791620272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/780675011_1066117419335283_8372907417567360380_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=A999KhB9RkYQ7kNvwG5izeO&_nc_oc=Adp0Fd9VNG8CKwgLOmXsEpJK5FRPZWjLodGDcw1pZ7iNScGPwJpWhmoE6Ei9a7PmM2Q&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=dx6rE_gQ5iL90pyxkJxXzw&_nc_tpa=Q5bMBQKC5Q7oBWWwk6FQcZ7Y2x1_C2ruw1Cw9DVa_FHrTd5xrqPJqJsXPG1Oq_2q1hCafs27BXDMfEXfXw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQN3Ul-hXnVMg9LHNJQ_xG_XvXVtY-rwvZA_tV7RvdnVaw&oe=6ADE3152",
+  "120251541791620272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/780675011_1066117419335283_8372907417567360380_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=_Ivhd5x9QWUQ7kNvwFzn7Gg&_nc_oc=AdowsGiyugbr9OKWRvUAJIlr0rbf-fax0a8tctsMWyb-R2Rr1OBwzgDtf_lvBcq4K70&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=ku2o4BFwZ8fnt32NCbWcbA&_nc_tpa=Q5bMBQKrlYXmILGGjF15_Uy-8gxQz__00igkaEIRBXGNZxkz6PKXt4Lj-xJ4UUyBLNZoZbQeU2HRIVdVCA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQOalSgC_HHRH9WZ0aisy_cFspMEoZ-LKVY32zcgmR0TFA&oe=6ADFF352",
   "120251599858800272": null,
-  "120251599858810272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784904199_1070057338941291_2206540396708966532_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=IIW46lWiJ_QQ7kNvwFhOi3L&_nc_oc=AdodwPNFIqobxklEryuYm445GvWmNEBZfJcl7Ogqsf8H6z27qY15zEJYRmbs0UjNok4&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=ll4bgoh2MEu43U7Xt0FW2A&_nc_tpa=Q5bMBQJA4pzCyk5b3OjPEPFn4i_J7zz7Lhu9NaYaUMCMcW98tViSNdDsmF-dY1acxdtQ01w61OaR8rhp_Q&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQOsuFSRuzVEm3s8E0i56Cx1MnUuVmdS85_-zCtzTfPh_Q&oe=6ADE48F2",
+  "120251599858810272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784904199_1070057338941291_2206540396708966532_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=IIW46lWiJ_QQ7kNvwFhOi3L&_nc_oc=AdodwPNFIqobxklEryuYm445GvWmNEBZfJcl7Ogqsf8H6z27qY15zEJYRmbs0UjNok4&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=9zcrUE7ciApgawogIBR2HA&_nc_tpa=Q5bMBQLbILT44WdFkQZTpRQrthJvUpqEVUr4AEbkvVXyqZQkCHC8y0XGIM4xKyg3KmzDAPtMCzP9iP5UvA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQOk18K-hfamjlNdvl9xKm_qbBC1rDN0LEvufc9zJ7Qd7g&oe=6AE00AF2",
   "120251599858830272": null,
-  "120251599858850272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784597800_1070055695608122_8327765869920826134_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=jZ2p2rWknucQ7kNvwGBjVI9&_nc_oc=AdrXLIW4l5Y5MuQFXdoSzXCu89KHjtFx82MZP3Bn8NGKM1xq4llvwjCn3HGU9Kv2IgE&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=UZ8pcfjKmozMoyEmbjqOsw&_nc_tpa=Q5bMBQLqUnOzdyXsV4MwHPlmSk04suDHm5wCen0l5xWLlU-rWZFNq49_qjQuJD7lsbUwVT3zBkwO5n5vXA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQM4ieYjmfOSTLDlC-dRvySNDK1eaP_mMUlO7CK--YlNLA&oe=6ADE3876",
-  "120251600011560272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/782616440_1070060685607623_2595426264156122586_n.png?_nc_cat=102&ccb=1-7&_nc_ohc=wyZ634fJNu4Q7kNvwEPHoQ9&_nc_oc=AdoFTdzmyoUNqvfAZyoufx_OrzJFVp_wNmdc3YcRQD9FehrVa2H9J_tpmHw54HIx7QI&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=huCtKrrpJdNsFqjY7pshIw&_nc_tpa=Q5bMBQIyf-2IGecJj8-a2wurMSc8M-Jw8-QA92f0PBVGSk9eweOEpLhHdybuBq8fUFY7jrXr9CaD-5WRmw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQNK9TXxbAXiNrkEkxXuTPIrk5UW-Pf6N4s0rz1ERdtRZA&oe=6ADE5233",
-  "120251600053410272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/784819227_1070062445607447_8159709494636123640_n.png?_nc_cat=103&ccb=1-7&_nc_ohc=KXwXRd4JZuMQ7kNvwFw73DL&_nc_oc=Adr84jXdtAMwMq-4aUj_ZFKs7JzjFW5_9ULMGzsPPAPx13LHeHdqJp0duJHaS05BFTQ&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=n3lnuWjsCiqRPIuiuhGQ4A&_nc_tpa=Q5bMBQKHH0tO00a2ORziR2DrYAwZ7WqJNzWObgZfx0-9vtrpy66t7Nv0nDg8_PF35iJ8MgFW3oRIPoIVqw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQM34CPf9QhUmu293rcKJiIypG5ue7Dp2nih4kmPiY2CfQ&oe=6ADE2A5D",
-  "120251600072020272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/786429153_1070063705607321_983681614321277328_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=FuhuwZgMp_QQ7kNvwGHISGS&_nc_oc=Adpoh5wlHpYYhUUhRflvqRV9sOFGsfj7E0zSOuvKjeSw4Pv32mb1BvX9QAnF_DVKVhI&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=Hxl010-OkahQbJGl3-aiDQ&_nc_tpa=Q5bMBQLowNTvO5IrKAef3RolUQVjfbw5SSYhnXtORuRMslwMWei27XVF_G67KS1U0XXptI4Nxewq41FUOg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQNHDp1fOKhBfZINGPoxGNlFr8S9Zr8HEOFLKaAj0UvHHA&oe=6ADE3D3E",
-  "120251600090640272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/785777765_1070064955607196_5417618179343208654_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=oyqeu4hskFgQ7kNvwEugNFo&_nc_oc=AdqLI-FoO5CL18YpUkBYsER-cjYdyy33GqhzlpzjWBSY9pntHsFrCXupKlV_YOWuyAY&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=WQv80JYvuNkEFiLHror2vA&_nc_tpa=Q5bMBQLRFSJE8D_F-513Iq_hcw3ObO5XoP7kjmg82wDrQZAwM1h9iVlXymc-LM8giOiKlvdwIwAgcyNz4g&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQNcaR_0L8amvoHbqhzXOjVQNASEfI-s3cuV4obNSkjcew&oe=6ADE295F",
+  "120251599858850272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784597800_1070055695608122_8327765869920826134_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=QhRq7WbKqvUQ7kNvwE4XDch&_nc_oc=AdpHmu--UH7Oljp3p7zOXrdez8985E2NQbjE5yrYQtvnTTc-Qc-_IIjhY927TYgl1Hg&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=eOWGaqfox2Yfto72Bw1hSg&_nc_tpa=Q5bMBQIOs3v-vvIiomWiunjrr63tV6XLDS2GMvjSt2DWCSKsuuwSwexBeIGwscewbSRmmco05OszdvT8zQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQNfe09UbkOq-KVY_gkbeewP8FYZZAoJGisSOz7AEnmceg&oe=6ADFFA76",
+  "120251600011560272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/782616440_1070060685607623_2595426264156122586_n.png?_nc_cat=102&ccb=1-7&_nc_ohc=wyZ634fJNu4Q7kNvwEPHoQ9&_nc_oc=AdoFTdzmyoUNqvfAZyoufx_OrzJFVp_wNmdc3YcRQD9FehrVa2H9J_tpmHw54HIx7QI&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=Rou17PT3-nfNmD048V583Q&_nc_tpa=Q5bMBQJLdBHSzJ-T4aj2FzHu0eAXWTUqGkKZthzyQU6CZs2l2UedcbIVsRqgQ5yHvCbtCPnAcMzciUTIFA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQMDVHfYI0UZP3ptidM2oIo9zzsFHO0F5aqCjwhUDfl05w&oe=6ADFDBF3",
+  "120251600053410272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/784819227_1070062445607447_8159709494636123640_n.png?_nc_cat=103&ccb=1-7&_nc_ohc=KXwXRd4JZuMQ7kNvwFw73DL&_nc_oc=Adr84jXdtAMwMq-4aUj_ZFKs7JzjFW5_9ULMGzsPPAPx13LHeHdqJp0duJHaS05BFTQ&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=UNTQVPr165UMu-IN8MLKXQ&_nc_tpa=Q5bMBQIiVCflOWW7yvpUMTAq06mPKV1qpVIfr-DTA64AaPtIFqEXYIksn9XwDSnNaU_opqhIhs4hVn2zdg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQOH07QvArUtvoQ6F42KU_UFSdbGEUzz0MzCyiVWks4rzg&oe=6ADFEC5D",
+  "120251600072020272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/786429153_1070063705607321_983681614321277328_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=FuhuwZgMp_QQ7kNvwGHISGS&_nc_oc=Adpoh5wlHpYYhUUhRflvqRV9sOFGsfj7E0zSOuvKjeSw4Pv32mb1BvX9QAnF_DVKVhI&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=aX0QGx0MKP3YXCTt2kCsVw&_nc_tpa=Q5bMBQIoEV-ECHCHw12ZaYnhEh7AkHYZbaJdW5qT5TO0Wk0LI_izciKt3ZXpE5NcSquEbbIq_PkOZaUCsA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQN6_EkFyx9Hjr2Z3yGukyXH25S0Bd2kLx82IH1vkU20mA&oe=6ADFFF3E",
+  "120251600090640272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/785777765_1070064955607196_5417618179343208654_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=WUhAVmfw-NoQ7kNvwGxs9PZ&_nc_oc=AdqN13J2zf0pEpvPv8wzhVV8b9-LJD3A2OoSf2XvWs9gZ-Dh0sHqA1xYp70Bhu14Z8Y&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=4W6yULD5vBQL033ahnA0ng&_nc_tpa=Q5bMBQIQK2Vwo50otG6eS1WE3LZANX7yB2xUw4XZY_iwMjkDMTkjBqQXykY-9-5h48Tn0gKtCnkl-Dob8A&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQNgbQDOmJ5qiiyVHOKFj1zHyxH2r7r7CHsMHACpiZfm7Q&oe=6ADFEB5F",
   "120251600142580272": null,
   "120251600142590272": null,
   "120251600142600272": null,
-  "120251600142610272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/785060433_1070086118938413_3880661223052655553_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=H44gwH2GiuUQ7kNvwFp4Pfx&_nc_oc=AdpcvEo5w2w5flX_V2_tr_Q_W4gWiCd2cPFWJgB4E8Zw21CckK3axBjpV9_EcKsFGSY&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=7443bNNlgne3L5jG3IN9VQ&_nc_tpa=Q5bMBQLNo2A2TWQEi3l89sH27U6aJR3dCQesKCODPTT-A18tjFEvhvszqhJiGNxemJq6_6WrmezkHkDnjw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQMXy63DwHbKUOXW0d2bOiDnAocAJPSsN6-fF8_t7EJdxg&oe=6ADE1C4D",
-  "120251600142620272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/785739186_1070075998939425_3504045407733106482_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=-70H7vfIsqgQ7kNvwEcQ1_G&_nc_oc=AdrvaW3vHJusomfcq-t6P2kvRgYX0jkMHQiGDpUKVFgTh_kKU3EtDOxzPU3s2eFVB2E&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=h2-e-N9IoVNGDiq134CXfg&_nc_tpa=Q5bMBQII5SAFQZt8kOkDxtD10t-zIFRfxXvuXZBdIyQnnEfOMxDbW0CbVs6wnorql2khd3r2ZiicLbo3RQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQMq7Wnxy_g0Vf85UIk7ukHXN_-O0rYpOOG0Dz5McFBCkA&oe=6ADE241E",
-  "120251600142630272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784694567_1070083608938664_2075450433369714535_n.png?_nc_cat=110&ccb=1-7&_nc_ohc=j1zFpe0POUcQ7kNvwHNiNtv&_nc_oc=AdpyE8to4vXRyu4TQUKBqBG6E6HhjheB6PciU6v0nT6YLJIiv6ICJIMP-YnwLBLQE3E&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=-GFbTjZvwOeAUpOvxJdMfg&_nc_tpa=Q5bMBQL1NDA2l7fFztiutHjnPsA7tFzzSBBxZVlNuPbNyKcbHF5SwYOeZUhYpfGa_fxqQeYAy5vR3MAV7g&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQOEe0cUThIUlymQ6uD04aXAvvdT6q0GGMUUfk8Gc5z7bw&oe=6ADE513E",
-  "120251600142640272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/784597804_1070078515605840_3241966432541898211_n.png?_nc_cat=103&ccb=1-7&_nc_ohc=JQiSkvm4BV0Q7kNvwEGFRxV&_nc_oc=AdqoR2io3pSov149_O3_3_u_qvf1XKQ-TyTigszquX3zKGJ1AbJE3F8ug4cwDELjVNE&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=GElMqS3Ir9WKsInsQZFMHQ&_nc_tpa=Q5bMBQJgKgYhxI_mRa4u3SUsBEBp0kPAH5z9i0dxLDWa9Vf6l2jGC1bPEBNVjTeJykwf9kILCqDNmw6-tA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQP6q2LUYQAvo4Yr0UTJYJMiRhn6yL0DfYLnmhC0wXm7jw&oe=6ADE31C2",
-  "120251600142650272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/786423525_1070080068939018_3095448568383683870_n.png?_nc_cat=111&ccb=1-7&_nc_ohc=_LRdrZkEeXgQ7kNvwGUYsfs&_nc_oc=AdqJBUlLceg08GC4YNpiauu4cRJuG4KFX3KhK45iuEqJhZo62npgPKltQ2MhX4vZH3g&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=KZ-o6tYDwZK3CO8i058fSA&_nc_tpa=Q5bMBQI8WeVrycLkUHPTWOVZQ5f373ixUfbefl3ycXDc7IAr2DBmrbQJS8OFZUll0tjGIqoFPgwRKOztuQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQPJQs5NELHvRo3j-fur7k21qg5Z9-yFDdlvPDC1LT_itg&oe=6ADE1BBC",
-  "120252328495670272": "https://external-waw2-2.xx.fbcdn.net/emg1/v/t13/7651636926482195518?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKrQvoeja-_WYVqurMuwuII8bMCvWwOx2KFZYP7BdfQOM8oH821TtRS59PNn4deK_ty8JYFxmz7jFUnAZMr-p3u19O08aeTUuo4WWjd4oRS-zHyBw7jdOqHgk3zaxcwfba96Ki0mCdBe-GakxKBeSxd&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-2.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=oUup4rlgNEKMhPQb0wzljA&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQIasUQWCgmbk7GRvDgiylc2ckJoTVeyYCW9bkLdoOMn9b9sAHJKc3-jIoVTVvsD1alfOVR86Mm6mg&oh=06_Q3_EAVgdN4dyMByInndCdbMoyPwFI6Uzuv2VkMTcVIPER_f1&oe=6ADA527B",
-  "120252328495680272": "https://external-waw2-2.xx.fbcdn.net/emg1/v/t13/12045703034225709125?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKGMf7dUUYqrzqE1uh1-la21x2lEj-L_ds2lSpk3lfgV7xl-rsPA9xw-vU9jfTGrokhyppkKBa5YmzaTe0SboXCJIWuZWGSDndLKW6098_OWdX9LG-72iV6GUjy8THBaKvpI2XTPEPsM--_x2dUZd3l&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-2.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=vUy3XrrX4SzBNarfZIMa5w&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQI1J62UVKEUTzsZBQjF3vNos4dvy6Qk_Hks8UOMIOLrRLcUW6rkAkOB6AE8hX3v0LJh_ejNhoHENg&oh=06_Q3_EAY2Kt6rcr7fHnI0tTbZ0zqJblnthzTPQbSapEzydQJLO&oe=6ADA4852"
+  "120251600142610272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/785060433_1070086118938413_3880661223052655553_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=H44gwH2GiuUQ7kNvwFp4Pfx&_nc_oc=AdpcvEo5w2w5flX_V2_tr_Q_W4gWiCd2cPFWJgB4E8Zw21CckK3axBjpV9_EcKsFGSY&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=QyjK1Wn6e6md_sjYUEjV6g&_nc_tpa=Q5bMBQKKigL8axWveC2BD28srGUDKDwEPFlfu5SPItfQXrUaojMv80rHDjeDayp4RdCUP1JUAiDj-qIdwA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQNhVQeyujrcl6AUM95XhGaTLJ3Y8j_Y78cwnLFtqec0LA&oe=6ADFDE4D",
+  "120251600142620272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/785739186_1070075998939425_3504045407733106482_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=-70H7vfIsqgQ7kNvwEcQ1_G&_nc_oc=AdrvaW3vHJusomfcq-t6P2kvRgYX0jkMHQiGDpUKVFgTh_kKU3EtDOxzPU3s2eFVB2E&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=Kq2mnl1vrPslu4nTQplTmg&_nc_tpa=Q5bMBQL4mR6U-VDDMO-oOsAhRWobRBL984Mk31CMkP8tg09OrkGokgpHFrL4vw7jtSyC9J9FdHtQ3qlqTQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQO8OIHV02-9GhDqTCjauNm1qgiYKFqGJpX5r-su9dsuEQ&oe=6ADFE61E",
+  "120251600142630272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784694567_1070083608938664_2075450433369714535_n.png?_nc_cat=110&ccb=1-7&_nc_ohc=znev7bUbeWoQ7kNvwEl3BEe&_nc_oc=AdpmfHhQ87taoIYygn-ICDaf_o3DMiJMngK7RtjK-x9YoyH5YHVpsc4z5Mo7kFCtb3g&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=lF_4pVvFJannFzWHGrYPPA&_nc_tpa=Q5bMBQK0D-N7rHcy8TsBGOEO82_gCyoX12olr-WPROpDMC9M7Xbvvhg_1RhLb2pEMfl2Y2svAL3D3eJWGw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQPld-N0hiL-QE2bSCa9cvIIOrBLdHP9EZ4wF7ew6F68Tg&oe=6AE0133E",
+  "120251600142640272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/784597804_1070078515605840_3241966432541898211_n.png?_nc_cat=103&ccb=1-7&_nc_ohc=JQiSkvm4BV0Q7kNvwEGFRxV&_nc_oc=AdqoR2io3pSov149_O3_3_u_qvf1XKQ-TyTigszquX3zKGJ1AbJE3F8ug4cwDELjVNE&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=skWQ1akibwOAvcunQimTuA&_nc_tpa=Q5bMBQIowfRqDNkODFLVn4OnENFX9dvJA0bLWKciUNVofEutxpqpII7UN9c-63IQ0_A0kTDsLlcbSp6I0w&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQPy0sB-ivTGVOT32vshv272JA6kj_KHxG9q1Zio-UtkeQ&oe=6ADFF3C2",
+  "120251600142650272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/786423525_1070080068939018_3095448568383683870_n.png?_nc_cat=111&ccb=1-7&_nc_ohc=_LRdrZkEeXgQ7kNvwGUYsfs&_nc_oc=AdqJBUlLceg08GC4YNpiauu4cRJuG4KFX3KhK45iuEqJhZo62npgPKltQ2MhX4vZH3g&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=nsUgSzLkLnpnhHmaFmWhVQ&_nc_tpa=Q5bMBQK87BkEUQLxCASTBuOdPMEzyi5Y2OEQdEU26m4uJkk-tXkM3IEyJr9AMj7XFho0S72hXjPTSp8wJA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQO0T1swFrzUnEhDlUWovaslsN5lijT7UscLDqGf1ngSeg&oe=6ADFDDBC",
+  "120252328495670272": "https://external-waw2-2.xx.fbcdn.net/emg1/v/t13/7651636926482195518?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKrQvoeja-_WYVqurMuwuII8bMCvWwOx2KFZYP7BdfQOM8oH821TtRS59PNn4deK_ty8JYFxmz7jFUnAZMr-p3u19O08aeTUuo4WWjd4oRS-zHyBw7jdOqHgk3zaxcwfba96Ki0mCdBe-GakxKBeSxd&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-2.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=JbO3ys5YZipb_XGjKHkeWw&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQLG2PI6e2fu5ZATdI5jmml2tBHFpD-Trg3Rg0AR3WsE5QUlSubtjzUGJAHGKbYE1Z-5vUos80sZaA&oh=06_Q3_EATXItQTkB5Z5Fs9WvTxeAW9XF1_znNkZkl2_VLO5i726&oe=6ADC147B",
+  "120252328495680272": "https://external-waw2-2.xx.fbcdn.net/emg1/v/t13/12045703034225709125?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKGMf7dUUYqrzqE1uh1-la21x2lEj-L_ds2lSpk3lfgV7xl-rsPA9xw-vU9jfTGrokhyppkKBa5YmzaTe0SboXCJIWuZWGSDndLKW6098_OWdX9LG-72iV6GUjy8THBaKvpI2XTPEPsM--_x2dUZd3l&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-2.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=1OtIq73Pzc_loRDSAhL92g&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQKoqkdx59riyh2u77ED66cFADuWS8oBvLMPHchrGEiMomDFXPATetbnOkWW_snX61dDiEbOM8Wwsg&oh=06_Q3_EAZNYGj9hBb30S0I725qtyCLoGzG4rbMPmHddWTiHjjUm&oe=6ADC0A52"
  },
  "meta_geo": [
   {
@@ -45414,8 +45513,17 @@
    "date": "2026-10-20",
    "country": "BF",
    "spend": 0.12,
-   "impressions": 760,
+   "impressions": 762,
    "clicks": 22,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-20",
+   "country": "BG",
+   "spend": 0.0,
+   "impressions": 1,
+   "clicks": 0,
    "regs": 0,
    "leads": 0
   },
@@ -45432,7 +45540,7 @@
    "date": "2026-10-20",
    "country": "BR",
    "spend": 0.0,
-   "impressions": 15,
+   "impressions": 16,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -45468,7 +45576,7 @@
    "date": "2026-10-20",
    "country": "CI",
    "spend": 0.05,
-   "impressions": 281,
+   "impressions": 282,
    "clicks": 7,
    "regs": 0,
    "leads": 0
@@ -45477,17 +45585,17 @@
    "date": "2026-10-20",
    "country": "CM",
    "spend": 0.0,
-   "impressions": 69,
-   "clicks": 0,
+   "impressions": 70,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-20",
    "country": "DZ",
-   "spend": 17.32,
-   "impressions": 122243,
-   "clicks": 2221,
+   "spend": 17.4,
+   "impressions": 122529,
+   "clicks": 2231,
    "regs": 0,
    "leads": 0
   },
@@ -45513,7 +45621,7 @@
    "date": "2026-10-20",
    "country": "ET",
    "spend": 0.1,
-   "impressions": 1138,
+   "impressions": 1140,
    "clicks": 21,
    "regs": 0,
    "leads": 0
@@ -45531,7 +45639,7 @@
    "date": "2026-10-20",
    "country": "GH",
    "spend": 0.01,
-   "impressions": 42,
+   "impressions": 43,
    "clicks": 2,
    "regs": 0,
    "leads": 0
@@ -45548,9 +45656,9 @@
   {
    "date": "2026-10-20",
    "country": "GN",
-   "spend": 0.16,
-   "impressions": 1119,
-   "clicks": 29,
+   "spend": 0.17,
+   "impressions": 1135,
+   "clicks": 31,
    "regs": 0,
    "leads": 0
   },
@@ -45594,7 +45702,7 @@
    "date": "2026-10-20",
    "country": "LR",
    "spend": 0.11,
-   "impressions": 1032,
+   "impressions": 1036,
    "clicks": 15,
    "regs": 0,
    "leads": 0
@@ -45602,18 +45710,18 @@
   {
    "date": "2026-10-20",
    "country": "LY",
-   "spend": 3.68,
-   "impressions": 22729,
-   "clicks": 568,
+   "spend": 3.69,
+   "impressions": 22761,
+   "clicks": 569,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-20",
    "country": "MA",
-   "spend": 13.25,
-   "impressions": 65706,
-   "clicks": 1153,
+   "spend": 13.28,
+   "impressions": 65828,
+   "clicks": 1157,
    "regs": 0,
    "leads": 0
   },
@@ -45639,7 +45747,7 @@
    "date": "2026-10-20",
    "country": "ML",
    "spend": 0.08,
-   "impressions": 1117,
+   "impressions": 1120,
    "clicks": 22,
    "regs": 0,
    "leads": 0
@@ -45648,7 +45756,7 @@
    "date": "2026-10-20",
    "country": "MR",
    "spend": 0.62,
-   "impressions": 4330,
+   "impressions": 4341,
    "clicks": 130,
    "regs": 0,
    "leads": 0
@@ -45657,8 +45765,8 @@
    "date": "2026-10-20",
    "country": "MW",
    "spend": 0.01,
-   "impressions": 241,
-   "clicks": 3,
+   "impressions": 243,
+   "clicks": 4,
    "regs": 0,
    "leads": 0
   },
@@ -45684,7 +45792,7 @@
    "date": "2026-10-20",
    "country": "NE",
    "spend": 0.04,
-   "impressions": 346,
+   "impressions": 349,
    "clicks": 6,
    "regs": 0,
    "leads": 0
@@ -45746,8 +45854,8 @@
   {
    "date": "2026-10-20",
    "country": "SL",
-   "spend": 0.06,
-   "impressions": 1024,
+   "spend": 0.07,
+   "impressions": 1028,
    "clicks": 22,
    "regs": 0,
    "leads": 0
@@ -45765,7 +45873,7 @@
    "date": "2026-10-20",
    "country": "SO",
    "spend": 1.33,
-   "impressions": 8909,
+   "impressions": 8924,
    "clicks": 258,
    "regs": 0,
    "leads": 0
@@ -45783,7 +45891,7 @@
    "date": "2026-10-20",
    "country": "TD",
    "spend": 0.06,
-   "impressions": 654,
+   "impressions": 658,
    "clicks": 11,
    "regs": 0,
    "leads": 0
@@ -45792,7 +45900,7 @@
    "date": "2026-10-20",
    "country": "TG",
    "spend": 0.03,
-   "impressions": 142,
+   "impressions": 143,
    "clicks": 2,
    "regs": 0,
    "leads": 0
@@ -45801,8 +45909,8 @@
    "date": "2026-10-20",
    "country": "TN",
    "spend": 1.03,
-   "impressions": 6004,
-   "clicks": 108,
+   "impressions": 6018,
+   "clicks": 111,
    "regs": 0,
    "leads": 0
   },
@@ -45828,7 +45936,7 @@
    "date": "2026-10-20",
    "country": "UG",
    "spend": 0.0,
-   "impressions": 63,
+   "impressions": 65,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -45873,26 +45981,26 @@
    "date": "2026-10-21",
    "country": "AO",
    "spend": 0.0,
-   "impressions": 8,
-   "clicks": 0,
+   "impressions": 54,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "BF",
-   "spend": 0.04,
-   "impressions": 220,
-   "clicks": 3,
+   "spend": 0.17,
+   "impressions": 1157,
+   "clicks": 21,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "BJ",
-   "spend": 0.0,
-   "impressions": 9,
-   "clicks": 0,
+   "spend": 0.02,
+   "impressions": 55,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
@@ -45900,7 +46008,7 @@
    "date": "2026-10-21",
    "country": "BR",
    "spend": 0.01,
-   "impressions": 11,
+   "impressions": 20,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -45909,17 +46017,17 @@
    "date": "2026-10-21",
    "country": "CD",
    "spend": 0.01,
-   "impressions": 11,
-   "clicks": 0,
+   "impressions": 140,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "CF",
-   "spend": 0.0,
-   "impressions": 25,
-   "clicks": 0,
+   "spend": 0.02,
+   "impressions": 138,
+   "clicks": 4,
    "regs": 0,
    "leads": 0
   },
@@ -45927,17 +46035,17 @@
    "date": "2026-10-21",
    "country": "CG",
    "spend": 0.01,
-   "impressions": 88,
-   "clicks": 0,
+   "impressions": 385,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "CI",
-   "spend": 0.02,
-   "impressions": 56,
-   "clicks": 0,
+   "spend": 0.05,
+   "impressions": 433,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
@@ -45945,7 +46053,7 @@
    "date": "2026-10-21",
    "country": "CM",
    "spend": 0.0,
-   "impressions": 6,
+   "impressions": 123,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -45953,18 +46061,18 @@
   {
    "date": "2026-10-21",
    "country": "DZ",
-   "spend": 4.51,
-   "impressions": 34151,
-   "clicks": 517,
+   "spend": 14.84,
+   "impressions": 92444,
+   "clicks": 2026,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "EG",
-   "spend": 0.03,
-   "impressions": 171,
-   "clicks": 8,
+   "spend": 0.12,
+   "impressions": 500,
+   "clicks": 16,
    "regs": 0,
    "leads": 0
   },
@@ -45972,7 +46080,7 @@
    "date": "2026-10-21",
    "country": "ER",
    "spend": 0.0,
-   "impressions": 14,
+   "impressions": 38,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -45980,9 +46088,9 @@
   {
    "date": "2026-10-21",
    "country": "ET",
-   "spend": 0.03,
-   "impressions": 296,
-   "clicks": 8,
+   "spend": 0.15,
+   "impressions": 1034,
+   "clicks": 28,
    "regs": 0,
    "leads": 0
   },
@@ -45990,44 +46098,53 @@
    "date": "2026-10-21",
    "country": "GA",
    "spend": 0.0,
-   "impressions": 7,
-   "clicks": 0,
+   "impressions": 108,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "GH",
-   "spend": 0.01,
-   "impressions": 20,
-   "clicks": 1,
+   "spend": 0.04,
+   "impressions": 69,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "GM",
-   "spend": 0.03,
-   "impressions": 120,
-   "clicks": 4,
+   "spend": 0.07,
+   "impressions": 384,
+   "clicks": 10,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "GN",
-   "spend": 0.08,
-   "impressions": 490,
-   "clicks": 11,
+   "spend": 0.27,
+   "impressions": 1612,
+   "clicks": 46,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-21",
+   "country": "GW",
+   "spend": 0.0,
+   "impressions": 0,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "ID",
-   "spend": 0.06,
-   "impressions": 133,
-   "clicks": 1,
+   "spend": 0.18,
+   "impressions": 423,
+   "clicks": 6,
    "regs": 0,
    "leads": 0
   },
@@ -46035,7 +46152,16 @@
    "date": "2026-10-21",
    "country": "KE",
    "spend": 0.01,
-   "impressions": 36,
+   "impressions": 77,
+   "clicks": 2,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-21",
+   "country": "KZ",
+   "spend": 0.01,
+   "impressions": 12,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -46043,27 +46169,27 @@
   {
    "date": "2026-10-21",
    "country": "LR",
-   "spend": 0.07,
-   "impressions": 379,
-   "clicks": 4,
+   "spend": 0.12,
+   "impressions": 1102,
+   "clicks": 22,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "LY",
-   "spend": 1.28,
-   "impressions": 8681,
-   "clicks": 168,
+   "spend": 4.0,
+   "impressions": 20043,
+   "clicks": 605,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "MA",
-   "spend": 3.99,
-   "impressions": 20094,
-   "clicks": 325,
+   "spend": 13.49,
+   "impressions": 64004,
+   "clicks": 1227,
    "regs": 0,
    "leads": 0
   },
@@ -46071,60 +46197,6 @@
    "date": "2026-10-21",
    "country": "MD",
    "spend": 0.0,
-   "impressions": 1,
-   "clicks": 0,
-   "regs": 0,
-   "leads": 0
-  },
-  {
-   "date": "2026-10-21",
-   "country": "MG",
-   "spend": 0.0,
-   "impressions": 37,
-   "clicks": 1,
-   "regs": 0,
-   "leads": 0
-  },
-  {
-   "date": "2026-10-21",
-   "country": "ML",
-   "spend": 0.08,
-   "impressions": 339,
-   "clicks": 7,
-   "regs": 0,
-   "leads": 0
-  },
-  {
-   "date": "2026-10-21",
-   "country": "MR",
-   "spend": 0.36,
-   "impressions": 1526,
-   "clicks": 42,
-   "regs": 0,
-   "leads": 0
-  },
-  {
-   "date": "2026-10-21",
-   "country": "MW",
-   "spend": 0.02,
-   "impressions": 61,
-   "clicks": 0,
-   "regs": 0,
-   "leads": 0
-  },
-  {
-   "date": "2026-10-21",
-   "country": "MX",
-   "spend": 0.0,
-   "impressions": 10,
-   "clicks": 0,
-   "regs": 0,
-   "leads": 0
-  },
-  {
-   "date": "2026-10-21",
-   "country": "MZ",
-   "spend": 0.01,
    "impressions": 5,
    "clicks": 0,
    "regs": 0,
@@ -46132,18 +46204,72 @@
   },
   {
    "date": "2026-10-21",
+   "country": "MG",
+   "spend": 0.03,
+   "impressions": 151,
+   "clicks": 6,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-21",
+   "country": "ML",
+   "spend": 0.25,
+   "impressions": 1467,
+   "clicks": 31,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-21",
+   "country": "MR",
+   "spend": 1.11,
+   "impressions": 4930,
+   "clicks": 174,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-21",
+   "country": "MW",
+   "spend": 0.05,
+   "impressions": 223,
+   "clicks": 4,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-21",
+   "country": "MX",
+   "spend": 0.0,
+   "impressions": 15,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-21",
+   "country": "MZ",
+   "spend": 0.03,
+   "impressions": 33,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-21",
    "country": "NE",
-   "spend": 0.01,
-   "impressions": 101,
-   "clicks": 1,
+   "spend": 0.04,
+   "impressions": 415,
+   "clicks": 6,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "NG",
-   "spend": 0.01,
-   "impressions": 11,
+   "spend": 0.02,
+   "impressions": 39,
    "clicks": 1,
    "regs": 0,
    "leads": 0
@@ -46151,9 +46277,9 @@
   {
    "date": "2026-10-21",
    "country": "PH",
-   "spend": 0.01,
-   "impressions": 22,
-   "clicks": 1,
+   "spend": 0.02,
+   "impressions": 45,
+   "clicks": 4,
    "regs": 0,
    "leads": 0
   },
@@ -46161,7 +46287,7 @@
    "date": "2026-10-21",
    "country": "PL",
    "spend": 0.0,
-   "impressions": 1,
+   "impressions": 3,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -46170,7 +46296,7 @@
    "date": "2026-10-21",
    "country": "RO",
    "spend": 0.0,
-   "impressions": 1,
+   "impressions": 7,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -46179,16 +46305,16 @@
    "date": "2026-10-21",
    "country": "RW",
    "spend": 0.01,
-   "impressions": 65,
-   "clicks": 0,
+   "impressions": 192,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "SA",
-   "spend": 0.0,
-   "impressions": 62,
+   "spend": 0.01,
+   "impressions": 190,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -46196,9 +46322,9 @@
   {
    "date": "2026-10-21",
    "country": "SL",
-   "spend": 0.03,
-   "impressions": 284,
-   "clicks": 9,
+   "spend": 0.13,
+   "impressions": 1022,
+   "clicks": 28,
    "regs": 0,
    "leads": 0
   },
@@ -46206,25 +46332,34 @@
    "date": "2026-10-21",
    "country": "SN",
    "spend": 0.01,
-   "impressions": 108,
-   "clicks": 3,
+   "impressions": 340,
+   "clicks": 6,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "SO",
-   "spend": 0.29,
-   "impressions": 1891,
-   "clicks": 66,
+   "spend": 2.02,
+   "impressions": 8990,
+   "clicks": 424,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-21",
+   "country": "SS",
+   "spend": 0.0,
+   "impressions": 0,
+   "clicks": 3,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "TD",
-   "spend": 0.01,
-   "impressions": 118,
+   "spend": 0.07,
+   "impressions": 513,
    "clicks": 1,
    "regs": 0,
    "leads": 0
@@ -46232,8 +46367,8 @@
   {
    "date": "2026-10-21",
    "country": "TG",
-   "spend": 0.0,
-   "impressions": 47,
+   "spend": 0.02,
+   "impressions": 246,
    "clicks": 1,
    "regs": 0,
    "leads": 0
@@ -46241,26 +46376,26 @@
   {
    "date": "2026-10-21",
    "country": "TN",
-   "spend": 0.4,
-   "impressions": 2032,
-   "clicks": 31,
+   "spend": 0.93,
+   "impressions": 4647,
+   "clicks": 88,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "TR",
-   "spend": 0.0,
-   "impressions": 39,
-   "clicks": 0,
+   "spend": 0.01,
+   "impressions": 113,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-10-21",
    "country": "TZ",
-   "spend": 0.0,
-   "impressions": 30,
+   "spend": 0.02,
+   "impressions": 138,
    "clicks": 2,
    "regs": 0,
    "leads": 0
@@ -46268,8 +46403,8 @@
   {
    "date": "2026-10-21",
    "country": "UG",
-   "spend": 0.0,
-   "impressions": 30,
+   "spend": 0.01,
+   "impressions": 74,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -46278,7 +46413,7 @@
    "date": "2026-10-21",
    "country": "ZA",
    "spend": 0.0,
-   "impressions": 1,
+   "impressions": 5,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -46287,7 +46422,7 @@
    "date": "2026-10-21",
    "country": "ZM",
    "spend": 0.03,
-   "impressions": 13,
+   "impressions": 42,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -46296,7 +46431,448 @@
    "date": "2026-10-21",
    "country": "ZW",
    "spend": 0.0,
+   "impressions": 11,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "AO",
+   "spend": 0.0,
+   "impressions": 18,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "BF",
+   "spend": 0.04,
+   "impressions": 355,
+   "clicks": 9,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "BG",
+   "spend": 0.0,
+   "impressions": 1,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "BJ",
+   "spend": 0.0,
+   "impressions": 17,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "BR",
+   "spend": 0.0,
+   "impressions": 9,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "CD",
+   "spend": 0.0,
+   "impressions": 31,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "CF",
+   "spend": 0.01,
+   "impressions": 29,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "CG",
+   "spend": 0.0,
+   "impressions": 63,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "CI",
+   "spend": 0.04,
+   "impressions": 142,
+   "clicks": 5,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "CM",
+   "spend": 0.0,
+   "impressions": 27,
+   "clicks": 1,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "DZ",
+   "spend": 9.18,
+   "impressions": 49883,
+   "clicks": 1217,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "EG",
+   "spend": 0.08,
+   "impressions": 255,
+   "clicks": 5,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "ER",
+   "spend": 0.0,
+   "impressions": 13,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "ET",
+   "spend": 0.08,
+   "impressions": 524,
+   "clicks": 12,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "GA",
+   "spend": 0.0,
+   "impressions": 19,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "GH",
+   "spend": 0.01,
+   "impressions": 30,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "GM",
+   "spend": 0.0,
+   "impressions": 137,
+   "clicks": 3,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "GN",
+   "spend": 0.14,
+   "impressions": 863,
+   "clicks": 23,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "GW",
+   "spend": 0.0,
+   "impressions": 0,
+   "clicks": 1,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "ID",
+   "spend": 0.07,
+   "impressions": 164,
+   "clicks": 3,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "KE",
+   "spend": 0.02,
+   "impressions": 45,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "KZ",
+   "spend": 0.0,
+   "impressions": 2,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "LR",
+   "spend": 0.11,
+   "impressions": 620,
+   "clicks": 13,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "LY",
+   "spend": 1.99,
+   "impressions": 10251,
+   "clicks": 316,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "MA",
+   "spend": 7.97,
+   "impressions": 35439,
+   "clicks": 757,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "MG",
+   "spend": 0.01,
+   "impressions": 79,
+   "clicks": 1,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "ML",
+   "spend": 0.14,
+   "impressions": 555,
+   "clicks": 11,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "MR",
+   "spend": 0.49,
+   "impressions": 2526,
+   "clicks": 109,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "MW",
+   "spend": 0.01,
+   "impressions": 118,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "MX",
+   "spend": 0.01,
+   "impressions": 11,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "MZ",
+   "spend": 0.0,
+   "impressions": 11,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "NE",
+   "spend": 0.01,
+   "impressions": 129,
+   "clicks": 2,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "NG",
+   "spend": 0.01,
+   "impressions": 28,
+   "clicks": 2,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "PH",
+   "spend": 0.01,
+   "impressions": 28,
+   "clicks": 1,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "RO",
+   "spend": 0.01,
    "impressions": 5,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "RW",
+   "spend": 0.01,
+   "impressions": 56,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "SA",
+   "spend": 0.0,
+   "impressions": 81,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "SL",
+   "spend": 0.06,
+   "impressions": 407,
+   "clicks": 14,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "SN",
+   "spend": 0.03,
+   "impressions": 166,
+   "clicks": 4,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "SO",
+   "spend": 2.2,
+   "impressions": 4752,
+   "clicks": 436,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "TD",
+   "spend": 0.01,
+   "impressions": 179,
+   "clicks": 6,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "TG",
+   "spend": 0.0,
+   "impressions": 80,
+   "clicks": 2,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "TN",
+   "spend": 0.51,
+   "impressions": 2627,
+   "clicks": 49,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "TR",
+   "spend": 0.0,
+   "impressions": 47,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "TZ",
+   "spend": 0.01,
+   "impressions": 57,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "UG",
+   "spend": 0.0,
+   "impressions": 37,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "ZA",
+   "spend": 0.0,
+   "impressions": 2,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "ZM",
+   "spend": 0.0,
+   "impressions": 7,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-10-22",
+   "country": "ZW",
+   "spend": 0.0,
+   "impressions": 4,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -47210,43 +47786,64 @@
    "date": "2026-10-20",
    "platform": "Audience Network",
    "spend": 4.79,
-   "impressions": 20879,
-   "clicks": 1359
+   "impressions": 20878,
+   "clicks": 1360
   },
   {
    "date": "2026-10-20",
    "platform": "Facebook",
-   "spend": 25.1,
-   "impressions": 172171,
-   "clicks": 2561
+   "spend": 25.24,
+   "impressions": 172697,
+   "clicks": 2582
   },
   {
    "date": "2026-10-20",
    "platform": "Instagram",
    "spend": 8.75,
-   "impressions": 48133,
+   "impressions": 48136,
    "clicks": 739
   },
   {
    "date": "2026-10-21",
    "platform": "Audience Network",
-   "spend": 1.12,
-   "impressions": 4931,
-   "clicks": 252
+   "spend": 7.56,
+   "impressions": 25123,
+   "clicks": 1876
   },
   {
    "date": "2026-10-21",
    "platform": "Facebook",
-   "spend": 7.53,
-   "impressions": 52094,
-   "clicks": 761
+   "spend": 22.87,
+   "impressions": 142199,
+   "clicks": 2318
   },
   {
    "date": "2026-10-21",
    "platform": "Instagram",
-   "spend": 2.76,
-   "impressions": 14841,
-   "clicks": 203
+   "spend": 7.99,
+   "impressions": 40889,
+   "clicks": 613
+  },
+  {
+   "date": "2026-10-22",
+   "platform": "Audience Network",
+   "spend": 6.09,
+   "impressions": 10483,
+   "clicks": 1318
+  },
+  {
+   "date": "2026-10-22",
+   "platform": "Facebook",
+   "spend": 11.74,
+   "impressions": 71468,
+   "clicks": 1181
+  },
+  {
+   "date": "2026-10-22",
+   "platform": "Instagram",
+   "spend": 5.57,
+   "impressions": 28978,
+   "clicks": 503
   }
  ],
  "meta_demographics": {
@@ -47254,255 +47851,262 @@
    {
     "age": "18-24",
     "gender": "Женщины",
-    "spend": 30.37,
-    "impressions": 159719,
-    "clicks": 4078
+    "spend": 35.77,
+    "impressions": 190754,
+    "clicks": 4708
    },
    {
     "age": "18-24",
     "gender": "Мужчины",
-    "spend": 42.33,
-    "impressions": 242869,
-    "clicks": 4831
+    "spend": 48.73,
+    "impressions": 282267,
+    "clicks": 5583
    },
    {
     "age": "18-24",
     "gender": "Не указан",
-    "spend": 0.28,
-    "impressions": 1725,
-    "clicks": 35
+    "spend": 0.3,
+    "impressions": 2014,
+    "clicks": 38
    },
    {
     "age": "25-34",
     "gender": "Женщины",
-    "spend": 45.69,
-    "impressions": 195315,
-    "clicks": 7619
+    "spend": 52.68,
+    "impressions": 222153,
+    "clicks": 8630
    },
    {
     "age": "25-34",
     "gender": "Мужчины",
-    "spend": 52.63,
-    "impressions": 292519,
-    "clicks": 6950
+    "spend": 60.03,
+    "impressions": 329367,
+    "clicks": 7797
    },
    {
     "age": "25-34",
     "gender": "Не указан",
-    "spend": 0.52,
-    "impressions": 1854,
-    "clicks": 69
+    "spend": 0.56,
+    "impressions": 2076,
+    "clicks": 81
    },
    {
     "age": "35-44",
     "gender": "Женщины",
-    "spend": 28.61,
-    "impressions": 122728,
-    "clicks": 5162
+    "spend": 32.83,
+    "impressions": 137835,
+    "clicks": 5827
    },
    {
     "age": "35-44",
     "gender": "Мужчины",
-    "spend": 46.6,
-    "impressions": 272497,
-    "clicks": 7062
+    "spend": 52.28,
+    "impressions": 302833,
+    "clicks": 7812
    },
    {
     "age": "35-44",
     "gender": "Не указан",
-    "spend": 0.28,
-    "impressions": 1361,
-    "clicks": 53
+    "spend": 0.29,
+    "impressions": 1518,
+    "clicks": 61
    },
    {
     "age": "45-54",
     "gender": "Женщины",
-    "spend": 13.23,
-    "impressions": 67695,
-    "clicks": 2105
+    "spend": 15.31,
+    "impressions": 76449,
+    "clicks": 2423
    },
    {
     "age": "45-54",
     "gender": "Мужчины",
-    "spend": 32.21,
-    "impressions": 189922,
-    "clicks": 4578
+    "spend": 36.31,
+    "impressions": 211130,
+    "clicks": 5109
    },
    {
     "age": "45-54",
     "gender": "Не указан",
-    "spend": 0.18,
-    "impressions": 856,
-    "clicks": 24
+    "spend": 0.21,
+    "impressions": 968,
+    "clicks": 28
    },
    {
     "age": "55-64",
     "gender": "Женщины",
-    "spend": 11.47,
-    "impressions": 53821,
-    "clicks": 1539
+    "spend": 13.2,
+    "impressions": 61606,
+    "clicks": 1827
    },
    {
     "age": "55-64",
     "gender": "Мужчины",
-    "spend": 18.25,
-    "impressions": 107586,
-    "clicks": 2271
+    "spend": 21.02,
+    "impressions": 120910,
+    "clicks": 2568
    },
    {
     "age": "55-64",
     "gender": "Не указан",
     "spend": 0.05,
-    "impressions": 432,
-    "clicks": 10
+    "impressions": 502,
+    "clicks": 12
    },
    {
     "age": "65+",
     "gender": "Женщины",
-    "spend": 8.46,
-    "impressions": 38412,
-    "clicks": 1317
+    "spend": 10.17,
+    "impressions": 45372,
+    "clicks": 1572
    },
    {
     "age": "65+",
     "gender": "Мужчины",
-    "spend": 12.88,
-    "impressions": 61970,
-    "clicks": 1578
+    "spend": 14.83,
+    "impressions": 71276,
+    "clicks": 1820
    },
    {
     "age": "65+",
     "gender": "Не указан",
-    "spend": 0.09,
-    "impressions": 322,
+    "spend": 0.11,
+    "impressions": 373,
     "clicks": 4
+   },
+   {
+    "age": "Unknown",
+    "gender": "Женщины",
+    "spend": 0.0,
+    "impressions": 2,
+    "clicks": 0
    }
   ],
   "30": [
    {
     "age": "18-24",
     "gender": "Женщины",
-    "spend": 29.27,
-    "impressions": 151537,
-    "clicks": 3985
+    "spend": 33.23,
+    "impressions": 175346,
+    "clicks": 4415
    },
    {
     "age": "18-24",
     "gender": "Мужчины",
-    "spend": 40.93,
-    "impressions": 233707,
-    "clicks": 4710
+    "spend": 45.62,
+    "impressions": 264253,
+    "clicks": 5242
    },
    {
     "age": "18-24",
     "gender": "Не указан",
+    "spend": 0.29,
+    "impressions": 1882,
+    "clicks": 37
+   },
+   {
+    "age": "25-34",
+    "gender": "Женщины",
+    "spend": 49.78,
+    "impressions": 210866,
+    "clicks": 8166
+   },
+   {
+    "age": "25-34",
+    "gender": "Мужчины",
+    "spend": 56.64,
+    "impressions": 313445,
+    "clicks": 7404
+   },
+   {
+    "age": "25-34",
+    "gender": "Не указан",
+    "spend": 0.54,
+    "impressions": 1982,
+    "clicks": 75
+   },
+   {
+    "age": "35-44",
+    "gender": "Женщины",
+    "spend": 30.93,
+    "impressions": 131534,
+    "clicks": 5537
+   },
+   {
+    "age": "35-44",
+    "gender": "Мужчины",
+    "spend": 49.49,
+    "impressions": 289218,
+    "clicks": 7444
+   },
+   {
+    "age": "35-44",
+    "gender": "Не указан",
     "spend": 0.28,
-    "impressions": 1628,
-    "clicks": 35
-   },
-   {
-    "age": "25-34",
-    "gender": "Женщины",
-    "spend": 44.41,
-    "impressions": 188498,
-    "clicks": 7476
-   },
-   {
-    "age": "25-34",
-    "gender": "Мужчины",
-    "spend": 50.73,
-    "impressions": 281887,
-    "clicks": 6752
-   },
-   {
-    "age": "25-34",
-    "gender": "Не указан",
-    "spend": 0.52,
-    "impressions": 1798,
-    "clicks": 66
-   },
-   {
-    "age": "35-44",
-    "gender": "Женщины",
-    "spend": 27.86,
-    "impressions": 118599,
-    "clicks": 5079
-   },
-   {
-    "age": "35-44",
-    "gender": "Мужчины",
-    "spend": 45.12,
-    "impressions": 262555,
-    "clicks": 6916
-   },
-   {
-    "age": "35-44",
-    "gender": "Не указан",
-    "spend": 0.28,
-    "impressions": 1325,
-    "clicks": 52
+    "impressions": 1447,
+    "clicks": 56
    },
    {
     "age": "45-54",
     "gender": "Женщины",
-    "spend": 12.74,
-    "impressions": 64861,
-    "clicks": 2056
+    "spend": 14.36,
+    "impressions": 72512,
+    "clicks": 2287
    },
    {
     "age": "45-54",
     "gender": "Мужчины",
-    "spend": 31.14,
-    "impressions": 182256,
-    "clicks": 4452
+    "spend": 34.39,
+    "impressions": 201555,
+    "clicks": 4884
    },
    {
     "age": "45-54",
     "gender": "Не указан",
-    "spend": 0.17,
-    "impressions": 830,
-    "clicks": 24
+    "spend": 0.18,
+    "impressions": 911,
+    "clicks": 26
    },
    {
     "age": "55-64",
     "gender": "Женщины",
-    "spend": 10.96,
-    "impressions": 50913,
-    "clicks": 1491
+    "spend": 12.31,
+    "impressions": 58083,
+    "clicks": 1706
    },
    {
     "age": "55-64",
     "gender": "Мужчины",
-    "spend": 17.58,
-    "impressions": 103078,
-    "clicks": 2177
+    "spend": 19.81,
+    "impressions": 115000,
+    "clicks": 2439
    },
    {
     "age": "55-64",
     "gender": "Не указан",
     "spend": 0.05,
-    "impressions": 400,
-    "clicks": 10
+    "impressions": 482,
+    "clicks": 12
    },
    {
     "age": "65+",
     "gender": "Женщины",
-    "spend": 8.27,
-    "impressions": 36403,
-    "clicks": 1259
+    "spend": 9.42,
+    "impressions": 42336,
+    "clicks": 1457
    },
    {
     "age": "65+",
     "gender": "Мужчины",
-    "spend": 12.32,
-    "impressions": 59164,
-    "clicks": 1525
+    "spend": 13.86,
+    "impressions": 67275,
+    "clicks": 1707
    },
    {
     "age": "65+",
     "gender": "Не указан",
-    "spend": 0.09,
-    "impressions": 298,
+    "spend": 0.1,
+    "impressions": 349,
     "clicks": 4
    }
   ],
@@ -47510,127 +48114,127 @@
    {
     "age": "18-24",
     "gender": "Женщины",
-    "spend": 90.51,
-    "impressions": 393656,
-    "clicks": 9420
+    "spend": 94.47,
+    "impressions": 417465,
+    "clicks": 9850
    },
    {
     "age": "18-24",
     "gender": "Мужчины",
-    "spend": 272.0,
-    "impressions": 815934,
-    "clicks": 15240
+    "spend": 272.11,
+    "impressions": 837099,
+    "clicks": 15717
    },
    {
     "age": "18-24",
     "gender": "Не указан",
-    "spend": 1.99,
-    "impressions": 5623,
-    "clicks": 128
+    "spend": 2.0,
+    "impressions": 5877,
+    "clicks": 130
    },
    {
     "age": "25-34",
     "gender": "Женщины",
-    "spend": 121.34,
-    "impressions": 430107,
-    "clicks": 16706
+    "spend": 126.71,
+    "impressions": 452475,
+    "clicks": 17396
    },
    {
     "age": "25-34",
     "gender": "Мужчины",
-    "spend": 381.23,
-    "impressions": 841838,
-    "clicks": 19138
+    "spend": 373.29,
+    "impressions": 851042,
+    "clicks": 19593
    },
    {
     "age": "25-34",
     "gender": "Не указан",
-    "spend": 2.36,
-    "impressions": 4580,
-    "clicks": 157
+    "spend": 2.38,
+    "impressions": 4764,
+    "clicks": 166
    },
    {
     "age": "35-44",
     "gender": "Женщины",
-    "spend": 75.86,
-    "impressions": 246741,
-    "clicks": 11340
+    "spend": 78.93,
+    "impressions": 259676,
+    "clicks": 11798
    },
    {
     "age": "35-44",
     "gender": "Мужчины",
-    "spend": 202.87,
-    "impressions": 520088,
-    "clicks": 15346
+    "spend": 203.53,
+    "impressions": 542376,
+    "clicks": 15814
    },
    {
     "age": "35-44",
     "gender": "Не указан",
     "spend": 1.06,
-    "impressions": 2764,
-    "clicks": 110
+    "impressions": 2886,
+    "clicks": 114
    },
    {
     "age": "45-54",
     "gender": "Женщины",
-    "spend": 34.88,
-    "impressions": 122984,
-    "clicks": 4494
+    "spend": 36.5,
+    "impressions": 130635,
+    "clicks": 4725
    },
    {
     "age": "45-54",
     "gender": "Мужчины",
-    "spend": 92.91,
-    "impressions": 306831,
-    "clicks": 8959
+    "spend": 96.16,
+    "impressions": 326130,
+    "clicks": 9391
    },
    {
     "age": "45-54",
     "gender": "Не указан",
-    "spend": 0.51,
-    "impressions": 1575,
-    "clicks": 52
+    "spend": 0.52,
+    "impressions": 1656,
+    "clicks": 54
    },
    {
     "age": "55-64",
     "gender": "Женщины",
-    "spend": 23.82,
-    "impressions": 97481,
-    "clicks": 3447
+    "spend": 25.17,
+    "impressions": 104651,
+    "clicks": 3662
    },
    {
     "age": "55-64",
     "gender": "Мужчины",
-    "spend": 46.08,
-    "impressions": 173714,
-    "clicks": 4584
+    "spend": 48.31,
+    "impressions": 185636,
+    "clicks": 4846
    },
    {
     "age": "55-64",
     "gender": "Не указан",
     "spend": 0.56,
-    "impressions": 781,
-    "clicks": 24
+    "impressions": 863,
+    "clicks": 26
    },
    {
     "age": "65+",
     "gender": "Женщины",
-    "spend": 20.82,
-    "impressions": 75830,
-    "clicks": 2925
+    "spend": 21.97,
+    "impressions": 81763,
+    "clicks": 3123
    },
    {
     "age": "65+",
     "gender": "Мужчины",
-    "spend": 35.35,
-    "impressions": 117195,
-    "clicks": 3578
+    "spend": 36.89,
+    "impressions": 125306,
+    "clicks": 3760
    },
    {
     "age": "65+",
     "gender": "Не указан",
-    "spend": 0.37,
-    "impressions": 778,
+    "spend": 0.38,
+    "impressions": 829,
     "clicks": 28
    },
    {
@@ -47659,134 +48263,134 @@
    {
     "age": "18-24",
     "gender": "Женщины",
-    "spend": 91.61,
-    "impressions": 401838,
-    "clicks": 9513
+    "spend": 97.01,
+    "impressions": 432873,
+    "clicks": 10143
    },
    {
     "age": "18-24",
     "gender": "Мужчины",
-    "spend": 677.44,
-    "impressions": 1318993,
-    "clicks": 19239
+    "spend": 683.84,
+    "impressions": 1358391,
+    "clicks": 19991
    },
    {
     "age": "18-24",
     "gender": "Не указан",
-    "spend": 1.99,
-    "impressions": 5720,
-    "clicks": 128
+    "spend": 2.01,
+    "impressions": 6009,
+    "clicks": 131
    },
    {
     "age": "25-34",
     "gender": "Женщины",
-    "spend": 130.72,
-    "impressions": 437887,
-    "clicks": 16857
+    "spend": 137.71,
+    "impressions": 464725,
+    "clicks": 17868
    },
    {
     "age": "25-34",
     "gender": "Мужчины",
-    "spend": 2711.01,
-    "impressions": 2386348,
-    "clicks": 35305
+    "spend": 2718.41,
+    "impressions": 2423196,
+    "clicks": 36152
    },
    {
     "age": "25-34",
     "gender": "Не указан",
-    "spend": 2.79,
-    "impressions": 4689,
-    "clicks": 160
+    "spend": 2.83,
+    "impressions": 4911,
+    "clicks": 172
    },
    {
     "age": "35-44",
     "gender": "Женщины",
-    "spend": 84.2,
-    "impressions": 251245,
-    "clicks": 11430
+    "spend": 88.42,
+    "impressions": 266352,
+    "clicks": 12095
    },
    {
     "age": "35-44",
     "gender": "Мужчины",
-    "spend": 878.0,
-    "impressions": 839627,
-    "clicks": 20012
+    "spend": 883.68,
+    "impressions": 869963,
+    "clicks": 20762
    },
    {
     "age": "35-44",
     "gender": "Не указан",
-    "spend": 1.14,
-    "impressions": 2808,
-    "clicks": 111
+    "spend": 1.15,
+    "impressions": 2965,
+    "clicks": 119
    },
    {
     "age": "45-54",
     "gender": "Женщины",
-    "spend": 35.66,
-    "impressions": 125830,
-    "clicks": 4543
+    "spend": 37.74,
+    "impressions": 134584,
+    "clicks": 4861
    },
    {
     "age": "45-54",
     "gender": "Мужчины",
-    "spend": 98.81,
-    "impressions": 314898,
-    "clicks": 9092
+    "spend": 102.91,
+    "impressions": 336106,
+    "clicks": 9623
    },
    {
     "age": "45-54",
     "gender": "Не указан",
-    "spend": 0.67,
-    "impressions": 1610,
-    "clicks": 52
+    "spend": 0.7,
+    "impressions": 1722,
+    "clicks": 56
    },
    {
     "age": "55-64",
     "gender": "Женщины",
-    "spend": 24.44,
-    "impressions": 100394,
-    "clicks": 3495
+    "spend": 26.17,
+    "impressions": 108179,
+    "clicks": 3783
    },
    {
     "age": "55-64",
     "gender": "Мужчины",
-    "spend": 48.85,
-    "impressions": 178385,
-    "clicks": 4685
+    "spend": 51.62,
+    "impressions": 191709,
+    "clicks": 4982
    },
    {
     "age": "55-64",
     "gender": "Не указан",
     "spend": 0.59,
-    "impressions": 818,
-    "clicks": 24
+    "impressions": 888,
+    "clicks": 26
    },
    {
     "age": "65+",
     "gender": "Женщины",
-    "spend": 21.01,
-    "impressions": 77840,
-    "clicks": 2983
+    "spend": 22.72,
+    "impressions": 84800,
+    "clicks": 3238
    },
    {
     "age": "65+",
     "gender": "Мужчины",
-    "spend": 36.23,
-    "impressions": 120059,
-    "clicks": 3633
+    "spend": 38.18,
+    "impressions": 129365,
+    "clicks": 3875
    },
    {
     "age": "65+",
     "gender": "Не указан",
-    "spend": 0.37,
-    "impressions": 805,
+    "spend": 0.39,
+    "impressions": 856,
     "clicks": 28
    },
    {
     "age": "Unknown",
     "gender": "Женщины",
     "spend": 0.0,
-    "impressions": 1,
+    "impressions": 3,
     "clicks": 0
    },
    {
@@ -47808,165 +48412,160 @@
  "posthog_funnel": [
   {
    "name": "Зарегистрировался",
-   "count": 288,
+   "count": 268,
    "median_conversion_sec": null
   },
   {
    "name": "Открыл раздел приложения",
-   "count": 162,
-   "median_conversion_sec": 59.43499994277954
+   "count": 151,
+   "median_conversion_sec": 61.986000061035156
   },
   {
    "name": "Открыл сделку",
-   "count": 46,
-   "median_conversion_sec": 511.4049998521805
+   "count": 43,
+   "median_conversion_sec": 503.6139998435974
   }
  ],
  "posthog_events": [
   {
    "event": "settings_tab_selected",
    "name": "Открыл вкладку настроек",
-   "count": 1311.0
+   "count": 1250.0
   },
   {
    "event": "manual_journal_empty_state_shown",
    "name": "Увидел пустой ручной журнал",
-   "count": 855.0
+   "count": 811.0
   },
   {
    "event": "date_range_selected",
    "name": "Выбрал диапазон дат",
-   "count": 763.0
+   "count": 705.0
   },
   {
    "event": "$dead_click",
    "name": "Мёртвый клик (без реакции интерфейса)",
-   "count": 644.0
-  },
-  {
-   "event": "trade_opened",
-   "name": "Открыл сделку",
-   "count": 517.0
+   "count": 567.0
   },
   {
    "event": "journal_view_mode_changed",
    "name": "Сменил режим просмотра журнала",
-   "count": 491.0
+   "count": 472.0
   },
   {
-   "event": "$identify",
-   "name": "Зарегистрировался",
-   "count": 396.0
+   "event": "trade_opened",
+   "name": "Открыл сделку",
+   "count": 453.0
   },
   {
    "event": "dashboard_widget_view_toggled",
    "name": "Переключил вид виджета",
-   "count": 390.0
+   "count": 387.0
+  },
+  {
+   "event": "$identify",
+   "name": "Зарегистрировался",
+   "count": 367.0
   },
   {
    "event": "trading_account_add_clicked",
    "name": "Клик «подключить аккаунт»",
-   "count": 371.0
+   "count": 362.0
   },
   {
    "event": "journal_summary_toggled",
    "name": "Показал/скрыл summary журнала",
-   "count": 364.0
+   "count": 354.0
   },
   {
    "event": "journal_mode_switched",
    "name": "Переключил режим журнала",
-   "count": 347.0
+   "count": 327.0
   },
   {
    "event": "onboarding_resumed",
    "name": "Вернулся в онбординг",
-   "count": 261.0
+   "count": 245.0
   },
   {
    "event": "user_signed_up",
    "name": "Зарегистрировался (форма)",
-   "count": 240.0
+   "count": 223.0
   },
   {
    "event": "onboarding_started",
    "name": "Начал онбординг",
-   "count": 240.0
+   "count": 223.0
   },
   {
    "event": "demo_gated_feature_blocked",
    "name": "Уткнулся в фичу, закрытую в демо",
-   "count": 226.0
-  },
-  {
-   "event": "$dead_swipe",
-   "name": "Мёртвый свайп (без реакции интерфейса)",
-   "count": 207.0
+   "count": 223.0
   },
   {
    "event": "connect_api_modal_shown",
    "name": "Увидел модалку «подключить API»",
-   "count": 206.0
-  },
-  {
-   "event": "connect_api_modal_cta_clicked",
-   "name": "Клик в модалке «подключить API»",
-   "count": 189.0
-  },
-  {
-   "event": "data_refreshed",
-   "name": "Обновил данные вручную",
-   "count": 188.0
+   "count": 203.0
   },
   {
    "event": "trade_detail_block_added",
    "name": "Добавил блок в детали сделки",
+   "count": 192.0
+  },
+  {
+   "event": "$dead_swipe",
+   "name": "Мёртвый свайп (без реакции интерфейса)",
+   "count": 190.0
+  },
+  {
+   "event": "connect_api_modal_cta_clicked",
+   "name": "Клик в модалке «подключить API»",
    "count": 185.0
   },
   {
-   "event": "content_shared",
-   "name": "Поделился контентом",
-   "count": 178.0
-  },
-  {
-   "event": "demo_mode_entered",
-   "name": "Вошёл в демо-режим",
-   "count": 170.0
-  },
-  {
-   "event": "demo_mode_clicked",
-   "name": "Клик «демо-режим»",
-   "count": 168.0
+   "event": "data_refreshed",
+   "name": "Обновил данные вручную",
+   "count": 172.0
   },
   {
    "event": "workspace_switched",
    "name": "Переключил workspace",
-   "count": 166.0
+   "count": 167.0
   },
   {
-   "event": "promo_code_resolved",
-   "name": "Промокод обработан",
-   "count": 163.0
+   "event": "demo_mode_entered",
+   "name": "Вошёл в демо-режим",
+   "count": 164.0
   },
   {
-   "event": "demo_banner_exit_clicked",
-   "name": "Закрыл баннер демо-режима",
+   "event": "demo_mode_clicked",
+   "name": "Клик «демо-режим»",
    "count": 162.0
-  },
-  {
-   "event": "manual_trade_added",
-   "name": "Добавил сделку вручную",
-   "count": 159.0
   },
   {
    "event": "manual_trade_creation_started",
    "name": "Начал создание сделки",
-   "count": 158.0
+   "count": 154.0
   },
   {
-   "event": "onboarding_path_selected",
-   "name": "Выбрал ветку онбординга",
-   "count": 150.0
+   "event": "demo_banner_exit_clicked",
+   "name": "Закрыл баннер демо-режима",
+   "count": 152.0
+  },
+  {
+   "event": "manual_trade_added",
+   "name": "Добавил сделку вручную",
+   "count": 151.0
+  },
+  {
+   "event": "content_shared",
+   "name": "Поделился контентом",
+   "count": 149.0
+  },
+  {
+   "event": "promo_code_resolved",
+   "name": "Промокод обработан",
+   "count": 147.0
   },
   {
    "event": "calendar_month_navigated",
@@ -47974,19 +48573,14 @@
    "count": 144.0
   },
   {
+   "event": "onboarding_path_selected",
+   "name": "Выбрал ветку онбординга",
+   "count": 135.0
+  },
+  {
    "event": "dashboard_widgets_managed",
    "name": "Настроил набор виджетов",
-   "count": 131.0
-  },
-  {
-   "event": "item_favorited",
-   "name": "Добавил в избранное",
-   "count": 131.0
-  },
-  {
-   "event": "dashboard_layout_toggled",
-   "name": "Изменил layout дашборда",
-   "count": 126.0
+   "count": 128.0
   },
   {
    "event": "risk_rule_updated",
@@ -47994,19 +48588,24 @@
    "count": 125.0
   },
   {
+   "event": "dashboard_layout_toggled",
+   "name": "Изменил layout дашборда",
+   "count": 123.0
+  },
+  {
+   "event": "item_favorited",
+   "name": "Добавил в избранное",
+   "count": 122.0
+  },
+  {
    "event": "ai_chat_opened",
    "name": "Открыл AI-чат",
-   "count": 113.0
+   "count": 112.0
   },
   {
    "event": "nav_recommendation_selected",
    "name": "Выбрал рекомендацию в навигации",
-   "count": 110.0
-  },
-  {
-   "event": "manual_account_created",
-   "name": "Создал ручной аккаунт",
-   "count": 98.0
+   "count": 103.0
   },
   {
    "event": "connection_manager_opened",
@@ -48014,19 +48613,19 @@
    "count": 95.0
   },
   {
-   "event": "journal_filters_opened",
-   "name": "Открыл фильтры журнала",
-   "count": 87.0
+   "event": "manual_account_created",
+   "name": "Создал ручной аккаунт",
+   "count": 86.0
   },
   {
-   "event": "calendar_day_viewed",
-   "name": "Открыл день в календаре",
-   "count": 78.0
+   "event": "journal_filters_opened",
+   "name": "Открыл фильтры журнала",
+   "count": 85.0
   },
   {
    "event": "profile_field_updated",
    "name": "Изменил поле профиля",
-   "count": 74.0
+   "count": 73.0
   },
   {
    "event": "ai_message_sent",
@@ -48041,17 +48640,17 @@
   {
    "event": "note_created",
    "name": "Создал заметку",
-   "count": 59.0
-  },
-  {
-   "event": "plan_change_clicked",
-   "name": "Клик «сменить план»",
-   "count": 50.0
+   "count": 57.0
   },
   {
    "event": "connection_attempt_started",
    "name": "Начал попытку подключения",
    "count": 49.0
+  },
+  {
+   "event": "plan_change_clicked",
+   "name": "Клик «сменить план»",
+   "count": 45.0
   },
   {
    "event": "connection_attempt_result",
@@ -48064,11 +48663,6 @@
    "count": 36.0
   },
   {
-   "event": "trial_checkout_started",
-   "name": "Начал оформление trial/оплаты",
-   "count": 33.0
-  },
-  {
    "event": "onboarding_insight_next_clicked",
    "name": "Клик «дальше» в инсайтах онбординга",
    "count": 33.0
@@ -48079,9 +48673,14 @@
    "count": 31.0
   },
   {
+   "event": "trial_checkout_started",
+   "name": "Начал оформление trial/оплаты",
+   "count": 31.0
+  },
+  {
    "event": "settings_empty_state_cta_clicked",
    "name": "Клик по пустому состоянию настроек",
-   "count": 30.0
+   "count": 29.0
   },
   {
    "event": "note_block_added",
@@ -48089,39 +48688,34 @@
    "count": 28.0
   },
   {
-   "event": "manual_onboarding_completed",
-   "name": "Завершил ручной онбординг",
-   "count": 24.0
-  },
-  {
    "event": "trade_detail_column_added",
    "name": "Добавил колонку в детали сделки",
-   "count": 23.0
+   "count": 22.0
   },
   {
-   "event": "nav_recommendation_dismissed",
-   "name": "Отклонил рекомендацию в навигации",
-   "count": 23.0
-  },
-  {
-   "event": "api_connect_cta_clicked",
-   "name": "Клик «подключить API»",
+   "event": "manual_onboarding_completed",
+   "name": "Завершил ручной онбординг",
    "count": 20.0
   },
   {
    "event": "subscription_cancelled",
    "name": "Подписка отменена",
+   "count": 20.0
+  },
+  {
+   "event": "nav_recommendation_dismissed",
+   "name": "Отклонил рекомендацию в навигации",
+   "count": 20.0
+  },
+  {
+   "event": "api_connect_cta_clicked",
+   "name": "Клик «подключить API»",
    "count": 19.0
   },
   {
    "event": "portfolio_created",
    "name": "Создал портфель",
    "count": 17.0
-  },
-  {
-   "event": "trade_template_selected",
-   "name": "Выбрал шаблон сделки",
-   "count": 14.0
   },
   {
    "event": "dashboard_widget_settings_opened",
@@ -48134,9 +48728,14 @@
    "count": 13.0
   },
   {
+   "event": "trade_template_selected",
+   "name": "Выбрал шаблон сделки",
+   "count": 12.0
+  },
+  {
    "event": "app_store_link_clicked",
    "name": "Клик по ссылке на app store",
-   "count": 10.0
+   "count": 9.0
   },
   {
    "event": "referral_link_copied",
@@ -48162,6 +48761,11 @@
    "event": "account_connected",
    "name": "Аккаунт подключён",
    "count": 7.0
+  },
+  {
+   "event": "profile_picture_updated",
+   "name": "Обновил аватар",
+   "count": 6.0
   },
   {
    "event": "external_auth_credentials_managed",
@@ -48199,11 +48803,6 @@
    "count": 5.0
   },
   {
-   "event": "profile_picture_updated",
-   "name": "Обновил аватар",
-   "count": 5.0
-  },
-  {
    "event": "notification_preference_toggled",
    "name": "Переключил уведомления",
    "count": 5.0
@@ -48222,6 +48821,11 @@
    "event": "connection_retry_started",
    "name": "Повторил попытку подключения",
    "count": 5.0
+  },
+  {
+   "event": "calendar_day_viewed",
+   "name": "Открыл день в календаре",
+   "count": 4.0
   },
   {
    "event": "promocode_activated",
@@ -48280,9 +48884,9 @@
   }
  ],
  "posthog_activity": {
-  "dau": 2,
-  "wau": 54,
-  "mau": 236
+  "dau": 6,
+  "wau": 56,
+  "mau": 215
  },
  "posthog_trial_by_plan": [
   {
@@ -48322,7 +48926,7 @@
   "promo_applied": 17,
   "promo_skipped": 289,
   "path_split": {
-   "manual": 237,
+   "manual": 238,
    "auto": 40
   }
  },
@@ -48364,17 +48968,17 @@
  ],
  "clarity": {
   "num_days": 3,
-  "sessions": 234,
-  "bot_sessions": 64,
-  "distinct_users": 219,
-  "pages_per_session": 1.52,
-  "total_time_min": 108,
-  "active_time_min": 50,
-  "avg_scroll_depth": 98.0,
+  "sessions": 153,
+  "bot_sessions": 21,
+  "distinct_users": 140,
+  "pages_per_session": 1.41,
+  "total_time_min": 145,
+  "active_time_min": 42,
+  "avg_scroll_depth": 95.4,
   "dead_clicks": {
-   "sessions_pct": 8.55,
-   "count": 48,
-   "pages": 21
+   "sessions_pct": 10.46,
+   "count": 42,
+   "pages": 17
   },
   "rage_clicks": {
    "sessions_pct": 0,
@@ -48392,9 +48996,9 @@
    "pages": 0
   },
   "script_errors": {
-   "sessions_pct": 0.43,
-   "count": 6,
-   "pages": 1
+   "sessions_pct": 0,
+   "count": 0,
+   "pages": 0
   },
   "error_clicks": {
    "sessions_pct": 0,
@@ -48403,54 +49007,54 @@
   },
   "top_pages": [
    {
-    "url": "https://futures.scope360.io/journal",
-    "visits": 44
-   },
-   {
     "url": "https://futures.scope360.io/settings/connection-manager",
-    "visits": 31
-   },
-   {
-    "url": "https://futures.scope360.io/settings/profile",
-    "visits": 27
-   },
-   {
-    "url": "https://futures.scope360.io/dashboard",
-    "visits": 24
-   },
-   {
-    "url": "https://futures.scope360.io/onboarding/billing",
-    "visits": 24
+    "visits": 52
    },
    {
     "url": "https://futures.scope360.io/settings/plans",
-    "visits": 23
+    "visits": 25
    },
    {
-    "url": "https://futures.scope360.io/daily-stats",
-    "visits": 19
+    "url": "https://futures.scope360.io/onboarding/billing",
+    "visits": 20
    },
    {
-    "url": "https://futures.scope360.io/notes",
+    "url": "https://futures.scope360.io/journal",
+    "visits": 18
+   },
+   {
+    "url": "https://futures.scope360.io/dashboard",
+    "visits": 15
+   },
+   {
+    "url": "https://futures.scope360.io/settings/profile",
     "visits": 11
    },
    {
     "url": "https://futures.scope360.io/okx-referral-plan",
-    "visits": 11
+    "visits": 9
    },
    {
     "url": "https://futures.scope360.io/settings/billing",
-    "visits": 11
+    "visits": 7
+   },
+   {
+    "url": "https://futures.scope360.io/settings/journal",
+    "visits": 5
+   },
+   {
+    "url": "https://futures.scope360.io/daily-stats",
+    "visits": 4
    }
   ],
   "by_device": [
    {
     "name": "PC",
-    "sessions": 225
+    "sessions": 147
    },
    {
     "name": "Mobile",
-    "sessions": 9
+    "sessions": 6
    }
   ]
  },
@@ -48594,15 +49198,29 @@
    "quick_backs": 0,
    "script_errors": 6,
    "error_clicks": 0
+  },
+  {
+   "date": "2026-10-22",
+   "sessions": 153,
+   "distinct_users": 140,
+   "avg_scroll_depth": 95.4,
+   "active_time_min": 42,
+   "dead_clicks": 42,
+   "dead_clicks_pct": 10.46,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "quick_backs": 0,
+   "script_errors": 0,
+   "error_clicks": 0
   }
  ],
  "clarity_pages": [
   {
    "url": "https://futures.scope360.io/okx-referral-plan?redirect=/settings/plans",
    "path": "okx-referral-plan?redirect=/settings/plans",
-   "sessions": 3,
+   "sessions": 2,
    "dead_clicks": 17,
-   "dead_clicks_pct": 66.67,
+   "dead_clicks_pct": 100,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
@@ -48611,9 +49229,9 @@
   {
    "url": "https://futures.scope360.io/onboarding/billing?redirect=/journal",
    "path": "onboarding/billing?redirect=/journal",
-   "sessions": 17,
+   "sessions": 13,
    "dead_clicks": 12,
-   "dead_clicks_pct": 23.53,
+   "dead_clicks_pct": 30.77,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
@@ -48622,42 +49240,9 @@
   {
    "url": "https://futures.scope360.io/settings/connection-manager",
    "path": "settings/connection-manager",
-   "sessions": 24,
-   "dead_clicks": 6,
-   "dead_clicks_pct": 20.83,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/settings/plans",
-   "path": "settings/plans",
-   "sessions": 22,
+   "sessions": 50,
    "dead_clicks": 4,
-   "dead_clicks_pct": 9.09,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/settings/connection-manager?accountId=4452&accountMarket=fx",
-   "path": "settings/connection-manager?accountId=4452&accountMarket=fx",
-   "sessions": 1,
-   "dead_clicks": 3,
-   "dead_clicks_pct": 100,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/settings/billing",
-   "path": "settings/billing",
-   "sessions": 11,
-   "dead_clicks": 2,
-   "dead_clicks_pct": 18.18,
+   "dead_clicks_pct": 8,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
@@ -48666,28 +49251,50 @@
   {
    "url": "https://futures.scope360.io/settings/referrals",
    "path": "settings/referrals",
-   "sessions": 6,
-   "dead_clicks": 1,
-   "dead_clicks_pct": 16.67,
+   "sessions": 4,
+   "dead_clicks": 3,
+   "dead_clicks_pct": 50,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/notes",
-   "path": "notes",
-   "sessions": 9,
-   "dead_clicks": 1,
-   "dead_clicks_pct": 11.11,
+   "url": "https://futures.scope360.io/settings/plans",
+   "path": "settings/plans",
+   "sessions": 24,
+   "dead_clicks": 2,
+   "dead_clicks_pct": 4.17,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/okx-referral-plan?origin=onboarding&redirect=/journal",
-   "path": "okx-referral-plan?origin=onboarding&redirect=/journal",
+   "url": "https://futures.scope360.io/settings/billing",
+   "path": "settings/billing",
+   "sessions": 7,
+   "dead_clicks": 1,
+   "dead_clicks_pct": 14.29,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "error_clicks": 0,
+   "quick_backs": 0
+  },
+  {
+   "url": "https://futures.scope360.io/settings/profile",
+   "path": "settings/profile",
+   "sessions": 11,
+   "dead_clicks": 1,
+   "dead_clicks_pct": 9.09,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "error_clicks": 0,
+   "quick_backs": 0
+  },
+  {
+   "url": "https://futures.scope360.io/settings/platform",
+   "path": "settings/platform",
    "sessions": 3,
    "dead_clicks": 1,
    "dead_clicks_pct": 33.33,
@@ -48697,11 +49304,11 @@
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/settings/platform",
-   "path": "settings/platform",
-   "sessions": 7,
+   "url": "https://futures.scope360.io/okx-referral-plan?origin=onboarding&redirect=/journal",
+   "path": "okx-referral-plan?origin=onboarding&redirect=/journal",
+   "sessions": 2,
    "dead_clicks": 1,
-   "dead_clicks_pct": 14.29,
+   "dead_clicks_pct": 50,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
@@ -48715,14 +49322,14 @@
    "variant_key": "ppp",
    "geo_group": "europe",
    "country": "UA",
-   "users": 14
+   "users": 16
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "geo_group": "europe",
-   "country": "PT",
-   "users": 5
+   "country": "LT",
+   "users": 6
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
@@ -48735,8 +49342,15 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "geo_group": "europe",
-   "country": "LT",
+   "country": "PT",
    "users": 5
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
+   "country": "PL",
+   "users": 3
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
@@ -48756,29 +49370,8 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "geo_group": "europe",
-   "country": "PL",
-   "users": 3
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "ppp",
-   "geo_group": "europe",
    "country": "BY",
    "users": 2
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "ppp",
-   "geo_group": "asia",
-   "country": "KZ",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "ppp",
-   "geo_group": "asia",
-   "country": "SG",
-   "users": 1
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
@@ -48799,6 +49392,20 @@
    "variant_key": "ppp",
    "geo_group": "africa",
    "country": "MA",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "asia",
+   "country": "KZ",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "asia",
+   "country": "SG",
    "users": 1
   },
   {
@@ -48818,27 +49425,6 @@
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
-   "geo_group": "asia",
-   "country": "SG",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "standard",
-   "geo_group": "africa",
-   "country": "ET",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "standard",
-   "geo_group": "africa",
-   "country": "NG",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "standard",
    "geo_group": "africa",
    "country": "ZA",
    "users": 1
@@ -48855,6 +49441,13 @@
    "variant_key": "standard",
    "geo_group": "asia",
    "country": "PK",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "asia",
+   "country": "SG",
    "users": 1
   },
   {
@@ -48879,24 +49472,38 @@
    "users": 1
   },
   {
-   "experiment_key": "trial_price_geo_v1",
-   "variant_key": "free",
-   "geo_group": "europe",
-   "country": "LT",
-   "users": 4
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "africa",
+   "country": "ET",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "africa",
+   "country": "NG",
+   "users": 1
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
    "geo_group": "europe",
-   "country": "FR",
-   "users": 3
+   "country": "LT",
+   "users": 5
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
    "geo_group": "europe",
    "country": "DE",
+   "users": 3
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "free",
+   "geo_group": "europe",
+   "country": "FR",
    "users": 3
   },
   {
@@ -48923,8 +49530,8 @@
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
-   "geo_group": "north_america",
-   "country": "US",
+   "geo_group": "africa",
+   "country": "NG",
    "users": 1
   },
   {
@@ -48937,8 +49544,15 @@
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
-   "geo_group": "africa",
-   "country": "NG",
+   "geo_group": "asia",
+   "country": "KZ",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "free",
+   "geo_group": "north_america",
+   "country": "US",
    "users": 1
   },
   {
@@ -48946,13 +49560,6 @@
    "variant_key": "free",
    "geo_group": "africa",
    "country": "ZA",
-   "users": 1
-  },
-  {
-   "experiment_key": "trial_price_geo_v1",
-   "variant_key": "free",
-   "geo_group": "asia",
-   "country": "KZ",
    "users": 1
   },
   {
@@ -48979,15 +49586,15 @@
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
-   "geo_group": "asia",
-   "country": "SG",
+   "geo_group": "europe",
+   "country": "BY",
    "users": 2
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
-   "geo_group": "europe",
-   "country": "BY",
+   "geo_group": "asia",
+   "country": "SG",
    "users": 2
   },
   {
@@ -49007,6 +49614,13 @@
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
+   "geo_group": "europe",
+   "country": "FR",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
    "geo_group": "africa",
    "country": "EG",
    "users": 1
@@ -49021,13 +49635,6 @@
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
-   "geo_group": "africa",
-   "country": "DZ",
-   "users": 1
-  },
-  {
-   "experiment_key": "trial_price_geo_v1",
-   "variant_key": "paid_1_usd",
    "geo_group": "asia",
    "country": "KZ",
    "users": 1
@@ -49035,8 +49642,15 @@
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
-   "geo_group": "europe",
-   "country": "FR",
+   "geo_group": "africa",
+   "country": "DZ",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_winback_v1",
+   "variant_key": "winback",
+   "geo_group": "?",
+   "country": "?",
    "users": 1
   }
  ],
@@ -49177,12 +49791,30 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "d": "2026-10-21",
-   "users": 1
+   "users": 2
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
    "d": "2026-10-21",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "d": "2026-10-22",
+   "users": 2
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "free",
+   "d": "2026-10-22",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_winback_v1",
+   "variant_key": "winback",
+   "d": "2026-10-22",
    "users": 1
   }
  ],
@@ -49296,7 +49928,7 @@
    "variant_key": "ppp",
    "cohort": "test",
    "cutoff": "2026-10-16 12:10:21.51165+00",
-   "assigned": 21,
+   "assigned": 24,
    "checkout_users": 1,
    "paid_users": 0,
    "revenue": 0.0
@@ -49326,7 +49958,7 @@
    "variant_key": "free",
    "cohort": "test",
    "cutoff": "2026-10-16 12:53:19.914637+00",
-   "assigned": 19,
+   "assigned": 20,
    "checkout_users": 1,
    "paid_users": 0,
    "revenue": 0.0
@@ -49340,6 +49972,16 @@
    "checkout_users": 1,
    "paid_users": 0,
    "revenue": 1.0
+  },
+  {
+   "experiment_key": "trial_winback_v1",
+   "variant_key": "winback",
+   "cohort": "rollout",
+   "cutoff": null,
+   "assigned": 1,
+   "checkout_users": 0,
+   "paid_users": 0,
+   "revenue": 0.0
   }
  ],
  "ab_tariff_geo": [
@@ -49430,7 +50072,7 @@
    "checkouts": 15,
    "users": 13,
    "activated": 7,
-   "matured": 3,
+   "matured": 5,
    "paid": 0,
    "first": "2026-10-02",
    "last": "2026-10-18"
