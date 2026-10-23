@@ -688,6 +688,33 @@ def fetch_meta():
             rows = _fetch()
         return rows
 
+    def insights_monthly(fields, breakdowns):
+        """Разбивка по дням помесячными окнами, по каждому кабинету отдельно.
+        На date_preset=maximum старый кабинет отдавал по странам/плейсментам пустой
+        spend за март–июль (гео занижалось в 3–4 раза), а помесячно данные полные."""
+        import calendar
+        from datetime import date
+        out = []
+        today = date.today()
+        y, m = int(META_START[:4]), int(META_START[5:7])
+        while (y, m) <= (today.year, today.month):
+            last = calendar.monthrange(y, m)[1]
+            tr = {"since": f"{y}-{m:02d}-01", "until": f"{y}-{m:02d}-{last:02d}"}
+            for acc in meta.ACCOUNTS:
+                for attempt in range(4):
+                    try:
+                        out.extend(meta.insights(fields, breakdowns=breakdowns, time_range=tr, time_increment=1,
+                                                 account_id=acc["id"], token=acc["token"]))
+                        break
+                    except Exception as e:  # нестабильный JSON/лимиты Meta — повторяем
+                        if attempt == 3:
+                            raise RuntimeError(f"Meta {acc['id']} {tr['since']}: {e}")
+                        time.sleep(3)
+            m += 1
+            if m > 12:
+                y, m = y + 1, 1
+        return out
+
     # Новый активный кабинет (Scope Reserve) — топ креативов считаем только по
     # нему: старый (Scope 360) заблокирован Meta и содержит только историю.
     NEW_ACCOUNT = meta.ACCOUNTS[-1]
@@ -740,10 +767,7 @@ def fetch_meta():
     # на них не влиял. Теперь тянем с time_increment=1 (день + нужный breakdown)
     # за всю историю и отдаём как есть — фронтенд сам агрегирует по выбранному
     # периоду, как уже делает с meta_spend_monthly/adsKpi.
-    geo_raw = insights_nonzero(
-        ["spend", "impressions", "clicks", "actions"],
-        breakdowns=["country"], date_preset="maximum", time_increment=1,
-    )
+    geo_raw = insights_monthly(["spend", "impressions", "clicks", "actions"], ["country"])
     geo_by_key = {}
     for r in geo_raw:
         if r["date_start"] < META_START:
@@ -762,10 +786,7 @@ def fetch_meta():
     ]
 
     # Только платформа (Instagram/Facebook/Threads) — без разбивки по ленте/сторис/рилс
-    placement_raw = insights_nonzero(
-        ["spend", "impressions", "clicks"],
-        breakdowns=["publisher_platform"], date_preset="maximum", time_increment=1,
-    )
+    placement_raw = insights_monthly(["spend", "impressions", "clicks"], ["publisher_platform"])
     PLATFORM_NAMES = {"facebook": "Facebook", "instagram": "Instagram", "threads": "Threads",
                       "messenger": "Messenger", "audience_network": "Audience Network"}
     placement_by_key = {}
