@@ -715,9 +715,9 @@ def fetch_meta():
                 y, m = y + 1, 1
         return out
 
-    # Новый активный кабинет (Scope Reserve) — топ креативов считаем только по
-    # нему: старый (Scope 360) заблокирован Meta и содержит только историю.
-    NEW_ACCOUNT = meta.ACCOUNTS[-1]
+    # Креативы считаем по всем кабинетам кроме первого: старый (Scope 360)
+    # заблокирован Meta и содержит только историю.
+    CREATIVE_ACCOUNTS = meta.ACCOUNTS[1:] or meta.ACCOUNTS
 
     # Внимание: если запросить spend/impressions/clicks и actions ОДНИМ вызовом
     # с time_increment=1 на длинном интервале — Meta воспроизводимо отдаёт
@@ -844,10 +844,16 @@ def fetch_meta():
 
     # Креативы — тоже по дням, чтобы топ-12 по расходам пересчитывался под
     # выбранный период на фронтенде, а не показывал всегда всю историю.
-    creatives_daily_raw = insights_nonzero(
-        ["ad_id", "ad_name", "campaign_name", "spend", "impressions", "clicks", "actions"],
-        level="ad", date_preset="maximum", time_increment=1, account=NEW_ACCOUNT,
-    )
+    creatives_daily_raw = []
+    ad_token = {}
+    for acc in CREATIVE_ACCOUNTS:
+        rows = insights_nonzero(
+            ["ad_id", "ad_name", "campaign_name", "spend", "impressions", "clicks", "actions"],
+            level="ad", date_preset="maximum", time_increment=1, account=acc,
+        )
+        for r in rows:
+            ad_token[r.get("ad_id")] = acc["token"]
+        creatives_daily_raw.extend(rows)
     creatives_by_key = {}
     creative_meta = {}
     for r in creatives_daily_raw:
@@ -869,7 +875,7 @@ def fetch_meta():
     # Все ad_id с картинкой креатива — тянем один раз, фронтенд сам решает,
     # какие 12 показать по расходам за выбранный период.
     creative_thumbnails = {
-        ad_id: meta.ad_creative_thumbnail(ad_id, token=NEW_ACCOUNT["token"])
+        ad_id: meta.ad_creative_thumbnail(ad_id, token=ad_token[ad_id])
         for ad_id in creative_meta
     }
 
