@@ -641,7 +641,33 @@ def fetch_ga4():
     }))
     ga4_utm_campaigns = _clean_utm_campaigns(ga4_utm_campaigns)
 
+    # Google Ads (YouTube): расходы и клики приходят в GA4 после связки
+    # аккаунта Google Ads с property лендинга (с 1 ноября 2026, без бэкфилла).
+    google_ads_daily = []
+    try:
+        for r in ga4.rows_to_table(ga4.report({
+            "dimensions": [{"name": "date"}, {"name": "sessionGoogleAdsCampaignName"}],
+            "metrics": [{"name": "advertiserAdCost"}, {"name": "advertiserAdClicks"},
+                        {"name": "advertiserAdImpressions"}, {"name": "sessions"}],
+            "dateRanges": [{"startDate": "2026-10-25", "endDate": "today"}],
+            "limit": 1000,
+        })):
+            if r["sessionGoogleAdsCampaignName"] == "(not set)":
+                continue
+            d = r["date"]
+            google_ads_daily.append({
+                "date": f"{d[:4]}-{d[4:6]}-{d[6:]}",
+                "campaign": r["sessionGoogleAdsCampaignName"].replace("\xa0", " "),
+                "spend": round(float(r["advertiserAdCost"]), 2),
+                "clicks": int(float(r["advertiserAdClicks"])),
+                "impressions": int(float(r["advertiserAdImpressions"])),
+                "sessions": int(r["sessions"]),
+            })
+    except SystemExit as e:
+        print(f"Google Ads via GA4: {e}")
+
     return {
+        "google_ads_daily": google_ads_daily,
         "ga4_sessions_weekly": _bucket_weekly(landing_daily),
         "ga4_sessions_monthly": _bucket_monthly(landing_daily),
         "ga4_app_sessions_weekly": _bucket_weekly(app_daily),
@@ -1412,7 +1438,7 @@ def main():
             prev = json.loads(data_path.read_text())
             for k in ("ga4_sessions_weekly", "ga4_sessions_monthly",
                       "ga4_app_sessions_weekly", "ga4_app_sessions_monthly",
-                      "ga4_channels", "ga4_top_pages", "ga4_utm_campaigns"):
+                      "ga4_channels", "ga4_top_pages", "ga4_utm_campaigns", "google_ads_daily"):
                 out[k] = prev.get(k, [])
 
     try:

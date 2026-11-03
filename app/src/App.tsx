@@ -872,6 +872,17 @@ export default function App() {
     return [...bucket.values()].sort((a, b) => b.spend - a.spend)
   }, [adsRkey, D])
 
+  const googleAds = useMemo(() => {
+    const bucket = new Map<string, Row>()
+    for (const r of (D.google_ads_daily ?? [])) {
+      if (!inRange(r.date, adsRange)) continue
+      const o = bucket.get(r.campaign) ?? { campaign: r.campaign, spend: 0, impressions: 0, clicks: 0, sessions: 0 }
+      o.spend += r.spend; o.impressions += r.impressions; o.clicks += r.clicks; o.sessions += r.sessions
+      bucket.set(r.campaign, o)
+    }
+    return [...bucket.values()].sort((a, b) => b.spend - a.spend)
+  }, [adsRkey, D])
+
   const adsPlacement = useMemo(() => {
     const bucket = new Map<string, Row>()
     for (const r of (D.meta_placement ?? [])) {
@@ -1584,6 +1595,35 @@ export default function App() {
                           </tr>
                         )
                       })}
+                    </tbody>
+                  </table>
+                </div>
+              ) : <EmptyNote />}
+            </Card>
+
+            <Card title="Google Ads (YouTube)" note="Данные из GA4 после связки аккаунта, с 1 ноября. Регистрации из этой рекламы смотрим по UTM в Metabase.">
+              {googleAds.length ? (
+                <div className="overflow-x-auto">
+                  <table className="w-full text-[12.5px]">
+                    <thead>
+                      <tr className="text-left text-muted-foreground">
+                        <th className="pb-2 pr-3 font-medium">Кампания</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Расходы</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Показы</th>
+                        <th className="pb-2 pr-3 text-right font-medium">Клики</th>
+                        <th className="pb-2 text-right font-medium">Сессии на сайте</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {googleAds.map((r: Row) => (
+                        <tr key={r.campaign} className="border-t border-border">
+                          <td className="py-1.5 pr-3">{r.campaign}</td>
+                          <td className="py-1.5 pr-3 text-right tabular-nums">{fmtM(r.spend)}</td>
+                          <td className="py-1.5 pr-3 text-right tabular-nums">{fmtN(r.impressions)}</td>
+                          <td className="py-1.5 pr-3 text-right tabular-nums">{fmtN(r.clicks)}</td>
+                          <td className="py-1.5 text-right tabular-nums">{fmtN(r.sessions)}</td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
