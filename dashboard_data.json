@@ -524,6 +524,11 @@
    "d": "2026-11-01",
    "sales": 1,
    "revenue": 20.0
+  },
+  {
+   "d": "2026-11-02",
+   "sales": 1,
+   "revenue": 20.0
   }
  ],
  "sales_users_daily": [
@@ -553,11 +558,11 @@
   },
   {
    "d": "2026-01-15",
-   "user_id": 573
+   "user_id": 1274
   },
   {
    "d": "2026-01-15",
-   "user_id": 1274
+   "user_id": 573
   },
   {
    "d": "2026-01-18",
@@ -573,15 +578,15 @@
   },
   {
    "d": "2026-01-21",
-   "user_id": 7135
-  },
-  {
-   "d": "2026-01-21",
    "user_id": 4444
   },
   {
    "d": "2026-01-21",
    "user_id": 7393
+  },
+  {
+   "d": "2026-01-21",
+   "user_id": 7135
   },
   {
    "d": "2026-01-24",
@@ -605,15 +610,11 @@
   },
   {
    "d": "2026-01-28",
-   "user_id": 478
-  },
-  {
-   "d": "2026-01-28",
    "user_id": 2426
   },
   {
-   "d": "2026-01-29",
-   "user_id": 1357
+   "d": "2026-01-28",
+   "user_id": 478
   },
   {
    "d": "2026-01-29",
@@ -622,6 +623,10 @@
   {
    "d": "2026-01-29",
    "user_id": 7719
+  },
+  {
+   "d": "2026-01-29",
+   "user_id": 1357
   },
   {
    "d": "2026-01-30",
@@ -641,19 +646,19 @@
   },
   {
    "d": "2026-02-04",
-   "user_id": 4718
-  },
-  {
-   "d": "2026-02-04",
    "user_id": 7164
   },
   {
-   "d": "2026-02-06",
-   "user_id": 4725
+   "d": "2026-02-04",
+   "user_id": 4718
   },
   {
    "d": "2026-02-06",
    "user_id": 3593
+  },
+  {
+   "d": "2026-02-06",
+   "user_id": 4725
   },
   {
    "d": "2026-02-07",
@@ -705,7 +710,7 @@
   },
   {
    "d": "2026-02-24",
-   "user_id": 4663
+   "user_id": 7429
   },
   {
    "d": "2026-02-24",
@@ -713,7 +718,7 @@
   },
   {
    "d": "2026-02-24",
-   "user_id": 7429
+   "user_id": 4663
   },
   {
    "d": "2026-02-28",
@@ -789,11 +794,11 @@
   },
   {
    "d": "2026-04-14",
-   "user_id": 6612
+   "user_id": 13151
   },
   {
    "d": "2026-04-14",
-   "user_id": 13151
+   "user_id": 6612
   },
   {
    "d": "2026-04-22",
@@ -809,11 +814,11 @@
   },
   {
    "d": "2026-04-25",
-   "user_id": 3122
+   "user_id": 6240
   },
   {
    "d": "2026-04-25",
-   "user_id": 6240
+   "user_id": 3122
   },
   {
    "d": "2026-04-27",
@@ -893,15 +898,15 @@
   },
   {
    "d": "2026-07-05",
+   "user_id": 6617
+  },
+  {
+   "d": "2026-07-05",
    "user_id": 16529
   },
   {
    "d": "2026-07-05",
    "user_id": 11722
-  },
-  {
-   "d": "2026-07-05",
-   "user_id": 6617
   },
   {
    "d": "2026-07-09",
@@ -929,11 +934,11 @@
   },
   {
    "d": "2026-08-24",
-   "user_id": 8305
+   "user_id": 3114
   },
   {
    "d": "2026-08-24",
-   "user_id": 3114
+   "user_id": 8305
   },
   {
    "d": "2026-08-31",
@@ -1050,6 +1055,10 @@
   {
    "d": "2026-11-01",
    "user_id": 9084
+  },
+  {
+   "d": "2026-11-02",
+   "user_id": 21960
   }
  ],
  "sales_monthly": [
@@ -1132,9 +1141,9 @@
   },
   {
    "m": "2026-11",
-   "sales": 1,
-   "revenue": 20.0,
-   "buyers": 1,
+   "sales": 2,
+   "revenue": 40.0,
+   "buyers": 2,
    "avg_check": 20.0
   }
  ],
@@ -1142,8 +1151,8 @@
   {
    "plan_name": "Base",
    "subs_period": "monthly",
-   "sales": 114,
-   "revenue": 2526.0
+   "sales": 115,
+   "revenue": 2546.0
   },
   {
    "plan_name": "Base",
@@ -1183,11 +1192,11 @@
   },
   {
    "payment_method": "stripe",
-   "attempts": 46,
-   "success": 31,
+   "attempts": 47,
+   "success": 32,
    "failed": 15,
    "pending": 0,
-   "revenue": 789.5
+   "revenue": 809.5
   },
   {
    "payment_method": "whitepay",
@@ -1201,7 +1210,7 @@
  "sales_by_status": [
   {
    "status": "success",
-   "n": 131
+   "n": 132
   },
   {
    "status": "failed",
@@ -1219,11 +1228,11 @@
  "repeat_purchases": [
   {
    "purchases": 1,
-   "users": 82
+   "users": 81
   },
   {
    "purchases": 2,
-   "users": 13
+   "users": 14
   },
   {
    "purchases": 3,
@@ -1785,29 +1794,33 @@
   },
   {
    "w": "2026-10-26",
-   "regs": 183
+   "regs": 185
+  },
+  {
+   "w": "2026-11-02",
+   "regs": 34
   }
  ],
  "users_summary": [
   {
-   "total_users": 14197,
+   "total_users": 14233,
    "payers": 23,
-   "ltv_total": 789.5,
-   "arppu": 34.33
+   "ltv_total": 809.5,
+   "arppu": 35.2
   }
  ],
  "plans_current": [
   {
    "plan": "Free",
-   "users": 13623
+   "users": 13649
   },
   {
    "plan": "нет плана",
-   "users": 375
+   "users": 381
   },
   {
    "plan": "Pro",
-   "users": 122
+   "users": 123
   },
   {
    "plan": "Base",
@@ -1815,13 +1828,13 @@
   },
   {
    "plan": "Scope x OKX",
-   "users": 19
+   "users": 22
   }
  ],
  "spent_distribution": [
   {
    "bucket": "1-24",
-   "users": 15
+   "users": 14
   },
   {
    "bucket": "100-199",
@@ -1829,7 +1842,7 @@
   },
   {
    "bucket": "25-49",
-   "users": 4
+   "users": 5
   },
   {
    "bucket": "50-99",
@@ -1846,6 +1859,14 @@
    "pending_payers": 2
   },
   {
+   "source": "(не задан)",
+   "visitors": 140,
+   "regs": 140,
+   "converted": 0,
+   "revenue": 0.0,
+   "pending_payers": 0
+  },
+  {
    "source": "meta",
    "visitors": 124,
    "regs": 124,
@@ -1854,17 +1875,9 @@
    "pending_payers": 0
   },
   {
-   "source": "(не задан)",
-   "visitors": 123,
-   "regs": 123,
-   "converted": 0,
-   "revenue": 0.0,
-   "pending_payers": 0
-  },
-  {
    "source": "site",
-   "visitors": 50,
-   "regs": 50,
+   "visitors": 52,
+   "regs": 52,
    "converted": 0,
    "revenue": 0.0,
    "pending_payers": 0
@@ -1919,15 +1932,22 @@
  ],
  "referral_totals": [
   {
-   "links": 14167,
-   "active": 14167,
-   "clicks": 446,
-   "regs": 660,
-   "payments": 4,
-   "revenue": 75.0
+   "links": 14198,
+   "active": 14198,
+   "clicks": 497,
+   "regs": 671,
+   "payments": 5,
+   "revenue": 95.0
   }
  ],
  "referral_top": [
+  {
+   "campaign_name": "INCRYPTED",
+   "clicks": 0,
+   "regs": 26,
+   "payments": 3,
+   "revenue": 55.0
+  },
   {
    "campaign_name": "54867968",
    "clicks": 1,
@@ -1936,23 +1956,16 @@
    "revenue": 40.0
   },
   {
-   "campaign_name": "INCRYPTED",
-   "clicks": 0,
-   "regs": 26,
-   "payments": 2,
-   "revenue": 35.0
-  },
-  {
    "campaign_name": "06284224",
-   "clicks": 3,
+   "clicks": 9,
    "regs": 149,
    "payments": 0,
    "revenue": 0.0
   },
   {
    "campaign_name": "yard-referral",
-   "clicks": 405,
-   "regs": 114,
+   "clicks": 449,
+   "regs": 124,
    "payments": 0,
    "revenue": 0.0
   },
@@ -2001,7 +2014,7 @@
  ],
  "promo_usage": [
   {
-   "uses": 692
+   "uses": 703
   }
  ],
  "attribution_links": [
@@ -2010,10 +2023,10 @@
    "category": "referral",
    "partner": "(все партнёры)",
    "campaign": "все реферальные ссылки",
-   "clicks": 446,
-   "regs": 660,
-   "payments": 4,
-   "revenue": 75.0,
+   "clicks": 497,
+   "regs": 671,
+   "payments": 5,
+   "revenue": 95.0,
    "last_activity": "2026-11-02"
   },
   {
@@ -2064,8 +2077,8 @@
   {
    "era": "post",
    "src": "other",
-   "n": 412,
-   "created7": 139,
+   "n": 416,
+   "created7": 140,
    "conn7": 12,
    "manual7": 43,
    "any7": 54,
@@ -2206,19 +2219,25 @@
    "n": 36,
    "conn7": 1,
    "any7": 5
+  },
+  {
+   "w": "2026-10-26",
+   "n": 4,
+   "conn7": 0,
+   "any7": 0
   }
  ],
  "onboarding_paths": [
   {
    "path": "manual",
-   "chosen": 338,
-   "step1": 179,
-   "step2": 52,
-   "step3": 45
+   "chosen": 358,
+   "step1": 187,
+   "step2": 55,
+   "step3": 48
   },
   {
    "path": "auto",
-   "chosen": 51,
+   "chosen": 52,
    "step1": 21,
    "step2": 14,
    "step3": 12
@@ -2228,8 +2247,8 @@
   {
    "result": "success",
    "error_code": "",
-   "attempts": 48,
-   "users": 25
+   "attempts": 49,
+   "users": 26
   },
   {
    "result": "failed",
@@ -2760,23 +2779,23 @@
   },
   {
    "w": "2025-12-22",
-   "kind": "Подключение аккаунта",
-   "n": 28
-  },
-  {
-   "w": "2025-12-22",
    "kind": "Заметки",
    "n": 12
   },
   {
-   "w": "2025-12-29",
-   "kind": "Заметки",
-   "n": 3
+   "w": "2025-12-22",
+   "kind": "Подключение аккаунта",
+   "n": 28
   },
   {
    "w": "2025-12-29",
    "kind": "Подключение аккаунта",
    "n": 32
+  },
+  {
+   "w": "2025-12-29",
+   "kind": "Заметки",
+   "n": 3
   },
   {
    "w": "2026-01-05",
@@ -2790,13 +2809,13 @@
   },
   {
    "w": "2026-01-12",
-   "kind": "Заметки",
-   "n": 17
+   "kind": "Подключение аккаунта",
+   "n": 121
   },
   {
    "w": "2026-01-12",
-   "kind": "Подключение аккаунта",
-   "n": 121
+   "kind": "Заметки",
+   "n": 17
   },
   {
    "w": "2026-01-19",
@@ -2860,13 +2879,13 @@
   },
   {
    "w": "2026-03-02",
-   "kind": "Подключение аккаунта",
-   "n": 31
+   "kind": "Заметки",
+   "n": 17
   },
   {
    "w": "2026-03-02",
-   "kind": "Заметки",
-   "n": 17
+   "kind": "Подключение аккаунта",
+   "n": 31
   },
   {
    "w": "2026-03-09",
@@ -2880,18 +2899,13 @@
   },
   {
    "w": "2026-03-16",
-   "kind": "Подключение аккаунта",
-   "n": 28
-  },
-  {
-   "w": "2026-03-16",
    "kind": "Заметки",
    "n": 9
   },
   {
-   "w": "2026-03-23",
-   "kind": "Заметки",
-   "n": 22
+   "w": "2026-03-16",
+   "kind": "Подключение аккаунта",
+   "n": 28
   },
   {
    "w": "2026-03-23",
@@ -2899,14 +2913,19 @@
    "n": 129
   },
   {
-   "w": "2026-03-30",
+   "w": "2026-03-23",
    "kind": "Заметки",
-   "n": 9
+   "n": 22
   },
   {
    "w": "2026-03-30",
    "kind": "Подключение аккаунта",
    "n": 73
+  },
+  {
+   "w": "2026-03-30",
+   "kind": "Заметки",
+   "n": 9
   },
   {
    "w": "2026-04-06",
@@ -2940,13 +2959,13 @@
   },
   {
    "w": "2026-04-27",
-   "kind": "Заметки",
-   "n": 20
+   "kind": "Подключение аккаунта",
+   "n": 44
   },
   {
    "w": "2026-04-27",
-   "kind": "Подключение аккаунта",
-   "n": 44
+   "kind": "Заметки",
+   "n": 20
   },
   {
    "w": "2026-05-04",
@@ -2960,13 +2979,13 @@
   },
   {
    "w": "2026-05-11",
-   "kind": "Подключение аккаунта",
-   "n": 46
+   "kind": "Заметки",
+   "n": 19
   },
   {
    "w": "2026-05-11",
-   "kind": "Заметки",
-   "n": 19
+   "kind": "Подключение аккаунта",
+   "n": 46
   },
   {
    "w": "2026-05-18",
@@ -2980,23 +2999,23 @@
   },
   {
    "w": "2026-05-25",
-   "kind": "Заметки",
-   "n": 3
-  },
-  {
-   "w": "2026-05-25",
    "kind": "Подключение аккаунта",
    "n": 63
   },
   {
-   "w": "2026-06-01",
+   "w": "2026-05-25",
    "kind": "Заметки",
-   "n": 9
+   "n": 3
   },
   {
    "w": "2026-06-01",
    "kind": "Подключение аккаунта",
    "n": 193
+  },
+  {
+   "w": "2026-06-01",
+   "kind": "Заметки",
+   "n": 9
   },
   {
    "w": "2026-06-08",
@@ -3010,6 +3029,11 @@
   },
   {
    "w": "2026-06-15",
+   "kind": "Подключение аккаунта",
+   "n": 51
+  },
+  {
+   "w": "2026-06-15",
    "kind": "Ручные позиции",
    "n": 20
   },
@@ -3017,11 +3041,6 @@
    "w": "2026-06-15",
    "kind": "Заметки",
    "n": 124
-  },
-  {
-   "w": "2026-06-15",
-   "kind": "Подключение аккаунта",
-   "n": 51
   },
   {
    "w": "2026-06-15",
@@ -3050,13 +3069,8 @@
   },
   {
    "w": "2026-06-29",
-   "kind": "Экспорт XLSX",
-   "n": 11
-  },
-  {
-   "w": "2026-06-29",
-   "kind": "Заметки",
-   "n": 4
+   "kind": "Подключение аккаунта",
+   "n": 77
   },
   {
    "w": "2026-06-29",
@@ -3065,38 +3079,28 @@
   },
   {
    "w": "2026-06-29",
-   "kind": "Ручные позиции",
-   "n": 65
-  },
-  {
-   "w": "2026-06-29",
-   "kind": "Подключение аккаунта",
-   "n": 77
-  },
-  {
-   "w": "2026-06-29",
    "kind": "AI-запросы",
    "n": 19
+  },
+  {
+   "w": "2026-06-29",
+   "kind": "Заметки",
+   "n": 4
+  },
+  {
+   "w": "2026-06-29",
+   "kind": "Экспорт XLSX",
+   "n": 11
+  },
+  {
+   "w": "2026-06-29",
+   "kind": "Ручные позиции",
+   "n": 65
   },
   {
    "w": "2026-07-06",
    "kind": "Заметки",
    "n": 24
-  },
-  {
-   "w": "2026-07-06",
-   "kind": "Подключение аккаунта",
-   "n": 158
-  },
-  {
-   "w": "2026-07-06",
-   "kind": "Ручные позиции",
-   "n": 75
-  },
-  {
-   "w": "2026-07-06",
-   "kind": "AI-запросы",
-   "n": 61
   },
   {
    "w": "2026-07-06",
@@ -3109,9 +3113,29 @@
    "n": 385
   },
   {
+   "w": "2026-07-06",
+   "kind": "Ручные позиции",
+   "n": 75
+  },
+  {
+   "w": "2026-07-06",
+   "kind": "Подключение аккаунта",
+   "n": 158
+  },
+  {
+   "w": "2026-07-06",
+   "kind": "AI-запросы",
+   "n": 61
+  },
+  {
    "w": "2026-07-13",
    "kind": "Синк журнала",
    "n": 197
+  },
+  {
+   "w": "2026-07-13",
+   "kind": "AI-запросы",
+   "n": 42
   },
   {
    "w": "2026-07-13",
@@ -3120,8 +3144,8 @@
   },
   {
    "w": "2026-07-13",
-   "kind": "Экспорт XLSX",
-   "n": 45
+   "kind": "Подключение аккаунта",
+   "n": 67
   },
   {
    "w": "2026-07-13",
@@ -3130,33 +3154,8 @@
   },
   {
    "w": "2026-07-13",
-   "kind": "Подключение аккаунта",
-   "n": 67
-  },
-  {
-   "w": "2026-07-13",
-   "kind": "AI-запросы",
-   "n": 42
-  },
-  {
-   "w": "2026-07-20",
    "kind": "Экспорт XLSX",
-   "n": 27
-  },
-  {
-   "w": "2026-07-20",
-   "kind": "Подключение аккаунта",
-   "n": 82
-  },
-  {
-   "w": "2026-07-20",
-   "kind": "Заметки",
-   "n": 33
-  },
-  {
-   "w": "2026-07-20",
-   "kind": "Ручные позиции",
-   "n": 47
+   "n": 45
   },
   {
    "w": "2026-07-20",
@@ -3165,8 +3164,38 @@
   },
   {
    "w": "2026-07-20",
+   "kind": "Заметки",
+   "n": 33
+  },
+  {
+   "w": "2026-07-20",
    "kind": "Синк журнала",
    "n": 199
+  },
+  {
+   "w": "2026-07-20",
+   "kind": "Ручные позиции",
+   "n": 47
+  },
+  {
+   "w": "2026-07-20",
+   "kind": "Подключение аккаунта",
+   "n": 82
+  },
+  {
+   "w": "2026-07-20",
+   "kind": "Экспорт XLSX",
+   "n": 27
+  },
+  {
+   "w": "2026-07-27",
+   "kind": "Заметки",
+   "n": 30
+  },
+  {
+   "w": "2026-07-27",
+   "kind": "AI-запросы",
+   "n": 30
   },
   {
    "w": "2026-07-27",
@@ -3175,8 +3204,8 @@
   },
   {
    "w": "2026-07-27",
-   "kind": "Заметки",
-   "n": 30
+   "kind": "Экспорт XLSX",
+   "n": 7
   },
   {
    "w": "2026-07-27",
@@ -3185,33 +3214,8 @@
   },
   {
    "w": "2026-07-27",
-   "kind": "Экспорт XLSX",
-   "n": 7
-  },
-  {
-   "w": "2026-07-27",
-   "kind": "AI-запросы",
-   "n": 30
-  },
-  {
-   "w": "2026-07-27",
    "kind": "Ручные позиции",
    "n": 37
-  },
-  {
-   "w": "2026-08-03",
-   "kind": "Экспорт XLSX",
-   "n": 10
-  },
-  {
-   "w": "2026-08-03",
-   "kind": "Подключение аккаунта",
-   "n": 34
-  },
-  {
-   "w": "2026-08-03",
-   "kind": "AI-запросы",
-   "n": 16
   },
   {
    "w": "2026-08-03",
@@ -3220,33 +3224,28 @@
   },
   {
    "w": "2026-08-03",
+   "kind": "Заметки",
+   "n": 17
+  },
+  {
+   "w": "2026-08-03",
+   "kind": "Экспорт XLSX",
+   "n": 10
+  },
+  {
+   "w": "2026-08-03",
+   "kind": "AI-запросы",
+   "n": 16
+  },
+  {
+   "w": "2026-08-03",
    "kind": "Синк журнала",
    "n": 65
   },
   {
    "w": "2026-08-03",
-   "kind": "Заметки",
-   "n": 17
-  },
-  {
-   "w": "2026-08-10",
-   "kind": "Ручные позиции",
-   "n": 11
-  },
-  {
-   "w": "2026-08-10",
-   "kind": "Экспорт XLSX",
-   "n": 3
-  },
-  {
-   "w": "2026-08-10",
-   "kind": "Синк журнала",
-   "n": 49
-  },
-  {
-   "w": "2026-08-10",
-   "kind": "AI-запросы",
-   "n": 11
+   "kind": "Подключение аккаунта",
+   "n": 34
   },
   {
    "w": "2026-08-10",
@@ -3255,18 +3254,33 @@
   },
   {
    "w": "2026-08-10",
+   "kind": "Ручные позиции",
+   "n": 11
+  },
+  {
+   "w": "2026-08-10",
    "kind": "Подключение аккаунта",
    "n": 11
   },
   {
-   "w": "2026-08-17",
-   "kind": "Ручные позиции",
-   "n": 15
+   "w": "2026-08-10",
+   "kind": "Синк журнала",
+   "n": 49
+  },
+  {
+   "w": "2026-08-10",
+   "kind": "Экспорт XLSX",
+   "n": 3
+  },
+  {
+   "w": "2026-08-10",
+   "kind": "AI-запросы",
+   "n": 11
   },
   {
    "w": "2026-08-17",
-   "kind": "Синк журнала",
-   "n": 68
+   "kind": "AI-запросы",
+   "n": 9
   },
   {
    "w": "2026-08-17",
@@ -3280,13 +3294,28 @@
   },
   {
    "w": "2026-08-17",
-   "kind": "AI-запросы",
-   "n": 9
+   "kind": "Экспорт XLSX",
+   "n": 21
   },
   {
    "w": "2026-08-17",
+   "kind": "Синк журнала",
+   "n": 68
+  },
+  {
+   "w": "2026-08-17",
+   "kind": "Ручные позиции",
+   "n": 15
+  },
+  {
+   "w": "2026-08-24",
    "kind": "Экспорт XLSX",
-   "n": 21
+   "n": 5
+  },
+  {
+   "w": "2026-08-24",
+   "kind": "Ручные позиции",
+   "n": 16
   },
   {
    "w": "2026-08-24",
@@ -3295,8 +3324,8 @@
   },
   {
    "w": "2026-08-24",
-   "kind": "Ручные позиции",
-   "n": 16
+   "kind": "Подключение аккаунта",
+   "n": 15
   },
   {
    "w": "2026-08-24",
@@ -3309,34 +3338,14 @@
    "n": 70
   },
   {
-   "w": "2026-08-24",
-   "kind": "Подключение аккаунта",
-   "n": 15
-  },
-  {
-   "w": "2026-08-24",
-   "kind": "Экспорт XLSX",
-   "n": 5
-  },
-  {
-   "w": "2026-08-31",
-   "kind": "Синк журнала",
-   "n": 90
-  },
-  {
    "w": "2026-08-31",
    "kind": "Ручные позиции",
    "n": 48
   },
   {
    "w": "2026-08-31",
-   "kind": "Экспорт XLSX",
-   "n": 14
-  },
-  {
-   "w": "2026-08-31",
-   "kind": "Заметки",
-   "n": 30
+   "kind": "Подключение аккаунта",
+   "n": 17
   },
   {
    "w": "2026-08-31",
@@ -3345,18 +3354,23 @@
   },
   {
    "w": "2026-08-31",
-   "kind": "Подключение аккаунта",
-   "n": 17
+   "kind": "Экспорт XLSX",
+   "n": 14
+  },
+  {
+   "w": "2026-08-31",
+   "kind": "Синк журнала",
+   "n": 90
+  },
+  {
+   "w": "2026-08-31",
+   "kind": "Заметки",
+   "n": 30
   },
   {
    "w": "2026-09-07",
-   "kind": "Ручные позиции",
-   "n": 26
-  },
-  {
-   "w": "2026-09-07",
-   "kind": "AI-запросы",
-   "n": 48
+   "kind": "Заметки",
+   "n": 5
   },
   {
    "w": "2026-09-07",
@@ -3365,38 +3379,33 @@
   },
   {
    "w": "2026-09-07",
-   "kind": "Экспорт XLSX",
-   "n": 10
-  },
-  {
-   "w": "2026-09-07",
    "kind": "Подключение аккаунта",
    "n": 9
   },
   {
    "w": "2026-09-07",
-   "kind": "Заметки",
-   "n": 5
+   "kind": "AI-запросы",
+   "n": 48
   },
   {
-   "w": "2026-09-14",
-   "kind": "Подключение аккаунта",
-   "n": 15
+   "w": "2026-09-07",
+   "kind": "Ручные позиции",
+   "n": 26
   },
   {
-   "w": "2026-09-14",
+   "w": "2026-09-07",
    "kind": "Экспорт XLSX",
-   "n": 5
-  },
-  {
-   "w": "2026-09-14",
-   "kind": "Заметки",
-   "n": 19
+   "n": 10
   },
   {
    "w": "2026-09-14",
    "kind": "Синк журнала",
    "n": 44
+  },
+  {
+   "w": "2026-09-14",
+   "kind": "Заметки",
+   "n": 19
   },
   {
    "w": "2026-09-14",
@@ -3405,8 +3414,18 @@
   },
   {
    "w": "2026-09-14",
+   "kind": "Экспорт XLSX",
+   "n": 5
+  },
+  {
+   "w": "2026-09-14",
    "kind": "Ручные позиции",
    "n": 31
+  },
+  {
+   "w": "2026-09-14",
+   "kind": "Подключение аккаунта",
+   "n": 15
   },
   {
    "w": "2026-09-21",
@@ -3415,8 +3434,8 @@
   },
   {
    "w": "2026-09-21",
-   "kind": "Ручные позиции",
-   "n": 50
+   "kind": "Синк журнала",
+   "n": 80
   },
   {
    "w": "2026-09-21",
@@ -3425,38 +3444,18 @@
   },
   {
    "w": "2026-09-21",
-   "kind": "AI-запросы",
-   "n": 44
-  },
-  {
-   "w": "2026-09-21",
    "kind": "Экспорт XLSX",
    "n": 8
   },
   {
    "w": "2026-09-21",
-   "kind": "Синк журнала",
-   "n": 80
-  },
-  {
-   "w": "2026-09-28",
-   "kind": "Подключение аккаунта",
-   "n": 30
-  },
-  {
-   "w": "2026-09-28",
-   "kind": "AI-запросы",
-   "n": 9
-  },
-  {
-   "w": "2026-09-28",
    "kind": "Ручные позиции",
-   "n": 28
+   "n": 50
   },
   {
-   "w": "2026-09-28",
-   "kind": "Заметки",
-   "n": 12
+   "w": "2026-09-21",
+   "kind": "AI-запросы",
+   "n": 44
   },
   {
    "w": "2026-09-28",
@@ -3465,13 +3464,28 @@
   },
   {
    "w": "2026-09-28",
+   "kind": "Ручные позиции",
+   "n": 28
+  },
+  {
+   "w": "2026-09-28",
    "kind": "Синк журнала",
    "n": 102
   },
   {
-   "w": "2026-10-05",
+   "w": "2026-09-28",
    "kind": "AI-запросы",
-   "n": 5
+   "n": 9
+  },
+  {
+   "w": "2026-09-28",
+   "kind": "Заметки",
+   "n": 12
+  },
+  {
+   "w": "2026-09-28",
+   "kind": "Подключение аккаунта",
+   "n": 30
   },
   {
    "w": "2026-10-05",
@@ -3499,9 +3513,14 @@
    "n": 5
   },
   {
+   "w": "2026-10-05",
+   "kind": "AI-запросы",
+   "n": 5
+  },
+  {
    "w": "2026-10-12",
-   "kind": "Экспорт XLSX",
-   "n": 7
+   "kind": "Синк журнала",
+   "n": 18
   },
   {
    "w": "2026-10-12",
@@ -3510,8 +3529,8 @@
   },
   {
    "w": "2026-10-12",
-   "kind": "Синк журнала",
-   "n": 18
+   "kind": "AI-запросы",
+   "n": 10
   },
   {
    "w": "2026-10-12",
@@ -3525,8 +3544,8 @@
   },
   {
    "w": "2026-10-12",
-   "kind": "AI-запросы",
-   "n": 10
+   "kind": "Экспорт XLSX",
+   "n": 7
   },
   {
    "w": "2026-10-19",
@@ -3535,8 +3554,8 @@
   },
   {
    "w": "2026-10-19",
-   "kind": "Синк журнала",
-   "n": 19
+   "kind": "Ручные позиции",
+   "n": 47
   },
   {
    "w": "2026-10-19",
@@ -3545,18 +3564,18 @@
   },
   {
    "w": "2026-10-19",
+   "kind": "Синк журнала",
+   "n": 19
+  },
+  {
+   "w": "2026-10-19",
    "kind": "Заметки",
    "n": 13
   },
   {
-   "w": "2026-10-19",
-   "kind": "Ручные позиции",
-   "n": 47
-  },
-  {
    "w": "2026-10-26",
-   "kind": "Синк журнала",
-   "n": 28
+   "kind": "Подключение аккаунта",
+   "n": 12
   },
   {
    "w": "2026-10-26",
@@ -3565,13 +3584,13 @@
   },
   {
    "w": "2026-10-26",
-   "kind": "Ручные позиции",
-   "n": 63
+   "kind": "Заметки",
+   "n": 24
   },
   {
    "w": "2026-10-26",
-   "kind": "Заметки",
-   "n": 24
+   "kind": "Синк журнала",
+   "n": 28
   },
   {
    "w": "2026-10-26",
@@ -3580,41 +3599,51 @@
   },
   {
    "w": "2026-10-26",
-   "kind": "Подключение аккаунта",
+   "kind": "Ручные позиции",
+   "n": 63
+  },
+  {
+   "w": "2026-11-02",
+   "kind": "Синк журнала",
    "n": 12
   },
   {
    "w": "2026-11-02",
-   "kind": "Ручные позиции",
-   "n": 1
+   "kind": "Подключение аккаунта",
+   "n": 11
   },
   {
    "w": "2026-11-02",
-   "kind": "Подключение аккаунта",
-   "n": 7
+   "kind": "Ручные позиции",
+   "n": 42
+  },
+  {
+   "w": "2026-11-02",
+   "kind": "Экспорт XLSX",
+   "n": 3
   }
  ],
  "sync_by_market": [
   {
    "market": "fx",
-   "syncs": 1439,
+   "syncs": 1448,
    "users": 255
   },
   {
    "market": "crypto",
-   "syncs": 666,
-   "users": 76
+   "syncs": 669,
+   "users": 77
   }
  ],
  "connections_by_provider": [
   {
    "provider": "metatrader5",
-   "connections": 3060,
-   "users": 1773
+   "connections": 3061,
+   "users": 1774
   },
   {
    "provider": "binance",
-   "connections": 1390,
+   "connections": 1391,
    "users": 1029
   },
   {
@@ -3624,8 +3653,8 @@
   },
   {
    "provider": "okx",
-   "connections": 183,
-   "users": 145
+   "connections": 185,
+   "users": 147
   },
   {
    "provider": "",
@@ -3743,28 +3772,28 @@
  "feature_events_summary": [
   {
    "feat": "Создание торг. аккаунта",
-   "n": 10019,
-   "users": 8971
+   "n": 10049,
+   "users": 8981
   },
   {
    "feat": "Подключение аккаунта",
-   "n": 5191,
-   "users": 3015
+   "n": 5195,
+   "users": 3017
   },
   {
    "feat": "Применение промокода",
-   "n": 3020,
-   "users": 2659
+   "n": 3031,
+   "users": 2670
   },
   {
    "feat": "Синк журнала",
-   "n": 2105,
-   "users": 322
+   "n": 2117,
+   "users": 323
   },
   {
    "feat": "Ручные позиции",
-   "n": 773,
-   "users": 283
+   "n": 814,
+   "users": 288
   },
   {
    "feat": "Заметки: создание",
@@ -3773,7 +3802,7 @@
   },
   {
    "feat": "Управление виджетами",
-   "n": 461,
+   "n": 462,
    "users": 188
   },
   {
@@ -3783,8 +3812,8 @@
   },
   {
    "feat": "Экспорт XLSX",
-   "n": 240,
-   "users": 115
+   "n": 243,
+   "users": 117
   },
   {
    "feat": "Заметки: теги",
@@ -4039,14 +4068,14 @@
   },
   {
    "d": "2026-01-27",
-   "payment_method": "overpay",
+   "payment_method": "mono",
    "success": 1,
    "pending": 0,
    "failed": 0
   },
   {
    "d": "2026-01-27",
-   "payment_method": "mono",
+   "payment_method": "overpay",
    "success": 1,
    "pending": 0,
    "failed": 0
@@ -4067,15 +4096,15 @@
   },
   {
    "d": "2026-01-29",
-   "payment_method": "mono",
-   "success": 2,
+   "payment_method": "overpay",
+   "success": 1,
    "pending": 0,
    "failed": 0
   },
   {
    "d": "2026-01-29",
-   "payment_method": "overpay",
-   "success": 1,
+   "payment_method": "mono",
+   "success": 2,
    "pending": 0,
    "failed": 0
   },
@@ -4102,17 +4131,17 @@
   },
   {
    "d": "2026-02-03",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
-   "d": "2026-02-03",
    "payment_method": "overpay",
    "success": 1,
    "pending": 0,
    "failed": 1
+  },
+  {
+   "d": "2026-02-03",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
   },
   {
    "d": "2026-02-04",
@@ -4179,17 +4208,17 @@
   },
   {
    "d": "2026-02-15",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-02-15",
    "payment_method": "overpay",
    "success": 1,
    "pending": 0,
    "failed": 0
+  },
+  {
+   "d": "2026-02-15",
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
   },
   {
    "d": "2026-02-17",
@@ -4277,16 +4306,16 @@
   },
   {
    "d": "2026-02-28",
-   "payment_method": "overpay",
-   "success": 1,
-   "pending": 0,
+   "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
    "failed": 0
   },
   {
    "d": "2026-02-28",
-   "payment_method": "mono",
-   "success": 0,
-   "pending": 1,
+   "payment_method": "overpay",
+   "success": 1,
+   "pending": 0,
    "failed": 0
   },
   {
@@ -4347,19 +4376,19 @@
   },
   {
    "d": "2026-03-15",
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
+  },
+  {
+   "d": "2026-03-15",
    "payment_method": "overpay",
    "success": 2,
    "pending": 0,
    "failed": 0
   },
   {
-   "d": "2026-03-15",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
-   "failed": 0
-  },
-  {
    "d": "2026-03-16",
    "payment_method": "overpay",
    "success": 0,
@@ -4375,17 +4404,17 @@
   },
   {
    "d": "2026-03-17",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-03-17",
    "payment_method": "mono",
    "success": 1,
    "pending": 0,
    "failed": 0
+  },
+  {
+   "d": "2026-03-17",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
   },
   {
    "d": "2026-03-18",
@@ -4438,17 +4467,17 @@
   },
   {
    "d": "2026-03-31",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-03-31",
    "payment_method": "mono",
    "success": 0,
    "pending": 1,
    "failed": 0
+  },
+  {
+   "d": "2026-03-31",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
   },
   {
    "d": "2026-04-02",
@@ -4480,19 +4509,19 @@
   },
   {
    "d": "2026-04-14",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
+  },
+  {
+   "d": "2026-04-14",
    "payment_method": "mono",
    "success": 2,
    "pending": 1,
    "failed": 0
   },
   {
-   "d": "2026-04-14",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
    "d": "2026-04-16",
    "payment_method": "overpay",
    "success": 0,
@@ -4502,6 +4531,13 @@
   {
    "d": "2026-04-16",
    "payment_method": "mono",
+   "success": 0,
+   "pending": 1,
+   "failed": 0
+  },
+  {
+   "d": "2026-04-18",
+   "payment_method": "overpay",
    "success": 0,
    "pending": 1,
    "failed": 0
@@ -4514,14 +4550,14 @@
    "failed": 0
   },
   {
-   "d": "2026-04-18",
+   "d": "2026-04-21",
    "payment_method": "overpay",
    "success": 0,
-   "pending": 1,
-   "failed": 0
+   "pending": 0,
+   "failed": 1
   },
   {
-   "d": "2026-04-21",
+   "d": "2026-04-22",
    "payment_method": "overpay",
    "success": 0,
    "pending": 0,
@@ -4533,13 +4569,6 @@
    "success": 1,
    "pending": 0,
    "failed": 0
-  },
-  {
-   "d": "2026-04-22",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
   },
   {
    "d": "2026-04-23",
@@ -4564,14 +4593,14 @@
   },
   {
    "d": "2026-04-25",
-   "payment_method": "overpay",
+   "payment_method": "mono",
    "success": 1,
    "pending": 0,
    "failed": 0
   },
   {
    "d": "2026-04-25",
-   "payment_method": "mono",
+   "payment_method": "overpay",
    "success": 1,
    "pending": 0,
    "failed": 0
@@ -4634,17 +4663,17 @@
   },
   {
    "d": "2026-05-05",
-   "payment_method": "overpay",
-   "success": 0,
-   "pending": 0,
-   "failed": 1
-  },
-  {
-   "d": "2026-05-05",
    "payment_method": "mono",
    "success": 1,
    "pending": 0,
    "failed": 0
+  },
+  {
+   "d": "2026-05-05",
+   "payment_method": "overpay",
+   "success": 0,
+   "pending": 0,
+   "failed": 1
   },
   {
    "d": "2026-05-07",
@@ -4725,16 +4754,16 @@
   },
   {
    "d": "2026-05-25",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
    "failed": 0
   },
   {
    "d": "2026-05-25",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
    "failed": 0
   },
   {
@@ -4781,14 +4810,14 @@
   },
   {
    "d": "2026-06-03",
-   "payment_method": "mono",
+   "payment_method": "whitepay",
    "success": 0,
    "pending": 1,
    "failed": 0
   },
   {
    "d": "2026-06-03",
-   "payment_method": "whitepay",
+   "payment_method": "mono",
    "success": 0,
    "pending": 1,
    "failed": 0
@@ -4872,14 +4901,14 @@
   },
   {
    "d": "2026-06-29",
-   "payment_method": "mono",
+   "payment_method": "whitepay",
    "success": 0,
    "pending": 1,
    "failed": 0
   },
   {
    "d": "2026-06-29",
-   "payment_method": "whitepay",
+   "payment_method": "mono",
    "success": 0,
    "pending": 1,
    "failed": 0
@@ -4900,15 +4929,15 @@
   },
   {
    "d": "2026-07-05",
-   "payment_method": "mono",
-   "success": 2,
+   "payment_method": "whitepay",
+   "success": 1,
    "pending": 0,
    "failed": 0
   },
   {
    "d": "2026-07-05",
-   "payment_method": "whitepay",
-   "success": 1,
+   "payment_method": "mono",
+   "success": 2,
    "pending": 0,
    "failed": 0
   },
@@ -4921,16 +4950,16 @@
   },
   {
    "d": "2026-07-09",
-   "payment_method": "whitepay",
-   "success": 0,
-   "pending": 1,
+   "payment_method": "mono",
+   "success": 1,
+   "pending": 0,
    "failed": 0
   },
   {
    "d": "2026-07-09",
-   "payment_method": "mono",
-   "success": 1,
-   "pending": 0,
+   "payment_method": "whitepay",
+   "success": 0,
+   "pending": 1,
    "failed": 0
   },
   {
@@ -5261,6 +5290,13 @@
    "success": 1,
    "pending": 0,
    "failed": 1
+  },
+  {
+   "d": "2026-11-02",
+   "payment_method": "stripe",
+   "success": 1,
+   "pending": 0,
+   "failed": 0
   }
  ],
  "plan_daily": [
@@ -6026,6 +6062,13 @@
    "subs_period": "monthly",
    "sales": 1,
    "revenue": 20.0
+  },
+  {
+   "d": "2026-11-02",
+   "plan_name": "Base",
+   "subs_period": "monthly",
+   "sales": 1,
+   "revenue": 20.0
   }
  ],
  "funnel_by_month": [
@@ -6040,7 +6083,7 @@
    "m": "2024-04",
    "registered": 178,
    "created": 178,
-   "connected": 48,
+   "connected": 49,
    "paid": 0
   },
   {
@@ -6186,7 +6229,7 @@
   {
    "m": "2026-01",
    "registered": 704,
-   "created": 117,
+   "created": 118,
    "connected": 159,
    "paid": 4
   },
@@ -6255,9 +6298,9 @@
   },
   {
    "m": "2026-11",
-   "registered": 30,
-   "created": 9,
-   "connected": 2,
+   "registered": 66,
+   "created": 22,
+   "connected": 4,
    "paid": 0
   }
  ],
@@ -6388,8 +6431,8 @@
   },
   {
    "due_month": "2026-11",
-   "due": 1,
-   "renewed": 0
+   "due": 2,
+   "renewed": 1
   }
  ],
  "cohort_conversion": [
@@ -6491,7 +6534,7 @@
   },
   {
    "cohort": "2026-11",
-   "users": 30,
+   "users": 66,
    "pay7": 0,
    "pay30": 0,
    "pay90": 0,
@@ -6504,7 +6547,7 @@
    "med_conn_d": 0.01,
    "med_sync_d": 0.02,
    "med_pay_d": 43.0,
-   "activation7_pct": 5.3
+   "activation7_pct": 5.2
   }
  ],
  "stuck_pending": [
@@ -6529,10 +6572,10 @@
  ],
  "funnel": [
   {
-   "registered": 14197,
-   "created_account": 8971,
-   "connected": 3015,
-   "synced": 322,
+   "registered": 14233,
+   "created_account": 8981,
+   "connected": 3017,
+   "synced": 323,
    "paid": 100
   }
  ],
@@ -7157,9 +7200,9 @@
   },
   {
    "w": "2026-11-02",
-   "sessions": 215,
-   "users": 214,
-   "pageviews": 228
+   "sessions": 1360,
+   "users": 1291,
+   "pageviews": 1539
   }
  ],
  "ga4_sessions_monthly": [
@@ -7290,8 +7333,8 @@
   },
   {
    "m": "2026-11",
-   "sessions": 1130,
-   "users": 1111
+   "sessions": 2275,
+   "users": 2188
   }
  ],
  "ga4_app_sessions_weekly": [
@@ -8101,9 +8144,9 @@
   },
   {
    "w": "2026-11-02",
-   "sessions": 11,
-   "users": 10,
-   "pageviews": 50
+   "sessions": 163,
+   "users": 101,
+   "pageviews": 891
   }
  ],
  "ga4_app_sessions_monthly": [
@@ -8264,22 +8307,22 @@
   },
   {
    "m": "2026-11",
-   "sessions": 94,
-   "users": 74
+   "sessions": 246,
+   "users": 165
   }
  ],
  "ga4_channels": [
   {
    "sessionDefaultChannelGroup": "Direct",
-   "sessions": 56502,
-   "totalUsers": 30210,
+   "sessions": 56652,
+   "totalUsers": 30324,
    "engagementRate": 41.1
   },
   {
    "sessionDefaultChannelGroup": "Paid Social",
-   "sessions": 38089,
-   "totalUsers": 36022,
-   "engagementRate": 25.2
+   "sessions": 39224,
+   "totalUsers": 36762,
+   "engagementRate": 24.6
   },
   {
    "sessionDefaultChannelGroup": "Paid Other",
@@ -8289,33 +8332,33 @@
   },
   {
    "sessionDefaultChannelGroup": "Organic Search",
-   "sessions": 19826,
-   "totalUsers": 7282,
-   "engagementRate": 54.4
+   "sessions": 19889,
+   "totalUsers": 7293,
+   "engagementRate": 54.3
   },
   {
    "sessionDefaultChannelGroup": "Organic Social",
-   "sessions": 3506,
+   "sessions": 3509,
    "totalUsers": 2574,
    "engagementRate": 52.9
   },
   {
    "sessionDefaultChannelGroup": "Unassigned",
-   "sessions": 3259,
-   "totalUsers": 2550,
-   "engagementRate": 38.7
+   "sessions": 3273,
+   "totalUsers": 2563,
+   "engagementRate": 38.6
   },
   {
    "sessionDefaultChannelGroup": "Organic Video",
-   "sessions": 2482,
+   "sessions": 2484,
    "totalUsers": 1454,
    "engagementRate": 53.5
   },
   {
    "sessionDefaultChannelGroup": "Referral",
-   "sessions": 2258,
-   "totalUsers": 763,
-   "engagementRate": 60.6
+   "sessions": 2272,
+   "totalUsers": 769,
+   "engagementRate": 60.5
   },
   {
    "sessionDefaultChannelGroup": "Display",
@@ -8331,8 +8374,20 @@
   },
   {
    "sessionDefaultChannelGroup": "Paid Search",
-   "sessions": 2,
-   "totalUsers": 2,
+   "sessions": 32,
+   "totalUsers": 30,
+   "engagementRate": 15.6
+  },
+  {
+   "sessionDefaultChannelGroup": "Cross-network",
+   "sessions": 13,
+   "totalUsers": 12,
+   "engagementRate": 0.0
+  },
+  {
+   "sessionDefaultChannelGroup": "Paid Video",
+   "sessions": 4,
+   "totalUsers": 4,
    "engagementRate": 0.0
   },
   {
@@ -8345,13 +8400,13 @@
  "ga4_top_pages": [
   {
    "pagePath": "/",
-   "screenPageViews": 138502,
-   "totalUsers": 87950
+   "screenPageViews": 138630,
+   "totalUsers": 87976
   },
   {
    "pagePath": "/login/",
-   "screenPageViews": 46477,
-   "totalUsers": 19613
+   "screenPageViews": 46657,
+   "totalUsers": 19681
   },
   {
    "pagePath": "/login",
@@ -8365,13 +8420,13 @@
   },
   {
    "pagePath": "/pricing/",
-   "screenPageViews": 5940,
-   "totalUsers": 4174
+   "screenPageViews": 5942,
+   "totalUsers": 4175
   },
   {
    "pagePath": "/tools/position-size-calculator/",
-   "screenPageViews": 3480,
-   "totalUsers": 1962
+   "screenPageViews": 3487,
+   "totalUsers": 1967
   },
   {
    "pagePath": "/settings/profile",
@@ -8384,14 +8439,14 @@
    "totalUsers": 18
   },
   {
-   "pagePath": "/ai-assistant/",
-   "screenPageViews": 2211,
-   "totalUsers": 612
+   "pagePath": "/tournaments/okx/",
+   "screenPageViews": 2397,
+   "totalUsers": 2259
   },
   {
-   "pagePath": "/socials/",
-   "screenPageViews": 1546,
-   "totalUsers": 507
+   "pagePath": "/ai-assistant/",
+   "screenPageViews": 2216,
+   "totalUsers": 617
   }
  ],
  "ga4_utm_campaigns": [
@@ -8399,15 +8454,15 @@
    "sessionSource": "(direct)",
    "sessionMedium": "(none)",
    "sessionCampaignName": "(не указано)",
-   "sessions": 56473,
-   "totalUsers": 30191
+   "sessions": 56652,
+   "totalUsers": 30321
   },
   {
    "sessionSource": "ovva-meta",
    "sessionMedium": "cpc",
    "sessionCampaignName": "все кампании — см. «Платный трафик (Meta Ads)» выше",
-   "sessions": 16004,
-   "totalUsers": 14813
+   "sessions": 15803,
+   "totalUsers": 14622
   },
   {
    "sessionSource": "meta",
@@ -8420,15 +8475,15 @@
    "sessionSource": "meta",
    "sessionMedium": "cpc",
    "sessionCampaignName": "Ad_reg_3",
-   "sessions": 11261,
+   "sessions": 11262,
    "totalUsers": 10841
   },
   {
    "sessionSource": "google",
    "sessionMedium": "organic",
    "sessionCampaignName": "(не указано)",
-   "sessions": 18809,
-   "totalUsers": 6740
+   "sessions": 18839,
+   "totalUsers": 6754
   },
   {
    "sessionSource": "meta",
@@ -8452,10 +8507,17 @@
    "totalUsers": 1914
   },
   {
+   "sessionSource": "meta",
+   "sessionMedium": "cpc",
+   "sessionCampaignName": "tournament_2",
+   "sessions": 1085,
+   "totalUsers": 1072
+  },
+  {
    "sessionSource": "youtube.com",
    "sessionMedium": "referral",
    "sessionCampaignName": "(не указано)",
-   "sessions": 1854,
+   "sessions": 1856,
    "totalUsers": 1048
   },
   {
@@ -8464,6 +8526,13 @@
    "sessionCampaignName": "(не указано)",
    "sessions": 793,
    "totalUsers": 730
+  },
+  {
+   "sessionSource": "meta",
+   "sessionMedium": "cpc",
+   "sessionCampaignName": "tournament",
+   "sessions": 603,
+   "totalUsers": 597
   },
   {
    "sessionSource": "m.facebook.com",
@@ -8487,13 +8556,6 @@
    "totalUsers": 417
   },
   {
-   "sessionSource": "meta",
-   "sessionMedium": "cpc",
-   "sessionCampaignName": "tournament_2",
-   "sessions": 418,
-   "totalUsers": 415
-  },
-  {
    "sessionSource": "t.co (ссылки из X/Twitter)",
    "sessionMedium": "referral",
    "sessionCampaignName": "(не указано)",
@@ -8505,13 +8567,6 @@
    "sessionMedium": "Vlog Man",
    "sessionCampaignName": "vlog_to_scope",
    "sessions": 346,
-   "totalUsers": 250
-  },
-  {
-   "sessionSource": "meta",
-   "sessionMedium": "cpc",
-   "sessionCampaignName": "tournament",
-   "sessions": 253,
    "totalUsers": 250
   },
   {
@@ -8749,17 +8804,17 @@
   },
   {
    "w": "2026-10-26",
-   "spend": 197.56,
-   "impressions": 385001,
-   "clicks": 8800,
+   "spend": 197.72,
+   "impressions": 385124,
+   "clicks": 8801,
    "regs": 0,
    "leads": 0
   },
   {
    "w": "2026-11-02",
-   "spend": 25.05,
-   "impressions": 15954,
-   "clicks": 433,
+   "spend": 100.38,
+   "impressions": 63944,
+   "clicks": 1851,
    "regs": 0,
    "leads": 0
   }
@@ -8831,9 +8886,9 @@
   },
   {
    "m": "2026-11",
-   "spend": 115.42,
-   "impressions": 72877,
-   "clicks": 1752,
+   "spend": 190.91,
+   "impressions": 120990,
+   "clicks": 3171,
    "regs": 0,
    "leads": 0
   }
@@ -14664,7 +14719,7 @@
    "ad_name": "tournament_1",
    "campaign_name": "tournament",
    "spend": 1.09,
-   "impressions": 283,
+   "impressions": 284,
    "clicks": 16,
    "regs": 0,
    "leads": 0
@@ -14686,7 +14741,7 @@
    "ad_name": "tournament_3",
    "campaign_name": "tournament",
    "spend": 5.09,
-   "impressions": 3089,
+   "impressions": 3092,
    "clicks": 67,
    "regs": 0,
    "leads": 0
@@ -14697,7 +14752,7 @@
    "ad_name": "tournament_4",
    "campaign_name": "tournament",
    "spend": 3.06,
-   "impressions": 1679,
+   "impressions": 1680,
    "clicks": 39,
    "regs": 0,
    "leads": 0
@@ -14718,9 +14773,9 @@
    "ad_id": "120251842422120682",
    "ad_name": "tournament_6",
    "campaign_name": "tournament",
-   "spend": 22.6,
-   "impressions": 15168,
-   "clicks": 324,
+   "spend": 22.65,
+   "impressions": 15208,
+   "clicks": 325,
    "regs": 0,
    "leads": 0
   },
@@ -14741,7 +14796,7 @@
    "ad_name": "tournament_5_2",
    "campaign_name": "tournament_2",
    "spend": 14.77,
-   "impressions": 9705,
+   "impressions": 9712,
    "clicks": 203,
    "regs": 0,
    "leads": 0
@@ -14752,7 +14807,7 @@
    "ad_name": "tournament_7_2",
    "campaign_name": "tournament_2",
    "spend": 1.35,
-   "impressions": 692,
+   "impressions": 693,
    "clicks": 21,
    "regs": 0,
    "leads": 0
@@ -14762,8 +14817,8 @@
    "ad_id": "120251842486590682",
    "ad_name": "tournament_6_2",
    "campaign_name": "tournament_2",
-   "spend": 28.32,
-   "impressions": 18275,
+   "spend": 28.43,
+   "impressions": 18340,
    "clicks": 466,
    "regs": 0,
    "leads": 0
@@ -14774,7 +14829,7 @@
    "ad_name": "tournament_4_2",
    "campaign_name": "tournament_2",
    "spend": 6.5,
-   "impressions": 3341,
+   "impressions": 3346,
    "clicks": 90,
    "regs": 0,
    "leads": 0
@@ -14784,9 +14839,9 @@
    "ad_id": "120251839597280682",
    "ad_name": "tournament_1",
    "campaign_name": "tournament",
-   "spend": 0.11,
-   "impressions": 51,
-   "clicks": 3,
+   "spend": 0.24,
+   "impressions": 84,
+   "clicks": 7,
    "regs": 0,
    "leads": 0
   },
@@ -14795,8 +14850,8 @@
    "ad_id": "120251842391040682",
    "ad_name": "tournament_2",
    "campaign_name": "tournament",
-   "spend": 0.13,
-   "impressions": 57,
+   "spend": 0.15,
+   "impressions": 67,
    "clicks": 3,
    "regs": 0,
    "leads": 0
@@ -14806,8 +14861,8 @@
    "ad_id": "120251842404390682",
    "ad_name": "tournament_3",
    "campaign_name": "tournament",
-   "spend": 0.07,
-   "impressions": 43,
+   "spend": 0.11,
+   "impressions": 80,
    "clicks": 1,
    "regs": 0,
    "leads": 0
@@ -14817,8 +14872,8 @@
    "ad_id": "120251842414280682",
    "ad_name": "tournament_4",
    "campaign_name": "tournament",
-   "spend": 0.22,
-   "impressions": 114,
+   "spend": 0.26,
+   "impressions": 157,
    "clicks": 2,
    "regs": 0,
    "leads": 0
@@ -14828,9 +14883,9 @@
    "ad_id": "120251842419820682",
    "ad_name": "tournament_5",
    "campaign_name": "tournament",
-   "spend": 0.84,
-   "impressions": 570,
-   "clicks": 16,
+   "spend": 1.75,
+   "impressions": 1084,
+   "clicks": 31,
    "regs": 0,
    "leads": 0
   },
@@ -14839,9 +14894,9 @@
    "ad_id": "120251842422120682",
    "ad_name": "tournament_6",
    "campaign_name": "tournament",
-   "spend": 10.22,
-   "impressions": 6470,
-   "clicks": 172,
+   "spend": 30.81,
+   "impressions": 19612,
+   "clicks": 583,
    "regs": 0,
    "leads": 0
   },
@@ -14850,8 +14905,8 @@
    "ad_id": "120251842427370682",
    "ad_name": "tournament_7",
    "campaign_name": "tournament",
-   "spend": 0.02,
-   "impressions": 18,
+   "spend": 0.04,
+   "impressions": 39,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -14861,9 +14916,9 @@
    "ad_id": "120251842486570682",
    "ad_name": "tournament_5_2",
    "campaign_name": "tournament_2",
-   "spend": 2.91,
-   "impressions": 1881,
-   "clicks": 45,
+   "spend": 9.06,
+   "impressions": 6212,
+   "clicks": 142,
    "regs": 0,
    "leads": 0
   },
@@ -14872,9 +14927,9 @@
    "ad_id": "120251842486580682",
    "ad_name": "tournament_7_2",
    "campaign_name": "tournament_2",
-   "spend": 0.18,
-   "impressions": 94,
-   "clicks": 3,
+   "spend": 0.23,
+   "impressions": 135,
+   "clicks": 5,
    "regs": 0,
    "leads": 0
   },
@@ -14883,9 +14938,9 @@
    "ad_id": "120251842486590682",
    "ad_name": "tournament_6_2",
    "campaign_name": "tournament_2",
-   "spend": 10.02,
-   "impressions": 6446,
-   "clicks": 187,
+   "spend": 33.77,
+   "impressions": 22075,
+   "clicks": 623,
    "regs": 0,
    "leads": 0
   },
@@ -14894,9 +14949,130 @@
    "ad_id": "120251842486610682",
    "ad_name": "tournament_4_2",
    "campaign_name": "tournament_2",
-   "spend": 0.43,
-   "impressions": 264,
-   "clicks": 4,
+   "spend": 0.83,
+   "impressions": 491,
+   "clicks": 15,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "ad_id": "120251839597280682",
+   "ad_name": "tournament_1",
+   "campaign_name": "tournament",
+   "spend": 0.0,
+   "impressions": 9,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "ad_id": "120251842391040682",
+   "ad_name": "tournament_2",
+   "campaign_name": "tournament",
+   "spend": 0.06,
+   "impressions": 30,
+   "clicks": 3,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "ad_id": "120251842404390682",
+   "ad_name": "tournament_3",
+   "campaign_name": "tournament",
+   "spend": 0.01,
+   "impressions": 6,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "ad_id": "120251842414280682",
+   "ad_name": "tournament_4",
+   "campaign_name": "tournament",
+   "spend": 0.03,
+   "impressions": 17,
+   "clicks": 2,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "ad_id": "120251842419820682",
+   "ad_name": "tournament_5",
+   "campaign_name": "tournament",
+   "spend": 0.78,
+   "impressions": 469,
+   "clicks": 8,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "ad_id": "120251842422120682",
+   "ad_name": "tournament_6",
+   "campaign_name": "tournament",
+   "spend": 8.66,
+   "impressions": 5041,
+   "clicks": 159,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "ad_id": "120251842427370682",
+   "ad_name": "tournament_7",
+   "campaign_name": "tournament",
+   "spend": 0.01,
+   "impressions": 2,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "ad_id": "120251842486570682",
+   "ad_name": "tournament_5_2",
+   "campaign_name": "tournament_2",
+   "spend": 3.18,
+   "impressions": 2180,
+   "clicks": 54,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "ad_id": "120251842486580682",
+   "ad_name": "tournament_7_2",
+   "campaign_name": "tournament_2",
+   "spend": 0.05,
+   "impressions": 15,
+   "clicks": 2,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "ad_id": "120251842486590682",
+   "ad_name": "tournament_6_2",
+   "campaign_name": "tournament_2",
+   "spend": 10.28,
+   "impressions": 6072,
+   "clicks": 209,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "ad_id": "120251842486610682",
+   "ad_name": "tournament_4_2",
+   "campaign_name": "tournament_2",
+   "spend": 0.07,
+   "impressions": 67,
+   "clicks": 2,
    "regs": 0,
    "leads": 0
   }
@@ -14921,46 +15097,46 @@
   "120251542289530272": null,
   "120251542289540272": null,
   "120251542289550272": null,
-  "120251541791620272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/780675011_1066117419335283_8372907417567360380_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=MkcmoPG_82gQ7kNvwH5iSZV&_nc_oc=AdrAVK1y7B35-0n1bdbVJhi5RmslN8vVdEzvvTy8V1htsd9ceMzqM6g_RBs2g8sQC7k&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=FHeNurG18joLmYFyc86UiA&_nc_tpa=Q5bMBQJv1TsBUprgFLuaBIz0Gl3StsuSnk1pftsdMslpBmM3Kvpbls-iqzNGxvaCgXcaBH8i0_4vU-fcjA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQkXNU6zsEQp4KqtLqbuqZ6vgq8TFsSv5W7c6KiD_h5fw&oe=6AEE0352",
+  "120251541791620272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/780675011_1066117419335283_8372907417567360380_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=JAQbpLdcD_oQ7kNvwEkeZhL&_nc_oc=Adqvfr5ww_cEnnDyCM4hpm-v2upLGSnr_35WT8d2Y0w_QMivuuFErAEM_HaEX6nYJPM&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=pxAoE2E2gXbc7KpR6xj0BQ&_nc_tpa=Q5bMBQJ0ED8fmQmWuqXuMJlJIVTtnX7rn-Fz1ewvsXwwrvo2NpQMPX9i44lzjEFLXxD2rznQH0HQUXWQQQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQSdOin1V-jMwSkj2nW1j0Z4GKqy4xlom8gh02S2682yqA&oe=6AEF54D2",
   "120251599858800272": null,
-  "120251599858810272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784904199_1070057338941291_2206540396708966532_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=KBhTPS6S22sQ7kNvwGvuNDW&_nc_oc=AdrZZPhl5a3CeR_INdpgZR7CY5DJN-s_6PZ6TN6y1-mwGy0qCUCb50ZTYfT7J0GN6RI&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=Y1i50Ber-SrLplHG17jFxQ&_nc_tpa=Q5bMBQLh9wlKCypTglaRWdK8JVbPx2h_X4ti7_86BcIVkbU5FvzP7LUw6tcxUo5punb0SLBkqcSoyE9FTA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQT9NcqeYP9Xb-GSeOF7x-qlRgRDJBDfs0sKxMULeir1-g&oe=6AEE1AF2",
+  "120251599858810272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784904199_1070057338941291_2206540396708966532_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=KBhTPS6S22sQ7kNvwGvuNDW&_nc_oc=AdrZZPhl5a3CeR_INdpgZR7CY5DJN-s_6PZ6TN6y1-mwGy0qCUCb50ZTYfT7J0GN6RI&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=CSlZ3nYrZYx9SjK6_rsT_Q&_nc_tpa=Q5bMBQLqZhWFwSRfD6rM3H0qInyQnAMYh8ufs9jPaXEeAfdETpa0Wss1PfLssMjAX7QtIF1QnXm1Rq_R1g&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQR8oNZZxVr2Dc1UzGqzmhkUKL-nf6j0f_UPL8W1ablVvg&oe=6AEF6C72",
   "120251599858830272": null,
-  "120251599858850272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784597800_1070055695608122_8327765869920826134_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=b7U4tDBQSrAQ7kNvwFxugQK&_nc_oc=AdpwuS4K_A-QdExz0bA3VvUqS8hEDrk8g53khEqZRyqJZQX3birDcUigZXlR4sCyJ4Y&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=oYWQI1WYAj58_LquEfKYyw&_nc_tpa=Q5bMBQJkqtsNv1Plrz_G2u88UVKkB4k96mntjfbj7sWtvUsDPDXqbD139dpnTHnHF9EgVSzSevhoiJmiMA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQskcNcvy2b1ozIrrTBEA7E_kdTs9vNSsGDW4hbdiumHw&oe=6AEE0A76",
-  "120251600011560272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/782616440_1070060685607623_2595426264156122586_n.png?_nc_cat=102&ccb=1-7&_nc_ohc=ft6dEB4hKWAQ7kNvwEWbNRN&_nc_oc=Adqo8M27DAa54UXtpUQqDaNlKgEFEZ5Xl02SCeu1s-i4JxmQSaA0jxFJuYtWXDCgeh4&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=geD-g2h5qLUcnB3AbZ7cDA&_nc_tpa=Q5bMBQJWeZXXKt0rpuoLJm1asroT3EmbRA4c1XPl5KMLyC1KR2NFZ_z_HyUVoiDPMldCurZ1xlRdR2nl6A&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQRE-Z2BEyTL-Rc11HhzIzrtkX1mxz6dbZ5v-6RYSgjMHg&oe=6AEE2433",
-  "120251600053410272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/784819227_1070062445607447_8159709494636123640_n.png?_nc_cat=103&ccb=1-7&_nc_ohc=BHquggCoEbIQ7kNvwHsSuAz&_nc_oc=AdqdOno7AnzEN_APZ3u6L7FMz6wrHJygk6U9b0UPDfBhX3PhdmAfbv3kBZSoLvrko7U&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=TLI9TU1n_WP_sJNNZUbLEA&_nc_tpa=Q5bMBQKY2L4kuA0FOpGgZhQP0nir1jtlZmUJizhmt4OfJhcYbHotzc9l-C_iTFfVY43XICxH_w1Mr-w9LA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQSzowH01kCBEjNgYxxMxAYMrspocbzMgNiqzSYkdq4Scw&oe=6AEDFC5D",
-  "120251600072020272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/786429153_1070063705607321_983681614321277328_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=nPms9tgXQCoQ7kNvwGBShpI&_nc_oc=AdpiWUrlYD7x94qNRaA2DBakPU3NXpdSCSr7MmWGKyp54gdl6M2hPgl_xoNNaB4h4p8&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=utky2w8qyn08CWkV5k4nXw&_nc_tpa=Q5bMBQIMvvtHr9A36uHgdEi0Kq0fx1V8P7pQltuJhdBjONflymeKKpJDT6j8Hfhxwa1UfmS8qJgKwiwNjw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQSIyBxveBv4JWB-sNVG4Rig92lnknpJobOdJuqIcj7QAA&oe=6AEE0F3E",
-  "120251600090640272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/785777765_1070064955607196_5417618179343208654_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=gSr7m-mzj6oQ7kNvwEdfx75&_nc_oc=AdpsxAMs0VVC43XKOIBFb2nUM1PclUG81S2Ah5KmLu0ZYZVX-t1tnwlrGDo95xIGI58&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=MWIcp5DLuMvrmgj47PR8BA&_nc_tpa=Q5bMBQJijT5U5-73boZ3Ud-qWgqQltQ8p8oFmw6HwuQLFVOXoDsJuXwCyfJOaDqmevJC2UG-stvj_oDt3A&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQjp4u2zmRDqzpqTbfGzXsJx18HzLcN7iy7si58mrN0nw&oe=6AEDFB5F",
+  "120251599858850272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784597800_1070055695608122_8327765869920826134_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=Gkvw5Ypkp_EQ7kNvwGdZ6vj&_nc_oc=Adre0W4uSuF4MoDayB5kNV5gony_rf17R7h_jhA_SoQZ4wvIekdJPdoPyW7kzHQN6FM&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=Db7ESSpO_nbkTCsv9aMCMA&_nc_tpa=Q5bMBQLwqkQDdP60_pcSFW5aM_uyERTgSMvs7xSd2Q8X2ULgMRWeTH0NyGC_HVVQUTqzLTN0hey56KvUkg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQTox5Kae9XcFauTBUyLNJcy4X4NY8GIC92Mj87jg8Jf4A&oe=6AEF5BF6",
+  "120251600011560272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/782616440_1070060685607623_2595426264156122586_n.png?_nc_cat=102&ccb=1-7&_nc_ohc=ft6dEB4hKWAQ7kNvwEWbNRN&_nc_oc=Adqo8M27DAa54UXtpUQqDaNlKgEFEZ5Xl02SCeu1s-i4JxmQSaA0jxFJuYtWXDCgeh4&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=xh1MI9hf2W77hW8l8bnspA&_nc_tpa=Q5bMBQJ2uINVr3M2i1PYAElUjdQmbncZGHnvbGM4NjrpL2iCxRuW72dwQPAmQ97LfhR3XuF6jeOHVIuhYg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQS2fAvG0vHlvz3h3S-EqsqLXRhLninSf_QIPmAf7cabTw&oe=6AEF75B3",
+  "120251600053410272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/784819227_1070062445607447_8159709494636123640_n.png?_nc_cat=103&ccb=1-7&_nc_ohc=BHquggCoEbIQ7kNvwHsSuAz&_nc_oc=AdqdOno7AnzEN_APZ3u6L7FMz6wrHJygk6U9b0UPDfBhX3PhdmAfbv3kBZSoLvrko7U&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=EmBtU8rq0ZD-15i-8LGadQ&_nc_tpa=Q5bMBQLI82eqxLTtLqYf948CXPgPOVfM391tkvU-AlCYl7jo9N64sdeHBBGc7Ktrglnf6pPELjfY3760aw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQTCGVe1CGj4o90qkbG5Bwo4zYUtppFvAQeb_FNK-pgxSQ&oe=6AEF4DDD",
+  "120251600072020272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/786429153_1070063705607321_983681614321277328_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=nPms9tgXQCoQ7kNvwGBShpI&_nc_oc=AdpiWUrlYD7x94qNRaA2DBakPU3NXpdSCSr7MmWGKyp54gdl6M2hPgl_xoNNaB4h4p8&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=eXow6ezHHNVp0uvH_7T8Fw&_nc_tpa=Q5bMBQKZOarGuswDRskhm8aX2FoEPvz8tBRsfXzCfHhGKySNmBzzDO6qJj7HAPOUipvx5AmQGh5OsaOJIw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQ0Kp_W80grbcII_u3kDwz31wzBynMLOwi5RyrsW2bkEA&oe=6AEF60BE",
+  "120251600090640272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/785777765_1070064955607196_5417618179343208654_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=cDfEAAPwxcYQ7kNvwH1t07E&_nc_oc=AdphcW4ywI_vZp21VP2gX5JR7kuw-3HD1cBrxpa2Y2mgmqg-cQICpMxVPjDxfQDRNj0&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=K1TICfunsqhWBHKMTLXvvw&_nc_tpa=Q5bMBQLPtmPoyR0StRBg_xnqJUIhRK23b_FYL9pX312tIfDBx5v4beJgpf7usxhzztJZSPvnDrdy0gBSmw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQSrzpPR-Klx-mLJmoF1qy3tLLabJ1sTs1iqFwxUdZoLfg&oe=6AEF851F",
   "120251600142580272": null,
   "120251600142590272": null,
   "120251600142600272": null,
-  "120251600142610272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/785060433_1070086118938413_3880661223052655553_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=QHrZhbznenEQ7kNvwFgodjg&_nc_oc=AdqeETDrCC43SWZjikwtNW3mPXVRvV_xCOq6Rf-IOveq_kPBL8B6M6tiIlhwmEvVXLc&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=txigdNnbcu4u2Pvx4SbPIA&_nc_tpa=Q5bMBQL4sDJBXX8NR04KLaUNIxA_nwif9MPmwzZCLIHXK-SonGcLDgbuGs-EnC4tAjS6cNhC-2mnlQr69A&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQRdAHOws0NXTQPVTtiMpcy7-KXS7PQQlLDEGiIfpZ16qQ&oe=6AEE268D",
-  "120251600142620272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/785739186_1070075998939425_3504045407733106482_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=AGA_ZmUwZNAQ7kNvwHyxpDM&_nc_oc=AdoVt0USWqK-NiexlgbKjdqTKF1QYppsvRNQYqszJZwNfnBMf-9ah-ycUdQbPdGsv2o&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=J9OYvFO4jZ-sgb8L8HoRbw&_nc_tpa=Q5bMBQKokMp8FMQcDYG6qkBitGvBnRQ1_3OO_-B2mbBJye-7Ab63YoGfM5WW4mNJS_1cd7OF2HEckKxHiw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQTgVo27iSGM4-LcDyguE2Lgh2W8LxkSTfrS3vxcU4ErYw&oe=6AEE2E5E",
-  "120251600142630272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784694567_1070083608938664_2075450433369714535_n.png?_nc_cat=110&ccb=1-7&_nc_ohc=x5pRDNOp17kQ7kNvwHKVp0o&_nc_oc=Adpf0ZqAk43ATbzixeyuK3DjKqQbHiW5CWt5QI9IWh4_zTJ5pJ-8iqzZAch0ggyg3DY&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=1sUvnvgyPR6fwa4xhJzlYA&_nc_tpa=Q5bMBQJDTavlLIF9xgn7sWbDlOw9QndSuW-Hfuy4YPr5EDcigfQJ-KBDX0jxu4lnk10CQWqilu6V6DnEZQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQRlsw2m4CVKvIt3AnEE-EqzQIjbcZ_VAEuXqiIqzmbnYw&oe=6AEE233E",
-  "120251600142640272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/784597804_1070078515605840_3241966432541898211_n.png?_nc_cat=103&ccb=1-7&_nc_ohc=a33Uw6XkrY4Q7kNvwF9AiLf&_nc_oc=AdoZcIv1WMmAQ6-6DkPaINkRTaf9gFRIVRS59EdW0Qk5uuatnZXEsD6nh0fXbP77oYc&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=lDgpoHlPiz0AhOyEl2SBLA&_nc_tpa=Q5bMBQJDq0kRFAPu3zCjdc8Ol8K2Nac9nhDTyq4KS5qj1lQhj2rFIJVeoBqMXrp6H0VGRJ4a-6U83LDUgg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQRp6Jp-pZ74HovUsSsXhhVGhMdcb-ZUq1ek8KkODvGNA&oe=6AEE03C2",
-  "120251600142650272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/786423525_1070080068939018_3095448568383683870_n.png?_nc_cat=111&ccb=1-7&_nc_ohc=Ap077DkHqmIQ7kNvwHAKl7i&_nc_oc=AdozasGrKtf9etzTDzi1H4dHY1sazHLTPOTk8IczvUTnXLCJz2KwYoSNzG1hOaoZfbc&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=fpUDQs-gCaRhvvcDkWdNdQ&_nc_tpa=Q5bMBQLD7oTwcqshzbUlvAMQxzxdeuHaWmB6Azn5qz3MdhXiAEGo6R1FZugP54pqiPAym16I9nhTpvGr0g&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQTFf_3CUJs3--PLPMSdxBwuq5rN7UW3ctmcFAqX4RghBA&oe=6AEE25FC",
-  "120252328495670272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/7651636926482195518?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKrQvoeja-_WYVqurMuwuII8bMCvWwOx2KFZYP7BdfQOM8oH821TtRS59PNn4deK_ty8JYFxmz7jFUnAZMr-p3u19O08aeTUuo4WWjd4oRS-zHyBw7jdOqHgk3zaxcwfba96Ki0mCdBe-GakxKBeSxd&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=RVvGY9KTdkfz8WLj464iag&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQLZzD31PT4Z1J-vW1wInkRUk70118_cQxN5D-j4R-JJ2IGenARK7cK0EqN2BkGReukch4ItPWMtXw&oh=06_Q3_EATCs32F92vclu7pwuyQ5IdFuGWWT9jhe-nSLdIqFSMPI&oe=6AEA247B",
-  "120252328495680272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/12045703034225709125?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKGMf7dUUYqrzqE1uh1-la21x2lEj-L_ds2lSpk3lfgV7xl-rsPA9xw-vU9jfTGrokhyppkKBa5YmzaTe0SboXCJIWuZWGSDndLKW6098_OWdX9LG-72iV6GUjy8THBaKvpI2XTPEPsM--_x2dUZd3l&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=Sb5574VEKvINNe1ABHPiHg&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQKpqUQ-x4Mzw9J2k4Ueh0G8SSq3VGqBdB5FGB-r6JNi_J7P_3g6rGZeIS2Ii3MsCm6yEcCk9ks4Hw&oh=06_Q3_EAbPRdv8vhdJJ1iUFMC_2zZQowJjKzIKl5ZL2MM9Suy4r&oe=6AEA1A52",
-  "120252565817200272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/10258216028747711754?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJNnFj4Mq1pSzo51rfuYL7hYz__rQ9-PG5sPRSXccKgis0vQYkjySBnNxbuKqL8CA003Kly96LaPuXihlzxZuWbKsXFkff8lV1RHqbVSmzxnLPmx7tP357pO2fEmP_DsVjFeUqrD10RR9ezigvzhOGR&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=cmjOSWdDBwu23RJV1y05PQ&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQIgzVPiOChXR-7-AXs0LTPJN4dT7FltCtBM6XhXNwqnTQlc36R5MVMpm1MC2Ee8SBY96ldwPlP_NA&oh=06_Q3_EAR6exWuZxNepg5mXNjSM89nzbsiSEzMlSm2wauF5czjL&oe=6AEA0A05",
-  "120252565817210272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/3177853233603563357?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQI-Pyhs_lMG-YZmgCnBTUJOyLKDon10mKod12Weqy991o2V9jhfOFJg9X6b_ZbsSvjw9lU0NvlWG4JTJSw4FLHGEYi006OExYgFp4A0Xf_yJTSWLHPcRCbsgthzClCFye3R-zqYKZbDoR5RJ-12orKI&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=0lOYOK0Jz3eI-R85SZfcdw&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQJ6nNdlCH7Tx2kN9EY84zcNoEqzYQ8zkri86iO5kVZDCTf5evBggdPAGmkeIckwVhhTckKI45czrA&oh=06_Q3_EAe5eSMynKgiuX__uVW2dqxNZv7GgEOHlRPgc-r00f12N&oe=6AEA0FBF",
-  "120252565817220272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/13887149397540635503?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJhBe-kb7fzDwHI1sWrj48s2frF2uPB65-vBvMCHDU1EUy6GNmajQZ3B7H92Ig20OSbSqycx9BDCkJMKDgQkaGCs7WW7aO3UXNKvNKYXHCSBx5qpOelZfJEIcp7JpO_SjyKGC3gGZUOC-qbNKlKIii7&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=9iyUJ68fjKl2jI-GxUA_pg&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQJra6YwEeX4JOaAOgPb49GWZu2bwRVCzXC88zGzzYapO-HzY-37SYpcDg2_0p2AWv77w-MKqF3b_A&oh=06_Q3_EAVXKx32sVJigXcu32H0A887mpEhDRCcjlaJVWI5_NSuN&oe=6AEA1201",
-  "120252609180140272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/7559974831725757859?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJ3HCT32aKLXw9uQHWx3QgTlKkHfn_uW-DeGngtMko8FsxdkAkVXuvTHlyWUHvxj8Fi7qcVX_SbhBu6LyMiIocPPpda5R_zuyXh4joDQqVczrMm-E8n2hwwPvFEktGGCr1qcXzNOverYo0jjf4wyFvD&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=kZHP7chY66ulqsrdM8J19g&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQIpDE5Kr28sZ0W1vqdFKFwyNW1ghFO04orgTQ-XTt5ePecxNkKx6kcqJmIvwM_KiqKkVKJHysgkEw&oh=06_Q3_EAVIMjl13RBgZG2EquygAmhAOYZxiBn3YkYIXgqpkA5RI&oe=6AEA371A",
-  "120252611911620272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/9371771020579992973?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQIPIr38SvC8iIq5jBFR7G07k_Pi2yvsw56NW1OCR4dJp_iLgEV85x7n8AaQ0CSEuJi6KM3fLgAAM8jkCst7Gc9qY4ZfZ7_Lz34raKlqovsWSgqWwE24vXoEfeWY9lyMZ8U6wbBm5yRbzqU5Q5jxwJuE&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=wZD1NW-jwX7EgQnRVcn6Lw&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQK_q7oi2S7jPKlvbzgmq5e9FNd84awNzXecNg3AkwLSEP-SE9D7vsLu4XnsgiBKCburNCEzBpxbkQ&oh=06_Q3_EAT8qMwvND4iq1G2J5EuoLDintg-ZY3QwrJEG8vRMEh98&oe=6AEA171B",
-  "120252614028260272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/16013504810643769150?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKsGUu_J277xPrEhgzwWpHK4yH0iOeEpt5Y5VS-UieeKTdEzH-eqihbLxBfZg0umLy2JKFqTyx8-3sd-djJdvrn-uQC181abg1l5JE_9G4q8OaMlxTc310WjQ97GdEI7BTWQPxvn16cV7zKrqUeO3HT&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=oNsvxWW4Q2gOAluNuXswuA&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQJMoQhViM1-OoT_XxUEsx-Tq2_uwc36R5SErCXB7nR9cMlS3MiGk8w5dro7fqGJJobhrRhLaHYObw&oh=06_Q3_EAeSvUG5ENZv9tfMsb2T-HNV7E3387-DIQQIv3xAbMi-B&oe=6AEA1DCF",
-  "120252614153990272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/2696067653235478350?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQICNy9drGDrrUu0kvkxdhXH0wboAZV9Bpj9ns4bXMrokG3JuFf4iqBmzBwH6pvVuRDpYZljhSS7gCNXT7Syun56i7N6bNI59oyqwiv71BhSxjEMHX6lnEGvZLotJdEYZZZ5YwNOz0WJAJbycWm6hf6M&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=bx7uTTqHAVXYYtd9_I48Qw&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQLCLw2D-GoIVdZqsI1x06hAHfV1QzgajjXD1ZsMda9ITRDWyPph8-g0EV0HmjqgauuCchIRCwhmRw&oh=06_Q3_EAdJLrDAKRALrq25Wi92WDHNMeoifjw9cRmsABaLqiPpm&oe=6AEA2CD2",
-  "120252614311940272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/520856517372116704?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQITnau6kfnkSzQjXZQoj8zdziPIqOku6vrpgPNVD-nQcH4yoVTO4GOVFFCbU0oHNqknfVcT08xIR-ZxVRxfcnRjE_5ThRsdzghmTy97f4BICZyzKOdwik_izPOej3YPJeaVUa6SWL3la7PNntCLcwKq&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=hN6BwQAJV5PYHQeDZuQQXw&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQLeuBLT1jZJ4xOfHthDPRLsE6pCP_RqM_KVQ9GF1AYqjkjgz51VeklNi1GHK0wp1glsM2XaMuul8g&oh=06_Q3_EASIMwiGPnWnLlLoYOnQh8ItIA7vnxJMsppbq64-Cfbwj&oe=6AEA11FB",
-  "120252565817230272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/4285118259174767107?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJpy77VKAPDUWekRPTDHtHxVFayD4rivdRom-oXRb4rdANlucNFWQg6nMe-V4XUPO_pOJuiQ3PRcZMXsUiEqNbArHYfa3jbvID22ioJmlymhNIIB1LSkThYg_govwRSB_fa39oTyyipQ1jB87dnzO5d&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=RBwl1_ly0Wd7gU_eB8cQ6A&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQLks1ugj_C_wwe10SngXLS2gFJYdGgvliTDV94ag9q7CgCp5qi5WGPgP72DBQnbCaqbrRR3xLcOpw&oh=06_Q3_EAUaNWjNmmgmJWka5SWWJhfAUN7pUXfetLUEJzZcl1u2j&oe=6AEA0916",
-  "120252614266610272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/6800406492977391325?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLgupzHPa9G-IShzbfyKOi8R0zaLzj3uoEDS93WUvUJdusJwpowAvRRzVO095_qIqrBTBNQdQPwrmH3wmNOCAoYhRifm3CsmaYf3_WmpYAE_0YGKLkq904yzZBd0B4UY_qUtzV_N_hwL9hSALn6xn-d&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=eDJuJpEBFpHrAH7d2vtJow&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQIB7k233n50Ci9_ZYFNOkinK16tuBmWt43IpoPNCIB6rYtWrfDAxTSTyh-_ZA8YNMaa85ZOISHo9g&_nc_enc=Unzw53xhWCywp4Go6I5RIsxxcl_lxQ6jz-EcF-mxKinBRLjR1lx4MGGuKQQiLHGHGInR7E1QNyNdq9-pbYFMc3LnShK5BtLSKpw&oh=06_Q3_EAX4OPbRpHPBbkz64TuH71-mJ9nMna15-_xLfIrNae7-y&oe=6AEA28A1",
-  "120251839597280682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/884294087_1129617506318607_8606251479659755644_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=nr1FYk8USFcQ7kNvwEEHtRj&_nc_oc=Adon85yxs8ttkDVrPPMKWJCM5xBXuhkBywyQzMxhTuEXE4bRRCap9gzCI0pGqdI1tok&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=k0illpdQpXKjvc0zz_xm4g&_nc_tpa=Q5bMBQLCp5VCLrJ5AuLZ-XrzuMQuaYatrDReW-Bpj052z1IEErzI-uJcDQC6NGIQsqmWg4WqjxRe1OdECg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQRZM4CYzl1Vo9jf0TZfJAaAofhiTp-2RgcvOgUdGbSLAA&oe=6AEE2F64",
-  "120251842391040682": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/876372335_1129617549651936_7805435538428007709_n.png?_nc_cat=100&ccb=1-7&_nc_ohc=kgYn2GZJgRIQ7kNvwHhMDB0&_nc_oc=AdqrNFKbkqgT_CzAuvp04bTfnEGZK7jbCJQDp6ihnslndlqbKEP6bW62SRNBYxC5arc&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=SH93CJOotsFoMiUpE-qzAQ&_nc_tpa=Q5bMBQK70LpoPCrGkwHrLhOOuL_LPaq5H-VgQyA0DST_UDF3yhK9ndkdIvdu8OtRyy4_rACkKXtScsmc9w&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQSKaH7bwi_S7f5tk0HR4vGpiGTgtBOgQUwDuzjE2MYN5Q&oe=6AEE0ED0",
-  "120251842414280682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/884293363_1129617446318613_7789545419770105220_n.png?_nc_cat=109&ccb=1-7&_nc_ohc=zud8NS9nImgQ7kNvwGykF01&_nc_oc=AdrC225oiXQgYELs0EzsDQ3rXF5NGCPGMEaAk4-L3k35y-kB8I7oWm_G_WfmMjvDHZ4&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=gAEz4lc-wGKUNcXulXk3wA&_nc_tpa=Q5bMBQLiLqj_iWjDf2pl_nKfxr1gw3by3VvWuLeAs2ixOVWVKUn4TATg2kEbv_yoHfrw5kaU21KLu7aGMg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQRD5YE1-JjM43I2tx3eon0jTI1oq9Kew2ERJt2KqRA7TA&oe=6AEE265D",
-  "120251842419820682": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/884294240_1129625059651185_6570807887021113527_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=BKWn55zbkKUQ7kNvwHYdLiP&_nc_oc=AdoRa8DPEBjQwb5vL4xvKk8mlvvv9LvjIPaq8RycVHrz4qh5ILTTKdVgsg5eQ3C1MRQ&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=karyN9s7RJSfTJrD13QlQQ&_nc_tpa=Q5bMBQJyZp-JIeFCfAskSm7N3sg8T4pJnwSDkX9OaMZ0qIBYUZK9-SPN-GN-8Dn9RRafVaWnvjeoAgcnIw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQSSTrfqNWvhji_JTm_pFeFMK2DJovyJgK9ARpSEl1IcJQ&oe=6AEE0AAC",
-  "120251842422120682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/876372335_1129625762984448_4508385577169593252_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=cvqiteoXxhcQ7kNvwGVxMoR&_nc_oc=AdqH__W8ME9dbLJQYeLuWtwrZdqeO2mlhyBkqLGG0dNT2Dd5XJxMCQ48YCxNoxwjtBU&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=W_RBQaH5MWx9PaSgxFA3wQ&_nc_tpa=Q5bMBQJARSSi4P-uZrN7KjwAy0dsEhmHgE38CR2KIbjR6p0opAAxRNzjHM-2Toli5w4j_3DDVW7KGMNmUw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQSdjBXueCdUjCjqUsder0WHpPy9PWmnrrUxKm05yMbLhg&oe=6AEE1924",
-  "120251842427370682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/863113369_1129627106317647_1912762501280458800_n.png?_nc_cat=109&ccb=1-7&_nc_ohc=pJFMWLdZBxYQ7kNvwEJiN2G&_nc_oc=AdpC26taO-uU82V2jRxLuLPh3CwyHMzrJZPMA0xeRyr2M3vRfSGd6_II8xLdHG0lbiI&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=kv7RUGCIyJASMF6UE8aF7g&_nc_tpa=Q5bMBQKMSEIRVj6Z3Q8e7dVoa5IZFHZ24JXjEF087AevplAWU4UXsBS_nzBWgh38JtDLClgNvswTC1AwJg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQRwZ1ZsZgHNfFL4FP4Iukq59bELI0tUf0Eos6AhZG-Wjw&oe=6AEE0DAC",
-  "120251842486570682": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/884294240_1129625059651185_6570807887021113527_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=BKWn55zbkKUQ7kNvwHYdLiP&_nc_oc=AdoRa8DPEBjQwb5vL4xvKk8mlvvv9LvjIPaq8RycVHrz4qh5ILTTKdVgsg5eQ3C1MRQ&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=z0TUJBaovX4Vv4lwW4LGOw&_nc_tpa=Q5bMBQI7tEP2KpERPNvfQOEBy1O6UkmPYZPHbUqC_BtX7vf6mE9rYQamA_zKDZe_K872x3DN8yurB5ffZg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQO2ZxyZqDIFshn1DawOED9HXF4x8a9OghzFVH1IRPwYw&oe=6AEE0AAC",
-  "120251842486580682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/863113369_1129627106317647_1912762501280458800_n.png?_nc_cat=109&ccb=1-7&_nc_ohc=pJFMWLdZBxYQ7kNvwEJiN2G&_nc_oc=AdpC26taO-uU82V2jRxLuLPh3CwyHMzrJZPMA0xeRyr2M3vRfSGd6_II8xLdHG0lbiI&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=tYKIN98WYpEUGeTPesvFkA&_nc_tpa=Q5bMBQKk1ZK7s2iYVOd9Qf3Z2EKuunuX74l9RAuxL-45YoEpfCtfOfD73zVWSthJupxt6ETf_FcjIYx9jg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQTpUsvR-JW--w9Pc8UUiPtxfwzUDyPfzMXaaAmJyOxJlg&oe=6AEE0DAC",
-  "120251842486590682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/876372335_1129625762984448_4508385577169593252_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=cvqiteoXxhcQ7kNvwGVxMoR&_nc_oc=AdqH__W8ME9dbLJQYeLuWtwrZdqeO2mlhyBkqLGG0dNT2Dd5XJxMCQ48YCxNoxwjtBU&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=cHydBjhEW51SQacnBXOrbQ&_nc_tpa=Q5bMBQIZJ03dPXGe-QoySB98JVa1vv6WsAwgPaksTTTBpHigvSo40pm0OAjH4oAqueWPi0K4VeFcUNGxeg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQTEcP14tjTL4NDbLm-aCuIg0GcYWYQBB5FxXGn00EHIaA&oe=6AEE1924",
-  "120251842404390682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/863063108_1129617532985271_1191180149540620535_n.png?_nc_cat=108&ccb=1-7&_nc_ohc=Ne3mFzl62zMQ7kNvwFbdTuq&_nc_oc=AdqW5to7YDUCnDtEne7Ufq7lz8ffrNUTstKxRkDpCQZ_72JtTPSN4x1VoXCer_78yg4&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=kdhnn5EcH8Ek_CS9HUABpQ&_nc_tpa=Q5bMBQJNTGXdPRBYgO3exYmXsgX9iAjAFHgNT9JB9LjB4iSQcEsUgmAH4xdpeOzpL5OyrdJTZUJXGMQrOA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQJIRVhB-wo_pJpgOLpyX1QvKgZ3BsGThgcw_sVi3CDBQ&oe=6AEDFDEE",
-  "120251842486610682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/884293363_1129617446318613_7789545419770105220_n.png?_nc_cat=109&ccb=1-7&_nc_ohc=zud8NS9nImgQ7kNvwGykF01&_nc_oc=AdrC225oiXQgYELs0EzsDQ3rXF5NGCPGMEaAk4-L3k35y-kB8I7oWm_G_WfmMjvDHZ4&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=Quzoi7ySa3cDaaD6pMAldw&_nc_tpa=Q5bMBQJdmkQcEFs8ejjCYA_o4Ss5bv6P7ILbg3nB50aoKywEoDlavU0THBiOZYRRxkK4SznHdpNTLeRzJg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQQVtTKKjqcQW7UIIou3xYQ6ZwouOjj6C8ljsYf9cZ2SA&oe=6AEE265D"
+  "120251600142610272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/785060433_1070086118938413_3880661223052655553_n.png?_nc_cat=104&ccb=1-7&_nc_ohc=QHrZhbznenEQ7kNvwFgodjg&_nc_oc=AdqeETDrCC43SWZjikwtNW3mPXVRvV_xCOq6Rf-IOveq_kPBL8B6M6tiIlhwmEvVXLc&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=2zqnCPdd-kasahs6Vm1Dsw&_nc_tpa=Q5bMBQLi-SKTL7iDUwcU_oDRnn5gMa2wo62oP2RMyI4JPZOKD0Be4PLNyyME_2wsCUXzY-5J_GrfFG3hYg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQT62G6io1u-fjRJ-1yL8-zwE8HlQXjSTFSIbdnOOJ2IXA&oe=6AEF780D",
+  "120251600142620272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/785739186_1070075998939425_3504045407733106482_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=AGA_ZmUwZNAQ7kNvwHyxpDM&_nc_oc=AdoVt0USWqK-NiexlgbKjdqTKF1QYppsvRNQYqszJZwNfnBMf-9ah-ycUdQbPdGsv2o&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=C1okne1CWv64aysQquR60A&_nc_tpa=Q5bMBQKCZALl5X4k1rZOzMWeFXu0zXUqy4GKQ_2ZBafhcfEqISbuOeINlG_btMFThUDqYcTBuY5NyQRe4Q&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQRG429QWVIO8nDHRk-Wph7tqcYeMbQ1KCk58PNBwzTW1Q&oe=6AEF7FDE",
+  "120251600142630272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/784694567_1070083608938664_2075450433369714535_n.png?_nc_cat=110&ccb=1-7&_nc_ohc=x5pRDNOp17kQ7kNvwHKVp0o&_nc_oc=Adpf0ZqAk43ATbzixeyuK3DjKqQbHiW5CWt5QI9IWh4_zTJ5pJ-8iqzZAch0ggyg3DY&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=bV47wUCS5B_pXdNTtt277g&_nc_tpa=Q5bMBQIu8sOPHbyhYYkQ4rHN9vPy2YENO78r6Qpp8OPcXgkCqe1QMny8e0l6vSr_G2ky5dJRu0FWrT1WBA&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQSISLft2pbHTx15hAk1omIC9TeqbdJUue-NWx03j2J9SA&oe=6AEF74BE",
+  "120251600142640272": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/784597804_1070078515605840_3241966432541898211_n.png?_nc_cat=103&ccb=1-7&_nc_ohc=a33Uw6XkrY4Q7kNvwF9AiLf&_nc_oc=AdoZcIv1WMmAQ6-6DkPaINkRTaf9gFRIVRS59EdW0Qk5uuatnZXEsD6nh0fXbP77oYc&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=MWi8tpAMjwLSpdC3AppLBQ&_nc_tpa=Q5bMBQIydesrjOzQDeIDo007EN2eB1rv2TlKWUVwOpIrlIdi_kmEGJSTAZqJ20-3cKGgD_tTFFbrI9WpNQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQTlCliIugmtTDaRQM0Jh24GhpGTPvgJp1qrRpavUVMw9g&oe=6AEF5542",
+  "120251600142650272": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/786423525_1070080068939018_3095448568383683870_n.png?_nc_cat=111&ccb=1-7&_nc_ohc=Ap077DkHqmIQ7kNvwHAKl7i&_nc_oc=AdozasGrKtf9etzTDzi1H4dHY1sazHLTPOTk8IczvUTnXLCJz2KwYoSNzG1hOaoZfbc&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=3dYcXOcaGRRI4WLp4rYnrA&_nc_tpa=Q5bMBQKjPi1091pK9DxBknXgIfE3f4WH7cHYGxns65Eg79aZVH4xr6-I3fUdRHDXACubisgvFC-pz5xtQg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQTVccHnxXy1d7vnrcCDN9WHpCWsWin9ZMg729KJQ_vkXA&oe=6AEF777C",
+  "120252328495670272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/7651636926482195518?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKrQvoeja-_WYVqurMuwuII8bMCvWwOx2KFZYP7BdfQOM8oH821TtRS59PNn4deK_ty8JYFxmz7jFUnAZMr-p3u19O08aeTUuo4WWjd4oRS-zHyBw7jdOqHgk3zaxcwfba96Ki0mCdBe-GakxKBeSxd&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=vaig7GhDkixfCqXTxFDwdA&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQIAv5XDVO2pUwL2rguOoEnSVh1fiZYoPZK-9zfvORY5tL1te_U_diEYeMpvxA5JqC4eG9f3-hQmDg&oh=06_Q3_EATAbaq77B8k6T10OEHLlBIqN7c2rCmuSfExbs-mBORP7&oe=6AEB75FB",
+  "120252328495680272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/12045703034225709125?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKGMf7dUUYqrzqE1uh1-la21x2lEj-L_ds2lSpk3lfgV7xl-rsPA9xw-vU9jfTGrokhyppkKBa5YmzaTe0SboXCJIWuZWGSDndLKW6098_OWdX9LG-72iV6GUjy8THBaKvpI2XTPEPsM--_x2dUZd3l&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=_aXZfH4nHKnyxK60FflY8A&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQInvm0mPVq_7u_QADKyhmMc-qUdmWuQYbytWWfXi0lqyiZiNYXi4x3x7fQxQSYha8JlmQO0OO53Xw&oh=06_Q3_EAfnn966YIsbeKMqR73px35sA05KQpd8uVwR3t2vRanKd&oe=6AEB6BD2",
+  "120252565817200272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/10258216028747711754?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJNnFj4Mq1pSzo51rfuYL7hYz__rQ9-PG5sPRSXccKgis0vQYkjySBnNxbuKqL8CA003Kly96LaPuXihlzxZuWbKsXFkff8lV1RHqbVSmzxnLPmx7tP357pO2fEmP_DsVjFeUqrD10RR9ezigvzhOGR&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=VXYnk__KAGEDrSK6O4Kn3w&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQIrYXfttrqPcwgc8W3vVLkI7EdABTFfm4eYjsQpEmEFS-eOp7KRWJfJpdEJ1mv0e8RZXjAd0_1dQw&oh=06_Q3_EAcqKXrC4ObErBWNU72aWSxesNKmEHOzji0d_q_8bwFNH&oe=6AEB5B85",
+  "120252565817210272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/3177853233603563357?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQI-Pyhs_lMG-YZmgCnBTUJOyLKDon10mKod12Weqy991o2V9jhfOFJg9X6b_ZbsSvjw9lU0NvlWG4JTJSw4FLHGEYi006OExYgFp4A0Xf_yJTSWLHPcRCbsgthzClCFye3R-zqYKZbDoR5RJ-12orKI&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=yBwQgzfCH1L9TNy3iu4QsQ&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQKcbDF7d1AFtyya6f64KEweBxunSEdKVMLAlFdug82t-IBHt-739Ucm_ZAjXommWWCjk1pRU4mEAA&oh=06_Q3_EAeODaZaREeEQvQwovCKwiYKjLp3bAzmsiSciQ7U4VICk&oe=6AEB613F",
+  "120252565817220272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/13887149397540635503?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJhBe-kb7fzDwHI1sWrj48s2frF2uPB65-vBvMCHDU1EUy6GNmajQZ3B7H92Ig20OSbSqycx9BDCkJMKDgQkaGCs7WW7aO3UXNKvNKYXHCSBx5qpOelZfJEIcp7JpO_SjyKGC3gGZUOC-qbNKlKIii7&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=dzuJiY8EndzK1y0-tmSpcA&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQIBTiqxNIaY-tWYiSc4aZJCm2KnGmgntsW76VWW4h43AJykqvApEzwIIlPVllxCiqLJ1OYuas5ruA&oh=06_Q3_EATMRBOewKPcDiWM6YcquwXlG-sDxbhMkzmJMo9-oj8aY&oe=6AEB6381",
+  "120252609180140272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/7559974831725757859?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJ3HCT32aKLXw9uQHWx3QgTlKkHfn_uW-DeGngtMko8FsxdkAkVXuvTHlyWUHvxj8Fi7qcVX_SbhBu6LyMiIocPPpda5R_zuyXh4joDQqVczrMm-E8n2hwwPvFEktGGCr1qcXzNOverYo0jjf4wyFvD&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=q7FfBD2CIIHTD1qcB0kpOA&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQLHL1ecWWAbSMJu7sV382TFemDMy8UNKTkLGoBbGpTV-SOM9BivNpdtqR5kUa3oCTiJI_SxWY38lg&oh=06_Q3_EAXlnYCJ1dFrc3tIAlqA-1f0S6XjWKMRGt552cwd0RIMr&oe=6AEB889A",
+  "120252611911620272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/9371771020579992973?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQIPIr38SvC8iIq5jBFR7G07k_Pi2yvsw56NW1OCR4dJp_iLgEV85x7n8AaQ0CSEuJi6KM3fLgAAM8jkCst7Gc9qY4ZfZ7_Lz34raKlqovsWSgqWwE24vXoEfeWY9lyMZ8U6wbBm5yRbzqU5Q5jxwJuE&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=0XUixQujFGnsH2qV4FY-3g&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQJr8Fn4SdSOaXFrFLrUJ09bxjF4VzUASnfsXcxuqb-W28i166RE7azQdOsmREKMK0VGXavtehbMrQ&oh=06_Q3_EAVD5LSz9PUQIIciKvzrzI_gZQwNr15bgCqRzmbw7mgqh&oe=6AEB689B",
+  "120252614028260272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/16013504810643769150?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQKsGUu_J277xPrEhgzwWpHK4yH0iOeEpt5Y5VS-UieeKTdEzH-eqihbLxBfZg0umLy2JKFqTyx8-3sd-djJdvrn-uQC181abg1l5JE_9G4q8OaMlxTc310WjQ97GdEI7BTWQPxvn16cV7zKrqUeO3HT&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=FOPTTPii5IRHnR40XVKKmw&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQIuQHp6VvnftnifD1xNC4CQsnPIEgt7a_-wE1pX2GU7jqRj1fBHQfbL9JmkIlF3_uYu1XxQ11VjxQ&oh=06_Q3_EAZN8amNG8pvLqXtWb5b50jIh4ljIn5sUCavdLgd-YWKL&oe=6AEB6F4F",
+  "120252614153990272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/2696067653235478350?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQICNy9drGDrrUu0kvkxdhXH0wboAZV9Bpj9ns4bXMrokG3JuFf4iqBmzBwH6pvVuRDpYZljhSS7gCNXT7Syun56i7N6bNI59oyqwiv71BhSxjEMHX6lnEGvZLotJdEYZZZ5YwNOz0WJAJbycWm6hf6M&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=Z_ts-aDWIHdt12wQCoBkOw&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQLKZx4NiWrihwbvyS7i1hB7YbttNeK0nM6sAkv7qfh2xhfBUheGZjdcBcM5KIWCXX62WdM2DLkLFw&oh=06_Q3_EAcTL06kzSxADccwQEy_KIxJvQHnscSouz0oV0LBqBfZx&oe=6AEB7E52",
+  "120252614311940272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/520856517372116704?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQITnau6kfnkSzQjXZQoj8zdziPIqOku6vrpgPNVD-nQcH4yoVTO4GOVFFCbU0oHNqknfVcT08xIR-ZxVRxfcnRjE_5ThRsdzghmTy97f4BICZyzKOdwik_izPOej3YPJeaVUa6SWL3la7PNntCLcwKq&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=4vsfCKe8KK8J684YUFzH-A&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQLQnzoL2OFoDM7n40n2jTA-0MyJ57PE66su6FqfW54-ZRjpYinBSsBO8rhIsHwxp1H-sDYFJBE3rQ&oh=06_Q3_EAYJvY36NLSv6JzGtr_ImhsaWfMCKttiiiPvCAh1_Rq3f&oe=6AEB637B",
+  "120252565817230272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/4285118259174767107?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQJpy77VKAPDUWekRPTDHtHxVFayD4rivdRom-oXRb4rdANlucNFWQg6nMe-V4XUPO_pOJuiQ3PRcZMXsUiEqNbArHYfa3jbvID22ioJmlymhNIIB1LSkThYg_govwRSB_fa39oTyyipQ1jB87dnzO5d&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=YIOVVdEwO-FFa1poTYUPNQ&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQJBegEnstbiZestQF93RjC6jjRJD65CPfZekqbK5oVj8eB5Bota24MD4iTQPYkL2BwOecNoghbjXA&oh=06_Q3_EAYVbK53LYctfUNwO7-oRui-eJMPGEo1IXXT3sC9TuFc5&oe=6AEB5A96",
+  "120252614266610272": "https://external-waw2-1.xx.fbcdn.net/emg1/v/t13/6800406492977391325?url=https%3A%2F%2Fwww.facebook.com%2Fads%2Fimage%2F%3Fd%3DAQLgupzHPa9G-IShzbfyKOi8R0zaLzj3uoEDS93WUvUJdusJwpowAvRRzVO095_qIqrBTBNQdQPwrmH3wmNOCAoYhRifm3CsmaYf3_WmpYAE_0YGKLkq904yzZBd0B4UY_qUtzV_N_hwL9hSALn6xn-d&fb_obo=1&utld=facebook.com&_nc_sid=58080a&_nc_ht=external-waw2-1.xx.fbcdn.net&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ccb=18-1&_nc_gid=OOtjXOi2AYqGW0znR470NA&edm=AAwGEdEEAAAA&_nc_zt=3&_nc_tpa=Q5bMBQJ0fvsI1mnxF0DTvgo_Wn8D6qNihCMO1TC7TC0FuN8EuScq0jPBIpnzw9pPEuAHA0c9dMw9SnSqVw&_nc_enc=UpxjDdXY6QJKR1DEmxvXiD7ohNJo8Y4DwHX4r8vpAbj5seSO5oyqhb50NEKU65XQXjfSiHDfxgTOJJApkpR9Z1bL28FCKYN5u1c&oh=06_Q3_EAYU8dbjgDII6SrvU_YEpR4RCR-9pv9UX_Wg92OuCE44T&oe=6AEB7A21",
+  "120251839597280682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/884294087_1129617506318607_8606251479659755644_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=nr1FYk8USFcQ7kNvwEEHtRj&_nc_oc=Adon85yxs8ttkDVrPPMKWJCM5xBXuhkBywyQzMxhTuEXE4bRRCap9gzCI0pGqdI1tok&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=WoGLk0xLWcv4tOBDCKIccg&_nc_tpa=Q5bMBQL8LOaaQSd8Mwct_9KU8y3B9uZvH3bzknI5xHdUmkWRJYqSVloj1BuKVnFUtGbze2pKhdh8uMDZ_g&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQRjBOhWoJFtAMpxXXX411sato3nyeAQILG-Vo-ikVoi9w&oe=6AEF80E4",
+  "120251842391040682": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/876372335_1129617549651936_7805435538428007709_n.png?_nc_cat=100&ccb=1-7&_nc_ohc=AoM9J-_Hja4Q7kNvwFJ612y&_nc_oc=AdrL4Iq14N6CCReqEhHyEafDIJHJoFgWNaDZcts6hj-hnOGhQUzIaW3FkmH43SfzSlY&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=ZMKK5zIDe_CMY2COe5ZSkA&_nc_tpa=Q5bMBQL6GdoqraopPtanM7HomQ08mxIIpQkEL-51DGJxSGrKBijElyCls2taphVG7M5nFvM68-hQBWDjNQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQBx0n6Zpq5bgEYAYbDFngflWzXO1UqjTzd8kMJCg3jkg&oe=6AEF6050",
+  "120251842414280682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/884293363_1129617446318613_7789545419770105220_n.png?_nc_cat=109&ccb=1-7&_nc_ohc=zud8NS9nImgQ7kNvwGykF01&_nc_oc=AdrC225oiXQgYELs0EzsDQ3rXF5NGCPGMEaAk4-L3k35y-kB8I7oWm_G_WfmMjvDHZ4&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=LArmyhBupIm_wDcXlr08eQ&_nc_tpa=Q5bMBQIn6sV3nBCVm3fnrgGICmzr72i9HarpPCFbvOIL0KGqX7RSye5I-YHblAjrShtPs_i1g029F5f17w&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQYFkIltdpvGINiNn03qB3qefJljX-neIugi6JZmzCELg&oe=6AEF77DD",
+  "120251842419820682": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/884294240_1129625059651185_6570807887021113527_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=BKWn55zbkKUQ7kNvwHYdLiP&_nc_oc=AdoRa8DPEBjQwb5vL4xvKk8mlvvv9LvjIPaq8RycVHrz4qh5ILTTKdVgsg5eQ3C1MRQ&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=z9GQ0mxppcVL3N5gnBNQ4A&_nc_tpa=Q5bMBQK3Zjg9lee6M1m-k0cNI-NSWr7_x-QWaaakdcnBQ6os6vGoELvTieFiTwPvKSxqgGkZy2UAIPpXbw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQRJeOEduM2r50kpfKqWuvgF9pDJbZrZi3v4cIQLXqXdSQ&oe=6AEF5C2C",
+  "120251842422120682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/876372335_1129625762984448_4508385577169593252_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=cvqiteoXxhcQ7kNvwGVxMoR&_nc_oc=AdqH__W8ME9dbLJQYeLuWtwrZdqeO2mlhyBkqLGG0dNT2Dd5XJxMCQ48YCxNoxwjtBU&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=sLraP6rogUQ0sneGjWrBTQ&_nc_tpa=Q5bMBQIYbYDZnUgMLRDwkVGdIhGo3mCZUjYht75_Hw4iQdDKDR1m5b6g5FBue6HkYnplBEa_QvWRhyu0Nw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQPd8CvQ8c3jI415BT1es47l9GNWEW4pTf_ctmMY9yf4w&oe=6AEF6AA4",
+  "120251842427370682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/863113369_1129627106317647_1912762501280458800_n.png?_nc_cat=109&ccb=1-7&_nc_ohc=pJFMWLdZBxYQ7kNvwEJiN2G&_nc_oc=AdpC26taO-uU82V2jRxLuLPh3CwyHMzrJZPMA0xeRyr2M3vRfSGd6_II8xLdHG0lbiI&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=QkmLEkxUu96lh7Npd0ietQ&_nc_tpa=Q5bMBQLmjID4gKcAEmnxNBKYY9cvs-LICXOnjMy5tsCwK_it9KU5uxA5xdwqsGx8ZPpVOZc74nRuhWa5Ng&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQfhzabFj3SdB88Otz7oeg5e3-oMoMHRRA-2asYLdcg2A&oe=6AEF5F2C",
+  "120251842486570682": "https://scontent-waw2-2.xx.fbcdn.net/v/t45.1600-4/884294240_1129625059651185_6570807887021113527_n.png?_nc_cat=105&ccb=1-7&_nc_ohc=BKWn55zbkKUQ7kNvwHYdLiP&_nc_oc=AdoRa8DPEBjQwb5vL4xvKk8mlvvv9LvjIPaq8RycVHrz4qh5ILTTKdVgsg5eQ3C1MRQ&_nc_zt=1&_nc_ht=scontent-waw2-2.xx&edm=AAwGEdEEAAAA&_nc_gid=6K3Wv42ZL5zEWuPy5F1R2A&_nc_tpa=Q5bMBQLtZZIIAEX6KJhFAcpWTja7utzE0VY0U_St1EpPOpO-LvZWes6Yu1RrabodbsKr7ZjYk0ryZ0ADKQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQSDrCmU5wpIVhDLOOIyymtjs9oGLoxxidwy-jE4y1sgcQ&oe=6AEF5C2C",
+  "120251842486580682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/863113369_1129627106317647_1912762501280458800_n.png?_nc_cat=109&ccb=1-7&_nc_ohc=pJFMWLdZBxYQ7kNvwEJiN2G&_nc_oc=AdpC26taO-uU82V2jRxLuLPh3CwyHMzrJZPMA0xeRyr2M3vRfSGd6_II8xLdHG0lbiI&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=9m9JsnXMIRCzWM94_TB2Tw&_nc_tpa=Q5bMBQJFcJxYLfDl5wUXZID4A3uFa0sItgRcXVAM_2OsJC462TPERwpKqEy0N7MOSBSewIM0MozQ2yzVwQ&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQF2iRqAS2uwPh23TwlXhDQD71dMaOVY24EQMC1ZxQzJg&oe=6AEF5F2C",
+  "120251842486590682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/876372335_1129625762984448_4508385577169593252_n.png?_nc_cat=107&ccb=1-7&_nc_ohc=cvqiteoXxhcQ7kNvwGVxMoR&_nc_oc=AdqH__W8ME9dbLJQYeLuWtwrZdqeO2mlhyBkqLGG0dNT2Dd5XJxMCQ48YCxNoxwjtBU&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=4VjUvXN9uFdK8nP_g4JWDQ&_nc_tpa=Q5bMBQLk7g2quDLkPlNMp2ODZyPkR7aw4iOu3ye2XXbkAAr4KrP4gCWdOjE8Eg9SWwOdHvvHFdiWFu6vRw&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQREYqbADAZOinzdxxFh8xJo5Yhxqqhn1kU0bls9b8m-jg&oe=6AEF6AA4",
+  "120251842404390682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/863063108_1129617532985271_1191180149540620535_n.png?_nc_cat=108&ccb=1-7&_nc_ohc=Ne3mFzl62zMQ7kNvwFbdTuq&_nc_oc=AdqW5to7YDUCnDtEne7Ufq7lz8ffrNUTstKxRkDpCQZ_72JtTPSN4x1VoXCer_78yg4&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=cj8EoQ7MYYgsMHI0qemTpQ&_nc_tpa=Q5bMBQL_1m5TY3Uit0HfFKjRBTtqNfCiWFoATaPhz0nOLvMz2UUrMq3kekCFDDrp3C_q1Fy40He9Vlx-og&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQSeLXhawvKAG1HjT4ZDG-CvanShMRrTeU-hBjAULw4nkg&oe=6AEF4F6E",
+  "120251842486610682": "https://scontent-waw2-1.xx.fbcdn.net/v/t45.1600-4/884293363_1129617446318613_7789545419770105220_n.png?_nc_cat=109&ccb=1-7&_nc_ohc=zud8NS9nImgQ7kNvwGykF01&_nc_oc=AdrC225oiXQgYELs0EzsDQ3rXF5NGCPGMEaAk4-L3k35y-kB8I7oWm_G_WfmMjvDHZ4&_nc_zt=1&_nc_ht=scontent-waw2-1.xx&edm=AAwGEdEEAAAA&_nc_gid=QX6WFpz_N2TJgS0H9IG3Hg&_nc_tpa=Q5bMBQLrjJ1Us8vidcMOOdo06CZU2NwqG0NrfEeZIkk6utpEYNuJ388cG41E0CJb2b-3luEDEmwfkyBwXg&stp=c0.5000x0.5000f_dst-emg0_p300x300_q75_tt6&ur=52f3c4&_nc_sid=58080a&oh=00_AQQrGAUMFq8U8uPBRm_qDEDptJI5gp-G4-4S-XlAI-Wlmw&oe=6AEF77DD"
  },
  "meta_geo": [
   {
@@ -57320,8 +57496,8 @@
   {
    "date": "2026-11-01",
    "country": "BG",
-   "spend": 15.52,
-   "impressions": 11698,
+   "spend": 15.54,
+   "impressions": 11727,
    "clicks": 252,
    "regs": 0,
    "leads": 0
@@ -57383,17 +57559,17 @@
   {
    "date": "2026-11-01",
    "country": "GR",
-   "spend": 24.39,
-   "impressions": 14226,
-   "clicks": 336,
+   "spend": 24.43,
+   "impressions": 14255,
+   "clicks": 337,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-11-01",
    "country": "HR",
-   "spend": 1.46,
-   "impressions": 737,
+   "spend": 1.47,
+   "impressions": 738,
    "clicks": 20,
    "regs": 0,
    "leads": 0
@@ -57410,8 +57586,8 @@
   {
    "date": "2026-11-01",
    "country": "IT",
-   "spend": 10.09,
-   "impressions": 3951,
+   "spend": 10.1,
+   "impressions": 3953,
    "clicks": 151,
    "regs": 0,
    "leads": 0
@@ -57464,8 +57640,8 @@
   {
    "date": "2026-11-01",
    "country": "RO",
-   "spend": 34.08,
-   "impressions": 24289,
+   "spend": 34.16,
+   "impressions": 24351,
    "clicks": 494,
    "regs": 0,
    "leads": 0
@@ -57491,8 +57667,8 @@
   {
    "date": "2026-11-02",
    "country": "AT",
-   "spend": 0.03,
-   "impressions": 5,
+   "spend": 0.06,
+   "impressions": 18,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -57500,9 +57676,9 @@
   {
    "date": "2026-11-02",
    "country": "BG",
-   "spend": 3.51,
-   "impressions": 2749,
-   "clicks": 63,
+   "spend": 9.8,
+   "impressions": 7933,
+   "clicks": 200,
    "regs": 0,
    "leads": 0
   },
@@ -57510,7 +57686,7 @@
    "date": "2026-11-02",
    "country": "CH",
    "spend": 0.01,
-   "impressions": 2,
+   "impressions": 3,
    "clicks": 1,
    "regs": 0,
    "leads": 0
@@ -57518,8 +57694,17 @@
   {
    "date": "2026-11-02",
    "country": "CZ",
-   "spend": 0.04,
-   "impressions": 17,
+   "spend": 0.23,
+   "impressions": 101,
+   "clicks": 2,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-02",
+   "country": "DE",
+   "spend": 0.03,
+   "impressions": 11,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -57527,8 +57712,8 @@
   {
    "date": "2026-11-02",
    "country": "EE",
-   "spend": 0.0,
-   "impressions": 6,
+   "spend": 0.01,
+   "impressions": 27,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -57536,8 +57721,8 @@
   {
    "date": "2026-11-02",
    "country": "FI",
-   "spend": 0.0,
-   "impressions": 1,
+   "spend": 0.01,
+   "impressions": 8,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -57545,71 +57730,71 @@
   {
    "date": "2026-11-02",
    "country": "FR",
-   "spend": 1.03,
-   "impressions": 322,
-   "clicks": 16,
+   "spend": 6.21,
+   "impressions": 2056,
+   "clicks": 101,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-11-02",
    "country": "GR",
-   "spend": 7.07,
-   "impressions": 4583,
-   "clicks": 125,
+   "spend": 19.6,
+   "impressions": 13771,
+   "clicks": 366,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-11-02",
    "country": "HR",
-   "spend": 0.48,
-   "impressions": 254,
-   "clicks": 4,
+   "spend": 1.52,
+   "impressions": 916,
+   "clicks": 20,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-11-02",
    "country": "HU",
-   "spend": 0.44,
-   "impressions": 221,
-   "clicks": 8,
+   "spend": 2.23,
+   "impressions": 1016,
+   "clicks": 38,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-11-02",
    "country": "IT",
-   "spend": 3.95,
-   "impressions": 1818,
-   "clicks": 66,
+   "spend": 16.09,
+   "impressions": 8896,
+   "clicks": 312,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-11-02",
    "country": "LT",
-   "spend": 0.06,
-   "impressions": 32,
-   "clicks": 0,
+   "spend": 0.36,
+   "impressions": 243,
+   "clicks": 4,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-11-02",
    "country": "LV",
-   "spend": 0.07,
-   "impressions": 37,
-   "clicks": 2,
+   "spend": 0.31,
+   "impressions": 140,
+   "clicks": 4,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-11-02",
    "country": "NL",
-   "spend": 0.0,
-   "impressions": 4,
+   "spend": 0.01,
+   "impressions": 10,
    "clicks": 0,
    "regs": 0,
    "leads": 0
@@ -57618,31 +57803,211 @@
    "date": "2026-11-02",
    "country": "NO",
    "spend": 0.0,
-   "impressions": 2,
-   "clicks": 0,
+   "impressions": 5,
+   "clicks": 1,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-11-02",
    "country": "PL",
-   "spend": 0.28,
-   "impressions": 128,
-   "clicks": 5,
+   "spend": 1.48,
+   "impressions": 615,
+   "clicks": 24,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-11-02",
    "country": "RO",
-   "spend": 8.1,
-   "impressions": 5658,
-   "clicks": 137,
+   "spend": 18.26,
+   "impressions": 13741,
+   "clicks": 319,
    "regs": 0,
    "leads": 0
   },
   {
    "date": "2026-11-02",
+   "country": "SE",
+   "spend": 0.0,
+   "impressions": 8,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-02",
+   "country": "SK",
+   "spend": 1.03,
+   "impressions": 518,
+   "clicks": 20,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "AT",
+   "spend": 0.09,
+   "impressions": 15,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "BG",
+   "spend": 2.37,
+   "impressions": 1685,
+   "clicks": 55,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "CH",
+   "spend": 0.0,
+   "impressions": 2,
+   "clicks": 1,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "CZ",
+   "spend": 0.16,
+   "impressions": 56,
+   "clicks": 1,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "DE",
+   "spend": 0.03,
+   "impressions": 5,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "EE",
+   "spend": 0.02,
+   "impressions": 10,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "FI",
+   "spend": 0.04,
+   "impressions": 5,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "FR",
+   "spend": 3.93,
+   "impressions": 1183,
+   "clicks": 75,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "GR",
+   "spend": 5.91,
+   "impressions": 4565,
+   "clicks": 128,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "HR",
+   "spend": 0.4,
+   "impressions": 294,
+   "clicks": 6,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "HU",
+   "spend": 0.79,
+   "impressions": 455,
+   "clicks": 13,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "IT",
+   "spend": 5.32,
+   "impressions": 3040,
+   "clicks": 91,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "LT",
+   "spend": 0.2,
+   "impressions": 107,
+   "clicks": 2,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "LV",
+   "spend": 0.04,
+   "impressions": 60,
+   "clicks": 2,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "NL",
+   "spend": 0.01,
+   "impressions": 1,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "NO",
+   "spend": 0.0,
+   "impressions": 1,
+   "clicks": 0,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "PL",
+   "spend": 0.64,
+   "impressions": 279,
+   "clicks": 7,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
+   "country": "RO",
+   "spend": 2.7,
+   "impressions": 1956,
+   "clicks": 51,
+   "regs": 0,
+   "leads": 0
+  },
+  {
+   "date": "2026-11-03",
    "country": "SE",
    "spend": 0.0,
    "impressions": 4,
@@ -57651,11 +58016,11 @@
    "leads": 0
   },
   {
-   "date": "2026-11-02",
+   "date": "2026-11-03",
    "country": "SK",
-   "spend": 0.23,
-   "impressions": 111,
-   "clicks": 6,
+   "spend": 0.47,
+   "impressions": 185,
+   "clicks": 7,
    "regs": 0,
    "leads": 0
   }
@@ -61038,15 +61403,15 @@
   {
    "date": "2026-11-01",
    "platform": "Facebook",
-   "spend": 47.93,
-   "impressions": 35410,
-   "clicks": 729
+   "spend": 48.09,
+   "impressions": 35534,
+   "clicks": 730
   },
   {
    "date": "2026-11-01",
    "platform": "Instagram",
    "spend": 42.09,
-   "impressions": 21010,
+   "impressions": 21009,
    "clicks": 578
   },
   {
@@ -61059,29 +61424,57 @@
   {
    "date": "2026-11-02",
    "platform": "Audience Network",
-   "spend": 0.02,
-   "impressions": 100,
-   "clicks": 2
+   "spend": 0.08,
+   "impressions": 207,
+   "clicks": 4
   },
   {
    "date": "2026-11-02",
    "platform": "Facebook",
-   "spend": 14.84,
-   "impressions": 10406,
-   "clicks": 257
+   "spend": 44.03,
+   "impressions": 29603,
+   "clicks": 842
   },
   {
    "date": "2026-11-02",
    "platform": "Instagram",
-   "spend": 10.18,
-   "impressions": 5440,
-   "clicks": 174
+   "spend": 33.13,
+   "impressions": 20210,
+   "clicks": 566
   },
   {
    "date": "2026-11-02",
    "platform": "whatsapp",
    "spend": 0.01,
-   "impressions": 8,
+   "impressions": 16,
+   "clicks": 0
+  },
+  {
+   "date": "2026-11-03",
+   "platform": "Audience Network",
+   "spend": 0.02,
+   "impressions": 13,
+   "clicks": 0
+  },
+  {
+   "date": "2026-11-03",
+   "platform": "Facebook",
+   "spend": 10.49,
+   "impressions": 5940,
+   "clicks": 216
+  },
+  {
+   "date": "2026-11-03",
+   "platform": "Instagram",
+   "spend": 12.62,
+   "impressions": 7935,
+   "clicks": 223
+  },
+  {
+   "date": "2026-11-03",
+   "platform": "whatsapp",
+   "spend": 0.0,
+   "impressions": 20,
    "clicks": 0
   }
  ],
@@ -61090,256 +61483,256 @@
    {
     "age": "18-24",
     "gender": "Женщины",
-    "spend": 2.92,
-    "impressions": 2385,
-    "clicks": 49
+    "spend": 4.72,
+    "impressions": 3675,
+    "clicks": 78
    },
    {
     "age": "18-24",
     "gender": "Мужчины",
-    "spend": 9.84,
-    "impressions": 7111,
-    "clicks": 144
+    "spend": 23.35,
+    "impressions": 16066,
+    "clicks": 374
    },
    {
     "age": "18-24",
     "gender": "Не указан",
-    "spend": 0.37,
-    "impressions": 185,
-    "clicks": 7
+    "spend": 0.83,
+    "impressions": 380,
+    "clicks": 14
    },
    {
     "age": "25-34",
     "gender": "Женщины",
-    "spend": 4.03,
-    "impressions": 2340,
-    "clicks": 58
+    "spend": 5.34,
+    "impressions": 3325,
+    "clicks": 83
    },
    {
     "age": "25-34",
     "gender": "Мужчины",
-    "spend": 12.2,
-    "impressions": 8033,
-    "clicks": 182
+    "spend": 23.57,
+    "impressions": 16287,
+    "clicks": 423
    },
    {
     "age": "25-34",
     "gender": "Не указан",
-    "spend": 0.09,
-    "impressions": 72,
+    "spend": 0.26,
+    "impressions": 158,
+    "clicks": 6
+   },
+   {
+    "age": "35-44",
+    "gender": "Женщины",
+    "spend": 4.9,
+    "impressions": 2429,
+    "clicks": 69
+   },
+   {
+    "age": "35-44",
+    "gender": "Мужчины",
+    "spend": 16.38,
+    "impressions": 10362,
+    "clicks": 326
+   },
+   {
+    "age": "35-44",
+    "gender": "Не указан",
+    "spend": 0.1,
+    "impressions": 84,
     "clicks": 4
    },
    {
-    "age": "35-44",
-    "gender": "Женщины",
-    "spend": 3.88,
-    "impressions": 1840,
-    "clicks": 56
-   },
-   {
-    "age": "35-44",
-    "gender": "Мужчины",
-    "spend": 9.27,
-    "impressions": 5855,
-    "clicks": 158
-   },
-   {
-    "age": "35-44",
-    "gender": "Не указан",
-    "spend": 0.05,
-    "impressions": 46,
-    "clicks": 1
-   },
-   {
     "age": "45-54",
     "gender": "Женщины",
-    "spend": 3.36,
-    "impressions": 1706,
-    "clicks": 40
+    "spend": 4.39,
+    "impressions": 2243,
+    "clicks": 52
    },
    {
     "age": "45-54",
     "gender": "Мужчины",
-    "spend": 8.39,
-    "impressions": 5496,
-    "clicks": 112
+    "spend": 15.26,
+    "impressions": 9434,
+    "clicks": 264
    },
    {
     "age": "45-54",
-    "gender": "Не указан",
-    "spend": 0.05,
-    "impressions": 42,
-    "clicks": 0
-   },
-   {
-    "age": "55-64",
-    "gender": "Женщины",
-    "spend": 6.26,
-    "impressions": 3727,
-    "clicks": 96
-   },
-   {
-    "age": "55-64",
-    "gender": "Мужчины",
-    "spend": 15.55,
-    "impressions": 11484,
-    "clicks": 236
-   },
-   {
-    "age": "55-64",
     "gender": "Не указан",
     "spend": 0.1,
-    "impressions": 47,
+    "impressions": 68,
+    "clicks": 2
+   },
+   {
+    "age": "55-64",
+    "gender": "Женщины",
+    "spend": 7.5,
+    "impressions": 4539,
+    "clicks": 115
+   },
+   {
+    "age": "55-64",
+    "gender": "Мужчины",
+    "spend": 24.25,
+    "impressions": 17748,
+    "clicks": 392
+   },
+   {
+    "age": "55-64",
+    "gender": "Не указан",
+    "spend": 0.14,
+    "impressions": 75,
     "clicks": 2
    },
    {
     "age": "65+",
     "gender": "Женщины",
-    "spend": 10.62,
-    "impressions": 6004,
-    "clicks": 158
+    "spend": 12.97,
+    "impressions": 7431,
+    "clicks": 194
    },
    {
     "age": "65+",
     "gender": "Мужчины",
-    "spend": 28.29,
-    "impressions": 16425,
-    "clicks": 447
+    "spend": 46.61,
+    "impressions": 26556,
+    "clicks": 770
    },
    {
     "age": "65+",
     "gender": "Не указан",
-    "spend": 0.15,
-    "impressions": 79,
-    "clicks": 2
+    "spend": 0.24,
+    "impressions": 130,
+    "clicks": 3
    }
   ],
   "30": [
    {
     "age": "18-24",
     "gender": "Женщины",
-    "spend": 58.92,
-    "impressions": 299496,
-    "clicks": 6976
+    "spend": 60.51,
+    "impressions": 300650,
+    "clicks": 7000
    },
    {
     "age": "18-24",
     "gender": "Мужчины",
-    "spend": 86.74,
-    "impressions": 439306,
-    "clicks": 8453
+    "spend": 97.37,
+    "impressions": 446464,
+    "clicks": 8641
    },
    {
     "age": "18-24",
     "gender": "Не указан",
-    "spend": 0.8,
-    "impressions": 3167,
-    "clicks": 61
+    "spend": 1.19,
+    "impressions": 3350,
+    "clicks": 66
    },
    {
     "age": "25-34",
     "gender": "Женщины",
-    "spend": 84.92,
-    "impressions": 330620,
-    "clicks": 12289
+    "spend": 86.25,
+    "impressions": 331616,
+    "clicks": 12309
    },
    {
     "age": "25-34",
     "gender": "Мужчины",
-    "spend": 104.83,
-    "impressions": 488138,
-    "clicks": 11508
+    "spend": 114.23,
+    "impressions": 494880,
+    "clicks": 11696
    },
    {
     "age": "25-34",
     "gender": "Не указан",
-    "spend": 0.88,
-    "impressions": 3069,
-    "clicks": 116
+    "spend": 1.05,
+    "impressions": 3138,
+    "clicks": 118
    },
    {
     "age": "35-44",
     "gender": "Женщины",
-    "spend": 55.0,
-    "impressions": 203910,
-    "clicks": 8445
+    "spend": 56.29,
+    "impressions": 204575,
+    "clicks": 8458
    },
    {
     "age": "35-44",
     "gender": "Мужчины",
-    "spend": 91.0,
-    "impressions": 439882,
-    "clicks": 11335
+    "spend": 96.86,
+    "impressions": 443689,
+    "clicks": 11462
    },
    {
     "age": "35-44",
     "gender": "Не указан",
-    "spend": 0.61,
-    "impressions": 2377,
-    "clicks": 103
+    "spend": 0.63,
+    "impressions": 2404,
+    "clicks": 105
    },
    {
     "age": "45-54",
     "gender": "Женщины",
-    "spend": 28.7,
-    "impressions": 115916,
-    "clicks": 3663
+    "spend": 30.09,
+    "impressions": 116619,
+    "clicks": 3682
    },
    {
     "age": "45-54",
     "gender": "Мужчины",
-    "spend": 65.62,
-    "impressions": 309832,
-    "clicks": 7519
+    "spend": 72.02,
+    "impressions": 313771,
+    "clicks": 7635
    },
    {
     "age": "45-54",
     "gender": "Не указан",
-    "spend": 0.38,
-    "impressions": 1377,
-    "clicks": 39
+    "spend": 0.43,
+    "impressions": 1405,
+    "clicks": 40
    },
    {
     "age": "55-64",
     "gender": "Женщины",
-    "spend": 27.74,
-    "impressions": 97886,
-    "clicks": 2936
+    "spend": 29.78,
+    "impressions": 99281,
+    "clicks": 2977
    },
    {
     "age": "55-64",
     "gender": "Мужчины",
-    "spend": 48.12,
-    "impressions": 188259,
-    "clicks": 4063
+    "spend": 58.14,
+    "impressions": 196100,
+    "clicks": 4255
    },
    {
     "age": "55-64",
     "gender": "Не указан",
-    "spend": 0.21,
-    "impressions": 814,
-    "clicks": 20
+    "spend": 0.24,
+    "impressions": 844,
+    "clicks": 21
    },
    {
     "age": "65+",
     "gender": "Женщины",
-    "spend": 29.3,
-    "impressions": 80186,
-    "clicks": 2724
+    "spend": 33.5,
+    "impressions": 82738,
+    "clicks": 2795
    },
    {
     "age": "65+",
     "gender": "Мужчины",
-    "spend": 51.75,
-    "impressions": 126886,
-    "clicks": 3309
+    "spend": 74.23,
+    "impressions": 139695,
+    "clicks": 3711
    },
    {
     "age": "65+",
     "gender": "Не указан",
-    "spend": 0.29,
-    "impressions": 731,
-    "clicks": 16
+    "spend": 0.41,
+    "impressions": 792,
+    "clicks": 17
    },
    {
     "age": "Unknown",
@@ -61360,128 +61753,128 @@
    {
     "age": "18-24",
     "gender": "Женщины",
-    "spend": 120.16,
-    "impressions": 541615,
-    "clicks": 12411
+    "spend": 121.75,
+    "impressions": 542769,
+    "clicks": 12435
    },
    {
     "age": "18-24",
     "gender": "Мужчины",
-    "spend": 283.26,
-    "impressions": 968789,
-    "clicks": 18609
+    "spend": 293.89,
+    "impressions": 975947,
+    "clicks": 18797
    },
    {
     "age": "18-24",
     "gender": "Не указан",
-    "spend": 2.51,
-    "impressions": 7162,
-    "clicks": 154
+    "spend": 2.9,
+    "impressions": 7345,
+    "clicks": 159
    },
    {
     "age": "25-34",
     "gender": "Женщины",
-    "spend": 161.85,
-    "impressions": 572229,
-    "clicks": 21519
+    "spend": 163.18,
+    "impressions": 573225,
+    "clicks": 21539
    },
    {
     "age": "25-34",
     "gender": "Мужчины",
-    "spend": 298.8,
-    "impressions": 912347,
-    "clicks": 22489
+    "spend": 308.2,
+    "impressions": 919089,
+    "clicks": 22677
    },
    {
     "age": "25-34",
     "gender": "Не указан",
-    "spend": 2.72,
-    "impressions": 5851,
-    "clicks": 207
+    "spend": 2.89,
+    "impressions": 5920,
+    "clicks": 209
    },
    {
     "age": "35-44",
     "gender": "Женщины",
-    "spend": 103.0,
-    "impressions": 332052,
-    "clicks": 14706
+    "spend": 104.29,
+    "impressions": 332717,
+    "clicks": 14719
    },
    {
     "age": "35-44",
     "gender": "Мужчины",
-    "spend": 202.56,
-    "impressions": 667136,
-    "clicks": 19261
+    "spend": 208.42,
+    "impressions": 670943,
+    "clicks": 19388
    },
    {
     "age": "35-44",
     "gender": "Не указан",
-    "spend": 1.39,
-    "impressions": 3816,
-    "clicks": 161
+    "spend": 1.41,
+    "impressions": 3843,
+    "clicks": 163
    },
    {
     "age": "45-54",
     "gender": "Женщины",
-    "spend": 50.84,
-    "impressions": 174039,
-    "clicks": 6101
+    "spend": 52.23,
+    "impressions": 174742,
+    "clicks": 6120
    },
    {
     "age": "45-54",
     "gender": "Мужчины",
-    "spend": 127.39,
-    "impressions": 434407,
-    "clicks": 12026
+    "spend": 133.79,
+    "impressions": 438346,
+    "clicks": 12142
    },
    {
     "age": "45-54",
     "gender": "Не указан",
-    "spend": 0.72,
-    "impressions": 2122,
-    "clicks": 67
+    "spend": 0.77,
+    "impressions": 2150,
+    "clicks": 68
    },
    {
     "age": "55-64",
     "gender": "Женщины",
-    "spend": 40.6,
-    "impressions": 144454,
-    "clicks": 4892
+    "spend": 42.64,
+    "impressions": 145849,
+    "clicks": 4933
    },
    {
     "age": "55-64",
     "gender": "Мужчины",
-    "spend": 76.62,
-    "impressions": 258895,
-    "clicks": 6470
+    "spend": 86.64,
+    "impressions": 266736,
+    "clicks": 6662
    },
    {
     "age": "55-64",
     "gender": "Не указан",
-    "spend": 0.72,
-    "impressions": 1195,
-    "clicks": 34
+    "spend": 0.75,
+    "impressions": 1225,
+    "clicks": 35
    },
    {
     "age": "65+",
     "gender": "Женщины",
-    "spend": 41.85,
-    "impressions": 119613,
-    "clicks": 4390
+    "spend": 46.05,
+    "impressions": 122165,
+    "clicks": 4461
    },
    {
     "age": "65+",
     "gender": "Мужчины",
-    "spend": 74.78,
-    "impressions": 184917,
-    "clicks": 5362
+    "spend": 97.26,
+    "impressions": 197726,
+    "clicks": 5764
    },
    {
     "age": "65+",
     "gender": "Не указан",
-    "spend": 0.57,
-    "impressions": 1211,
-    "clicks": 40
+    "spend": 0.69,
+    "impressions": 1272,
+    "clicks": 41
    },
    {
     "age": "Unknown",
@@ -61509,128 +61902,128 @@
    {
     "age": "18-24",
     "gender": "Женщины",
-    "spend": 120.53,
-    "impressions": 541943,
-    "clicks": 12418
+    "spend": 122.33,
+    "impressions": 543233,
+    "clicks": 12447
    },
    {
     "age": "18-24",
     "gender": "Мужчины",
-    "spend": 723.93,
-    "impressions": 1516859,
-    "clicks": 22895
+    "spend": 737.44,
+    "impressions": 1525814,
+    "clicks": 23125
    },
    {
     "age": "18-24",
     "gender": "Не указан",
-    "spend": 2.6,
-    "impressions": 7207,
-    "clicks": 155
+    "spend": 3.06,
+    "impressions": 7402,
+    "clicks": 162
    },
    {
     "age": "25-34",
     "gender": "Женщины",
-    "spend": 170.44,
-    "impressions": 573524,
-    "clicks": 21534
+    "spend": 171.75,
+    "impressions": 574509,
+    "clicks": 21559
    },
    {
     "age": "25-34",
     "gender": "Мужчины",
-    "spend": 2765.83,
-    "impressions": 2583669,
-    "clicks": 39910
+    "spend": 2777.2,
+    "impressions": 2591923,
+    "clicks": 40151
    },
    {
     "age": "25-34",
     "gender": "Не указан",
-    "spend": 3.17,
-    "impressions": 5917,
-    "clicks": 208
+    "spend": 3.34,
+    "impressions": 6003,
+    "clicks": 210
    },
    {
     "age": "35-44",
     "gender": "Женщины",
-    "spend": 111.22,
-    "impressions": 332689,
-    "clicks": 14718
+    "spend": 112.24,
+    "impressions": 333278,
+    "clicks": 14731
    },
    {
     "age": "35-44",
     "gender": "Мужчины",
-    "spend": 924.35,
-    "impressions": 1008194,
-    "clicks": 24321
+    "spend": 931.46,
+    "impressions": 1012701,
+    "clicks": 24489
    },
    {
     "age": "35-44",
     "gender": "Не указан",
-    "spend": 1.47,
-    "impressions": 3827,
-    "clicks": 161
+    "spend": 1.52,
+    "impressions": 3865,
+    "clicks": 164
    },
    {
     "age": "45-54",
     "gender": "Женщины",
-    "spend": 51.83,
-    "impressions": 174382,
-    "clicks": 6112
+    "spend": 52.86,
+    "impressions": 174919,
+    "clicks": 6124
    },
    {
     "age": "45-54",
     "gender": "Мужчины",
-    "spend": 134.21,
-    "impressions": 436087,
-    "clicks": 12058
+    "spend": 141.08,
+    "impressions": 440025,
+    "clicks": 12210
    },
    {
     "age": "45-54",
     "gender": "Не указан",
-    "spend": 0.89,
-    "impressions": 2142,
-    "clicks": 67
+    "spend": 0.94,
+    "impressions": 2168,
+    "clicks": 69
    },
    {
     "age": "55-64",
     "gender": "Женщины",
-    "spend": 41.95,
-    "impressions": 145225,
-    "clicks": 4918
+    "spend": 43.19,
+    "impressions": 146037,
+    "clicks": 4937
    },
    {
     "age": "55-64",
     "gender": "Мужчины",
-    "spend": 82.27,
-    "impressions": 261884,
-    "clicks": 6547
+    "spend": 90.97,
+    "impressions": 268148,
+    "clicks": 6703
    },
    {
     "age": "55-64",
     "gender": "Не указан",
-    "spend": 0.77,
-    "impressions": 1217,
+    "spend": 0.81,
+    "impressions": 1245,
     "clicks": 35
    },
    {
     "age": "65+",
     "gender": "Женщины",
-    "spend": 44.06,
-    "impressions": 120932,
-    "clicks": 4429
+    "spend": 46.41,
+    "impressions": 122359,
+    "clicks": 4465
    },
    {
     "age": "65+",
     "gender": "Мужчины",
-    "spend": 82.12,
-    "impressions": 189070,
-    "clicks": 5487
+    "spend": 100.44,
+    "impressions": 199201,
+    "clicks": 5810
    },
    {
     "age": "65+",
     "gender": "Не указан",
-    "spend": 0.62,
-    "impressions": 1229,
-    "clicks": 40
+    "spend": 0.71,
+    "impressions": 1280,
+    "clicks": 41
    },
    {
     "age": "Unknown",
@@ -61658,85 +62051,90 @@
  "posthog_funnel": [
   {
    "name": "Зарегистрировался",
-   "count": 350,
+   "count": 366,
    "median_conversion_sec": null
   },
   {
    "name": "Открыл раздел приложения",
-   "count": 164,
-   "median_conversion_sec": 67.13949990272522
+   "count": 173,
+   "median_conversion_sec": 68.7810001373291
   },
   {
    "name": "Открыл сделку",
-   "count": 30,
-   "median_conversion_sec": 348.54499995708466
+   "count": 33,
+   "median_conversion_sec": 395.7569999694824
   }
  ],
  "posthog_events": [
   {
-   "event": "settings_tab_selected",
-   "name": "Открыл вкладку настроек",
-   "count": 906.0
-  },
-  {
    "event": "manual_journal_empty_state_shown",
    "name": "Увидел пустой ручной журнал",
-   "count": 885.0
+   "count": 1025.0
+  },
+  {
+   "event": "settings_tab_selected",
+   "name": "Открыл вкладку настроек",
+   "count": 894.0
   },
   {
    "event": "date_range_selected",
    "name": "Выбрал диапазон дат",
-   "count": 601.0
+   "count": 629.0
   },
   {
    "event": "$dead_click",
    "name": "Мёртвый клик (без реакции интерфейса)",
-   "count": 523.0
+   "count": 520.0
   },
   {
    "event": "$identify",
    "name": "Зарегистрировался",
-   "count": 446.0
-  },
-  {
-   "event": "journal_view_mode_changed",
-   "name": "Сменил режим просмотра журнала",
-   "count": 398.0
+   "count": 469.0
   },
   {
    "event": "onboarding_resumed",
    "name": "Вернулся в онбординг",
-   "count": 395.0
+   "count": 426.0
   },
   {
-   "event": "dashboard_widget_view_toggled",
-   "name": "Переключил вид виджета",
-   "count": 388.0
+   "event": "journal_view_mode_changed",
+   "name": "Сменил режим просмотра журнала",
+   "count": 417.0
   },
   {
    "event": "trade_opened",
    "name": "Открыл сделку",
-   "count": 359.0
+   "count": 374.0
   },
   {
-   "event": "journal_summary_toggled",
-   "name": "Показал/скрыл summary журнала",
-   "count": 341.0
-  },
-  {
-   "event": "user_signed_up",
-   "name": "Зарегистрировался (форма)",
-   "count": 327.0
-  },
-  {
-   "event": "onboarding_started",
-   "name": "Начал онбординг",
-   "count": 327.0
+   "event": "dashboard_widget_view_toggled",
+   "name": "Переключил вид виджета",
+   "count": 366.0
   },
   {
    "event": "journal_mode_switched",
    "name": "Переключил режим журнала",
-   "count": 285.0
+   "count": 357.0
+  },
+  {
+   "event": "user_signed_up",
+   "name": "Зарегистрировался (форма)",
+   "count": 348.0
+  },
+  {
+   "event": "onboarding_started",
+   "name": "Начал онбординг",
+   "count": 348.0
+  },
+  {
+   "event": "journal_summary_toggled",
+   "name": "Показал/скрыл summary журнала",
+   "count": 343.0
+  },
+  {
+   "event": "manual_trade_added",
+   "name": "Добавил сделку вручную",
+   "count": 211.0
   },
   {
    "event": "trading_account_add_clicked",
@@ -61746,72 +62144,77 @@
   {
    "event": "demo_mode_entered",
    "name": "Вошёл в демо-режим",
-   "count": 190.0
-  },
-  {
-   "event": "demo_gated_feature_blocked",
-   "name": "Уткнулся в фичу, закрытую в демо",
-   "count": 190.0
-  },
-  {
-   "event": "demo_mode_clicked",
-   "name": "Клик «демо-режим»",
-   "count": 188.0
+   "count": 198.0
   },
   {
    "event": "onboarding_path_selected",
    "name": "Выбрал ветку онбординга",
-   "count": 178.0
+   "count": 197.0
+  },
+  {
+   "event": "demo_mode_clicked",
+   "name": "Клик «демо-режим»",
+   "count": 196.0
+  },
+  {
+   "event": "demo_gated_feature_blocked",
+   "name": "Уткнулся в фичу, закрытую в демо",
+   "count": 188.0
   },
   {
    "event": "connect_api_modal_shown",
    "name": "Увидел модалку «подключить API»",
-   "count": 178.0
-  },
-  {
-   "event": "manual_trade_added",
-   "name": "Добавил сделку вручную",
-   "count": 174.0
-  },
-  {
-   "event": "demo_banner_exit_clicked",
-   "name": "Закрыл баннер демо-режима",
-   "count": 170.0
-  },
-  {
-   "event": "workspace_switched",
-   "name": "Переключил workspace",
-   "count": 168.0
+   "count": 181.0
   },
   {
    "event": "connect_api_modal_cta_clicked",
    "name": "Клик в модалке «подключить API»",
-   "count": 166.0
+   "count": 169.0
   },
   {
-   "event": "trade_detail_block_added",
-   "name": "Добавил блок в детали сделки",
-   "count": 161.0
+   "event": "demo_banner_exit_clicked",
+   "name": "Закрыл баннер демо-режима",
+   "count": 167.0
+  },
+  {
+   "event": "workspace_switched",
+   "name": "Переключил workspace",
+   "count": 163.0
   },
   {
    "event": "manual_trade_creation_started",
    "name": "Начал создание сделки",
-   "count": 150.0
+   "count": 159.0
   },
   {
-   "event": "calendar_month_navigated",
-   "name": "Пролистал месяц в календаре",
-   "count": 128.0
+   "event": "trade_detail_block_added",
+   "name": "Добавил блок в детали сделки",
+   "count": 155.0
   },
   {
    "event": "manual_account_created",
    "name": "Создал ручной аккаунт",
+   "count": 136.0
+  },
+  {
+   "event": "calendar_month_navigated",
+   "name": "Пролистал месяц в календаре",
    "count": 124.0
   },
   {
    "event": "$dead_swipe",
    "name": "Мёртвый свайп (без реакции интерфейса)",
-   "count": 119.0
+   "count": 116.0
+  },
+  {
+   "event": "nav_recommendation_selected",
+   "name": "Выбрал рекомендацию в навигации",
+   "count": 115.0
+  },
+  {
+   "event": "ai_chat_opened",
+   "name": "Открыл AI-чат",
+   "count": 109.0
   },
   {
    "event": "data_refreshed",
@@ -61819,49 +62222,39 @@
    "count": 109.0
   },
   {
-   "event": "nav_recommendation_selected",
-   "name": "Выбрал рекомендацию в навигации",
-   "count": 107.0
-  },
-  {
-   "event": "ai_chat_opened",
-   "name": "Открыл AI-чат",
-   "count": 106.0
-  },
-  {
    "event": "content_shared",
    "name": "Поделился контентом",
-   "count": 105.0
-  },
-  {
-   "event": "dashboard_layout_toggled",
-   "name": "Изменил layout дашборда",
-   "count": 85.0
+   "count": 104.0
   },
   {
    "event": "item_favorited",
    "name": "Добавил в избранное",
+   "count": 89.0
+  },
+  {
+   "event": "dashboard_layout_toggled",
+   "name": "Изменил layout дашборда",
    "count": 84.0
   },
   {
    "event": "risk_rule_updated",
    "name": "Обновил risk-правило",
-   "count": 79.0
-  },
-  {
-   "event": "dashboard_widgets_managed",
-   "name": "Настроил набор виджетов",
-   "count": 79.0
-  },
-  {
-   "event": "connection_manager_opened",
-   "name": "Открыл Connection Manager",
-   "count": 69.0
+   "count": 73.0
   },
   {
    "event": "journal_filters_opened",
    "name": "Открыл фильтры журнала",
-   "count": 68.0
+   "count": 71.0
+  },
+  {
+   "event": "connection_manager_opened",
+   "name": "Открыл Connection Manager",
+   "count": 70.0
+  },
+  {
+   "event": "dashboard_widgets_managed",
+   "name": "Настроил набор виджетов",
+   "count": 66.0
   },
   {
    "event": "note_created",
@@ -61871,32 +62264,32 @@
   {
    "event": "promo_code_resolved",
    "name": "Промокод обработан",
-   "count": 62.0
+   "count": 59.0
   },
   {
    "event": "connection_attempt_observed",
    "name": "Наблюдение за попыткой подключения",
-   "count": 58.0
+   "count": 59.0
   },
   {
    "event": "connection_attempt_started",
    "name": "Начал попытку подключения",
-   "count": 47.0
+   "count": 49.0
   },
   {
    "event": "ai_message_sent",
    "name": "Отправил сообщение AI",
-   "count": 44.0
+   "count": 43.0
   },
   {
    "event": "profile_field_updated",
    "name": "Изменил поле профиля",
-   "count": 39.0
+   "count": 38.0
   },
   {
    "event": "connection_attempt_result",
    "name": "Результат попытки подключения",
-   "count": 36.0
+   "count": 37.0
   },
   {
    "event": "onboarding_insight_next_clicked",
@@ -61904,23 +62297,33 @@
    "count": 29.0
   },
   {
+   "event": "trial_checkout_started",
+   "name": "Начал оформление trial/оплаты",
+   "count": 27.0
+  },
+  {
+   "event": "nav_recommendation_dismissed",
+   "name": "Отклонил рекомендацию в навигации",
+   "count": 27.0
+  },
+  {
    "event": "platform_setting_updated",
    "name": "Изменил настройку платформы",
-   "count": 28.0
+   "count": 26.0
   },
   {
    "event": "plan_change_clicked",
    "name": "Клик «сменить план»",
-   "count": 27.0
-  },
-  {
-   "event": "trial_checkout_started",
-   "name": "Начал оформление trial/оплаты",
    "count": 26.0
   },
   {
-   "event": "journal_column_added",
-   "name": "Добавил колонку журнала",
+   "event": "note_block_added",
+   "name": "Добавил блок в заметку",
+   "count": 25.0
+  },
+  {
+   "event": "manual_onboarding_completed",
+   "name": "Завершил ручной онбординг",
    "count": 25.0
   },
   {
@@ -61929,19 +62332,9 @@
    "count": 25.0
   },
   {
-   "event": "note_block_added",
-   "name": "Добавил блок в заметку",
-   "count": 24.0
-  },
-  {
-   "event": "manual_onboarding_completed",
-   "name": "Завершил ручной онбординг",
-   "count": 21.0
-  },
-  {
-   "event": "nav_recommendation_dismissed",
-   "name": "Отклонил рекомендацию в навигации",
-   "count": 21.0
+   "event": "journal_column_added",
+   "name": "Добавил колонку журнала",
+   "count": 22.0
   },
   {
    "event": "settings_empty_state_cta_clicked",
@@ -61954,13 +62347,13 @@
    "count": 18.0
   },
   {
-   "event": "trial_started",
-   "name": "Trial активирован",
-   "count": 13.0
-  },
-  {
    "event": "account_connected",
    "name": "Аккаунт подключён",
+   "count": 14.0
+  },
+  {
+   "event": "trial_started",
+   "name": "Trial активирован",
    "count": 13.0
   },
   {
@@ -61971,12 +62364,12 @@
   {
    "event": "dashboard_widget_settings_opened",
    "name": "Открыл настройки виджета",
-   "count": 12.0
+   "count": 11.0
   },
   {
    "event": "app_store_link_clicked",
    "name": "Клик по ссылке на app store",
-   "count": 11.0
+   "count": 10.0
   },
   {
    "event": "trade_template_selected",
@@ -62019,16 +62412,6 @@
    "count": 8.0
   },
   {
-   "event": "cancellation_continued",
-   "name": "Продолжил отмену",
-   "count": 8.0
-  },
-  {
-   "event": "cancellation_reason_submitted",
-   "name": "Указал причину отмены",
-   "count": 8.0
-  },
-  {
    "event": "account_deletion_flow_started",
    "name": "Начал удаление аккаунта",
    "count": 8.0
@@ -62039,24 +62422,24 @@
    "count": 8.0
   },
   {
-   "event": "account_deletion_verification_requested",
-   "name": "Подтвердил причину удаления",
+   "event": "external_auth_credentials_managed",
+   "name": "Управлял внешними credentials",
    "count": 7.0
   },
   {
-   "event": "profile_picture_updated",
-   "name": "Обновил аватар",
-   "count": 5.0
+   "event": "cancellation_continued",
+   "name": "Продолжил отмену",
+   "count": 7.0
   },
   {
-   "event": "external_auth_credentials_managed",
-   "name": "Управлял внешними credentials",
-   "count": 5.0
+   "event": "cancellation_reason_submitted",
+   "name": "Указал причину отмены",
+   "count": 7.0
   },
   {
-   "event": "purchase_base",
-   "name": "Купил Base (Stripe)",
-   "count": 5.0
+   "event": "account_deletion_verification_requested",
+   "name": "Подтвердил причину удаления",
+   "count": 7.0
   },
   {
    "event": "connection_manager_retained",
@@ -62067,6 +62450,16 @@
    "event": "note_tag_created",
    "name": "Создал тег заметки",
    "count": 4.0
+  },
+  {
+   "event": "purchase_base",
+   "name": "Купил Base (Stripe)",
+   "count": 4.0
+  },
+  {
+   "event": "profile_picture_updated",
+   "name": "Обновил аватар",
+   "count": 3.0
   },
   {
    "event": "calendar_day_viewed",
@@ -62130,17 +62523,17 @@
   }
  ],
  "posthog_activity": {
-  "dau": 4,
-  "wau": 107,
-  "mau": 250
+  "dau": 3,
+  "wau": 113,
+  "mau": 262
  },
  "posthog_trial_by_plan": [
   {
    "step": "Начал оформление",
    "plan_code": "base",
    "plan": "Base",
-   "count": 52,
-   "amount": 1790.0,
+   "count": 53,
+   "amount": 1940.0,
    "currency": "usd"
   },
   {
@@ -62172,8 +62565,8 @@
   "promo_applied": 17,
   "promo_skipped": 289,
   "path_split": {
-   "manual": 338,
-   "auto": 51
+   "manual": 358,
+   "auto": 52
   }
  },
  "posthog_banners": [
@@ -62214,17 +62607,17 @@
  ],
  "clarity": {
   "num_days": 3,
-  "sessions": 414,
-  "bot_sessions": 2,
-  "distinct_users": 399,
-  "pages_per_session": 1.79,
-  "total_time_min": 135,
-  "active_time_min": 56,
-  "avg_scroll_depth": 95.4,
+  "sessions": 412,
+  "bot_sessions": 1,
+  "distinct_users": 398,
+  "pages_per_session": 1.41,
+  "total_time_min": 110,
+  "active_time_min": 41,
+  "avg_scroll_depth": 96.7,
   "dead_clicks": {
-   "sessions_pct": 9.9,
-   "count": 142,
-   "pages": 54
+   "sessions_pct": 7.52,
+   "count": 90,
+   "pages": 39
   },
   "rage_clicks": {
    "sessions_pct": 0,
@@ -62232,9 +62625,9 @@
    "pages": 0
   },
   "quick_backs": {
-   "sessions_pct": 0.72,
-   "count": 5,
-   "pages": 5
+   "sessions_pct": 0.24,
+   "count": 1,
+   "pages": 1
   },
   "excessive_scroll": {
    "sessions_pct": 0,
@@ -62253,54 +62646,54 @@
   },
   "top_pages": [
    {
-    "url": "https://futures.scope360.io/onboarding/billing",
-    "visits": 130
-   },
-   {
     "url": "https://futures.scope360.io/journal",
-    "visits": 106
+    "visits": 102
    },
    {
-    "url": "https://futures.scope360.io/billing/result/active",
-    "visits": 49
-   },
-   {
-    "url": "https://futures.scope360.io/dashboard",
-    "visits": 48
+    "url": "https://futures.scope360.io/onboarding/billing",
+    "visits": 92
    },
    {
     "url": "https://futures.scope360.io/okx-referral-plan",
-    "visits": 45
-   },
-   {
-    "url": "https://futures.scope360.io/daily-stats",
-    "visits": 25
+    "visits": 42
    },
    {
     "url": "https://futures.scope360.io/settings/connection-manager",
-    "visits": 25
+    "visits": 38
+   },
+   {
+    "url": "https://futures.scope360.io/billing/result/active",
+    "visits": 34
+   },
+   {
+    "url": "https://futures.scope360.io/dashboard",
+    "visits": 34
+   },
+   {
+    "url": "https://futures.scope360.io/settings/profile",
+    "visits": 31
    },
    {
     "url": "https://futures.scope360.io/settings/plans",
     "visits": 24
    },
    {
-    "url": "https://futures.scope360.io/notes",
+    "url": "https://futures.scope360.io/settings/billing",
     "visits": 21
    },
    {
-    "url": "https://futures.scope360.io/settings/profile",
+    "url": "https://futures.scope360.io/daily-stats",
     "visits": 20
    }
   ],
   "by_device": [
    {
     "name": "PC",
-    "sessions": 293
+    "sessions": 332
    },
    {
     "name": "Mobile",
-    "sessions": 121
+    "sessions": 80
    }
   ]
  },
@@ -62570,26 +62963,29 @@
    "quick_backs": 5,
    "script_errors": 0,
    "error_clicks": 0
+  },
+  {
+   "date": "2026-11-03",
+   "sessions": 412,
+   "distinct_users": 398,
+   "avg_scroll_depth": 96.7,
+   "active_time_min": 41,
+   "dead_clicks": 90,
+   "dead_clicks_pct": 7.52,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "quick_backs": 1,
+   "script_errors": 0,
+   "error_clicks": 0
   }
  ],
  "clarity_pages": [
   {
-   "url": "https://futures.scope360.io/onboarding/billing?redirect=/journal",
-   "path": "onboarding/billing?redirect=/journal",
-   "sessions": 116,
-   "dead_clicks": 31,
-   "dead_clicks_pct": 12.07,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
    "url": "https://futures.scope360.io/settings/connection-manager",
    "path": "settings/connection-manager",
-   "sessions": 16,
-   "dead_clicks": 24,
-   "dead_clicks_pct": 25,
+   "sessions": 29,
+   "dead_clicks": 18,
+   "dead_clicks_pct": 13.79,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
@@ -62598,13 +62994,24 @@
   {
    "url": "https://futures.scope360.io/okx-referral-plan?origin=onboarding&redirect=/journal",
    "path": "okx-referral-plan?origin=onboarding&redirect=/journal",
-   "sessions": 39,
-   "dead_clicks": 21,
-   "dead_clicks_pct": 23.08,
+   "sessions": 34,
+   "dead_clicks": 13,
+   "dead_clicks_pct": 17.65,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
    "quick_backs": 1
+  },
+  {
+   "url": "https://futures.scope360.io/onboarding/billing?redirect=/journal",
+   "path": "onboarding/billing?redirect=/journal",
+   "sessions": 77,
+   "dead_clicks": 12,
+   "dead_clicks_pct": 11.69,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "error_clicks": 0,
+   "quick_backs": 0
   },
   {
    "url": "https://futures.scope360.io/okx-referral-plan?origin=onboarding&redirect=/journal?utm_source=site%26utm_content=TG%2BScope",
@@ -62629,22 +63036,66 @@
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/settings/plans",
-   "path": "settings/plans",
-   "sessions": 23,
-   "dead_clicks": 7,
-   "dead_clicks_pct": 13.04,
+   "url": "https://futures.scope360.io/connect-account?source=okx-referral&redirect=/journal",
+   "path": "connect-account?source=okx-referral&redirect=/journal",
+   "sessions": 8,
+   "dead_clicks": 6,
+   "dead_clicks_pct": 25,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
    "quick_backs": 0
   },
   {
-   "url": "https://futures.scope360.io/connect-account?source=okx-referral&redirect=/journal",
-   "path": "connect-account?source=okx-referral&redirect=/journal",
-   "sessions": 9,
+   "url": "https://futures.scope360.io/settings/plans",
+   "path": "settings/plans",
+   "sessions": 24,
    "dead_clicks": 6,
-   "dead_clicks_pct": 22.22,
+   "dead_clicks_pct": 12.5,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "error_clicks": 0,
+   "quick_backs": 0
+  },
+  {
+   "url": "https://futures.scope360.io/settings/profile",
+   "path": "settings/profile",
+   "sessions": 31,
+   "dead_clicks": 4,
+   "dead_clicks_pct": 9.68,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "error_clicks": 0,
+   "quick_backs": 0
+  },
+  {
+   "url": "https://futures.scope360.io/okx-referral-plan?origin=onboarding&redirect=/settings/billing",
+   "path": "okx-referral-plan?origin=onboarding&redirect=/settings/billing",
+   "sessions": 2,
+   "dead_clicks": 3,
+   "dead_clicks_pct": 50,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "error_clicks": 0,
+   "quick_backs": 0
+  },
+  {
+   "url": "https://futures.scope360.io/settings/journal",
+   "path": "settings/journal",
+   "sessions": 15,
+   "dead_clicks": 3,
+   "dead_clicks_pct": 13.33,
+   "rage_clicks": 0,
+   "rage_clicks_pct": 0,
+   "error_clicks": 0,
+   "quick_backs": 0
+  },
+  {
+   "url": "https://futures.scope360.io/settings/connection-manager?accountId=4512&accountMarket=fx",
+   "path": "settings/connection-manager?accountId=4512&accountMarket=fx",
+   "sessions": 7,
+   "dead_clicks": 2,
+   "dead_clicks_pct": 14.29,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
@@ -62654,52 +63105,8 @@
    "url": "https://futures.scope360.io/okx-referral-plan?redirect=/settings/plans",
    "path": "okx-referral-plan?redirect=/settings/plans",
    "sessions": 3,
-   "dead_clicks": 6,
-   "dead_clicks_pct": 66.67,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/billing/result/active?to=free",
-   "path": "billing/result/active?to=free",
-   "sessions": 48,
-   "dead_clicks": 5,
-   "dead_clicks_pct": 2.08,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/settings/billing",
-   "path": "settings/billing",
-   "sessions": 13,
-   "dead_clicks": 5,
-   "dead_clicks_pct": 15.38,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/settings/referrals",
-   "path": "settings/referrals",
-   "sessions": 3,
-   "dead_clicks": 4,
+   "dead_clicks": 2,
    "dead_clicks_pct": 33.33,
-   "rage_clicks": 0,
-   "rage_clicks_pct": 0,
-   "error_clicks": 0,
-   "quick_backs": 0
-  },
-  {
-   "url": "https://futures.scope360.io/notes/edit/765",
-   "path": "notes/edit/765",
-   "sessions": 1,
-   "dead_clicks": 3,
-   "dead_clicks_pct": 100,
    "rage_clicks": 0,
    "rage_clicks_pct": 0,
    "error_clicks": 0,
@@ -62713,14 +63120,14 @@
    "variant_key": "ppp",
    "geo_group": "europe",
    "country": "UA",
-   "users": 61
+   "users": 67
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "geo_group": "europe",
    "country": "PL",
-   "users": 19
+   "users": 21
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
@@ -62739,13 +63146,6 @@
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
-   "geo_group": "europe",
-   "country": "BY",
-   "users": 7
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "ppp",
    "geo_group": "north_america",
    "country": "US",
    "users": 7
@@ -62754,8 +63154,15 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "geo_group": "europe",
+   "country": "BY",
+   "users": 7
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
    "country": "PT",
-   "users": 5
+   "users": 6
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
@@ -62769,7 +63176,28 @@
    "variant_key": "ppp",
    "geo_group": "europe",
    "country": "FR",
-   "users": 4
+   "users": 5
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
+   "country": "ES",
+   "users": 2
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
+   "country": "MD",
+   "users": 2
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
+   "country": "RU",
+   "users": 2
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
@@ -62789,42 +63217,7 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "geo_group": "europe",
-   "country": "MD",
-   "users": 2
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "ppp",
-   "geo_group": "europe",
-   "country": "HU",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "ppp",
-   "geo_group": "europe",
-   "country": "IT",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "ppp",
-   "geo_group": "europe",
    "country": "RO",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "ppp",
-   "geo_group": "europe",
-   "country": "RU",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "ppp",
-   "geo_group": "africa",
-   "country": "DZ",
    "users": 1
   },
   {
@@ -62838,7 +63231,7 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "geo_group": "africa",
-   "country": "KE",
+   "country": "DZ",
    "users": 1
   },
   {
@@ -62901,7 +63294,35 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "geo_group": "europe",
-   "country": "ES",
+   "country": "BG",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
+   "country": "HU",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
+   "country": "IT",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "europe",
+   "country": "NL",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "geo_group": "africa",
+   "country": "KE",
    "users": 1
   },
   {
@@ -62909,14 +63330,14 @@
    "variant_key": "standard",
    "geo_group": "europe",
    "country": "UA",
-   "users": 55
+   "users": 60
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
    "geo_group": "europe",
    "country": "PL",
-   "users": 15
+   "users": 16
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
@@ -62936,15 +63357,15 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
    "geo_group": "europe",
-   "country": "CZ",
-   "users": 3
+   "country": "BY",
+   "users": 4
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
    "geo_group": "europe",
-   "country": "BY",
-   "users": 3
+   "country": "CZ",
+   "users": 4
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
@@ -62956,15 +63377,8 @@
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
-   "geo_group": "europe",
-   "country": "FR",
-   "users": 2
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "standard",
-   "geo_group": "africa",
-   "country": "NG",
+   "geo_group": "asia",
+   "country": "KZ",
    "users": 2
   },
   {
@@ -62972,6 +63386,13 @@
    "variant_key": "standard",
    "geo_group": "africa",
    "country": "ET",
+   "users": 2
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "africa",
+   "country": "NG",
    "users": 2
   },
   {
@@ -62992,14 +63413,49 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
    "geo_group": "europe",
-   "country": "AT",
-   "users": 1
+   "country": "FR",
+   "users": 2
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "north_america",
+   "country": "US",
+   "users": 2
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
    "geo_group": "europe",
    "country": "BG",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "asia",
+   "country": "PK",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "asia",
+   "country": "ID",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "asia",
+   "country": "HK",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "europe",
+   "country": "EE",
    "users": 1
   },
   {
@@ -63012,22 +63468,15 @@
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
-   "geo_group": "africa",
-   "country": "ZA",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "standard",
-   "geo_group": "africa",
-   "country": "SO",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "standard",
    "geo_group": "europe",
-   "country": "EE",
+   "country": "FI",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "north_america",
+   "country": "CA",
    "users": 1
   },
   {
@@ -63047,8 +63496,8 @@
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
-   "geo_group": "north_america",
-   "country": "US",
+   "geo_group": "asia",
+   "country": "AM",
    "users": 1
   },
   {
@@ -63075,36 +63524,8 @@
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
-   "geo_group": "asia",
-   "country": "AM",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "standard",
-   "geo_group": "asia",
-   "country": "ID",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "standard",
-   "geo_group": "asia",
-   "country": "HK",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "standard",
-   "geo_group": "asia",
-   "country": "KZ",
-   "users": 1
-  },
-  {
-   "experiment_key": "ppp_pricing_geo_v1",
-   "variant_key": "standard",
-   "geo_group": "asia",
-   "country": "PK",
+   "geo_group": "africa",
+   "country": "ZA",
    "users": 1
   },
   {
@@ -63117,8 +63538,22 @@
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
+   "geo_group": "africa",
+   "country": "SO",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
    "geo_group": "asia",
    "country": "UZ",
+   "users": 1
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "standard",
+   "geo_group": "europe",
+   "country": "AT",
    "users": 1
   },
   {
@@ -63126,7 +63561,7 @@
    "variant_key": "free",
    "geo_group": "europe",
    "country": "PL",
-   "users": 19
+   "users": 20
   },
   {
    "experiment_key": "trial_price_geo_v1",
@@ -63154,27 +63589,20 @@
    "variant_key": "free",
    "geo_group": "europe",
    "country": "FR",
-   "users": 4
+   "users": 5
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
    "geo_group": "europe",
    "country": "BY",
-   "users": 3
+   "users": 4
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
    "geo_group": "europe",
-   "country": "SK",
-   "users": 2
-  },
-  {
-   "experiment_key": "trial_price_geo_v1",
-   "variant_key": "free",
-   "geo_group": "europe",
-   "country": "RO",
+   "country": "ES",
    "users": 2
   },
   {
@@ -63194,16 +63622,23 @@
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
-   "geo_group": "asia",
-   "country": "PH",
-   "users": 1
+   "geo_group": "europe",
+   "country": "NL",
+   "users": 2
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
-   "geo_group": "asia",
-   "country": "PK",
-   "users": 1
+   "geo_group": "europe",
+   "country": "RO",
+   "users": 2
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "free",
+   "geo_group": "europe",
+   "country": "SK",
+   "users": 2
   },
   {
    "experiment_key": "trial_price_geo_v1",
@@ -63230,13 +63665,6 @@
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
    "geo_group": "europe",
-   "country": "ES",
-   "users": 1
-  },
-  {
-   "experiment_key": "trial_price_geo_v1",
-   "variant_key": "free",
-   "geo_group": "europe",
    "country": "GB",
    "users": 1
   },
@@ -63252,13 +63680,6 @@
    "variant_key": "free",
    "geo_group": "europe",
    "country": "HU",
-   "users": 1
-  },
-  {
-   "experiment_key": "trial_price_geo_v1",
-   "variant_key": "free",
-   "geo_group": "europe",
-   "country": "NL",
    "users": 1
   },
   {
@@ -63347,10 +63768,24 @@
   },
   {
    "experiment_key": "trial_price_geo_v1",
+   "variant_key": "free",
+   "geo_group": "asia",
+   "country": "PH",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "free",
+   "geo_group": "asia",
+   "country": "PK",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
    "geo_group": "europe",
    "country": "PL",
-   "users": 15
+   "users": 17
   },
   {
    "experiment_key": "trial_price_geo_v1",
@@ -63364,7 +63799,7 @@
    "variant_key": "paid_1_usd",
    "geo_group": "north_america",
    "country": "US",
-   "users": 7
+   "users": 8
   },
   {
    "experiment_key": "trial_price_geo_v1",
@@ -63378,7 +63813,7 @@
    "variant_key": "paid_1_usd",
    "geo_group": "europe",
    "country": "PT",
-   "users": 5
+   "users": 6
   },
   {
    "experiment_key": "trial_price_geo_v1",
@@ -63397,13 +63832,6 @@
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
-   "geo_group": "asia",
-   "country": "SG",
-   "users": 2
-  },
-  {
-   "experiment_key": "trial_price_geo_v1",
-   "variant_key": "paid_1_usd",
    "geo_group": "europe",
    "country": "FR",
    "users": 2
@@ -63411,8 +63839,8 @@
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
-   "geo_group": "europe",
-   "country": "GB",
+   "geo_group": "asia",
+   "country": "KZ",
    "users": 2
   },
   {
@@ -63426,21 +63854,42 @@
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
    "geo_group": "europe",
-   "country": "IT",
-   "users": 1
+   "country": "CZ",
+   "users": 2
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "asia",
+   "country": "SG",
+   "users": 2
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
    "geo_group": "europe",
-   "country": "LV",
-   "users": 1
+   "country": "GB",
+   "users": 2
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
    "geo_group": "europe",
    "country": "MD",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "europe",
+   "country": "RU",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "north_america",
+   "country": "CA",
    "users": 1
   },
   {
@@ -63475,13 +63924,6 @@
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
    "geo_group": "asia",
-   "country": "KZ",
-   "users": 1
-  },
-  {
-   "experiment_key": "trial_price_geo_v1",
-   "variant_key": "paid_1_usd",
-   "geo_group": "asia",
    "country": "PK",
    "users": 1
   },
@@ -63510,7 +63952,7 @@
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
    "geo_group": "europe",
-   "country": "CZ",
+   "country": "BG",
    "users": 1
   },
   {
@@ -63518,6 +63960,27 @@
    "variant_key": "paid_1_usd",
    "geo_group": "europe",
    "country": "EE",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "europe",
+   "country": "FI",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "europe",
+   "country": "IT",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "paid_1_usd",
+   "geo_group": "europe",
+   "country": "LV",
    "users": 1
   },
   {
@@ -63966,34 +64429,46 @@
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
    "d": "2026-11-02",
-   "users": 4
+   "users": 17
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "standard",
    "d": "2026-11-02",
-   "users": 6
+   "users": 18
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
    "d": "2026-11-02",
-   "users": 1
+   "users": 5
   },
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "paid_1_usd",
    "d": "2026-11-02",
-   "users": 2
+   "users": 12
+  },
+  {
+   "experiment_key": "ppp_pricing_geo_v1",
+   "variant_key": "ppp",
+   "d": "2026-11-03",
+   "users": 1
+  },
+  {
+   "experiment_key": "trial_price_geo_v1",
+   "variant_key": "free",
+   "d": "2026-11-03",
+   "users": 1
   }
  ],
  "ab_checkouts": [
   {
    "experiment_key": "ppp_pricing_geo_v1",
    "variant_key": "ppp",
-   "checkouts": 12,
-   "users": 12,
-   "trial_checkouts": 12
+   "checkouts": 13,
+   "users": 13,
+   "trial_checkouts": 13
   },
   {
    "experiment_key": "ppp_pricing_geo_v1",
@@ -64005,9 +64480,9 @@
   {
    "experiment_key": "trial_price_geo_v1",
    "variant_key": "free",
-   "checkouts": 7,
-   "users": 7,
-   "trial_checkouts": 7
+   "checkouts": 8,
+   "users": 8,
+   "trial_checkouts": 8
   },
   {
    "experiment_key": "trial_price_geo_v1",
@@ -64095,7 +64570,7 @@
    "plan_code": "base",
    "period": "year",
    "amount_cents": 15000,
-   "checkouts": 5
+   "checkouts": 6
   },
   {
    "tier": "tier_1",
@@ -64103,6 +64578,13 @@
    "period": "month",
    "amount_cents": 4500,
    "checkouts": 3
+  },
+  {
+   "tier": "tier_1",
+   "plan_code": "pro",
+   "period": "year",
+   "amount_cents": 45000,
+   "checkouts": 1
   },
   {
    "tier": "tier_2",
@@ -64149,8 +64631,8 @@
    "variant_key": "ppp",
    "cohort": "test",
    "cutoff": "2026-10-16 12:10:21.51165+00",
-   "assigned": 125,
-   "checkout_users": 9,
+   "assigned": 139,
+   "checkout_users": 10,
    "paid_users": 0,
    "revenue": 1.0
   },
@@ -64159,7 +64641,7 @@
    "variant_key": "standard",
    "cohort": "test",
    "cutoff": "2026-10-16 12:10:21.51165+00",
-   "assigned": 123,
+   "assigned": 135,
    "checkout_users": 5,
    "paid_users": 0,
    "revenue": 1.0
@@ -64179,8 +64661,8 @@
    "variant_key": "free",
    "cohort": "test",
    "cutoff": "2026-10-16 12:53:19.914637+00",
-   "assigned": 82,
-   "checkout_users": 7,
+   "assigned": 87,
+   "checkout_users": 8,
    "paid_users": 0,
    "revenue": 0.0
   },
@@ -64189,7 +64671,7 @@
    "variant_key": "paid_1_usd",
    "cohort": "test",
    "cutoff": "2026-10-16 12:53:19.914637+00",
-   "assigned": 58,
+   "assigned": 68,
    "checkout_users": 3,
    "paid_users": 0,
    "revenue": 2.0
@@ -64275,6 +64757,15 @@
    "tier": "tier_1",
    "plan": "base",
    "period": "year",
+   "country": "ES",
+   "users": 1,
+   "n": 1
+  },
+  {
+   "kind": "checkout",
+   "tier": "tier_1",
+   "plan": "base",
+   "period": "year",
    "country": "NL",
    "users": 1,
    "n": 1
@@ -64303,6 +64794,15 @@
    "plan": "pro",
    "period": "month",
    "country": "PL",
+   "users": 1,
+   "n": 1
+  },
+  {
+   "kind": "checkout",
+   "tier": "tier_1",
+   "plan": "pro",
+   "period": "year",
+   "country": "?",
    "users": 1,
    "n": 1
   },
@@ -64380,8 +64880,8 @@
    "pricing_type": "standard",
    "tier": "tier_1",
    "status": "success",
-   "invoices": 31,
-   "revenue": 789.5
+   "invoices": 32,
+   "revenue": 809.5
   }
  ],
  "trial_by_length": [
@@ -64390,20 +64890,20 @@
    "checkouts": 40,
    "users": 37,
    "activated": 13,
-   "matured": 10,
+   "matured": 12,
    "paid": 4,
    "first": "2026-09-03",
    "last": "2026-10-02"
   },
   {
    "trial_days": 7,
-   "checkouts": 27,
-   "users": 25,
+   "checkouts": 28,
+   "users": 26,
    "activated": 14,
    "matured": 7,
    "paid": 0,
    "first": "2026-10-02",
-   "last": "2026-11-01"
+   "last": "2026-11-02"
   }
  ],
  "trial_weekly": [
@@ -64466,6 +64966,12 @@
    "trial_days": 7,
    "checkouts": 9,
    "activated": 6
+  },
+  {
+   "w": "2026-11-02",
+   "trial_days": 7,
+   "checkouts": 1,
+   "activated": 0
   }
  ]
 }
