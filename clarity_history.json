@@ -283,14 +283,28 @@
   "date": "2026-11-04",
   "sessions": 379,
   "distinct_users": 364,
-  "avg_scroll_depth": 97.0,
-  "active_time_min": 50,
+  "avg_scroll_depth": 96.8,
+  "active_time_min": 49,
   "dead_clicks": 85,
   "dead_clicks_pct": 6.6,
   "rage_clicks": 2,
   "rage_clicks_pct": 0.26,
   "quick_backs": 0,
   "script_errors": 0,
+  "error_clicks": 0
+ },
+ {
+  "date": "2026-11-11",
+  "sessions": 248,
+  "distinct_users": 221,
+  "avg_scroll_depth": 98.4,
+  "active_time_min": 57,
+  "dead_clicks": 48,
+  "dead_clicks_pct": 7.26,
+  "rage_clicks": 1,
+  "rage_clicks_pct": 0.4,
+  "quick_backs": 0,
+  "script_errors": 5,
   "error_clicks": 0
  }
 ]
